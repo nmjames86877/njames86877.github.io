@@ -1,51 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.top-level-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.settings-btn, .dashboard-btn {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.settings-btn:hover, .dashboard-btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.cards, .pills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
-
 .card, .pill {
     padding: 20px;
     border: 1px solid #ccc;
@@ -100,4 +52,70 @@ h1 {
     .card, .pill {
         width: 90%;
     }
+}
+
+/* Additional Styles for New Features */
+.account-details, .transfer-funds, .credit-score, .credit-report, .portfolio, .trades, .expense-tracking, .budgeting, .activation, .settings, .list, .customization {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.account-details table, .portfolio table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.account-details th, .account-details td, .portfolio th, .portfolio td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.expandable-section {
+    margin: 10px 0;
+}
+
+.expandable-section h3 {
+    cursor: pointer;
+}
+
+.expandable-section p {
+    display: none;
+}
+
+.expandable-section.active p {
+    display: block;
+}
+
+input[type="number"], input[type="text"], input[type="date"], input[type="range"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#siri-container:hover {
+    filter: hue-rotate(90deg);
 }
