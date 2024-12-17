@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroLink Prototype Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Register/Login Screen -->
+    <div class="register-login" id="register-login">
+        <h1>Register/Login</h1>
+        <button class="social-btn facebook" onclick="login()">Login with Facebook</button>
+        <button class="social-btn google" onclick="login()">Login with Google</button>
+        <button class="social-btn apple" onclick="login()">Login with Apple</button>
+    </div>
+
+    <!-- Welcome/Greeting Screen -->
+    <div class="welcome" id="welcome">
+        <h1>Welcome!</h1>
+        <button onclick="goToFinance()">Go to Finance</button>
+        <button onclick="goToAccessibility()">Go to Accessibility</button>
+        <button onclick="goToLifestyle()">Go to Lifestyle</button>
+        <button onclick="goToIdentity()">Go to Identity</button>
+        <button onclick="goToHealth()">Go to Health & Medical</button>
+    </div>
+
+    <!-- Finance Section -->
+    <div class="finance" id="finance">
+        <h1>Finance</h1>
+        <div class="top-level-buttons">
+            <button class="settings-btn">Three Bar Settings</button>
+            <button class="dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="budget-overview">Budget Overview Card</div>
+            <div class="card" id="investment-performance">Investment Performance Card</div>
+            <div class="card" id="loan-summary">Loan Summary Card</div>
+        </div>
+        <div class="pills">
+            <div class="pill" id="banking-institution">Banking Institution</div>
+            <div class="pill" id="credit-bureau">Credit Bureau</div>
+            <div class="pill" id="brokerage-firm">Brokerage Firm</div>
+            <div class="pill" id="finance-apps">Finance Apps</div>
+        </div>
+        <div class="chart">
+            <h2>Monthly Financial Overview Chart</h2>
+            <!-- Placeholder for pie chart -->
+            <img src="pie-chart.png" alt="Monthly Financial Overview Chart">
+        </div>
+    </div>
+
+    <!-- Accessibility Section -->
+    <div class="accessibility" id="accessibility">
+        <h1>Accessibility</h1>
+        <div class="top-level-buttons">
+            <button class="settings-btn">Three Bar Settings</button>
+            <button class="dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="voice-commands">Voice Commands Card</div>
+            <div class="card" id="high-contrast-mode">High Contrast Mode Card</div>
+            <div class="card" id="font-size-adjustment">Font Size Adjustment Card</div>
+        </div>
+        <div class="pills">
+            <div class="pill" id="screen-reader">Screen Reader</div>
+            <div class="pill" id="text-to-speech">Text-to-Speech</div>
+            <div class="pill" id="magnifier">Magnifier</div>
+            <div class="pill" id="keyboard-shortcuts">Keyboard Shortcuts</div>
+        </div>
+        <div class="chart">
+            <h2>Usage Statistics Chart</h2>
+            <!-- Placeholder for bar graph -->
+            <img src="bar-graph.png" alt="Usage Statistics Chart">
+        </div>
+    </div>
+
+    <!-- Lifestyle Section -->
+    <div class="lifestyle" id="lifestyle">
+        <h1>Lifestyle</h1>
+        <div class="top-level-buttons">
+            <button class="settings-btn">Three Bar Settings</button>
+            <button class="dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="social-feed">Social Feed Card</div>
+            <div class="card" id="entertainment-highlights">Entertainment Highlights Card</div>
+            <div class="card" id="upcoming-events">Upcoming Events Card</div>
+        </div>
+        <div class="pills">
+            <div class="pill" id="friends-activities">Friends' Activities</div>
+            <div class="pill" id="media-library">Media Library</div>
+            <div class="pill" id="event-invitations">Event Invitations</div>
+            <div class="pill" id="streaming-services">Streaming Services</div>
+        </div>
+        <div class="chart">
+            <h2>Weekly Engagement Overview Chart</h2>
+            <!-- Placeholder for bar graph -->
+            <img src="bar-graph.png" alt="Weekly Engagement Overview Chart">
+        </div>
+    </div>
+
+    <!-- Identity Section -->
+    <div class="identity" id="identity">
+        <h1>Identity</h1>
+        <div class="top-level-buttons">
+            <button class="settings-btn">Three Bar Settings</button>
+            <button class="dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="profile">Profile Card</div>
+            <div class="card" id="security-settings">Security Settings Card</div>
+            <div class="card" id="digital-id-cards">Digital ID Cards Card</div>
+            <div class="card" id="identity-monitoring-alerts">Identity Monitoring Alert Cards</div>
+        </div>
+        <div class="pills">
+            <div class="pill" id="recent-activities">Recent Activities</div>
+            <div class="pill" id="medical-id">Medical ID</div>
+            <div class="pill" id="insurance-card">Insurance Card</div>
+            <div class="pill" id="all-data-agencies">All Data Agencies</div>
+        </div>
+        <div class="chart">
+            <h2>Week to Date Info Chart</h2>
+            <!-- Placeholder for bar chart -->
+            <img src="bar-chart.png" alt="Week to Date Info Chart">
+        </div>
+    </div>
+
+    <!-- Health & Medical Section -->
+    <div class="health" id="health">
+        <h1>Health & Medical</h1>
+        <div class="top-level-buttons">
+            <button class="settings-btn">Three Bar Settings</button>
+            <button class="dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="health-summary">Health Summary Card</div>
+            <div class="card" id="appointment-reminder">Appointment Reminder Card</div>
+            <div class="card" id="medication-tracker">Medication Tracker Card</div>
+        </div>
+        <div class="pills">
+            <div class="pill" id="heart-rate">Heart Rate</div>
+            <div class="pill" id="sleep">Sleep</div>
+            <div class="pill" id="medical-records">Medical Records</div>
+            <div class="pill" id="medical-providers">Medical Providers</div>
+        </div>
+        <div class="chart">
+            <h2>Week to Date Health Overview Chart</h2>
+            <!-- Placeholder for line graph -->
+            <img src="line-graph.png" alt="Week to Date Health Overview Chart">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
