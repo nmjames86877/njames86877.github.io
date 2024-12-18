@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Show the register/login screen by default
-    document.getElementById('register-login').style.display = 'block';
+    document.getElementById('welcome').style.display = 'block';
 });
 
 function login() {
