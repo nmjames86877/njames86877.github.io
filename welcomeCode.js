@@ -1,5 +1,11 @@
-window.onload = function () {
+function goToPage(page) {
+    window.location.href = page;
+    }
 
+function goToSettings() {
+    window.location.href = 'settings.html';
+    }
+    
     document.addEventListener('DOMContentLoaded', () => {
         var siriWave = new SiriWave({
             container: document.getElementById('siri-container'),
@@ -13,17 +19,8 @@ window.onload = function () {
             autostart: true
         });
 
-        window.addEventListener('deviceorientation', function (event) {
-            var hue = Math.round(event.alpha);
-            siriWave.color = `hsl(${hue}, 100%, 50%)`;
+    window.addEventListener('deviceorientation', function (event) {
+        var hue = Math.round(event.alpha);
+        siriWave.color = `hsl(${hue}, 100%, 50%)`;
         });
     });
-
-    function goToPage(page) {
-        window.location.href = page;
-    }
-
-    function goToSettings() {
-        window.location.href = 'settings.html';
-    }
-}
