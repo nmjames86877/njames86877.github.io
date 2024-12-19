@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -128,7 +128,7 @@
         <div class="financial-top-level-buttons">
             <button class="financial-settings-btn" onclick="openSettings()">Three Bar Settings</button>
             <h1 align="center">Financial</h1>
-            <button class="financial-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
+            <button class="financial-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
         </div>
         <div class="financial-cards">
             <div class="financial-card" id="financial-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
@@ -149,7 +149,7 @@
 
 <script>
     // Navigate to the dashboard's welcome section
-    function goToWelcome() {
+    function goToWelcome('welcome.html') {
         alert("Navigating to Dashboard Top Level");
     }
 
