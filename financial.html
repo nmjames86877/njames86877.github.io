@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance</title>
+    <title>Financial</title>
     <style>
         /* Dashboard - Financial */
         body {
@@ -11,7 +11,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .finance-section {
+        .financial-section {
             position: relative;
             width: 100%;
             max-width: 375px;
@@ -19,7 +19,7 @@
             background: #FFFFFF;
         }
 
-        .finance-top-level-buttons {
+        .financial-top-level-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -28,14 +28,14 @@
             border-bottom: 1px solid #E0E0E0;
         }
 
-        .finance-cards, .finance-pills {
+        .financial-cards, .financial-pills {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             padding: 16px;
         }
 
-        .finance-card, .finance-pill {
+        .financial-card, .financial-pill {
             flex: 1;
             text-align: center;
             padding: 10px;
@@ -45,26 +45,26 @@
             cursor: pointer;
         }
 
-        .finance-chart {
+        .financial-chart {
             padding: 16px;
             background: #FFFFFF;
             border: 1px solid #E0E0E0;
             border-radius: 8px;
         }
 
-            .finance-chart h2 {
+            .financial-chart h2 {
                 margin: 0;
                 font-size: 18px;
                 font-weight: 600;
                 color: #000000;
             }
 
-            .finance-chart img {
+            .financial-chart img {
                 width: 100%;
                 border-radius: 8px;
             }
 
-        .finance-banking-institution, .finance-credit-bureau, .finance-brokerage-firm, .finance-finance-apps {
+        .financial-banking-institution, .financial-credit-bureau, .financial-brokerage-firm, .financial-financial-apps {
             padding: 16px;
             background: #FFFFFF;
             border: 1px solid #E0E0E0;
@@ -72,12 +72,12 @@
             margin: 16px 0;
         }
 
-        .finance-account-details img, .finance-credit-score img, .finance-portfolio img {
+        .financial-account-details img, .financial-credit-score img, .financial-portfolio img {
             width: 100%;
             border-radius: 8px;
         }
 
-        .finance-expandable-section h3 {
+        .financial-expandable-section h3 {
             margin: 0;
             font-size: 16px;
             font-weight: 600;
@@ -124,24 +124,24 @@
     </style>
 </head>
 <body>
-    <div class="finance-section" id="finance">
-        <div class="finance-top-level-buttons">
-            <button class="finance-settings-btn" onclick="openSettings()">Three Bar Settings</button>
-            <h1>Finance</h1>
-            <button class="finance-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+    <div class="financial-section" id="financial">
+        <div class="financial-top-level-buttons">
+            <button class="financial-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <h1 align="center">Financial</h1>
+            <button class="financial-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
         </div>
-        <div class="finance-cards">
-            <div class="finance-card" id="finance-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
-            <div class="finance-card" id="finance-investment-performance" onclick="showInvestmentPerformance()">Investment Performance Card</div>
-            <div class="finance-card" id="finance-loan-summary" onclick="showLoanSummary()">Loan Summary Card</div>
+        <div class="financial-cards">
+            <div class="financial-card" id="financial-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
+            <div class="financial-card" id="financial-investment-performance" onclick="showInvestmentPerformance()">Investment Performance Card</div>
+            <div class="financial-card" id="financial-net-worth-summary" onclick="showNetWorthSummary()">Net-Worth Summary Card</div>
         </div>
-        <div class="finance-pills">
-            <div class="finance-pill" id="finance-banking-institution" onclick="goToBankingInstitution()">Banking Institution</div>
-            <div class="finance-pill" id="finance-credit-bureau" onclick="goToCreditBureau()">Credit Bureau</div>
-            <div class="finance-pill" id="finance-brokerage-firm" onclick="goToBrokerageFirm()">Brokerage Firm</div>
-            <div class="finance-pill" id="finance-finance-apps" onclick="goToFinanceApps()">Finance Apps</div>
+        <div class="financial-pills">
+            <div class="financial-pill" id="financial-banking-institution" onclick="goToBankingInstitution()">Banking Institution</div>
+            <div class="financial-pill" id="financial-credit-bureau" onclick="goToCreditBureau()">Credit Bureau</div>
+            <div class="financial-pill" id="financial-brokerage-firm" onclick="goToBrokerageFirm()">Brokerage Firm</div>
+            <div class="financial-pill" id="financial-financial-apps" onclick="goToFinancialApps()">Financial Apps</div>
         </div>
-        <div class="finance-chart">
+        <div class="financial-chart">
             <h2 align="center">Monthly Financial Overview Chart</h2>
             <img src="pie-chart.png" alt="Monthly Financial Overview Chart">
         </div>
@@ -168,9 +168,9 @@
             alert("Displaying Investment Performance details");
         }
 
-        // Show Loan Summary details
-        function showLoanSummary() {
-            alert("Displaying Loan Summary details");
+        // Show net-worth Summary details
+        function shownet-worthSummary() {
+            alert("Displaying net-worth Summary details");
         }
     </script>
 </body>
