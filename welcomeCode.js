@@ -1,26 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-            var siriWave = new SiriWave({
-                container: document.getElementById('siri-container'),
-                width: 640,
-                height: 200,
-                style: 'ios9',
-                speed: 0.2,
-                amplitude: 1,
-                frequency: 6,
-                color: '#ff0000',
-                autostart: true
-            });
+window.onload = function () {
 
-            window.addEventListener('deviceorientation', function(event) {
-                var hue = Math.round(event.alpha);
-                siriWave.color = `hsl(${hue}, 100%, 50%)`;
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 640,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
         });
 
-        function goToPage(page) {
-            window.location.href = page;
-        }
+        window.addEventListener('deviceorientation', function (event) {
+            var hue = Math.round(event.alpha);
+            siriWave.color = `hsl(${hue}, 100%, 50%)`;
+        });
+    });
 
-        function goToSettings() {
-            window.location.href = 'settings.html';
-        }
+    function goToPage(page) {
+        window.location.href = page;
+    }
+
+    function goToSettings() {
+        window.location.href = 'settings.html';
+    }
+}
