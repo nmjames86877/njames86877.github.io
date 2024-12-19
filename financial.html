@@ -128,7 +128,7 @@
         <div class="financial-top-level-buttons">
             <button class="financial-settings-btn" onclick="openSettings()">Three Bar Settings</button>
             <h1 align="center">Financial</h1>
-            <button class="financial-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+            <button class="financial-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
         </div>
         <div class="financial-cards">
             <div class="financial-card" id="financial-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
@@ -147,31 +147,56 @@
         </div>
     </div>
 
-    <script>
-        // Navigate to the dashboard's welcome section
-        function goToWelcome() {
-            alert("Navigating to Dashboard Top Level");
-        }
+<script>
+    // Navigate to the dashboard's welcome section
+    function goToWelcome() {
+        alert("Navigating to Dashboard Top Level");
+    }
 
-        // Open settings menu
-        function openSettings() {
-            alert("Opening Settings Menu");
-        }
+    // Open settings menu
+    function openSettings() {
+        alert("Opening Settings Menu");
+    }
 
-        // Show Budget Overview details
-        function showBudgetOverview() {
-            alert("Displaying Budget Overview details");
-        }
+    // Show Budget Overview details
+    function showBudgetOverview() {
+        alert("Displaying Budget Overview details");
+    }
 
-        // Show Investment Performance details
-        function showInvestmentPerformance() {
-            alert("Displaying Investment Performance details");
-        }
+    // Show Investment Performance details
+    function showInvestmentPerformance() {
+        alert("Displaying Investment Performance details");
+    }
 
-        // Show net-worth Summary details
-        function shownet-worthSummary() {
-            alert("Displaying net-worth Summary details");
-        }
-    </script>
+    // Show Net-Worth Summary details
+    function showNetWorthSummary() {
+        alert("Displaying Net-Worth Summary details");
+    }
+    // Show Financial Subsections
+    function showSubsection(sectionId, subsectionId) {
+        const section = document.getElementById(sectionId);
+        const subsections = section.querySelectorAll('.financial-subsection');
+        subsections.forEach(subsection => {
+            subsection.classList.remove('active');
+        });
+        document.getElementById(subsectionId).classList.add('active');
+    }
+
+    function goToBankingInstitution() {
+        showSubsection('financial', 'financial-banking-institution-screen');
+    }
+
+    function goToCreditBureau() {
+        showSubsection('financial', 'financial-credit-bureau-screen');
+    }
+
+    function goToBrokerageFirm() {
+        showSubsection('financial', 'financial-brokerage-firm-screen');
+    }
+
+    function goToFinancialApps() {
+        showSubsection('financial', 'financial-financial-apps-screen');
+    }
+</script>
 </body>
 </html>
