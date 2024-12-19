@@ -1,23 +1,139 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="financialCode.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance</title>
-    <link rel="stylesheet" href="financialStyle.css">
+    <style>
+        /* Dashboard - Financial */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .finance-section {
+            position: relative;
+            width: 100%;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #FFFFFF;
+        }
+
+        .finance-top-level-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: #F9F9F9;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .finance-cards, .finance-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .finance-card, .finance-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .finance-chart {
+            padding: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+        }
+
+            .finance-chart h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: #000000;
+            }
+
+            .finance-chart img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+        .finance-banking-institution, .finance-credit-bureau, .finance-brokerage-firm, .finance-finance-apps {
+            padding: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .finance-account-details img, .finance-credit-score img, .finance-portfolio img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .finance-expandable-section h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+            table th, table td {
+                border: 1px solid #E0E0E0;
+                text-align: left;
+                padding: 8px;
+            }
+
+        button {
+            padding: 8px 16px;
+            background: #2D6EFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #1A4FCC;
+            }
+
+        input, select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            color: #828282;
+        }
+    </style>
 </head>
 <body>
     <div class="finance-section" id="finance">
         <div class="finance-top-level-buttons">
-            <button class="finance-settings-btn">Three Bar Settings</button>
+            <button class="finance-settings-btn" onclick="openSettings()">Three Bar Settings</button>
             <h1>Finance</h1>
             <button class="finance-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
         </div>
         <div class="finance-cards">
-            <div class="finance-card" id="finance-budget-overview">Budget Overview Card</div>
-            <div class="finance-card" id="finance-investment-performance">Investment Performance Card</div>
-            <div class="finance-card" id="finance-loan-summary">Loan Summary Card</div>
+            <div class="finance-card" id="finance-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
+            <div class="finance-card" id="finance-investment-performance" onclick="showInvestmentPerformance()">Investment Performance Card</div>
+            <div class="finance-card" id="finance-loan-summary" onclick="showLoanSummary()">Loan Summary Card</div>
         </div>
         <div class="finance-pills">
             <div class="finance-pill" id="finance-banking-institution" onclick="goToBankingInstitution()">Banking Institution</div>
@@ -26,135 +142,36 @@
             <div class="finance-pill" id="finance-finance-apps" onclick="goToFinanceApps()">Finance Apps</div>
         </div>
         <div class="finance-chart">
-            <h2>Monthly Financial Overview Chart</h2>
+            <h2 align="center">Monthly Financial Overview Chart</h2>
             <img src="pie-chart.png" alt="Monthly Financial Overview Chart">
         </div>
     </div>
 
-    <!-- Banking Institution Screen -->
-    <div class="finance-banking-institution" id="finance-banking-institution-screen">
-        <h1>Banking Institution</h1>
-        <div class="finance-account-details">
-            <h2>Account Details</h2>
-            <img src="bank-logo.png" alt="Bank Logo">
-            <p>Current Balance: $<span id="finance-current-balance">0.00</span></p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody id="finance-recent-transactions">
-                    <!-- Placeholder for recent transactions -->
-                </tbody>
-            </table>
-        </div>
-        <div class="finance-transfer-funds">
-            <h2>Transfer Funds</h2>
-            <label for="finance-source-account">Source Account:</label>
-            <select id="finance-source-account">
-                <!-- Placeholder for source accounts -->
-            </select>
-            <label for="finance-destination-account">Destination Account:</label>
-            <select id="finance-destination-account">
-                <!-- Placeholder for destination accounts -->
-            </select>
-            <label for="finance-transfer-amount">Amount:</label>
-            <input type="number" id="finance-transfer-amount">
-            <button onclick="transferFunds()">Transfer</button>
-            <p id="finance-transfer-confirmation"></p>
-        </div>
-    </div>
+    <script>
+        // Navigate to the dashboard's welcome section
+        function goToWelcome() {
+            alert("Navigating to Dashboard Top Level");
+        }
 
-    <!-- Credit Bureau Screen -->
-    <div class="finance-credit-bureau" id="finance-credit-bureau-screen">
-        <h1>Credit Bureau</h1>
-        <div class="finance-credit-score">
-            <h2>Credit Score</h2>
-            <p>Current Credit Score: <span id="finance-current-credit-score">0</span></p>
-            <img src="line-graph.png" alt="Credit Score History">
-            <ul id="finance-score-factors">
-                <!-- Placeholder for factors affecting score -->
-            </ul>
-            <p id="finance-score-trends"></p>
-        </div>
-        <div class="finance-credit-report">
-            <h2>Credit Report</h2>
-            <div class="finance-expandable-section" id="finance-personal-information">
-                <h3>Personal Information</h3>
-                <p><!-- Placeholder for personal information --></p>
-            </div>
-            <div class="finance-expandable-section" id="finance-accounts">
-                <h3>Accounts</h3>
-                <p><!-- Placeholder for accounts --></p>
-            </div>
-            <div class="finance-expandable-section" id="finance-inquiries">
-                <h3>Inquiries</h3>
-                <p><!-- Placeholder for inquiries --></p>
-            </div>
-            <div class="finance-expandable-section" id="finance-public-records">
-                <h3>Public Records</h3>
-                <p><!-- Placeholder for public records --></p>
-            </div>
-            <p id="finance-report-summary"></p>
-            <button onclick="disputeCreditReport()">Dispute</button>
-            <p id="finance-alert-icons"></p>
-        </div>
-    </div>
+        // Open settings menu
+        function openSettings() {
+            alert("Opening Settings Menu");
+        }
 
-    <!-- Brokerage Firm Screen -->
-    <div class="finance-brokerage-firm" id="finance-brokerage-firm-screen">
-        <h1>Brokerage Firm</h1>
-        <div class="finance-portfolio">
-            <h2>Portfolio</h2>
-            <img src="pie-chart.png" alt="Asset Allocation">
-            <p>Current Portfolio Value: $<span id="finance-portfolio-value">0.00</span></p>
-            <ul id="finance-asset-list">
-                <!-- Placeholder for asset list -->
-            </ul>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Trade</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody id="finance-recent-trades">
-                    <!-- Placeholder for recent trades -->
-                </tbody>
-            </table>
-        </div>
-        <div class="finance-trades">
-            <h2>Trades</h2>
-            <ul id="finance-trade-history">
-                <!-- Placeholder for trade history -->
-            </ul>
-            <label for="finance-trade-date-range">Date Range:</label>
-            <input type="date" id="finance-trade-date-range">
-            <label for="finance-trade-type">Trade Type:</label>
-            <select id="finance-trade-type">
-                <!-- Placeholder for trade types -->
-            </select>
-            <p id="finance-trade-details"></p>
-            <button onclick="newTrade()">New Trade</button>
-        </div>
-    </div>
+        // Show Budget Overview details
+        function showBudgetOverview() {
+            alert("Displaying Budget Overview details");
+        }
 
-    <!-- Finance Apps Screen -->
-    <div class="finance-finance-apps" id="finance-finance-apps-screen">
-        <h1>Finance Apps</h1>
-        <div class="finance-expense-tracking">
-            <h2>Expense Tracking</h2>
-            <div id="finance-linked-apps">
-                <!-- Placeholder for linked apps icons -->
-            </div>
-            <ul id="finance-recent-expenses">
-                <!-- Placeholder for recent expenses -->
-            </ul>
-        </div>
-    </div>
+        // Show Investment Performance details
+        function showInvestmentPerformance() {
+            alert("Displaying Investment Performance details");
+        }
+
+        // Show Loan Summary details
+        function showLoanSummary() {
+            alert("Displaying Loan Summary details");
+        }
+    </script>
 </body>
 </html>
