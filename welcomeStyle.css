@@ -7,7 +7,6 @@ body {
         margin: 0;
         font-family: Arial, sans-serif;
     }
-    
 
     .button {
         padding: 10px 20px;
@@ -18,22 +17,13 @@ body {
         color: rand;
         transition: background-color 0.3s;
     }
+    
     .button:hover {
         background-color: #0056b3;
     }
 
-@media (max-width: 640px) {
-    .button-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
     #siri-container {
         width: 640px;
         height: 200px;
         background-color: rgba(0, 0, 0, 0);
     }
-}
