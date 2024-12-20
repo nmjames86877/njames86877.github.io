@@ -3,7 +3,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        height: auto;
         width: auto;
         margin: 0;
         font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@ body {
     }
 
     #siri-container {
-        width: 640px;
+        width: auto;
         height: 200px;
         background-color: rgba(0, 0, 0, 0);
     }
