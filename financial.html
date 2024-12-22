@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/powerbi-client/dist/powerbi.min.js"></script>
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Financial</title>
     <style>
         /* Dashboard - Financial */
@@ -121,15 +123,24 @@
             font-size: 14px;
             color: #828282;
         }
+
+        #siri-container {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0);
+        }
     </style>
 </head>
 <body>
     <div class="financial-section" id="financial">
         <div class="financial-top-level-buttons">
-            <button class="financial-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <button class="financial-settings-btn" onclick="openSettings('settings.html')">Three Bar Settings</button>
             <h1 align="center">Financial</h1>
-            <button class="financial-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+            <button class="financial-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
         </div>
+
+        <div id="siri-container"></div>
+
         <div class="financial-cards">
             <div class="financial-card" id="financial-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
             <div class="financial-card" id="financial-investment-performance" onclick="showInvestmentPerformance()">Investment Performance Card</div>
@@ -141,22 +152,40 @@
             <div class="financial-pill" id="financial-brokerage-firm" onclick="goToBrokerageFirm()">Brokerage Firm</div>
             <div class="financial-pill" id="financial-financial-apps" onclick="goToFinancialApps()">Financial Apps</div>
         </div>
+        <div id="embedContainer" style="width: 100%; height: 600px;"></div>
+
         <div class="financial-chart">
             <h2 align="center">Monthly Financial Overview Chart</h2>
-            <img src="pie-chart.png" alt="Monthly Financial Overview Chart">
+            <embed src="investmentPerformance.pdf" type="application/pdf" alt="Investment Performance">
         </div>
     </div>
 
 <script>
     // Navigate to the dashboard's welcome section
     function goToWelcome() {
+        alert("Navigating to Dashboard Top Level");
         window.location.href = 'welcome.html';
     }
 
     // Open settings menu
     function openSettings() {
         alert("Opening Settings Menu");
+        window.location.href = 'settings.html';
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 640,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
+        });
+    });
 
     // Show Budget Overview details
     function showBudgetOverview() {
@@ -197,6 +226,7 @@
     function goToFinancialApps() {
         showSubsection('financial', 'financial-financial-apps-screen');
     }
+
 </script>
 </body>
 </html>
