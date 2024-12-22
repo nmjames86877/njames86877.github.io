@@ -78,12 +78,11 @@
             }
 
         #siri-container {
-            width: 100px;
-            max-width: 375px;
-            height: 100px;
-            margin: 0 auto;
+            width: 100%;
+            height: 200px;
             background-color: rgba(0, 0, 0, 0);
         }
+
     </style>
 </head>
 <body>
@@ -112,7 +111,6 @@
             <embed src="appointmentReminders.pdf" type="application/pdf" alt="Week to Date Health Overview Chart">
         </div>
     </div>
-
 <script>
     function goToWelcome() {
         window.location.href = 'welcome.html';
@@ -122,6 +120,20 @@
         alert("Opening Settings Menu");
         window.location.href = 'settings.html';
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 375,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
+        });
+    });
 
     function showHealthSummary() {
         alert("Displaying Health Summary details");
@@ -151,18 +163,6 @@
         alert("Navigating to Medical Providers");
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            width: 375,
-            height: 200,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 1,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
-        });
 </script>
 </body>
 </html>
