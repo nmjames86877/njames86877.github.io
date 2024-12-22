@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback & Comments</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #F9F9F9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2D6EFF;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+            .question label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+        .rating-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .rating-bar input[type="range"] {
+                width: 80%;
+            }
+
+            .rating-bar span {
+                width: 10%;
+                text-align: center;
+            }
+
+        .text-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #2D6EFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+            .submit-btn:hover {
+                background: #1A4FCC;
+            }
+
+        .posts-container {
+            margin-top: 40px;
+        }
+
+        .post {
+            background: #F1F1F1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+            .post h3 {
+                margin-top: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback & Comments</h1>
+        <form id="feedback-form">
+            <div class="question">
+                <label for="question1">Were you able to easily find what you were looking for?</label>
+                <div class="rating-bar">
+                    <input type="range" id="question1" name="question1" min="1" max="10">
+                    <span id="question1-value">5</span>
+                </div>
+            </div>
+            <div class="question">
+                <label for="question2">Did you find the platform easy to use overall?</label>
+                <div class="rating-bar">
+                    <input type="range" id="question2" name="question2" min="1" max="10">
+                    <span id="question2-value">5</span>
+                </div>
+            </div>
+            <div class="question">
+                <label for="question3">What do you think of the platform design?</label>
+                <div class="rating-bar">
+                    <input type="range" id="question3" name="question3" min="1" max="10">
+                    <span id="question3-value">5</span>
+                </div>
+            </div>
+            <div class="question">
+                <label for="question4">Is it visually appealing and easy to read?</label>
+                <div class="rating-bar">
+                    <input type="range" id="question4" name="question4" min="1" max="10">
+                    <span id="question4-value">5</span>
+                </div>
+            </div>
+            <div class="question">
+                <label for="question5">Overall, would you consider the test successful?</label>
+                <div class="rating-bar">
+                    <input type="range" id="question5" name="question5" min="1" max="10">
+                    <span id="question5-value">5</span>
+                </div>
+            </div>
+            <div class="question">
+                <label for="design-recommendations">Do you have any design recommendations?</label>
+                <textarea id="design-recommendations" name="design-recommendations" class="text-box" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+
+        <div class="posts-container" id="posts-container">
+            <!-- Feedback posts will be added here -->
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('input[type="range"]').forEach(input => {
+            input.addEventListener('input', function () {
+                const valueSpan = document.getElementById(`${this.id}-value`);
+                valueSpan.textContent = this.value;
+            });
+        });
+
+        document.getElementById('feedback-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Create a new post element
+            const post = document.createElement('div');
+            post.classList.add('post');
+            post.innerHTML = `
+                    <h3>Feedback Post</h3>
+                    <p><strong>Question 1:</strong> ${data.question1}</p>
+                    <p><strong>Question 2:</strong> ${data.question2}</p>
+                    <p><strong>Question 3:</strong> ${data.question3}</p>
+                    <p><strong>Question 4:</strong> ${data.question4}</p>
+                    <p><strong>Question 5:</strong> ${data.question5}</p>
+                    <p><strong>Design Recommendations:</strong> ${data['design-recommendations']}</p>
+                `;
+
+            // Add the new post to the posts container
+            document.getElementById('posts-container').appendChild(post);
+
+            // Clear the form
+            this.reset();
+            document.querySelectorAll('input[type="range"]').forEach(input => {
+               const valueSpan = document.getElementById(`${input.id}-value`);
+                valueSpan.textContent = 5;
+            });
+        });
+    </script>
+</body>
+</html>
