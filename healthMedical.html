@@ -10,6 +10,18 @@
             font-family: 'Inter', sans-serif;
         }
 
+        button {
+            padding: 8px 16px;
+            background: #2D6EFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+            button:hover {
+                background: #1A4FCC;
+            }
+
         .health-section {
             position: relative;
             width: 100%;
@@ -88,42 +100,43 @@
         </div>
     </div>
 
-    <script>
-        function goToWelcome() {
-            window.location.href = 'welcome.html';
-        }
+<script>
+    function goToWelcome() {
+        window.location.href = 'welcome.html';
+    }
 
-        function openSettings() {
-            alert("Opening Settings Menu");
-        }
+    function openSettings() {
+        alert("Opening Settings Menu");
+        window.location.href = 'settings.html';
+    }
 
-        function showHealthSummary() {
-            alert("Displaying Health Summary details");
-        }
+    function showHealthSummary() {
+        alert("Displaying Health Summary details");
+    }
 
-        function showAppointmentReminder() {
-            alert("Displaying Appointment Reminder details");
-        }
+    function showAppointmentReminder() {
+        alert("Displaying Appointment Reminder details");
+    }
 
-        function showMedicationTracker() {
-            alert("Displaying Medication Tracker details");
-        }
+    function showMedicationTracker() {
+        alert("Displaying Medication Tracker details");
+    }
 
-        function goToHeartRate() {
-            alert("Navigating to Heart Rate");
-        }
+    function goToHeartRate() {
+        alert("Navigating to Heart Rate");
+    }
 
-        function goToSleep() {
-            alert("Navigating to Sleep");
-        }
+    function goToSleep() {
+        alert("Navigating to Sleep");
+    }
 
-        function goToMedicalRecords() {
-            alert("Navigating to Medical Records");
-        }
+    function goToMedicalRecords() {
+        alert("Navigating to Medical Records");
+    }
 
-        function goToMedicalProviders() {
-            alert("Navigating to Medical Providers");
-        }
-    </script>
+    function goToMedicalProviders() {
+        alert("Navigating to Medical Providers");
+    }
+</script>
 </body>
 </html>

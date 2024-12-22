@@ -10,6 +10,18 @@
             font-family: 'Inter', sans-serif;
         }
 
+        button {
+            padding: 8px 16px;
+            background: #2D6EFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+            button:hover {
+                background: #1A4FCC;
+            }
+
         .identity-section {
             position: relative;
             width: 100%;
@@ -89,46 +101,47 @@
         </div>
     </div>
 
-    <script>
-        function goToWelcome() {
-            window.location.href = 'welcome.html';
-        }
+<script>
+    function goToWelcome() {
+        window.location.href = 'welcome.html';
+    }
 
-        function openSettings() {
-            alert("Opening Settings Menu");
-        }
+    function openSettings() {
+        alert("Opening Settings Menu");
+        window.location.href = 'settings.html';
+    }
 
-        function showProfile() {
-            alert("Displaying Profile details");
-        }
+    function showProfile() {
+        alert("Displaying Profile details");
+    }
 
-        function showSecuritySettings() {
-            alert("Displaying Security Settings details");
-        }
+    function showSecuritySettings() {
+        alert("Displaying Security Settings details");
+    }
 
-        function showDigitalIDCards() {
-            alert("Displaying Digital ID Cards details");
-        }
+    function showDigitalIDCards() {
+        alert("Displaying Digital ID Cards details");
+    }
 
-        function showIdentityMonitoringAlerts() {
-            alert("Displaying Identity Monitoring Alerts details");
-        }
+    function showIdentityMonitoringAlerts() {
+        alert("Displaying Identity Monitoring Alerts details");
+    }
 
-        function goToRecentActivities() {
-            alert("Navigating to Recent Activities");
-        }
+    function goToRecentActivities() {
+        alert("Navigating to Recent Activities");
+    }
 
-        function goToMedicalID() {
-            alert("Navigating to Medical ID");
-        }
+    function goToMedicalID() {
+        alert("Navigating to Medical ID");
+    }
 
-        function goToInsuranceCard() {
-            alert("Navigating to Insurance Card");
-        }
+    function goToInsuranceCard() {
+        alert("Navigating to Insurance Card");
+    }
 
-        function goToAllDataAgencies() {
-            alert("Navigating to All Data Agencies");
-        }
-    </script>
+    function goToAllDataAgencies() {
+        alert("Navigating to All Data Agencies");
+    }
+</script>
 </body>
 </html>
