@@ -6,10 +6,60 @@
     <script src="welcomeCode.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="welcomeStyle.css">
-</head>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: url('your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
 
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            z-index: -1;
+        }
+
+        .welcome-section {
+            position: relative;
+            width: 100%;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #2D6EFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+
+        button:hover {
+            background: #1A4FCC;
+        }
+
+        #siri-container {
+            width: 100%;
+            max-width: 375px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
 <body>
+    <div class="overlay"></div>
     <div class="welcome-section" id="welcome">
         <h1 align="center">Welcome</h1>
         <div id="siri-container"></div>
@@ -22,5 +72,29 @@
         <button onclick="goToPage('health.html')">Go to Health</button>
         <button onclick="goToSettings('settings.html')">Settings</button>
     </div>
+
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
+        function goToSettings(page) {
+            window.location.href = page;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 375,
+                height: 200,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 1,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
+        });
+    </script>
 </body>
 </html>
