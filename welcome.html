@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background: url('your-background-image.jpg') no-repeat center center fixed;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -43,7 +43,7 @@
             gap: 10px;
             margin-top: 20px;
         }
-        
+
         button {
             padding: 8px 16px;
             background: #2D6EFF;
@@ -53,9 +53,9 @@
             cursor: pointer;
         }
 
-            button:hover {
-                background: #1A4FCC;
-            }
+        button:hover {
+            background: #1A4FCC;
+        }
 
         #siri-container {
             width: 100%;
@@ -72,13 +72,14 @@
         <h1 align="center">Welcome</h1>
         <div id="siri-container"></div>
 
-        <br>
-        <button onclick="goToPage('financial.html')">Go to Financial</button>
-        <button onclick="goToPage('accessibility.html')">Go to Accessibility</button>
-        <button onclick="goToPage('lifestyle.html')">Go to Lifestyle</button>
-        <button onclick="goToPage('identity.html')">Go to Identity</button>
-        <button onclick="goToPage('health.html')">Go to Health</button>
-        <button onclick="goToSettings('settings.html')">Settings</button>
+        <div class="button-container">
+            <button onclick="goToPage('financial.html')">Go to Financial</button>
+            <button onclick="goToPage('accessibility.html')">Go to Accessibility</button>
+            <button onclick="goToPage('lifestyle.html')">Go to Lifestyle</button>
+            <button onclick="goToPage('identity.html')">Go to Identity</button>
+            <button onclick="goToPage('health.html')">Go to Health</button>
+            <button onclick="goToSettings('settings.html')">Settings</button>
+        </div>
     </div>
 
     <script>
