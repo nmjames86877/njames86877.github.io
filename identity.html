@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity</title>
     <style>
@@ -18,6 +19,7 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
             button:hover {
                 background: #1A4FCC;
             }
@@ -80,17 +82,18 @@
             height: 200px;
             background-color: rgba(0, 0, 0, 0);
         }
-
     </style>
 </head>
 <body>
     <div class="identity-section" id="identity">
         <div class="identity-top-level-buttons">
-            <button class="identity-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <button class="identity-settings-btn" onclick="openSettings('settings.html')">Three Bar Settings</button>
             <h1 align="center">Identity</h1>
-            <button class="identity-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
-            <div id="siri-container"></div>
+            <button class="identity-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
         </div>
+
+        <div id="siri-container"></div>
+
         <div class="identity-cards">
             <div class="identity-card" id="profile" onclick="showProfile()">Profile Card</div>
             <div class="identity-card" id="security-settings" onclick="showSecuritySettings()">Security Settings Card</div>
@@ -118,6 +121,20 @@
         alert("Opening Settings Menu");
         window.location.href = 'settings.html';
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 640,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
+        });
+    });
 
     function showProfile() {
         alert("Displaying Profile details");
@@ -150,19 +167,6 @@
     function goToAllDataAgencies() {
         alert("Navigating to All Data Agencies");
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            width: 640,
-            height: 200,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 1,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
-        });
 
 </script>
 </body>
