@@ -9,7 +9,7 @@ function goToSettings() {
     document.addEventListener('DOMContentLoaded', () => {
         var siriWave = new SiriWave({
             container: document.getElementById('siri-container'),
-            width: 640,
+            width: 375,
             height: 200,
             style: 'ios9',
             speed: 0.2,
