@@ -1,30 +1,52 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* Full viewport height */
-    width: 100%; /* Full viewport width */
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: auto;
+        font-family: Arial, sans-serif;
+        background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: -1;
+    }
 
-.button {
-    padding: 8px 16px;
-    font-size: 16px; /* Set a specific font size */
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #ffffff; /* Set a specific color */
-    transition: background-color 0.3s;
-}
+    .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
 
-.button:hover {
-    background-color: #0056b3;
-}
-
-#siri-container {
-    width: 100%; /* Full width */
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0);
+@media (max-width: 640px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #siri-container {
+        width: 640px;
+        height: 200px;
+        background-color: rgba(0, 0, 0, 0);
+    }
 }

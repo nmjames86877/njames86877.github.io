@@ -4,54 +4,23 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <script src="welcomeCode.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="welcomeStyle.css">
 </head>
+
 <body>
     <div class="welcome-section" id="welcome">
-        <h1 align="center">MicroLink Prototype</h1><br>
-        <div id="siri-container"></div><br>
+        <h1 align="center">Welcome</h1>
+        <div id="siri-container"></div>
+
+        <br>
+        <button onclick="goToPage('financial.html')">Go to Financial</button>
+        <button onclick="goToPage('accessibility.html')">Go to Accessibility</button>
+        <button onclick="goToPage('lifestyle.html')">Go to Lifestyle</button>
+        <button onclick="goToPage('identity.html')">Go to Identity</button>
+        <button onclick="goToPage('health.html')">Go to Health</button>
+        <button onclick="goToSettings('settings.html')">Settings</button>
     </div>
-        
-    <button onclick="goToFinancial()">Financial</button>
-    <script>
-        function goToFinancial() {
-        window.location.href = 'financial.html';
-    }
-    </script>
-    <br>
-        
-    <button onclick="goToAccessibility()">Accessibility</button>
-    <script>
-        function goToAccessibility() {
-        window.location.href = 'accessibility.html';
-    }
-    </script>
-    <br>
-    
-    <button onclick="goToLifestyle()">Lifestyle</button>
-    <script>
-        function goToLifestyle() {
-        window.location.href = 'lifestyle.html';
-    }
-    </script>
-    <br>
-    
-    <button onclick="goToIdentity()">Identity</button>
-    <script>
-        function goToIdentity() {
-        window.location.href = 'identity.html';
-    }
-    </script>
-    <br>
-        
-    <button onclick="goToHealthMedical()">Health & Medical</button>
-    <script>
-        function goToHealthMedical() {
-        window.location.href = 'healthMedical.html';
-    }
-    </script>
-    
 </body>
 </html>
