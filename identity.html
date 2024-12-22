@@ -74,6 +74,13 @@
                 width: 100%;
                 border-radius: 8px;
             }
+
+        #siri-container {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
     </style>
 </head>
 <body>
@@ -82,6 +89,7 @@
             <button class="identity-settings-btn" onclick="openSettings()">Three Bar Settings</button>
             <h1 align="center">Identity</h1>
             <button class="identity-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+            <div id="siri-container"></div>
         </div>
         <div class="identity-cards">
             <div class="identity-card" id="profile" onclick="showProfile()">Profile Card</div>
@@ -97,7 +105,7 @@
         </div>
         <div class="identity-chart">
             <h2 align="center">Week to Date Info Chart</h2>
-            <img src="profileUpdates.pdf" alt="Profile Updates">
+            <embed src="profileUpdates.pdf" width="100%" height="600px" type="application/pdf" alt="Profile Updates">
         </div>
     </div>
 
@@ -142,6 +150,20 @@
     function goToAllDataAgencies() {
         alert("Navigating to All Data Agencies");
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 640,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
+        });
+
 </script>
 </body>
 </html>
