@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .accessibility-section {
+            position: relative;
+            width: 100%;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #FFFFFF;
+        }
+
+        .accessibility-top-level-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: #F9F9F9;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .accessibility-cards, .accessibility-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .accessibility-card, .accessibility-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .accessibility-chart {
+            padding: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+        }
+
+            .accessibility-chart h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: #000000;
+            }
+
+            .accessibility-chart img {
+                width: 100%;
+                border-radius: 8px;
+            }
+    </style>
+</head>
+<body>
+    <div class="accessibility-section" id="accessibility">
+        <div class="accessibility-top-level-buttons">
+            <button class="accessibility-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <h1 align="center">Accessibility</h1>
+            <button class="accessibility-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="accessibility-cards">
+            <div class="accessibility-card" id="voice-commands" onclick="showVoiceCommands()">Voice Commands Card</div>
+            <div class="accessibility-card" id="high-contrast-mode" onclick="showHighContrastMode()">High Contrast Mode Card</div>
+            <div class="accessibility-card" id="font-size-adjustment" onclick="showFontSizeAdjustment()">Font Size Adjustment Card</div>
+        </div>
+        <div class="accessibility-pills">
+            <div class="accessibility-pill" id="screen-reader" onclick="goToScreenReader()">Screen Reader</div>
+            <div class="accessibility-pill" id="text-to-speech" onclick="goToTextToSpeech()">Text-to-Speech</div>
+            <div class="accessibility-pill" id="magnifier" onclick="goToMagnifier()">Magnifier</div>
+            <div class="accessibility-pill" id="keyboard-shortcuts" onclick="goToKeyboardShortcuts()">Keyboard Shortcuts</div>
+        </div>
+        <div class="accessibility-chart">
+            <h2 align="center">Usage Statistics Chart</h2>
+            <img src="bar-graph.png" alt="Usage Statistics Chart">
+        </div>
+    </div>
+
+    <script>
+        function goToWelcome() {
+            window.location.href = 'welcome.html';
+        }
+
+        function openSettings() {
+            alert("Opening Settings Menu");
+        }
+
+        function showVoiceCommands() {
+            alert("Displaying Voice Commands details");
+        }
+
+        function showHighContrastMode() {
+            alert("Displaying High Contrast Mode details");
+        }
+
+        function showFontSizeAdjustment() {
+            alert("Displaying Font Size Adjustment details");
+        }
+
+        function goToScreenReader() {
+            alert("Navigating to Screen Reader");
+        }
+
+        function goToTextToSpeech() {
+            alert("Navigating to Text-to-Speech");
+        }
+
+        function goToMagnifier() {
+            alert("Navigating to Magnifier");
+        }
+
+        function goToKeyboardShortcuts() {
+            alert("Navigating to Keyboard Shortcuts");
+        }
+    </script>
+</body>
+</html>
+```
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifestyle</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lifestyle-section {
+            position: relative;
+            width: 100%;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #FFFFFF;
+        }
+
+        .lifestyle-top-level-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: #F9F9F9;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .lifestyle-cards, .lifestyle-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .lifestyle-card, .lifestyle-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .lifestyle-chart {
+            padding: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+        }
+
+            .lifestyle-chart h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: #000000;
+            }
+
+            .lifestyle-chart img {
+                width: 100%;
+                border-radius: 8px;
+            }
+    </style>
+</head>
+<body>
+    <div class="lifestyle-section" id="lifestyle">
+        <div class="lifestyle-top-level-buttons">
+            <button class="lifestyle-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <h1 align="center">Lifestyle</h1>
+            <button class="lifestyle-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="lifestyle-cards">
+            <div class="lifestyle-card" id="social-feed" onclick="showSocialFeed()">Social Feed Card</div>
+            <div class="lifestyle-card" id="entertainment-highlights" onclick="showEntertainmentHighlights()">Entertainment Highlights Card</div>
+            <div class="lifestyle-card" id="upcoming-events" onclick="showUpcomingEvents()">Upcoming Events Card</div>
+        </div>
+        <div class="lifestyle-pills">
+            <div class="lifestyle-pill" id="friends-activities" onclick="goToFriendsActivities()">Friends' Activities</div>
+            <div class="lifestyle-pill" id="media-library" onclick="goToMediaLibrary()">Media Library</div>
+            <div class="lifestyle-pill" id="event-invitations" onclick="goToEventInvitations()">Event Invitations</div>
+            <div class="lifestyle-pill" id="streaming-services" onclick="goToStreamingServices()">Streaming Services</div>
+        </div>
+        <div class="lifestyle-chart">
+            <h2 align="center">Weekly Engagement Overview Chart</h2>
+            <img src="bar-graph.png" alt="Weekly Engagement Overview Chart">
+        </div>
+    </div>
+
+    <script>
+        function goToWelcome() {
+            window.location.href = 'welcome.html';
+        }
+
+        function openSettings() {
+            alert("Opening Settings Menu");
+        }
+
+        function showSocialFeed() {
+            alert("Displaying Social Feed details");
+        }
+
+        function showEntertainmentHighlights() {
+            alert("Displaying Entertainment Highlights details");
+        }
+
+        function showUpcomingEvents() {
+            alert("Displaying Upcoming Events details");
+        }
+
+        function goToFriendsActivities() {
+            alert("Navigating to Friends' Activities");
+        }
+
+        function goToMediaLibrary() {
+            alert("Navigating to Media Library");
+        }
+
+        function goToEventInvitations() {
+            alert("Navigating to Event Invitations");
+        }
+
+        function goToStreamingServices() {
+            alert("Navigating to Streaming Services");
+        }
+    </script>
+</body>
+</html>

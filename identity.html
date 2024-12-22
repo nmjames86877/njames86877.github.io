@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .identity-section {
+            position: relative;
+            width: 100%;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #FFFFFF;
+        }
+
+        .identity-top-level-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: #F9F9F9;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .identity-cards, .identity-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .identity-card, .identity-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .identity-chart {
+            padding: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+        }
+
+            .identity-chart h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: #000000;
+            }
+
+            .identity-chart img {
+                width: 100%;
+                border-radius: 8px;
+            }
+    </style>
+</head>
+<body>
+    <div class="identity-section" id="identity">
+        <div class="identity-top-level-buttons">
+            <button class="identity-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <h1 align="center">Identity</h1>
+            <button class="identity-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="identity-cards">
+            <div class="identity-card" id="profile" onclick="showProfile()">Profile Card</div>
+            <div class="identity-card" id="security-settings" onclick="showSecuritySettings()">Security Settings Card</div>
+            <div class="identity-card" id="digital-id-cards" onclick="showDigitalIDCards()">Digital ID Cards Card</div>
+            <div class="identity-card" id="identity-monitoring-alerts" onclick="showIdentityMonitoringAlerts()">Identity Monitoring Alert Cards</div>
+        </div>
+        <div class="identity-pills">
+            <div class="identity-pill" id="recent-activities" onclick="goToRecentActivities()">Recent Activities</div>
+            <div class="identity-pill" id="medical-id" onclick="goToMedicalID()">Medical ID</div>
+            <div class="identity-pill" id="insurance-card" onclick="goToInsuranceCard()">Insurance Card</div>
+            <div class="identity-pill" id="all-data-agencies" onclick="goToAllDataAgencies()">All Data Agencies</div>
+        </div>
+        <div class="identity-chart">
+            <h2 align="center">Week to Date Info Chart</h2>
+            <img src="bar-chart.png" alt="Week to Date Info Chart">
+        </div>
+    </div>
+
+    <script>
+        function goToWelcome() {
+            window.location.href = 'welcome.html';
+        }
+
+        function openSettings() {
+            alert("Opening Settings Menu");
+        }
+
+        function showProfile() {
+            alert("Displaying Profile details");
+        }
+
+        function showSecuritySettings() {
+            alert("Displaying Security Settings details");
+        }
+
+        function showDigitalIDCards() {
+            alert("Displaying Digital ID Cards details");
+        }
+
+        function showIdentityMonitoringAlerts() {
+            alert("Displaying Identity Monitoring Alerts details");
+        }
+
+        function goToRecentActivities() {
+            alert("Navigating to Recent Activities");
+        }
+
+        function goToMedicalID() {
+            alert("Navigating to Medical ID");
+        }
+
+        function goToInsuranceCard() {
+            alert("Navigating to Insurance Card");
+        }
+
+        function goToAllDataAgencies() {
+            alert("Navigating to All Data Agencies");
+        }
+    </script>
+</body>
+</html>

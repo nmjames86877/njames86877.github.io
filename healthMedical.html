@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Medical</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .health-section {
+            position: relative;
+            width: 100%;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #FFFFFF;
+        }
+
+        .health-top-level-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: #F9F9F9;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .health-cards, .health-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .health-card, .health-pill {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .health-chart {
+            padding: 16px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+        }
+
+            .health-chart h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: #000000;
+            }
+
+            .health-chart img {
+                width: 100%;
+                border-radius: 8px;
+            }
+    </style>
+</head>
+<body>
+    <div class="health-section" id="health">
+        <div class="health-top-level-buttons">
+            <button class="health-settings-btn" onclick="openSettings()">Three Bar Settings</button>
+            <h1 align="center">Health & Medical</h1>
+            <button class="health-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        </div>
+        <div class="health-cards">
+            <div class="health-card" id="health-summary" onclick="showHealthSummary()">Health Summary Card</div>
+            <div class="health-card" id="appointment-reminder" onclick="showAppointmentReminder()">Appointment Reminder Card</div>
+            <div class="health-card" id="medication-tracker" onclick="showMedicationTracker()">Medication Tracker Card</div>
+        </div>
+        <div class="health-pills">
+            <div class="health-pill" id="heart-rate" onclick="goToHeartRate()">Heart Rate</div>
+            <div class="health-pill" id="sleep" onclick="goToSleep()">Sleep</div>
+            <div class="health-pill" id="medical-records" onclick="goToMedicalRecords()">Medical Records</div>
+            <div class="health-pill" id="medical-providers" onclick="goToMedicalProviders()">Medical Providers</div>
+        </div>
+        <div class="health-chart">
+            <h2 align="center">Week to Date Health Overview Chart</h2>
+            <img src="line-graph.png" alt="Week to Date Health Overview Chart">
+        </div>
+    </div>
+
+    <script>
+        function goToWelcome() {
+            window.location.href = 'welcome.html';
+        }
+
+        function openSettings() {
+            alert("Opening Settings Menu");
+        }
+
+        function showHealthSummary() {
+            alert("Displaying Health Summary details");
+        }
+
+        function showAppointmentReminder() {
+            alert("Displaying Appointment Reminder details");
+        }
+
+        function showMedicationTracker() {
+            alert("Displaying Medication Tracker details");
+        }
+
+        function goToHeartRate() {
+            alert("Navigating to Heart Rate");
+        }
+
+        function goToSleep() {
+            alert("Navigating to Sleep");
+        }
+
+        function goToMedicalRecords() {
+            alert("Navigating to Medical Records");
+        }
+
+        function goToMedicalProviders() {
+            alert("Navigating to Medical Providers");
+        }
+    </script>
+</body>
+</html>
