@@ -89,8 +89,9 @@
         <div class="health-top-level-buttons">
             <button class="health-settings-btn" onclick="openSettings()">Three Bar Settings</button>
             <h1 align="center">Health & Medical</h1>
-            <button class="health-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+            <button class="health-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button><br>
             <div id="siri-container"></div>
+            <br>
         </div>
         <div class="health-cards">
             <div class="health-card" id="health-summary" onclick="showHealthSummary()">Health Summary Card</div>
@@ -147,19 +148,18 @@
         alert("Navigating to Medical Providers");
     }
 
-document.addEventListener('DOMContentLoaded', () => {
-    var siriWave = new SiriWave({
-        container: document.getElementById('siri-container'),
-        width: 640,
-        height: 200,
-        style: 'ios9',
-        speed: 0.2,
-        amplitude: 1,
-        frequency: 6,
-        color: '#ff0000',
-        autostart: true
-    });
-
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 640,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
+        });
 </script>
 </body>
 </html>
