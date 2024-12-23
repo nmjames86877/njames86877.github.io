@@ -15,22 +15,30 @@
             background-size: cover;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Adjust the opacity here */
-            z-index: -1;
+        button {
+            padding: 8px 16px;
+            background: #4CAF50; /* Updated color */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
         }
+
+            button:hover {
+                background: #388E3C; /* Updated color */
+                transform: scale(1.05);
+            }
 
         .financial-section {
             position: relative;
             width: 100%;
             max-width: 375px;
             margin: 0 auto;
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 0.9); /* Updated background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         .financial-top-level-buttons {
@@ -38,8 +46,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 16px;
-            background: #F9F9F9;
-            border-bottom: 1px solid #E0E0E0;
+            background: #F1F8E9; /* Updated background */
+            border-bottom: 1px solid #C8E6C9; /* Updated border */
         }
 
         .financial-cards, .financial-pills {
@@ -54,15 +62,21 @@
             text-align: center;
             padding: 10px;
             background: #FFFFFF;
-            border: 1px solid #E0E0E0;
+            border: 1px solid #C8E6C9; /* Updated border */
             border-radius: 8px;
             cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
         }
+
+            .financial-card:hover, .financial-pill:hover {
+                background: #E8F5E9; /* Updated background */
+                transform: scale(1.05);
+            }
 
         .financial-chart {
             padding: 16px;
             background: #FFFFFF;
-            border: 1px solid #E0E0E0;
+            border: 1px solid #C8E6C9; /* Updated border */
             border-radius: 8px;
         }
 
@@ -70,7 +84,7 @@
                 margin: 0;
                 font-size: 18px;
                 font-weight: 600;
-                color: #000000;
+                color: #388E3C; /* Updated color */
             }
 
             .financial-chart img {
@@ -81,7 +95,7 @@
         .financial-banking-institution, .financial-credit-bureau, .financial-brokerage-firm, .financial-financial-apps {
             padding: 16px;
             background: #FFFFFF;
-            border: 1px solid #E0E0E0;
+            border: 1px solid #C8E6C9; /* Updated border */
             border-radius: 8px;
             margin: 16px 0;
         }
@@ -109,29 +123,12 @@
                 padding: 8px;
             }
 
-        button, .pill {
-            padding: 8px 16px;
-            background: #2D6EFF;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover, .pill:hover {
-            background: #1A4FCC;
-        }
-
         input, select {
             width: calc(100% - 20px);
             padding: 8px;
             margin: 10px 0;
             border: 1px solid #E0E0E0;
             border-radius: 4px;
-        }
-
-        pill:hover {
-            background: #1A4FCC;
         }
 
         p {
@@ -141,19 +138,25 @@
         }
 
         #siri-container {
-            width: 100px;
+            width: 100%;
             height: 200px;
             background-color: rgba(0, 0, 0, 0);
         }
 
-        .pdf-container { width: 100%; 
-                        max-width: 800px; 
-                        height: 100%; 
-                        overflow: hidden; 
-                       } 
-        embed { 
-            width: 100%; 
-            height: 100%; 
+        @media (max-width: 768px) {
+            .financial-section {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .financial-top-level-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .financial-cards, .financial-pills {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -179,79 +182,78 @@
             <div class="financial-pill" id="financial-financial-apps" onclick="goToFinancialApps()">Financial Apps</div>
         </div>
         <div class="financial-chart">
-            <div class="pdf-container">
             <embed src="investmentPerformance.pdf" type="application/pdf" alt="Investment Performance">
-            </div>
         </div>
     </div>
 
-<script>
-    // Navigate to the dashboard's welcome section
-    function goToWelcome() {
-        alert("Navigating to Dashboard Top Level");
-        window.location.href = 'welcome.html';
-    }
+    <script>
+        // Navigate to the dashboard's welcome section
+        function goToWelcome() {
+            alert("Navigating to Dashboard Top Level");
+            window.location.href = 'welcome.html';
+        }
 
-    // Open settings menu
-    function openSettings() {
-        alert("Opening Settings Menu");
-        window.location.href = 'settings.html';
-    }
+        // Open settings menu
+        function openSettings() {
+            alert("Opening Settings Menu");
+            window.location.href = 'settings.html';
+        }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            width: 375,
-            height: 200,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 1,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 375,
+                height: 200,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 1,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
         });
-    });
 
-    // Show Budget Overview details
-    function showBudgetOverview() {
-        alert("Displaying Budget Overview details");
-    }
+        // Show Budget Overview details
+        function showBudgetOverview() {
+            alert("Displaying Budget Overview details");
+        }
 
-    // Show Investment Performance details
-    function showInvestmentPerformance() {
-        alert("Displaying Investment Performance details");
-    }
+        // Show Investment Performance details
+        function showInvestmentPerformance() {
+            alert("Displaying Investment Performance details");
+        }
 
-    // Show Net-Worth Summary details
-    function showNetWorthSummary() {
-        alert("Displaying Net-Worth Summary details");
-    }
-    // Show Financial Subsections
-    function showSubsection(sectionId, subsectionId) {
-        const section = document.getElementById(sectionId);
-        const subsections = section.querySelectorAll('.financial-subsection');
-        subsections.forEach(subsection => {
-            subsection.classList.remove('active');
-        });
-        document.getElementById(subsectionId).classList.add('active');
-    }
+        // Show Net-Worth Summary details
+        function showNetWorthSummary() {
+            alert("Displaying Net-Worth Summary details");
+        }
 
-    function goToBankingInstitution() {
-        showSubsection('financial', 'financial-banking-institution-screen');
-    }
+        // Show Financial Subsections
+        function showSubsection(sectionId, subsectionId) {
+            const section = document.getElementById(sectionId);
+            const subsections = section.querySelectorAll('.financial-subsection');
+            subsections.forEach(subsection => {
+                subsection.classList.remove('active');
+            });
+            document.getElementById(subsectionId).classList.add('active');
+        }
 
-    function goToCreditBureau() {
-        showSubsection('financial', 'financial-credit-bureau-screen');
-    }
+        function goToBankingInstitution() {
+            showSubsection('financial', 'financial-banking-institution-screen');
+        }
 
-    function goToBrokerageFirm() {
-        showSubsection('financial', 'financial-brokerage-firm-screen');
-    }
+        function goToCreditBureau() {
+            showSubsection('financial', 'financial-credit-bureau-screen');
+        }
 
-    function goToFinancialApps() {
-        showSubsection('financial', 'financial-financial-apps-screen');
-    }
+        function goToBrokerageFirm() {
+            showSubsection('financial', 'financial-brokerage-firm-screen');
+        }
 
-</script>
+        function goToFinancialApps() {
+            showSubsection('financial', 'financial-financial-apps-screen');
+        }
+
+    </script>
 </body>
 </html>

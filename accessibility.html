@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessibility</title>
     <style>
@@ -13,27 +12,19 @@
             background-size: cover;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Adjust the opacity here */
-            z-index: -1;
-        }
-
         button {
             padding: 8px 16px;
-            background: #2D6EFF;
+            background: #4CAF50; /* Updated color */
             color: #FFFFFF;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
         }
 
             button:hover {
-                background: #1A4FCC;
+                background: #388E3C; /* Updated color */
+                transform: scale(1.05);
             }
 
         .accessibility-section {
@@ -41,7 +32,10 @@
             width: 100%;
             max-width: 375px;
             margin: 0 auto;
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 0.9); /* Updated background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         .accessibility-top-level-buttons {
@@ -49,8 +43,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 16px;
-            background: #F9F9F9;
-            border-bottom: 1px solid #E0E0E0;
+            background: #F1F8E9; /* Updated background */
+            border-bottom: 1px solid #C8E6C9; /* Updated border */
         }
 
         .accessibility-cards, .accessibility-pills {
@@ -65,15 +59,21 @@
             text-align: center;
             padding: 10px;
             background: #FFFFFF;
-            border: 1px solid #E0E0E0;
+            border: 1px solid #C8E6C9; /* Updated border */
             border-radius: 8px;
             cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
         }
+
+            .accessibility-card:hover, .accessibility-pill:hover {
+                background: #E8F5E9; /* Updated background */
+                transform: scale(1.05);
+            }
 
         .accessibility-chart {
             padding: 16px;
             background: #FFFFFF;
-            border: 1px solid #E0E0E0;
+            border: 1px solid #C8E6C9; /* Updated border */
             border-radius: 8px;
         }
 
@@ -81,7 +81,7 @@
                 margin: 0;
                 font-size: 18px;
                 font-weight: 600;
-                color: #000000;
+                color: #388E3C; /* Updated color */
             }
 
             .accessibility-chart img {
@@ -95,36 +95,37 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
-        .pdf-container { 
-            width: 100%; 
-            max-width: 800px; 
-            height: 600px; 
-            margin: 0 auto; 
-            border: 1px solid #E0E0E0; 
-            border-radius: 8px; 
-            overflow: hidden; 
-        }
-            embed {
-                width: 100%;
-                height: 100%;
+        @media (max-width: 768px) {
+            .accessibility-section {
+                max-width: 100%;
+                padding: 10px;
             }
-        
+
+            .accessibility-top-level-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .accessibility-cards, .accessibility-pills {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="accessibility-section" id="accessibility">
         <div class="accessibility-top-level-buttons">
-            <button class="accessibility-settings-btn" onclick="openSettings('settings.html')">Three Bar Settings</button>
+            <button class="accessibility-settings-btn" onclick="openSettings()">Three Bar Settings</button>
             <h1 align="center">Accessibility</h1>
-            <button class="accessibility-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
+            <button class="accessibility-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
         </div>
 
         <div id="siri-container"></div>
 
         <div class="accessibility-cards">
             <div class="accessibility-card" id="voice-commands" onclick="showVoiceCommands()">Voice Commands Card</div>
-            <div class="accessibility-card" id="high-contrast-mode" onclick="showHighContrastMode()">High Contrast Mode Card</div>
-            <div class="accessibility-card" id="font-size-adjustment" onclick="showFontSizeAdjustment()">Font Size Adjustment Card</div>
+            <div class="accessibility-card" id="high-contrast" onclick="showHighContrast()">High Contrast Mode Card</div>
+            <div class="accessibility-card" id="font-size" onclick="showFontSize()">Font Size Adjustment Card</div>
         </div>
         <div class="accessibility-pills">
             <div class="accessibility-pill" id="screen-reader" onclick="goToScreenReader()">Screen Reader</div>
@@ -133,64 +134,61 @@
             <div class="accessibility-pill" id="keyboard-shortcuts" onclick="goToKeyboardShortcuts()">Keyboard Shortcuts</div>
         </div>
         <div class="accessibility-chart">
-            <div class="pdf-container">
-            <embed src="voiceCommandUsage.pdf" type="application/pdf" alt="Usage Statistics Chart">
-            </div>
+            <embed src="voiceCommandUsage.pdf" type="application/pdf" />
         </div>
     </div>
 
-<script>
-    function goToWelcome() {
-        window.location.href = 'welcome.html';
-    }
+    <script>
+        function goToWelcome() {
+            window.location.href = 'welcome.html';
+        }
 
-    function openSettings() {
-        alert("Opening Settings Menu");
-        window.location.href = 'settings.html';
-    }
+        function openSettings() {
+            alert("Opening Settings Menu");
+            window.location.href = 'settings.html';
+        }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            width: 375,
-            height: 200,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 1,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
+        function showVoiceCommands() {
+            alert("Displaying Voice Commands details");
+        }
+
+        function showHighContrast() {
+            alert("Displaying High Contrast Mode details");
+        }
+
+        function showFontSize() {
+            alert("Displaying Font Size Adjustment details");
+        }
+
+        function goToScreenReader() {
+            alert("Navigating to Screen Reader");
+        }
+
+        function goToTextToSpeech() {
+            alert("Navigating to Text-to-Speech");
+        }
+
+        function goToMagnifier() {
+            alert("Navigating to Magnifier");
+        }
+
+        function goToKeyboardShortcuts() {
+            alert("Navigating to Keyboard Shortcuts");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 375,
+                height: 200,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 1,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
         });
-    });
-
-    function showVoiceCommands() {
-        alert("Displaying Voice Commands details");
-    }
-
-    function showHighContrastMode() {
-        alert("Displaying High Contrast Mode details");
-    }
-
-    function showFontSizeAdjustment() {
-        alert("Displaying Font Size Adjustment details");
-    }
-
-    function goToScreenReader() {
-        alert("Navigating to Screen Reader");
-    }
-
-    function goToTextToSpeech() {
-        alert("Navigating to Text-to-Speech");
-    }
-
-    function goToMagnifier() {
-        alert("Navigating to Magnifier");
-    }
-
-    function goToKeyboardShortcuts() {
-        alert("Navigating to Keyboard Shortcuts");
-    }
-
-</script>
+    </script>
 </body>
 </html>
