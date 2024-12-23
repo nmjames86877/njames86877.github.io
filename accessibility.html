@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Accessibility</title>
     <style>
         body {
@@ -10,6 +11,16 @@
             font-family: 'Inter', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            z-index: -1;
         }
 
         button {
@@ -32,7 +43,7 @@
             width: 100%;
             max-width: 375px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); /* Updated background */
+            background: rgba(255, 255, 255, 0.5); /* Updated background */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -113,6 +124,7 @@
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="accessibility-section" id="accessibility">
         <div class="accessibility-top-level-buttons">
             <button class="accessibility-settings-btn" onclick="openSettings()">Three Bar Settings</button>
@@ -134,7 +146,7 @@
             <div class="accessibility-pill" id="keyboard-shortcuts" onclick="goToKeyboardShortcuts()">Keyboard Shortcuts</div>
         </div>
         <div class="accessibility-chart">
-            <embed src="voiceCommandUsage.pdf" type="application/pdf" />
+            <embed src="voiceCommandUsage.pdf" type="application/pdf"/>
         </div>
     </div>
 
@@ -147,6 +159,20 @@
             alert("Opening Settings Menu");
             window.location.href = 'settings.html';
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 375,
+            height: 200,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 1,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
+            });
+        });
 
         function showVoiceCommands() {
             alert("Displaying Voice Commands details");
@@ -176,19 +202,6 @@
             alert("Navigating to Keyboard Shortcuts");
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            var siriWave = new SiriWave({
-                container: document.getElementById('siri-container'),
-                width: 375,
-                height: 200,
-                style: 'ios9',
-                speed: 0.2,
-                amplitude: 1,
-                frequency: 6,
-                color: '#ff0000',
-                autostart: true
-            });
-        });
     </script>
 </body>
 </html>
