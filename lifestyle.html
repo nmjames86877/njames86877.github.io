@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Lifestyle</title>
     <style>
         body {
@@ -19,161 +19,143 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Adjust the opacity here */
+            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
             z-index: -1;
         }
-
-        button {
-            padding: 8px 16px;
-            background: #2D6EFF;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-            button:hover {
-                background: #1A4FCC;
-            }
 
         .lifestyle-section {
             position: relative;
             width: 100%;
-            max-width: 375px;
+            max-width: 400px;
             margin: 0 auto;
-            background: #FFFFFF;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
         }
 
-        .lifestyle-top-level-buttons {
+        .header-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 16px;
-            background: #F9F9F9;
-            border-bottom: 1px solid #E0E0E0;
+            margin-bottom: 20px;
         }
 
-        .lifestyle-cards, .lifestyle-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 16px;
-        }
-
-        .lifestyle-card, .lifestyle-pill {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            background: #FFFFFF;
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .lifestyle-chart {
-            padding: 16px;
-            background: #FFFFFF;
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-        }
-
-            .lifestyle-chart h2 {
+            .header-buttons h1 {
+                flex-grow: 1;
+                text-align: center;
                 margin: 0;
-                font-size: 18px;
-                font-weight: 600;
-                color: #000000;
             }
 
-            .lifestyle-chart img {
-                width: 100%;
-                border-radius: 8px;
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
 
         #siri-container {
             width: 100%;
-            height: 200px;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
+        }
+
+        @media (max-width: 768px) {
+            .lifestyle-section {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .button-container, .footer-container {
+                flex-direction: column;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+                .header-buttons h1 {
+                    margin-bottom: 10px;
+                }
         }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="lifestyle-section" id="lifestyle">
-        <div class="lifestyle-top-level-buttons">
-            <button class="lifestyle-settings-btn" onclick="openSettings('settings.html')">Three Bar Settings</button>
-            <h1 align="center">Lifestyle</h1>
-            <button class="lifestyle-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
+        <div class="header-buttons">
+            <button onclick="goToPage('settings.html')">Settings</button>
+            <h1>Lifestyle</h1>
+            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
         </div>
-
         <div id="siri-container"></div>
 
-        <div class="lifestyle-cards">
-            <div class="lifestyle-card" id="social-feed" onclick="showSocialFeed()">Social Feed Card</div>
-            <div class="lifestyle-card" id="entertainment-highlights" onclick="showEntertainmentHighlights()">Entertainment Highlights Card</div>
-            <div class="lifestyle-card" id="upcoming-events" onclick="showUpcomingEvents()">Upcoming Events Card</div>
-        </div>
-        <div class="lifestyle-pills">
-            <div class="lifestyle-pill" id="friends-activities" onclick="goToFriendsActivities()">Friends' Activities</div>
-            <div class="lifestyle-pill" id="media-library" onclick="goToMediaLibrary()">Media Library</div>
-            <div class="lifestyle-pill" id="event-invitations" onclick="goToEventInvitations()">Event Invitations</div>
-            <div class="lifestyle-pill" id="streaming-services" onclick="goToStreamingServices()">Streaming Services</div>
-        </div>
-        <div class="lifestyle-chart">
-            <embed src="entertainmentViewing.pdf" type="application/pdf" alt="EntertainmentViewing">
+        <div class="button-container">
+            <button onclick="goToPage('socialFeed.html')">Social Feed</button>
+            <button onclick="goToPage('entertainmentHighlights.html')">Entertainment Highlights</button>
+            <button onclick="goToPage('upcomingEvents.html')">Upcoming Events</button>
+            <button onclick="goToPage('friendsActivities.html')">Friends' Activities</button>
+            <button onclick="goToPage('mediaLibrary.html')">Media Library</button>
+            <button onclick="goToPage('eventInvitations.html')">Event Invitations</button>
+            <button onclick="goToPage('streamingServices.html')">Streaming Services</button>
         </div>
     </div>
+    <br>
+    <div class="footer-container" id="footer-container">
+        <button onclick="goToPage('entertainmentViewing.pdf')">Entertainment Viewing</button>
+    </div>
 
-<script>
-    function goToWelcome() {
-        window.location.href = 'welcome.html';
-    }
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
 
-    function openSettings() {
-        alert("Opening Settings Menu");
-        window.location.href = 'settings.html';
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            width: 375,
-            height: 200,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 1,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 375,
+                height: 200,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 1,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
         });
-    });
-
-    function showSocialFeed() {
-        alert("Displaying Social Feed details");
-    }
-
-    function showEntertainmentHighlights() {
-        alert("Displaying Entertainment Highlights details");
-    }
-
-    function showUpcomingEvents() {
-        alert("Displaying Upcoming Events details");
-    }
-
-    function goToFriendsActivities() {
-        alert("Navigating to Friends' Activities");
-    }
-
-    function goToMediaLibrary() {
-        alert("Navigating to Media Library");
-    }
-
-    function goToEventInvitations() {
-        alert("Navigating to Event Invitations");
-    }
-
-    function goToStreamingServices() {
-        alert("Navigating to Streaming Services");
-    }
-
-</script>
+    </script>
 </body>
 </html>
