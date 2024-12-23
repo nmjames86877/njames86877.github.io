@@ -23,86 +23,72 @@
             z-index: -1;
         }
 
-        button {
-            padding: 8px 16px;
-            background: #4CAF50; /* Updated color */
-            color: #FFFFFF;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-            button:hover {
-                background: #388E3C; /* Updated color */
-                transform: scale(1.05);
-            }
-
         .accessibility-section {
             position: relative;
             width: 100%;
-            max-width: 375px;
+            max-width: 400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.5); /* Updated background */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            text-align: center;
+            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
         }
 
-        .accessibility-top-level-buttons {
+        .header-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 16px;
-            background: #F1F8E9; /* Updated background */
-            border-bottom: 1px solid #C8E6C9; /* Updated border */
+            margin-bottom: 20px;
         }
 
-        .accessibility-cards, .accessibility-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 16px;
-        }
-
-        .accessibility-card, .accessibility-pill {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            background: #FFFFFF;
-            border: 1px solid #C8E6C9; /* Updated border */
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-            .accessibility-card:hover, .accessibility-pill:hover {
-                background: #E8F5E9; /* Updated background */
-                transform: scale(1.05);
-            }
-
-        .accessibility-chart {
-            padding: 16px;
-            background: #FFFFFF;
-            border: 1px solid #C8E6C9; /* Updated border */
-            border-radius: 8px;
-        }
-
-            .accessibility-chart h2 {
+            .header-buttons h1 {
+                flex-grow: 1;
+                text-align: center;
                 margin: 0;
-                font-size: 18px;
-                font-weight: 600;
-                color: #388E3C; /* Updated color */
             }
 
-            .accessibility-chart img {
-                width: 100%;
-                border-radius: 8px;
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
 
         #siri-container {
             width: 100%;
-            height: 200px;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
         }
 
@@ -112,96 +98,64 @@
                 padding: 10px;
             }
 
-            .accessibility-top-level-buttons {
+            .button-container, .footer-container {
                 flex-direction: column;
-                align-items: flex-start;
             }
 
-            .accessibility-cards, .accessibility-pills {
+            .header-buttons {
                 flex-direction: column;
+                align-items: center;
             }
+
+                .header-buttons h1 {
+                    margin-bottom: 10px;
+                }
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <div class="accessibility-section" id="accessibility">
-        <div class="accessibility-top-level-buttons">
-            <button class="accessibility-settings-btn" onclick="openSettings()">Three Bar Settings</button>
-            <h1 align="center">Accessibility</h1>
-            <button class="accessibility-dashboard-btn" onclick="goToWelcome()">Dashboard Top Level</button>
+        <div class="header-buttons">
+            <button onclick="goToPage('settings.html')">Settings</button>
+            <h1>Accessibility</h1>
+            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
         </div>
-
         <div id="siri-container"></div>
 
-        <div class="accessibility-cards">
-            <div class="accessibility-card" id="voice-commands" onclick="showVoiceCommands()">Voice Commands Card</div>
-            <div class="accessibility-card" id="high-contrast" onclick="showHighContrast()">High Contrast Mode Card</div>
-            <div class="accessibility-card" id="font-size" onclick="showFontSize()">Font Size Adjustment Card</div>
+        <div class="button-container">
+            <button onclick="goToPage('voiceCommands.html')">Voice Commands</button>
+            <button onclick="goToPage('highContrast.html')">High Contrast Mode</button>
+            <button onclick="goToPage('fontSize.html')">Font Size Adjustment</button>
+            <button onclick="goToPage('screenReader.html')">Screen Reader</button>
+            <button onclick="goToPage('textToSpeech.html')">Text-to-Speech</button>
+            <button onclick="goToPage('magnifier.html')">Magnifier</button>
+            <button onclick="goToPage('keyboardShortcuts.html')">Keyboard Shortcuts</button>
         </div>
-        <div class="accessibility-pills">
-            <div class="accessibility-pill" id="screen-reader" onclick="goToScreenReader()">Screen Reader</div>
-            <div class="accessibility-pill" id="text-to-speech" onclick="goToTextToSpeech()">Text-to-Speech</div>
-            <div class="accessibility-pill" id="magnifier" onclick="goToMagnifier()">Magnifier</div>
-            <div class="accessibility-pill" id="keyboard-shortcuts" onclick="goToKeyboardShortcuts()">Keyboard Shortcuts</div>
-        </div>
-        <div class="accessibility-chart">
-            <embed src="voiceCommandUsage.pdf" type="application/pdf"/>
-        </div>
+    </div>
+    <br>
+    <div class="footer-container" id="footer-container">
+        <button onclick="goToPage('voiceCommandUsage.pdf')">Voice Command Usage</button>
     </div>
 
     <script>
-        function goToWelcome() {
-            window.location.href = 'welcome.html';
-        }
-
-        function openSettings() {
-            alert("Opening Settings Menu");
-            window.location.href = 'settings.html';
+        function goToPage(page) {
+            window.location.href = page;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            width: 375,
-            height: 200,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 1,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
+                container: document.getElementById('siri-container'),
+                width: 375,
+                height: 200,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 1,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
             });
         });
-
-        function showVoiceCommands() {
-            alert("Displaying Voice Commands details");
-        }
-
-        function showHighContrast() {
-            alert("Displaying High Contrast Mode details");
-        }
-
-        function showFontSize() {
-            alert("Displaying Font Size Adjustment details");
-        }
-
-        function goToScreenReader() {
-            alert("Navigating to Screen Reader");
-        }
-
-        function goToTextToSpeech() {
-            alert("Navigating to Text-to-Speech");
-        }
-
-        function goToMagnifier() {
-            alert("Navigating to Magnifier");
-        }
-
-        function goToKeyboardShortcuts() {
-            alert("Navigating to Keyboard Shortcuts");
-        }
-
     </script>
 </body>
 </html>

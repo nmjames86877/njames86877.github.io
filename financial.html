@@ -7,7 +7,6 @@
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Financial</title>
     <style>
-        /* Dashboard - Financial */
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
@@ -15,131 +14,82 @@
             background-size: cover;
         }
 
-        button {
-            padding: 8px 16px;
-            background: #4CAF50; /* Updated color */
-            color: #FFFFFF;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            z-index: -1;
         }
-
-            button:hover {
-                background: #388E3C; /* Updated color */
-                transform: scale(1.05);
-            }
 
         .financial-section {
             position: relative;
             width: 100%;
-            max-width: 375px;
+            max-width: 400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); /* Updated background */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            text-align: center;
+            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
         }
 
-        .financial-top-level-buttons {
+        .header-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 16px;
-            background: #F1F8E9; /* Updated background */
-            border-bottom: 1px solid #C8E6C9; /* Updated border */
+            margin-bottom: 20px;
         }
 
-        .financial-cards, .financial-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 16px;
-        }
-
-        .financial-card, .financial-pill {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            background: #FFFFFF;
-            border: 1px solid #C8E6C9; /* Updated border */
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-            .financial-card:hover, .financial-pill:hover {
-                background: #E8F5E9; /* Updated background */
-                transform: scale(1.05);
-            }
-
-        .financial-chart {
-            padding: 16px;
-            background: #FFFFFF;
-            border: 1px solid #C8E6C9; /* Updated border */
-            border-radius: 8px;
-        }
-
-            .financial-chart h2 {
+            .header-buttons h1 {
+                flex-grow: 1;
+                text-align: center;
                 margin: 0;
-                font-size: 18px;
-                font-weight: 600;
-                color: #388E3C; /* Updated color */
             }
 
-            .financial-chart img {
-                width: 100%;
-                border-radius: 8px;
-            }
-
-        .financial-banking-institution, .financial-credit-bureau, .financial-brokerage-firm, .financial-financial-apps {
-            padding: 16px;
-            background: #FFFFFF;
-            border: 1px solid #C8E6C9; /* Updated border */
-            border-radius: 8px;
-            margin: 16px 0;
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .financial-account-details img, .financial-credit-score img, .financial-portfolio img {
-            width: 100%;
-            border-radius: 8px;
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .financial-expandable-section h3 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-            table th, table td {
-                border: 1px solid #E0E0E0;
-                text-align: left;
-                padding: 8px;
-            }
-
-        input, select {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin: 10px 0;
-            border: 1px solid #E0E0E0;
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
             border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        p {
-            margin: 0;
-            font-size: 14px;
-            color: #828282;
-        }
+            button:hover {
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
 
         #siri-container {
             width: 100%;
-            height: 200px;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
         }
 
@@ -149,54 +99,49 @@
                 padding: 10px;
             }
 
-            .financial-top-level-buttons {
+            .button-container, .footer-container {
                 flex-direction: column;
-                align-items: flex-start;
             }
 
-            .financial-cards, .financial-pills {
+            .header-buttons {
                 flex-direction: column;
+                align-items: center;
             }
+
+                .header-buttons h1 {
+                    margin-bottom: 10px;
+                }
         }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="financial-section" id="financial">
-        <div class="financial-top-level-buttons">
-            <button class="financial-settings-btn" onclick="openSettings('settings.html')">Three Bar Settings</button>
-            <h1 align="center">Financial</h1>
-            <button class="financial-dashboard-btn" onclick="goToWelcome('welcome.html')">Dashboard Top Level</button>
+        <div class="header-buttons">
+            <button onclick="goToPage('settings.html')">Settings</button>
+            <h1>Financial</h1>
+            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
         </div>
-
         <div id="siri-container"></div>
 
-        <div class="financial-cards">
-            <div class="financial-card" id="financial-budget-overview" onclick="showBudgetOverview()">Budget Overview Card</div>
-            <div class="financial-card" id="financial-investment-performance" onclick="showInvestmentPerformance()">Investment Performance Card</div>
-            <div class="financial-card" id="financial-net-worth-summary" onclick="showNetWorthSummary()">Net-Worth Summary Card</div>
+        <div class="button-container">
+            <button onclick="goToPage('budgetOverview.html')">Budget Overview</button>
+            <button onclick="goToPage('investmentPerformance.html')">Investment Performance</button>
+            <button onclick="goToPage('netWorthSummary.html')">Net-Worth Summary</button>
+            <button onclick="goToPage('bankingInstitution.html')">Banking Institution</button>
+            <button onclick="goToPage('creditBureau.html')">Credit Bureau</button>
+            <button onclick="goToPage('brokerageFirm.html')">Brokerage Firm</button>
+            <button onclick="goToPage('financialApps.html')">Financial Apps</button>
         </div>
-        <div class="financial-pills">
-            <div class="financial-pill" id="financial-banking-institution" onclick="goToBankingInstitution()">Banking Institution</div>
-            <div class="financial-pill" id="financial-credit-bureau" onclick="goToCreditBureau()">Credit Bureau</div>
-            <div class="financial-pill" id="financial-brokerage-firm" onclick="goToBrokerageFirm()">Brokerage Firm</div>
-            <div class="financial-pill" id="financial-financial-apps" onclick="goToFinancialApps()">Financial Apps</div>
-        </div>
-        <div class="financial-chart">
-            <embed src="investmentPerformance.pdf" type="application/pdf" alt="Investment Performance">
-        </div>
+    </div>
+    <br>
+    <div class="footer-container" id="footer-container">
+        <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
     </div>
 
     <script>
-        // Navigate to the dashboard's welcome section
-        function goToWelcome() {
-            alert("Navigating to Dashboard Top Level");
-            window.location.href = 'welcome.html';
-        }
-
-        // Open settings menu
-        function openSettings() {
-            alert("Opening Settings Menu");
-            window.location.href = 'settings.html';
+        function goToPage(page) {
+            window.location.href = page;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -212,48 +157,6 @@
                 autostart: true
             });
         });
-
-        // Show Budget Overview details
-        function showBudgetOverview() {
-            alert("Displaying Budget Overview details");
-        }
-
-        // Show Investment Performance details
-        function showInvestmentPerformance() {
-            alert("Displaying Investment Performance details");
-        }
-
-        // Show Net-Worth Summary details
-        function showNetWorthSummary() {
-            alert("Displaying Net-Worth Summary details");
-        }
-
-        // Show Financial Subsections
-        function showSubsection(sectionId, subsectionId) {
-            const section = document.getElementById(sectionId);
-            const subsections = section.querySelectorAll('.financial-subsection');
-            subsections.forEach(subsection => {
-                subsection.classList.remove('active');
-            });
-            document.getElementById(subsectionId).classList.add('active');
-        }
-
-        function goToBankingInstitution() {
-            showSubsection('financial', 'financial-banking-institution-screen');
-        }
-
-        function goToCreditBureau() {
-            showSubsection('financial', 'financial-credit-bureau-screen');
-        }
-
-        function goToBrokerageFirm() {
-            showSubsection('financial', 'financial-brokerage-firm-screen');
-        }
-
-        function goToFinancialApps() {
-            showSubsection('financial', 'financial-financial-apps-screen');
-        }
-
     </script>
 </body>
 </html>
