@@ -29,7 +29,8 @@
             width: 100%;
             max-width: 400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
+            background: none; /* Updated background */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -43,9 +44,7 @@
             margin-top: 20px;
         }
 
-        #footer-container {
-            align: center;
-            position:bottom;
+        .footer-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -55,23 +54,35 @@
 
         button {
             padding: 8px 16px;
-            background: #2D6EFF;
+            background: #4CAF50; /* Updated color */
             color: #FFFFFF;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
         }
 
-        button:hover {
-            background: #1A4FCC;
-        }
+            button:hover {
+                background: #388E3C; /* Updated color */
+                transform: scale(1.05);
+            }
 
-        #siri-container {
-            width: 100%;
-            max-width: 375px;
-            height: 150px;
-            margin: 0 auto;
-            background-color: rgba(0, 0, 0, 0);
+    #siri-container {
+        width: auto;
+        height: 150px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+        @media (max-width: 768px) {
+            .welcome-section {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .button-container, .footer-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -79,6 +90,7 @@
     <div class="overlay"></div>
     <div class="welcome-section" id="welcome">
         <h1 align="center">MicroLink Prototype</h1>
+        
         <div id="siri-container"></div>
 
         <div class="button-container">
@@ -92,8 +104,8 @@
     </div>
     <br>
     <div class="footer-container" id="footer-container">
-        <button onclick="goToPage('videoDemo.html')">Video Demo of the MicroLink Protoype</button>
         <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
+        <button onclick="goToPage('videoDemo.html')">Video Demo of the MicroLink Prototype</button>
         <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
     </div>
 
