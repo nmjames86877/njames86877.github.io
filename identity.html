@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/powerbi-client/dist/powerbi.min.js"></script>
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
-    <title>Financial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity</title>
     <style>
         body {
             margin: 0;
@@ -24,7 +24,7 @@
             z-index: -1;
         }
 
-        .financial-section {
+        .identity-section {
             position: relative;
             width: 100%;
             max-width: 400px;
@@ -94,7 +94,7 @@
         }
 
         @media (max-width: 768px) {
-            .financial-section {
+            .identity-section {
                 max-width: 100%;
                 padding: 10px;
             }
@@ -116,27 +116,28 @@
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="financial-section" id="financial">
+    <div class="identity-section" id="identity">
         <div class="header-buttons">
             <button onclick="goToPage('settings.html')">Settings</button>
-            <h1>Financial</h1>
+            <h1>Identity</h1>
             <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
         </div>
         <div id="siri-container"></div>
 
         <div class="button-container">
-            <button onclick="goToPage('budgetOverview.html')">Budget Overview</button>
-            <button onclick="goToPage('investmentPerformance.html')">Investment Performance</button>
-            <button onclick="goToPage('netWorthSummary.html')">Net-Worth Summary</button>
-            <button onclick="goToPage('bankingInstitution.html')">Banking Institution</button>
-            <button onclick="goToPage('creditBureau.html')">Credit Bureau</button>
-            <button onclick="goToPage('brokerageFirm.html')">Brokerage Firm</button>
-            <button onclick="goToPage('financialApps.html')">Financial Apps</button>
+            <button onclick="goToPage('profile.html')">Profile</button>
+            <button onclick="goToPage('securitySettings.html')">Security Settings</button>
+            <button onclick="goToPage('digitalIDCards.html')">Digital ID Cards</button>
+            <button onclick="goToPage('identityMonitoringAlerts.html')">Identity Monitoring Alerts</button>
+            <button onclick="goToPage('recentActivities.html')">Recent Activities</button>
+            <button onclick="goToPage('medicalID.html')">Medical ID</button>
+            <button onclick="goToPage('insuranceCard.html')">Insurance Card</button>
+            <button onclick="goToPage('allDataAgencies.html')">All Data Agencies</button>
         </div>
     </div>
     <br>
     <div class="footer-container" id="footer-container">
-        <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
+        <button onclick="goToPage('profileUpdates.pdf')">Week to Date Info Chart</button>
     </div>
 
     <script>
