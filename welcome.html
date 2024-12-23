@@ -29,11 +29,14 @@
             width: 100%;
             max-width: 400px;
             margin: 0 auto;
-            padding: 10px;
-            background: none; /* Updated background */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
         }
 
         .button-container {
@@ -54,25 +57,28 @@
 
         button {
             padding: 8px 16px;
-            background: #4CAF50; /* Updated color */
-            color: #FFFFFF;
-            border: none;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
             border-radius: 4px;
             cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
             button:hover {
-                background: #388E3C; /* Updated color */
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
                 transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
 
-    #siri-container {
-        width: auto;
-        height: 150px;
-        margin: 0 auto;
-        background-color: rgba(0, 0, 0, 0);
-    }
+        #siri-container {
+            width: 100%;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
 
         @media (max-width: 768px) {
             .welcome-section {
@@ -90,7 +96,6 @@
     <div class="overlay"></div>
     <div class="welcome-section" id="welcome">
         <h1 align="center">MicroLink Prototype</h1>
-        
         <div id="siri-container"></div>
 
         <div class="button-container">
@@ -104,8 +109,8 @@
     </div>
     <br>
     <div class="footer-container" id="footer-container">
-        <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
         <button onclick="goToPage('videoDemo.html')">Video Demo of the MicroLink Prototype</button>
+        <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
         <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
     </div>
 
