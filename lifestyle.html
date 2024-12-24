@@ -13,7 +13,7 @@
             font-family: 'Orbitron', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #00ffcc;
+            color: #333333;
             overflow: hidden;
         }
 
@@ -23,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.8);
             z-index: -1;
         }
 
@@ -33,13 +33,13 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 255, 204, 0.2);
-            color: #00ffcc;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #333333;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -63,8 +63,8 @@
             flex-grow: 1;
             text-align: center;
             margin: 0;
-            color: #00ffcc;
-            text-shadow: 0 0 10px #00ffcc;
+            color: #333333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .button-container, .footer-container {
@@ -77,19 +77,19 @@
 
         button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #00ffcc;
-            border: 1px solid rgba(0, 255, 204, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
         #siri-container {
@@ -160,11 +160,10 @@
                 speed: 0.2,
                 amplitude: 1,
                 frequency: 6,
-                color: '#00ffcc',
+                color: '#ff0000',
                 autostart: true
             });
         });
     </script>
-
 </body>
 </html>
