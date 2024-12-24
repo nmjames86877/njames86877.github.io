@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,11 +6,15 @@
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Lifestyle</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
+            color: #00ffcc;
+            overflow: hidden;
         }
 
         .overlay {
@@ -19,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            background: rgba(0, 0, 0, 0.8);
             z-index: -1;
         }
 
@@ -29,13 +33,13 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
             text-align: center;
-            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            color: #333333; /* Darker text color */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            color: #00ffcc;
         }
 
         .header-buttons {
@@ -45,21 +49,15 @@
             margin-bottom: 20px;
         }
 
-            .header-buttons h1 {
-                flex-grow: 1;
-                text-align: center;
-                margin: 0;
-            }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+        .header-buttons h1 {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
         }
 
-        .footer-container {
+        .button-container, .footer-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -69,20 +67,20 @@
 
         button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-            color: #333333; /* Darker text color */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            background: rgba(0, 0, 0, 0.5);
+            color: #00ffcc;
+            border: 1px solid rgba(0, 255, 204, 0.3);
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
         }
 
-            button:hover {
-                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
-                transform: scale(1.05);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            }
+        button:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+        }
 
         #siri-container {
             width: 100%;
@@ -107,9 +105,9 @@
                 align-items: center;
             }
 
-                .header-buttons h1 {
-                    margin-bottom: 10px;
-                }
+            .header-buttons h1 {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -152,7 +150,7 @@
                 speed: 0.2,
                 amplitude: 1,
                 frequency: 6,
-                color: '#ff0000',
+                color: '#00ffcc',
                 autostart: true
             });
         });
