@@ -201,7 +201,7 @@
     <br>
     <div class="footer-container" id="footer-container">
         <div class="hover-button">
-            <button onclick="fetchData()">Week to Date Info Chart</button>
+            <button id="dataButton" onclick="openModal()">Loading...</button>
             <div class="hover-content" id="hover-content">Loading...</div>
         </div>
     </div>
@@ -253,21 +253,25 @@
                     modal.style.display = "none";
                 }
             }
+
+            // Fetch data on load
+            fetchData();
         });
 
         async function fetchData() {
             try {
-                const response = await fetch('https://api.example.com/consumer-complaints/search/api/v1/?date_received_min=2024-12-01');
+                const response = await fetch('https://api.example.com/consumer-complaints/search/api/v1?date_received_min=2024-01-01');
                 const data = await response.json();
                 updateChart(data);
                 updateHoverContent(data);
+                updateButton(data);
                 displayModal(data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         }
-        
-                function updateChart(data) {
+
+        function updateChart(data) {
             const ctx = document.getElementById('myChart').getContext('2d');
             new Chart(ctx, {
                 type: 'line',
@@ -303,6 +307,12 @@
             document.getElementById('hover-content').textContent = `Most recent value: ${mostRecent.complaint_id}`;
         }
 
+        function updateButton(data) {
+            const mostRecent = data.complaints[data.complaints.length - 1];
+            const button = document.getElementById('dataButton');
+            button.textContent = mostRecent.company;
+        }
+
         function displayModal(data) {
             const modal = document.getElementById("myModal");
             const apiDataDiv = document.getElementById("api-data");
@@ -310,28 +320,32 @@
             // Clear previous content
             apiDataDiv.innerHTML = '';
 
-            // Display the data
-            data.complaints.forEach(complaint => {
-                const complaintDiv = document.createElement('div');
-                complaintDiv.innerHTML = `
-                    <p><strong>Date Received:</strong> ${complaint.date_received}</p>
-                    <p><strong>Complaint ID:</strong> ${complaint.complaint_id}</p>
-                    <p><strong>Product:</strong> ${complaint.product}</p>
-                    <p><strong>Issue:</strong> ${complaint.issue}</p>
-                    <p><strong>Company:</strong> ${complaint.company}</p>
-                    <p><strong>State:</strong> ${complaint.state}</p>
-                    <p><strong>Zip Code:</strong> ${complaint.zip_code}</p>
-                    <p><strong>Submitted Via:</strong> ${complaint.submitted_via}</p>
-                    <p><strong>Date Sent to Company:</strong> ${complaint.date_sent_to_company}</p>
-                    <p><strong>Company Response:</strong> ${complaint.company_response}</p>
-                    <p><strong>Timely:</strong> ${complaint.timely}</p>
-                    <p><strong>Consumer Disputed:</strong> ${complaint.consumer_disputed}</p>
-                    <hr>
-                `;
-                apiDataDiv.appendChild(complaintDiv);
-            });
+            // Display the most recent data
+            const mostRecent = data.complaints[data.complaints.length - 1];
+            const complaintDiv = document.createElement('div');
+            complaintDiv.innerHTML = `
+                <p><strong>Date Received:</strong> ${mostRecent.date_received}</p>
+                <p><strong>Complaint ID:</strong> ${mostRecent.complaint_id}</p>
+                <p><strong>Product:</strong> ${mostRecent.product}</p>
+                <p><strong>Issue:</strong> ${mostRecent.issue}</p>
+                <p><strong>Company:</strong> ${mostRecent.company}</p>
+                <p><strong>State:</strong> ${mostRecent.state}</p>
+                <p><strong>Zip Code:</strong> ${mostRecent.zip_code}</p>
+                <p><strong>Submitted Via:</strong> ${mostRecent.submitted_via}</p>
+                <p><strong>Date Sent to Company:</strong> ${mostRecent.date_sent_to_company}</p>
+                <p><strong>Company Response:</strong> ${mostRecent.company_response}</p>
+                <p><strong>Timely:</strong> ${mostRecent.timely}</p>
+                <p><strong>Consumer Disputed:</strong> ${mostRecent.consumer_disputed}</p>
+                <hr>
+            `;
+            apiDataDiv.appendChild(complaintDiv);
 
             // Show the modal
+            modal.style.display = "block";
+        }
+
+        function openModal() {
+            const modal = document.getElementById("myModal");
             modal.style.display = "block";
         }
     </script>
