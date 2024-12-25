@@ -21,7 +21,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('resultMessage').textContent = 'Error fetching data.';
+                    document.getElementById('resultMessage').textContent = `Error fetching data: ${error.message}`;
                 });
         }
 
@@ -51,7 +51,7 @@
                 })
                 .catch(error => {
                     console.error('Error updating Excel file:', error);
-                    document.getElementById('resultMessage').textContent = 'Error updating Excel file.';
+                    document.getElementById('resultMessage').textContent = `Error updating Excel file: ${error.message}`;
                 });
         }
     </script>
