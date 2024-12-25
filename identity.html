@@ -260,7 +260,7 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('https://api.example.com/consumer-complaints/search/api/v1?date_received_min=2024-01-01');
+                const response = await fetch('https://api.example.com/consumer-complaints/search/api/v1/?date_received_min=2024-01-01');
                 const data = await response.json();
                 updateChart(data);
                 updateHoverContent(data);
