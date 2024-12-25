@@ -13,7 +13,7 @@
         document.getElementById('fetchDataBtn').addEventListener('click', fetchData);
 
         function fetchData() {
-            fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
+            fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-15')
                 .then(response => response.json())
                 .then(data => {
                     const complaints = data.hits.hits.map(item => item._source);
