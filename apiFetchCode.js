@@ -1,6 +1,6 @@
 // apiFetchCode.js
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01&field=complaint_what_happened&field=state&field=product&field=company&field=date_received&field=zip_code&field=company_response')
+    fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
         .then(response => response.json())
         .then(data => {
             const complaints = data.hits.hits.map(item => item._source);
