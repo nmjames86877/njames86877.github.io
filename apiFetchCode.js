@@ -1,6 +1,6 @@
 // apiFetchCode.js
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
+    fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01&field=complaint_what_happened&field=state&field=product&field=company&field=date_received&field=zip_code&field=company_response')
         .then(response => response.json())
         .then(data => {
             const complaints = data.hits.hits.map(item => item._source);
@@ -26,7 +26,7 @@ function createBarChart(data) {
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
     x.domain(data.map(d => d.product));
-    y.domain([0, d3.max(data, d => d.issue.length)]);
+    y.domain([0, d3.max(data, d => d.complaint_what_happened.length)]);
 
     g.append("g")
         .attr("class", "axis axis--x")
@@ -42,13 +42,13 @@ function createBarChart(data) {
         .enter().append("rect")
         .attr("class", "bar")
         .attr("x", d => x(d.product))
-        .attr("y", d => y(d.issue.length))
+        .attr("y", d => y(d.complaint_what_happened.length))
         .attr("width", x.bandwidth())
-        .attr("height", d => height - y(d.issue.length))
+        .attr("height", d => height - y(d.complaint_what_happened.length))
         .on("mouseover", function(event, d) {
             d3.select(this).style("fill", "rgba(0, 255, 255, 0.7)");
             tooltip.transition().duration(200).style("opacity", .9);
-            tooltip.html(`Product: ${d.product}<br>Issues: ${d.issue.length}`)
+            tooltip.html(`Product: ${d.product}<br>Issues: ${d.complaint_what_happened.length}`)
                 .style("left", (event.pageX + 5) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
@@ -84,7 +84,7 @@ function createLineChart(data) {
     });
 
     x.domain(d3.extent(data, d => d.date_received));
-    y.domain([0, d3.max(data, d => d.issue.length)]);
+    y.domain([0, d3.max(data, d => d.complaint_what_happened.length)]);
 
     g.append("g")
         .attr("class", "axis axis--x")
@@ -100,6 +100,6 @@ function createLineChart(data) {
         .attr("class", "line")
         .attr("d", d3.line()
             .x(d => x(d.date_received))
-            .y(d => y(d.issue.length))
+            .y(d => y(d.complaint_what_happened.length))
         );
 }
