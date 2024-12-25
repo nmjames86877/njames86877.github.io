@@ -87,12 +87,12 @@ table {
             const table = document.getElementById('data-table');
             let html = '<table><tr><th>Date Received</th><th>Product</th><th>Issue</th><th>Company</th></tr>';
             data.hits.hits.forEach(item => {
-                html += `<tr>
+                html += '<tr>
                             <td>${item._source.date_received}</td>
                             <td>${item._source.product}</td>
                             <td>${item._source.issue}</td>
                             <td>${item._source.company}</td>
-                         </tr>`;
+                         </tr>';
             });
             html += '</table>';
             table.innerHTML = html;
