@@ -305,7 +305,7 @@
 
         async function fetchData(page) {
             try {
-                const response = await fetch('https://api.example.com/consumer-complaints/search/api/v1/?date_received_min=2024-12-01&page=${page}&size=10');
+                const response = await fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01&page=5&size=10');
                 const data = await response.json();
                 updateChart(data);
                 updateHoverContent(data);
