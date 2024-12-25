@@ -262,6 +262,7 @@
             <div class="pagination" id="pagination"></div>
         </div>
     </div>
+    
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     var siriWave = new SiriWave({
@@ -315,6 +316,7 @@ async function fetchData(page) {
 
 function updateChart(data) {
     const ctx = document.getElementById('myChart').getContext('2d');
+    console.log('Chart context:', ctx); // Verify the context
     new Chart(ctx, {
         type: 'line',
         data: {
@@ -439,5 +441,6 @@ function goToPage(page) {
     window.location.href = page;
 }
 </script>
+
 </body>
 </html>
