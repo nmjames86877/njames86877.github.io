@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holographic Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+
+/* styles.css */
+body {
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.dashboard {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    color: #00f;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 255, 255, 0.3));
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.5);
+}
+
+th {
+    background: rgba(0, 255, 255, 0.2);
+    color: #00f;
+}
+
+td {
+    background: rgba(255, 255, 255, 0.1);
+    color: #333;
+}
+
+table tr:hover {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+/* Add to styles.css */
+@keyframes holographic {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+table {
+    background-size: 200% 200%;
+    animation: holographic 5s ease infinite;
+}
+</style>
+
+<body>
+    <div class="dashboard">
+        <h1>Consumer Complaints Dashboard</h1>
+        <div id="data-table"></div>
+        <div id="visuals"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
+            .then(response => response.json())
+            .then(data => {
+                displayData(data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+    
+        function displayData(data) {
+            const table = document.getElementById('data-table');
+            let html = '<table><tr><th>Date Received</th><th>Product</th><th>Issue</th><th>Company</th></tr>';
+            data.hits.hits.forEach(item => {
+                html += `<tr>
+                            <td>${item._source.date_received}</td>
+                            <td>${item._source.product}</td>
+                            <td>${item._source.issue}</td>
+                            <td>${item._source.company}</td>
+                         </tr>`;
+            });
+            html += '</table>';
+            table.innerHTML = html;
+        }
+    </script>
+    
+</body>
+</html>
