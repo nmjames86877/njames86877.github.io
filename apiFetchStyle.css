@@ -1,4 +1,4 @@
-/* styles.css */
+/* apiece.css */
 body {
     background-color: #f0f8ff;
     font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@ body {
 .dashboard {
     width: 80%;
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px) saturate(180%);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -26,7 +26,7 @@ h1 {
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
 }
 
-#chart {
+#chart, #line-chart {
     margin-top: 20px;
 }
 
@@ -35,12 +35,22 @@ h1 {
     transition: fill 0.3s;
 }
 
-.axis--x path {
+.line {
+    fill: none;
+    stroke: rgba(0, 255, 255, 0.7);
+    stroke-width: 2px;
+}
+
+.axis--x path, .axis--y path {
     display: none;
 }
 
-.axis--y path {
-    display: none;
+.axis--x line, .axis--y line {
+    stroke: rgba(255, 255, 255, 0.3);
+}
+
+.axis--x text, .axis--y text {
+    fill: #333;
 }
 
 .tooltip {
