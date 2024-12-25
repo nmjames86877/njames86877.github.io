@@ -30,7 +30,12 @@
                 .then(response => response.arrayBuffer())
                 .then(arrayBuffer => {
                     const workbook = XLSX.read(arrayBuffer, {type: 'array'});
-                    const worksheet = workbook.Complaints[workbook.SheetNames[0]];
+                    let worksheet = workbook.Sheets['Complaints'];
+
+                    if (!worksheet) {
+                        worksheet = XLSX.utils.json_to_sheet([]);
+                        XLSX.utils.book_append_sheet(workbook, worksheet, 'Complaints');
+                    }
 
                     XLSX.utils.sheet_add_json(worksheet, data, {origin: -1, skipHeader: true});
 
