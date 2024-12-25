@@ -7,16 +7,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity</title>
     <style>
-        /* Your existing styles */
-        /* ... */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            z-index: -1;
+        }
+
+        .identity-section {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .header-buttons h1 {
+                flex-grow: 1;
+                text-align: center;
+                margin: 0;
+            }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        #siri-container {
+            width: 100%;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        @media (max-width: 768px) {
+            .identity-section {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .button-container, .footer-container {
+                flex-direction: column;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+                .header-buttons h1 {
+                    margin-bottom: 10px;
+                }
+        }
+
         .chart-container {
             width: 100%;
             max-width: 400px;
             margin: 0 auto;
         }
+
         .hover-button {
             position: relative;
         }
+
         .hover-content {
             display: none;
             position: absolute;
@@ -28,6 +134,7 @@
             border-radius: 4px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .hover-button:hover .hover-content {
             display: block;
         }
@@ -86,8 +193,7 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-11-01
-');
+                const response = await fetch('https://api.example.com/consumer-complaints/search/api/v1/?date_received_min=2024-01-01');
                 const data = await response.json();
                 updateChart(data);
                 updateHoverContent(data);
@@ -101,10 +207,10 @@
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: data.map(item => item.date),
+                    labels: data.map(item => item.date_received),
                     datasets: [{
-                        label: 'Data',
-                        data: data.map(item => item.value),
+                        label: 'Complaints',
+                        data: data.map(item => item.complaint_count),
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
                         fill: false
@@ -129,7 +235,7 @@
 
         function updateHoverContent(data) {
             const mostRecent = data[data.length - 1];
-            document.getElementById('hover-content').textContent = `Most recent value: ${mostRecent.value}`;
+            document.getElementById('hover-content').textContent = `Most recent value: ${mostRecent.complaint_count}`;
         }
     </script>
 </body>
