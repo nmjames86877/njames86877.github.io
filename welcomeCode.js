@@ -23,4 +23,19 @@ function goToSettings() {
         var hue = Math.round(event.alpha);
             siriWave.color = `hsl(${hue}, 100%, 50%)`;
         });
+        
+    // Create Snowflake Animation
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.width = `${Math.random() * 10 + 10}px`;
+            snowflake.style.height = snowflake.style.width;
+            snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            document.body.appendChild(snowflake);
+    
+        setTimeout(() => {
+            snowflake.remove();
+        }, 5000);
+    }
     });
