@@ -3,99 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Fetch and Excel Update</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <title>Consumer Complaints</title>
+    <style>
+        table {
+            width: flex;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <button id="fetchDataBtn">Fetch Data and Update Excel</button>
-    <p id="resultMessage"></p>
-    <iframe width=flex height=flex src="https://onedrive.live.com/embed?resid=cd6cbe893ea13b4b&authkey=ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg&em=2&action=embedview&wdAllowInteractivity=True&wdbipreview=True" frameborder="0" scrolling="no"></iframe>
-
+    <h1>Consumer Complaints</h1>
+    <table id="complaintsTable">
+        <thead>
+            <tr>
+                <th>Date Received</th>
+                <th>Product</th>
+                <th>Sub Product</th>
+                <th>Issue</th>
+                <th>Sub Issue</th>
+                <th>Company</th>
+                <th>State</th>
+                <th>ZIP Code</th>
+                <th>Submitted Via</th>
+                <th>Date Sent to Company</th>
+                <th>Company Response</th>
+                <th>Timely Response</th>
+                <th>Consumer Disputed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
     <script>
-    const axios = require('axios');
-    const ExcelJS = require('exceljs');
-    const nodemailer = require('nodemailer');
+    document.addEventListener('DOMContentLoaded', () => {
+    const apiUrl = 'https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01';
+    const tableBody = document.querySelector('#complaintsTable tbody');
 
-// Step 1: Fetch Data from API
-    async function fetchData() {
-      const response = await axios.get('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01');
-      return response.data;
-    }
-
-// Step 2: Update Excel Table
-    async function updateExcel(data) {
-      const workbook = new ExcelJS.Workbook();
-      await workbook.xlsx.readFile('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg.xlsx');
-      let worksheet = workbook.getWorksheet('complaints');
-    
-      if (!worksheet) {
-        worksheet = workbook.addWorksheet('complaints');
-        worksheet.columns = [
-          { header: 'Date Received', key: 'date_received' },
-          { header: 'Product', key: 'product' },
-          { header: 'Issue', key: 'issue' },
-          { header: 'Company', key: 'company' },
-          { header: 'State', key: 'state' },
-          { header: 'Zip', key: 'zip_code' },
-          { header: 'Company Response', key: 'company_response' },
-          { header: 'What Happened', key: 'complaint_what_happened' }
-          // Add other relevant columns
-        ];
-      }
-    
-      data.forEach(complaint => {
-        worksheet.addRow({
-          date_received: complaint.date_received,
-          product: complaint.product,
-          issue: complaint.issue,
-          company: complaint.company,
-          state: complaint.state,
-          zip_code: complaint.zip_code,
-          company_response: complaint.company_response,
-          what_happened: complaint.complaint_what_happened
-          // Map other relevant fields
-        });
-      });
-    
-      await workbook.xlsx.writeFile('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg.xlsx');
-      return data.length;
-    }
-    
-    // Step 3: Send Email Notification
-    async function sendEmail(updateCount) {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'your-email@gmail.com',
-          pass: 'your-email-password'
-        }
-      });
-    
-      const mailOptions = {
-        from: 'your-email@gmail.com',
-        to: 'nmjames86@gmail.com',
-        subject: 'Excel Table Update Notification',
-        text: `The Excel table has been updated with ${updateCount} new entries.`
-      };
-    
-      await transporter.sendMail(mailOptions);
-    }
-
-// Main Workflow Function
-    async function mainWorkflow() {
-      try {
-        const data = await fetchData();
-        const updateCount = await updateExcel(data);
-        await sendEmail(updateCount);
-        console.log('Workflow completed successfully.');
-      } catch (error) {
-        console.error('Error in workflow:', error);
-      }
-    }
-
-// Execute the workflow
-mainWorkflow();
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(complaint => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${complaint.date_received}</td>
+                    <td>${complaint.product}</td>
+                    <td>${complaint.sub_product}</td>
+                    <td>${complaint.issue}</td>
+                    <td>${complaint.sub_issue}</td>
+                    <td>${complaint.company}</td>
+                    <td>${complaint.state}</td>
+                    <td>${complaint.zip_code}</td>
+                    <td>${complaint.submitted_via}</td>
+                    <td>${complaint.date_sent_to_company}</td>
+                    <td>${complaint.company_response}</td>
+                    <td>${complaint.timely_response}</td>
+                    <td>${complaint.consumer_disputed}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
     </script>
+
     
 </body>
 </html>
