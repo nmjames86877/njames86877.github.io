@@ -13,12 +13,17 @@
         document.getElementById('fetchDataBtn').addEventListener('click', fetchData);
 
         function fetchData() {
-            fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-15')
-                .then(response => response.json())
+            fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const complaints = data.hits.hits.map(item => item._source);
                     updateExcelFile(complaints);
-                });
+                })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                     document.getElementById('resultMessage').textContent = `Error fetching data: ${error.message}`;
@@ -37,7 +42,13 @@
                         XLSX.utils.book_append_sheet(workbook, worksheet, 'Complaints');
                     }
 
-                    const headers = Object.keys(data[0]);
+                    const headers = [
+                        "company", "company_public_response", "company_response", "complaint_id",
+                        "complaint_what_happened", "consumer_consent_provided", "consumer_disputed",
+                        "date_received", "date_sent_to_company", "has_narrative", "issue", "product",
+                        "state", "sub_issue", "sub_product", "submitted_via", "tags", "timely", "zip_code"
+                    ];
+
                     const newData = data.map(item => headers.map(header => item[header]));
 
                     if (!worksheet['!ref']) {
@@ -48,7 +59,7 @@
 
                     XLSX.writeFile(workbook, 'updated_complaints.xlsx');
                     document.getElementById('resultMessage').textContent = 'Excel file updated successfully.';
-                });
+                })
                 .catch(error => {
                     console.error('Error updating Excel file:', error);
                     document.getElementById('resultMessage').textContent = `Error updating Excel file: ${error.message}`;
