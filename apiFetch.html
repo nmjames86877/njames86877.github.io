@@ -10,61 +10,90 @@
     <button id="fetchDataBtn">Fetch Data and Update Excel</button>
     <p id="resultMessage"></p>
     <script>
-        document.getElementById('fetchDataBtn').addEventListener('click', fetchData);
+    const axios = require('axios');
+    const ExcelJS = require('exceljs');
+    const nodemailer = require('nodemailer');
 
-        function fetchData() {
-            fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('HTTP error! status: ${response.status}');
-                    }
-                    return response.json();
-                });
-                .then(data => {
-                    const complaints = data.hits.hits.map(item => item._source);
-                    updateExcelFile(complaints);
-                });
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('resultMessage').textContent = 'Error fetching data: ${error.message}';
-                });
+// Step 1: Fetch Data from API
+    async function fetchData() {
+      const response = await axios.get('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01');
+      return response.data;
+    }
+
+// Step 2: Update Excel Table
+    async function updateExcel(data) {
+      const workbook = new ExcelJS.Workbook();
+      await workbook.xlsx.readFile('path/to/your/excel/file.xlsx');
+      let worksheet = workbook.getWorksheet('complaints');
+    
+      if (!worksheet) {
+        worksheet = workbook.addWorksheet('complaints');
+        worksheet.columns = [
+          { header: 'Date Received', key: 'date_received' },
+          { header: 'Product', key: 'product' },
+          { header: 'Issue', key: 'issue' },
+          { header: 'Company', key: 'company' },
+          { header: 'State', key: 'state' },
+          { header: 'Zip', key: 'zip_code' },
+          { header: 'Company Response', key: 'company_response' },
+          { header: 'What Happened', key: 'complaint_what_happened' }
+          // Add other relevant columns
+        ];
+      }
+    
+      data.forEach(complaint => {
+        worksheet.addRow({
+          date_received: complaint.date_received,
+          product: complaint.product,
+          issue: complaint.issue,
+          company: complaint.company,
+          state: complaint.state,
+          zip_code: complaint.zip_code,
+          company_response: complaint.company_response,
+          what_happened: complaint.complaint_what_happened
+          // Map other relevant fields
+        });
+      });
+    
+      await workbook.xlsx.writeFile('path/to/your/excel/file.xlsx');
+      return data.length;
+    }
+    
+    // Step 3: Send Email Notification
+    async function sendEmail(updateCount) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'your-email@gmail.com',
+          pass: 'your-email-password'
         }
+      });
+    
+      const mailOptions = {
+        from: 'your-email@gmail.com',
+        to: 'nmjames86@gmail.com',
+        subject: 'Excel Table Update Notification',
+        text: `The Excel table has been updated with ${updateCount} new entries.`
+      };
+    
+      await transporter.sendMail(mailOptions);
+    }
 
-        function updateExcelFile(data) {
-            fetch('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg')
-                .then(response => response.arrayBuffer())
-                .then(arrayBuffer => {
-                    const workbook = XLSX.read(arrayBuffer, {type: 'array'});
-                    let worksheet = workbook.Sheets['Complaints'];
+// Main Workflow Function
+    async function mainWorkflow() {
+      try {
+        const data = await fetchData();
+        const updateCount = await updateExcel(data);
+        await sendEmail(updateCount);
+        console.log('Workflow completed successfully.');
+      } catch (error) {
+        console.error('Error in workflow:', error);
+      }
+    }
 
-                    if (!worksheet) {
-                        worksheet = XLSX.utils.json_to_sheet([]);
-                        XLSX.utils.book_append_sheet(workbook, worksheet, 'Complaints');
-                    }
-
-                    const headers = [
-                        "company", "company_public_response", "company_response", "complaint_id",
-                        "complaint_what_happened", "consumer_consent_provided", "consumer_disputed",
-                        "date_received", "date_sent_to_company", "has_narrative", "issue", "product",
-                        "state", "sub_issue", "sub_product", "submitted_via", "tags", "timely", "zip_code"
-                    ];
-
-                    const newData = data.map(item => headers.map(header => item[header]));
-
-                    if (!worksheet['!ref']) {
-                        XLSX.utils.sheet_add_aoa(worksheet, [headers], {origin: 'A1'});
-                    }
-
-                    XLSX.utils.sheet_add_aoa(worksheet, newData, {origin: -1});
-
-                    XLSX.writeFile(workbook, 'updated_complaints.xlsx');
-                    document.getElementById('resultMessage').textContent = 'Excel file updated successfully.';
-                });
-                .catch(error => {
-                    console.error('Error updating Excel file:', error);
-                    document.getElementById('resultMessage').textContent = 'Error updating Excel file: ${error.message}';
-                });
-        }
+// Execute the workflow
+mainWorkflow();
     </script>
+    
 </body>
 </html>
