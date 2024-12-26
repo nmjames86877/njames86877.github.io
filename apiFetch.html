@@ -25,7 +25,7 @@
 // Step 2: Update Excel Table
     async function updateExcel(data) {
       const workbook = new ExcelJS.Workbook();
-      await workbook.xlsx.readFile('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg');
+      await workbook.xlsx.readFile('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg.xlsx');
       let worksheet = workbook.getWorksheet('complaints');
     
       if (!worksheet) {
@@ -57,7 +57,7 @@
         });
       });
     
-      await workbook.xlsx.writeFile('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg');
+      await workbook.xlsx.writeFile('https://1drv.ms/x/c/cd6cbe893ea13b4b/ESYZkMUoEExHoJphONk86wYBGF-PvDlRZbm-UBhsJm0QBg.xlsx');
       return data.length;
     }
     
