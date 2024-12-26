@@ -79,6 +79,20 @@
             margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
         }
+        
+                /* Snowflake Animation */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
 
         @media (max-width: 768px) {
             .welcome-section {
