@@ -16,7 +16,7 @@
             fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01')
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                        throw new Error('HTTP error! status: ${response.status}');
                     }
                     return response.json();
                 });
@@ -26,7 +26,7 @@
                 });
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    document.getElementById('resultMessage').textContent = `Error fetching data: ${error.message}`;
+                    document.getElementById('resultMessage').textContent = 'Error fetching data: ${error.message}';
                 });
         }
 
@@ -62,7 +62,7 @@
                 });
                 .catch(error => {
                     console.error('Error updating Excel file:', error);
-                    document.getElementById('resultMessage').textContent = `Error updating Excel file: ${error.message}`;
+                    document.getElementById('resultMessage').textContent = 'Error updating Excel file: ${error.message}';
                 });
         }
     </script>
