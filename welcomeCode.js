@@ -21,6 +21,6 @@ function goToSettings() {
 
     window.addEventListener('deviceorientation', function (event) {
         var hue = Math.round(event.alpha);
-        siriWave.color = `hsl(${hue}, 100%, 50%)`;
+            siriWave.color = `hsl(${hue}, 100%, 50%)`;
         });
     });
