@@ -1,68 +1,101 @@
-/* apiece.css */
+/* General Styles */
 body {
-    background-color: #f0f8ff;
-    font-family: Arial, sans-serif;
-    color: #333;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333333;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+}
+
+/* Section Styles */
+.section {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Header Buttons */
+.header-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    margin-bottom: 20px;
+}
+
+.header-buttons h1 {
+    flex-grow: 1;
+    text-align: center;
     margin: 0;
 }
 
-.dashboard {
-    width: 80%;
-    text-align: center;
-    backdrop-filter: blur(10px) saturate(180%);
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+/* Button Styles */
+button {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #333333;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #00f;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-#chart, #line-chart {
-    margin-top: 20px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .button-container, .footer-container {
+        flex-direction: column;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-buttons h1 {
+        margin-bottom: 10px;
+    }
 }
 
-.bar {
-    fill: rgba(255, 255, 255, 0.3);
-    transition: fill 0.3s;
-}
-
-.line {
-    fill: none;
-    stroke: rgba(0, 255, 255, 0.7);
-    stroke-width: 2px;
-}
-
-.axis--x path, .axis--y path {
-    display: none;
-}
-
-.axis--x line, .axis--y line {
-    stroke: rgba(255, 255, 255, 0.3);
-}
-
-.axis--x text, .axis--y text {
-    fill: #333;
-}
-
-.tooltip {
+/* Snowflake Animation */
+.snowflake {
     position: absolute;
-    text-align: center;
-    width: 120px;
-    height: 50px;
-    padding: 2px;
-    font: 12px sans-serif;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    border: 0px;
-    border-radius: 8px;
-    pointer-events: none;
+    top: -10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh); }
 }
