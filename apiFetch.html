@@ -6,8 +6,7 @@
     <title>Consumer Complaints</title>
     <style>
         table {
-            height: flex;
-            width: flex;
+            width: 100%;
             border-collapse: collapse;
         }
         th, td {
@@ -17,6 +16,15 @@
         th {
             background-color: #f2f2f2;
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -24,6 +32,7 @@
     <table id="complaintsTable">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Date Received</th>
                 <th>Product</th>
                 <th>Sub Product</th>
@@ -43,38 +52,75 @@
             <!-- Data will be inserted here -->
         </tbody>
     </table>
+    <div class="pagination" id="pagination"></div>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = 'https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01';
-    const tableBody = document.querySelector('#complaintsTable tbody');
+        const apiUrl = 'https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01';
+        const tableBody = document.querySelector('#complaintsTable tbody');
+        const pagination = document.querySelector('#pagination');
+        const rowsPerPage = 10;
+        let currentPage = 1;
+        let complaintsData = [];
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(complaint => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                complaintsData = data.hits.hits;
+                complaintsData.sort((a, b) => new Date(b._source.date_received) - new Date(a._source.date_received));
+                displayPage(currentPage);
+                setupPagination();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        const displayPage = (page) => {
+            tableBody.innerHTML = '';
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = complaintsData.slice(start, end);
+
+            pageData.forEach(hit => {
+                const complaint = hit._source;
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${complaint.date_received}</td>
+                    <td>${hit._id}</td>
+                    <td>${new Date(complaint.date_received).toLocaleDateString()}</td>
                     <td>${complaint.product}</td>
-                    <td>${complaint.sub_product}</td>
+                    <td>${complaint.sub_product || ''}</td>
                     <td>${complaint.issue}</td>
-                    <td>${complaint.sub_issue}</td>
+                    <td>${complaint.sub_issue || ''}</td>
                     <td>${complaint.company}</td>
                     <td>${complaint.state}</td>
-                    <td>${complaint.zip_code}</td>
+                    <td>${complaint.zip_code || ''}</td>
                     <td>${complaint.submitted_via}</td>
-                    <td>${complaint.date_sent_to_company}</td>
+                    <td>${new Date(complaint.date_sent_to_company).toLocaleDateString()}</td>
                     <td>${complaint.company_response}</td>
                     <td>${complaint.timely_response}</td>
                     <td>${complaint.consumer_disputed}</td>
                 `;
                 tableBody.appendChild(row);
             });
-        })
-        .catch(error => console.error('Error fetching data:', error));
-});
-    </script>
+        };
 
-    
+        const setupPagination = () => {
+            pagination.innerHTML = '';
+            const pageCount = Math.ceil(complaintsData.length / rowsPerPage);
+
+            for (let i = 1; i <= pageCount; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    displayPage(currentPage);
+                });
+                pagination.appendChild(button);
+            }
+        };
+
+        fetchData();
+    });
+    </script>
 </body>
 </html>
