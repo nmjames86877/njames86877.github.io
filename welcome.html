@@ -63,7 +63,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(224, 255, 255, 0.2);
             color: #2F4F4F; /* Polar Night */
-            animation: frostyFade 2s ease-in-out, holographicFlicker 2.5s infinite;
+            animation: frostyFade 1s ease-in-out, holographicFlicker 2s infinite;
         }
 
         @keyframes frostyFade {
@@ -84,24 +84,24 @@
             margin-top: 10px;
         }
 
-        button {
-            padding: 8px 16px;
-            background: rgba(224, 255, 255, 0.1); /* Crystal Clear */
-            color: #2F4F4F; /* Polar Night */
-            border: 1px solid rgba(224, 255, 255, 0.2);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: crystalPulse 2s infinite;
-            white-space: nowrap; /* Ensure button text doesn't wrap */
-        }
-
-            button:hover {
-                background: rgba(224, 255, 255, 0.2);
-                transform: scale(1.05);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            button {
+                padding: 8px 16px;
+                background: rgba(224, 255, 255, 0.1); /* Crystal Clear */
+                color: #2F4F4F; /* Polar Night */
+                border: 1px solid rgba(224, 255, 255, 0.2);
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                animation: crystalPulse 2s infinite;
+                white-space: nowrap; /* Ensure button text doesn't wrap */
             }
+    
+                button:hover {
+                    background: rgba(224, 255, 255, 0.2);
+                    transform: scale(1.05);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                }
 
         @keyframes crystalPulse {
             0%, 100% { transform: scale(1); }
