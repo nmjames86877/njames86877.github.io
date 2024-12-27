@@ -59,7 +59,9 @@
         </tbody>
     </table>
     <div class="pagination" id="pagination"></div>
-    <script>
+</body>
+
+<script>
     document.addEventListener('DOMContentLoaded', () => {
         const apiUrl = 'https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01';
         const tableBody = document.querySelector('#complaintsTable tbody');
@@ -127,6 +129,6 @@
 
         fetchData();
     });
-    </script>
-</body>
+</script>
+
 </html>
