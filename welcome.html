@@ -12,9 +12,9 @@
             font-family: 'Inter', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
+            color: #2F4F4F; /* Polar Night */
         }
-        
-        /* Snowflake Animation */
+
         .snowflake {
             position: absolute;
             top: -10px;
@@ -23,9 +23,21 @@
             opacity: 0.8;
             animation: fall linear infinite;
         }
-        
+
         @keyframes fall {
             to { transform: translateY(100vh); }
+        }
+
+        .snowflake:nth-child(odd) {
+            width: 5px;
+            height: 5px;
+            animation-duration: 5s;
+        }
+
+        .snowflake:nth-child(even) {
+            width: 10px;
+            height: 10px;
+            animation-duration: 7s;
         }
 
         .overlay {
@@ -34,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            background: rgba(240, 248, 255, 0.5); /* Frost White */
             z-index: -1;
         }
 
@@ -44,24 +56,27 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            background: rgba(224, 255, 255, 0.1); /* Crystal Clear */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            color: #333333; /* Darker text color */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(224, 255, 255, 0.2);
+            color: #2F4F4F; /* Polar Night */
+            animation: frostyFade 1s ease-in-out, holographicFlicker 2s infinite;
         }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+        @keyframes frostyFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .footer-container {
+        @keyframes holographicFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .button-container, .footer-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -71,20 +86,26 @@
 
         button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-            color: #333333; /* Darker text color */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            background: rgba(224, 255, 255, 0.1); /* Crystal Clear */
+            color: #2F4F4F; /* Polar Night */
+            border: 1px solid rgba(224, 255, 255, 0.2);
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: crystalPulse 2s infinite;
         }
 
-            button:hover {
-                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
-                transform: scale(1.05);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            }
+        button:hover {
+            background: rgba(224, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes crystalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
         #siri-container {
             width: 100%;
@@ -93,9 +114,7 @@
             margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
         }
-        
 
-        
         .holiday-lights {
             position: fixed;
             top: 0;
@@ -105,16 +124,16 @@
             pointer-events: none;
             z-index: 9999;
         }
-        
-            .light {
-                position: absolute;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: red;
-                animation: blink 1s infinite;
-            }
-        
+
+        .light {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: red;
+            animation: blink 1s infinite;
+        }
+
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
