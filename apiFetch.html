@@ -3,132 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consumer Complaints</title>
-    <style>
-        body {
-            width: flex;
-            height: flex;
-        }
-        
-        table {
-            height: flex;
-            width: flex;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .pagination button {
-            margin: 0 5px;
-            padding: 5px 10px;
-        }
-    </style>
+    <title>JSON Data Viewer</title>
 </head>
 <body>
-    <h1>Consumer Complaints</h1>
-    <table id="complaintsTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Date Received</th>
-                <th>Product</th>
-                <th>Sub Product</th>
-                <th>Issue</th>
-                <th>Sub Issue</th>
-                <th>Company</th>
-                <th>State</th>
-                <th>ZIP Code</th>
-                <th>Submitted Via</th>
-                <th>Date Sent to Company</th>
-                <th>Company Response</th>
-                <th>Timely Response</th>
-                <th>Consumer Disputed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data will be inserted here -->
-        </tbody>
-    </table>
-    <div class="pagination" id="pagination"></div>
-</body>
+    <h1>Consumer Complaints Data</h1>
+    <pre id="jsonData"></pre>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const apiUrl = 'https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01';
-        const tableBody = document.querySelector('#complaintsTable tbody');
-        const pagination = document.querySelector('#pagination');
-        const rowsPerPage = 10;
-        let currentPage = 1;
-        let complaintsData = [];
-
-        const fetchData = async () => {
+    <script>
+        async function fetchData() {
+            const url = 'https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01';
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 const data = await response.json();
-                complaintsData = data.hits.hits;
-                complaintsData.sort((a, b) => new Date(b._source.date_received) - new Date(a._source.date_received));
-                displayPage(currentPage);
-                setupPagination();
+                document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('There has been a problem with your fetch operation:', error);
             }
-        };
-
-        const displayPage = (page) => {
-            tableBody.innerHTML = '';
-            const start = (page - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-            const pageData = complaintsData.slice(start, end);
-
-            pageData.forEach(hit => {
-                const complaint = hit._source;
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${hit._id}</td>
-                    <td>${new Date(complaint.date_received).toLocaleDateString()}</td>
-                    <td>${complaint.product}</td>
-                    <td>${complaint.sub_product || ''}</td>
-                    <td>${complaint.issue}</td>
-                    <td>${complaint.sub_issue || ''}</td>
-                    <td>${complaint.company}</td>
-                    <td>${complaint.state}</td>
-                    <td>${complaint.zip_code || ''}</td>
-                    <td>${complaint.submitted_via}</td>
-                    <td>${new Date(complaint.date_sent_to_company).toLocaleDateString()}</td>
-                    <td>${complaint.company_response}</td>
-                    <td>${complaint.timely_response}</td>
-                    <td>${complaint.consumer_disputed}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        };
-
-        const setupPagination = () => {
-            pagination.innerHTML = '';
-            const pageCount = Math.ceil(complaintsData.length / rowsPerPage);
-
-            for (let i = 1; i <= pageCount; i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.addEventListener('click', () => {
-                    currentPage = i;
-                    displayPage(currentPage);
-                });
-                pagination.appendChild(button);
-            }
-        };
+        }
 
         fetchData();
-    });
-</script>
-
+    </script>
+</body>
 </html>
