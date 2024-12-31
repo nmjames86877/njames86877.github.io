@@ -132,7 +132,7 @@
             }
         }
 
-        @keyframes rotate {
+        @keyframes datasets, rotate {
             0% {
                 transform: rotate(0deg);
             }
@@ -141,7 +141,7 @@
             }
         }
 
-        @keyframes float {
+        @keyframes labels, float {
             0%, 100% {
                 transform: translateY(0);
             }
@@ -203,7 +203,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     animation: {
-                        animateRotate: false,
+                        animateRotate: true,
                         animateScale: true,
                         onComplete: function() {
                             const chartInstance = this.chart;
