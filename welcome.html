@@ -26,7 +26,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
             z-index: -1;
         }
 
@@ -36,11 +36,11 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(7px);
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
@@ -58,8 +58,8 @@
         }
 
         .pie-chart {
-            width: 75%;
-            height: 75%;
+            width: 100%;
+            height: 100%;
         }
 
         .button-container {
@@ -72,7 +72,7 @@
 
         .button-container button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             color: #333333;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
@@ -82,7 +82,7 @@
         }
 
         .button-container button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.4);
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
@@ -97,7 +97,7 @@
 
         .footer-container button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             color: #333333;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
@@ -107,7 +107,7 @@
         }
 
         .footer-container button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.4);
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
@@ -153,8 +153,8 @@
 <body>
     <div class="overlay"></div>
     <div class="welcome-section" id="welcome">
-        <h1>MicroLink Prototype<br>
-        <div id="siri-container"></div></h1>
+        <h1>MicroLink Prototype</h1>
+        <div id="siri-container"></div>
         <div class="chart-container">
             <canvas id="pieChart" class="pie-chart"></canvas>
         </div>
@@ -191,7 +191,7 @@
             const pieChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibility'],
+                    labels: ['A', 'B', 'C', 'D', 'E'],
                     datasets: [{
                         data: [10, 15, 20, 15, 40],
                         backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', 'lightblue'],
