@@ -11,12 +11,12 @@
             font-family: 'Inter', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
+            width: 100%;
+            height: 100%;
         }
 
         .overlay {
-            position: page;
-            top: 0;
-            left: 0;
+            position: absolute;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
@@ -48,7 +48,7 @@
             .header-buttons h1 {
                 flex-grow: 1;
                 text-align: center;
-                margin: 0;
+                margin: 0 auto;
             }
 
         .button-container {
@@ -61,7 +61,6 @@
 
         .footer-container {
             display: flex;
-            align: center;
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
