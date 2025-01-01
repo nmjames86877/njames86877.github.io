@@ -38,7 +38,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            backdrop-filter: blur(3px); /* Background blur for frosted glass effect */
             border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
             color: #333333; /* Darker text color */
         }
@@ -126,10 +126,11 @@
                 margin-top: 0;
             }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1080px) {
             .container {
                 max-width: 100%;
                 padding: 10px;
+                margin: 0 auto;
             }
 
             .header-buttons {
