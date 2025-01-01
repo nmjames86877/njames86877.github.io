@@ -20,10 +20,10 @@
             try {
                 // Fetch data from the API
                 const response = await fetch(url);
+                document.getElementById('response-code').textContent = `Response Code: ${response.status}`;
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                document.getElementById('response-code').textContent = `Response Code: ${response.status}`;
                 const data = await response.json();
 
                 // Check if data.hits and data.hits.hits exist
@@ -72,11 +72,11 @@
                     button.setAttribute('href', downloadUrl);
                     button.setAttribute('download', 'complaints.csv');
                 } else {
-                    document.getElementById('response-code').textContent = 'Error: Invalid data format';
+                    document.getElementById('response-code').textContent += ' | Error: Invalid data format: ${error.message}';
                     button.textContent = 'Update CSV';
                 }
             } catch (error) {
-                document.getElementById('response-code').textContent = `Error fetching data: ${error.message}`;
+                document.getElementById('response-code').textContent += ` | Error fetching data: ${error.message}`;
                 button.textContent = 'Update CSV';
             }
         });
