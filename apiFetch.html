@@ -4,40 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Complaints CSV</title>
-      <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-    
-    
 </head>
 <body>
     <h1>Update Complaints CSV</h1>
-    
     <button id="update-button">Update CSV</button>
     <p id="response-code"></p>
-    
     <script>
-        document.getElementById('update-button').addEventListener('click', () => {
-        // API URL
-        const url = "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?field=all&date_received_min=2024-12-01";
+        document.getElementById('update-button').addEventListener('click', async () => {
+            // API URL
+            const url = "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?field=all&date_received_min=2024-12-01";
 
-          // Fetch data from the API
-            fetch(url)
-                .then(response => {
-                    document.getElementById('response-code').textContent = `Response Code: ${response.status}`;
-                    return response.json();
-                })
-                .then(data => {
+            try {
+                // Fetch data from the API
+                const response = await fetch(url);
+                document.getElementById('response-code').textContent = `Response Code: ${response.status}`;
+                const data = await response.json();
+
+                // Check if data.hits and data.hits.hits exist
+                if (data.hits && data.hits.hits) {
                     // CSV column headers
                     const headers = [
                         "complaint_id", "date_received", "state", "product", "issue", "date_sent_to_company",
@@ -72,6 +56,26 @@
                         ].join(",");
                         csvContent += row + "\n";
                     });
+
+                    // Create a Blob from the CSV content
+                    const blob = new Blob([csvContent], { type: 'text/csv' });
+                    const url = window.URL.createObjectURL(blob);
+
+                    // Create a link element to download the CSV file
+                    const a = document.createElement('a');
+                    a.setAttribute('href', url);
+                    a.setAttribute('download', 'complaints.csv');
+                    a.click();
+
+                    // Revoke the object URL after download
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    console.error('Error: Invalid data format');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
     </script>
 </body>
 </html>
