@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -195,47 +195,64 @@
 
     <script>
         document.querySelectorAll('input[type="range"]').forEach(input => {
-            input.addEventListener('input', function () {
-                const valueSpan = document.getElementById(`${this.id}-value`);
-                valueSpan.textContent = this.value;
-            });
-        });
+    input.addEventListener('input', function () {
+        const valueSpan = document.getElementById(`${this.id}-value`);
+        valueSpan.textContent = this.value;
+    });
+});
 
-        function goToPage(page) {
-            window.location.href = page;
-        }
+function goToPage(page) {
+    window.location.href = page;
+}
 
-        document.getElementById('feedback-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+document.getElementById('feedback-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
 
-            // Create a new post element
-            const post = document.createElement('div');
-            post.classList.add('post');
-            post.innerHTML = `
-                        <h3>Feedback Post</h3>
-                        <p><strong>Question 1:</strong> ${data.question1}</p>
-                        <p><strong>Question 2:</strong> ${data.question2}</p>
-                        <p><strong>Question 3:</strong> ${data.question3}</p>
-                        <p><strong>Question 4:</strong> ${data.question4}</p>
-                        <p><strong>Question 5:</strong> ${data.question5}</p>
-                        <p><strong>Design Recommendations:</strong> ${data['design-recommendations']}</p>
-                    `;
+    // Create a new post element
+    const post = document.createElement('div');
+    post.classList.add('post');
+    post.innerHTML = `
+        <h3>Feedback Post</h3>
+        <p><strong>Question 1:</strong> ${data.question1}</p>
+        <p><strong>Question 2:</strong> ${data.question2}</p>
+        <p><strong>Question 3:</strong> ${data.question3}</p>
+        <p><strong>Question 4:</strong> ${data.question4}</p>
+        <p><strong>Question 5:</strong> ${data.question5}</p>
+        <p><strong>Design Recommendations:</strong> ${data['design-recommendations']}</p>
+    `;
 
-            // Add the new post to the posts container
-            document.getElementById('posts-container').appendChild(post);
+    // Add the new post to the posts container
+    document.getElementById('posts-container').appendChild(post);
 
-            // Clear the form
-            this.reset();
-            document.querySelectorAll('input[type="range"]').forEach(input => {
-                const valueSpan = document.getElementById(`${input.id}-value`);
-                valueSpan.textContent = 5;
-            });
-        });
+    // Update the CSV file
+    const csvContent = `${data.question1},${data.question2},${data.question3},${data.question4},${data.question5},${data['design-recommendations']}\n`;
+    const file = new Blob([csvContent], { type: 'text/csv' });
+    const reader = new FileReader();
+    reader.onload = function () {
+        const existingContent = reader.result;
+        const updatedContent = existingContent + csvContent;
+        const updatedFile = new Blob([updatedContent], { type: 'text/csv' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(updatedFile);
+        a.download = 'feedbackComments.csv';
+        a.click();
+        URL.revokeObjectURL(a.href);
+    };
+    reader.readAsText(file);
+
+    // Clear the form
+    this.reset();
+    document.querySelectorAll('input[type="range"]').forEach(input => {
+        const valueSpan = document.getElementById(`${input.id}-value`);
+        valueSpan.textContent = 5;
+    });
+});
+
     </script>
 </body>
 </html>
