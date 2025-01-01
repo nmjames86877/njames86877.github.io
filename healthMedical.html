@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,19 +7,25 @@
     <title>Health & Medical</title>
     <style>
         body {
-            margin: 0;
             font-family: 'Inter', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: 0;
         }
 
         .overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+            background: rgba(255, 255, 255, 0.5);
             z-index: -1;
         }
 
@@ -33,7 +39,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(10px); /* Background blur for frosted glass effect */
+            backdrop-filter: blur(4px); /* Background blur for frosted glass effect */
             border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
             color: #333333; /* Darker text color */
         }
@@ -64,7 +70,7 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         button {
@@ -92,7 +98,7 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1920px) {
             .health-section {
                 max-width: 100%;
                 padding: 10px;
