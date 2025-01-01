@@ -4,27 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Complaints CSV</title>
+    <style>
+        #response-body {
+            width: 100%;
+            height: 200px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Update Complaints CSV</h1>
     <button id="update-button">Update CSV</button>
     <p id="response-code"></p>
+    <p id="request-url"></p>
+    <div id="response-body"></div>
     <script>
         document.getElementById('update-button').addEventListener('click', async () => {
             const button = document.getElementById('update-button');
+            const responseCode = document.getElementById('response-code');
+            const requestUrl = document.getElementById('request-url');
+            const responseBody = document.getElementById('response-body');
             button.textContent = 'Fetching...';
 
             // API URL
             const url = "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?field=all&date_received_min=2024-12-01";
+            requestUrl.textContent = `Request URL: ${url}`;
 
             try {
                 // Fetch data from the API
                 const response = await fetch(url);
-                document.getElementById('response-code').textContent = `Response Code: ${response.status}`;
+                responseCode.textContent = `Response Code: ${response.status}`;
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
+                responseBody.textContent = JSON.stringify(data, null, 2);
 
                 // Check if data.hits and data.hits.hits exist
                 if (data.hits && data.hits.hits) {
@@ -72,11 +89,11 @@
                     button.setAttribute('href', downloadUrl);
                     button.setAttribute('download', 'complaints.csv');
                 } else {
-                    document.getElementById('response-code').textContent += ' | Error: Invalid data format: ${error.message}';
+                    responseCode.textContent += ' | Error: Invalid data format';
                     button.textContent = 'Update CSV';
                 }
             } catch (error) {
-                document.getElementById('response-code').textContent += ` | Error fetching data: ${error.message}`;
+                responseCode.textContent += ` | Error fetching data: ${error.message}`;
                 button.textContent = 'Update CSV';
             }
         });
