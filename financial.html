@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,6 +43,16 @@
             backdrop-filter: blur(4px); /* Background blur for frosted glass effect */
             border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
             color: #333333; /* Darker text color */
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .header-buttons {
