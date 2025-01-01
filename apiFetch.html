@@ -66,9 +66,8 @@
                     a.setAttribute('href', url);
                     a.setAttribute('download', 'complaints.csv');
                     a.click();
-
-                    // Revoke the object URL after download
-                    window.URL.revokeObjectURL(url);
+                    
+                    console.log(csvContent);
                 } else {
                     console.error('Error: Invalid data format');
                 }
