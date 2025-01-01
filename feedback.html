@@ -42,6 +42,23 @@
             border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
             color: #333333; /* Darker text color */
         }
+        
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
 
         .header-buttons {
             display: flex;
