@@ -123,31 +123,11 @@
         }
 
         .chart-container {
-            width: 100%;
+            height: 300px;
+            width: 300px;
             max-width: 400px;
             margin: 0 auto;
         }
-
-            .hover-button {
-                position: relative;
-            }
-    
-            .hover-content {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(255, 255, 255, 0.9);
-                padding: 10px;
-                border-radius: 4px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-    
-            .hover-button:hover .hover-content {
-                display: block;
-            }
-
         /* Modal styles */
             .modal {
                 display: none;
@@ -307,21 +287,27 @@ async function fetchData(page) {
 
 function updateChart(data) {
     const ctx = document.getElementById('myChart').getContext('2d');
+    const dailyComplaints = {};
+
+    // Calculate total complaints received daily
+    data.complaints.forEach(item => {
+        const date = item.date_received;
+        if (!dailyComplaints[date]) {
+            dailyComplaints[date] = 0;
+        }
+        dailyComplaints[date]++;
+    });
+
+    const labels = Object.keys(dailyComplaints);
+    const values = Object.values(dailyComplaints);
+
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: data.complaints.map(item => item.date_received),
+            labels: labels,
             datasets: [{
-                label: 'Complaints',
-                data: data.complaints.map(item => ({
-                    x: item.date_received,
-                    y: item.complaint_id,
-                    product: item.product,
-                    issue: item.issue,
-                    company: item.company,
-                    state: item.state,
-                    zip_code: item.zip_code
-                })),
+                label: 'Total Complaints Received Daily',
+                data: values,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
                 fill: false
@@ -338,27 +324,6 @@ function updateChart(data) {
                 },
                 y: {
                     beginAtZero: true
-                }
-            },
-            parsing: {
-                xAxisKey: 'x',
-                yAxisKey: 'y'
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            const dataPoint = context.raw;
-                            return [
-                                `Date: ${dataPoint.x}`,
-                                `Product: ${dataPoint.product}`,
-                                `Issue: ${dataPoint.issue}`,
-                                `Company: ${dataPoint.company}`,
-                                `State: ${dataPoint.state}`,
-                                `Zip Code: ${dataPoint.zip_code}`
-                            ];
-                        }
-                    }
                 }
             }
         }
