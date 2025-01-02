@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity</title>
     <style>
-        
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
         body {
@@ -18,6 +16,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100%;
+            width: 100%;
             margin: 0;
         }
 
@@ -34,16 +34,16 @@
         .identity-section {
             position: relative;
             width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(3px); /* Background blur for frosted glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            color: #333333; /* Darker text color */
+            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -66,7 +66,9 @@
             .header-buttons h1 {
                 flex-grow: 1;
                 text-align: center;
-                margin: 0 auto;
+                margin: 0;
+                color: #333333;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
 
         .button-container {
@@ -78,11 +80,11 @@
         }
 
         .footer-container {
-            display: flex;
+            display: flow;
             flex-wrap: wrap;
             margin: 0 auto;
             gap: 10px;
-            bottom: 0;
+            bottom: 2px;
             position: absolute;
         }
 
@@ -117,6 +119,28 @@
             margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
         }
+
+        .iframe-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 373.5px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease, backdrop-filter 0.5s ease;
+            opacity: 0;
+            backdrop-filter: blur(10px);
+        }
+
+            .iframe-container.visible {
+                display: block;
+                opacity: 1;
+                backdrop-filter: blur(0);
+            }
 
         @media (max-width: 1080px) {
             .identity-section {
@@ -165,12 +189,12 @@
     <br>
     <div class="footer-container" id="footer-container">
         <div class="hover-button">
-            <button id="dataButton" onclick="open(myChart)">Loading...</button>
-            <div class="hover-content" id="hover-content"</div>
+            <button id="dataButton" onclick="toggleIframe()">CFPB Complaints</button>
+            <div class="hover-content" id="hover-content"></div>
         </div>
     </div>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
+    <div class="iframe-container" id="iframe-container">
+        <iframe title="CFPB_Complaints" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" frameborder="0" allowFullScreen="true"></iframe>
     </div>
 
     <script>
@@ -186,153 +210,14 @@
                 color: '#ff0000',
                 autostart: true
             });
-
-            // Fetch data and render chart on page load
-            fetchData(1);
         });
 
-        async function fetchData(page) {
-            try {
-                const response = await fetch('https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_min=2024-12-01&page=5&size=10');
-                const data = await response.json();
-                console.log('Fetched data:', data); // Verify the response
-                updateChart(data);
-                updateHoverContent(data);
-                updateButton(data);
-                displayTable(data);
-                setupPagination(data.total, page);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        function updateChart(data) {
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const dailyComplaints = {};
-
-            // Calculate total complaints received daily
-            data.complaints.forEach(item => {
-                const date = item.date_received;
-                if (!dailyComplaints[date]) {
-                    dailyComplaints[date] = 0;
-                }
-                dailyComplaints[date]++;
-            });
-
-            const labels = Object.keys(dailyComplaints);
-            const values = Object.values(dailyComplaints);
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Total Complaints Received Daily',
-                        data: values,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            type: 'time',
-                            time: {
-                                unit: 'day'
-                            }
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        function updateHoverContent(data) {
-            const mostRecent = data.complaints[data.complaints.length - 1];
-            document.getElementById('hover-content').textContent = `Most recent value: ${mostRecent.complaint_id}`;
-        }
-
-        function updateButton(data) {
-            const mostRecent = data.complaints[data.complaints.length - 1];
-            const button = document.getElementById('dataButton');
-            button.textContent = mostRecent.company;
-        }
-
-        function displayTable(data) {
-            const apiDataDiv = document.getElementById("api-data");
-
-            // Clear previous content
-            apiDataDiv.innerHTML = '';
-
-            // Create table
-            const table = document.createElement('table');
-            const thead = document.createElement('thead');
-            const tbody = document.createElement('tbody');
-
-            // Table headers
-            thead.innerHTML = `
-            <tr>
-                <th>Date Received</th>
-                <th>Complaint ID</th>
-                <th>Product</th>
-                <th>Issue</th>
-                <th>Company</th>
-                <th>State</th>
-                <th>Zip Code</th>
-                <th>Submitted Via</th>
-                <th>Date Sent to Company</th>
-                <th>Company Response</th>
-                <th>Timely</th>
-                <th>Consumer Disputed</th>
-            </tr>
-        `;
-
-            // Table rows
-            data.complaints.forEach(complaint => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                <td>${complaint.date_received}</td>
-                <td>${complaint.complaint_id}</td>
-                <td>${complaint.product}</td>
-                <td>${complaint.issue}</td>
-                <td>${complaint.company}</td>
-                <td>${complaint.state}</td>
-                <td>${complaint.zip_code}</td>
-                <td>${complaint.submitted_via}</td>
-                <td>${complaint.date_sent_to_company}</td>
-                <td>${complaint.company_response}</td>
-                <td>${complaint.timely ? 'Yes' : 'No'}</td>
-                <td>${complaint.consumer_disputed ? 'Yes' : 'No'}</td>
-            `;
-                tbody.appendChild(row);
-            });
-
-            table.appendChild(thead);
-            table.appendChild(tbody);
-            apiDataDiv.appendChild(table);
-        }
-
-        function setupPagination(totalItems, currentPage) {
-            const paginationDiv = document.getElementById('pagination');
-            const totalPages = Math.ceil(totalItems / 10);
-
-            // Clear previous pagination
-            paginationDiv.innerHTML = '';
-
-            // Create pagination buttons
-            for (let i = 1; i <= totalPages; i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.classList.add('pagination-button');
-                if (i === currentPage) {
-                    button.classList.add('active');
-                }
-                button.addEventListener('click', () => fetchData(i));
-                paginationDiv.appendChild(button);
+        function toggleIframe() {
+            const iframeContainer = document.getElementById('iframe-container');
+            if (iframeContainer.classList.contains('visible')) {
+                iframeContainer.classList.remove('visible');
+            } else {
+                iframeContainer.classList.add('visible');
             }
         }
 
