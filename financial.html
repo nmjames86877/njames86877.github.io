@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
             background-size: cover;
             color: #333333;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             height: 100%;
             width: 100%;
@@ -33,17 +33,16 @@
             z-index: -1;
         }
 
-        .financial-section {
-            width: 90%;
-            max-width: 1920px;
-            margin: 20px auto;
+        .lifestyle-section {
+            position: relative;
+            width: 100%;
+            margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            -webkit-backdrop-filter: blur(3px);
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #333333;
             animation: float 3s ease-in-out infinite;
