@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health & Medical</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #333333;
@@ -25,23 +27,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             z-index: -1;
         }
 
         .health-section {
             position: relative;
             width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(4px); /* Background blur for frosted glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            color: #333333; /* Darker text color */
+            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -65,6 +67,8 @@
                 flex-grow: 1;
                 text-align: center;
                 margin: 0;
+                color: #333333;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
 
         .button-container {
@@ -81,7 +85,7 @@
             gap: 10px;
             margin: 0 auto;
             position: absolute;
-            bottom: 0;
+            bottom: 1px;
         }
 
         button {
@@ -98,7 +102,7 @@
             button:hover {
                 background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
                 transform: scale(1.05);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             }
 
         #siri-container {
@@ -109,7 +113,7 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
-        @media (max-width: 1920px) {
+        @media (max-width: 1080px) {
             .health-section {
                 max-width: 100%;
                 padding: 10px;
@@ -118,6 +122,7 @@
 
             .button-container, .footer-container {
                 flex-direction: column;
+                align-items: center;
             }
 
             .header-buttons {

@@ -6,24 +6,26 @@
     <title>Settings Overlay</title>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
+        font-family: 'Orbitron', sans-serif;
+        background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #333333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        margin: 0;
         }
 
         .overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s, opacity 0.5s;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
         }
 
             .overlay.active {
@@ -58,23 +60,27 @@
                 display: block;
                 width: 100%;
                 padding: 10px;
-                background: #2D6EFF;
-                color: #FFFFFF;
-                border: none;
+                background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+                color: #333333; /* Darker text color */
+                border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
                 border-radius: 4px;
                 cursor: pointer;
+                transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 margin-top: 20px;
             }
 
                 .settings-container button:hover {
-                    background: #1A4FCC;
+                    background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                    transform: scale(1.05);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 }
     </style>
 </head>
 <body>
-    <button onclick="openSettings()">Open Settings</button>
-
     <div class="overlay" id="settingsOverlay">
+        <button onclick="openSettings()">Open Settings</button>
+
         <div class="settings-container">
             <h2>Settings</h2>
             <label>
@@ -101,6 +107,43 @@
         function closeSettings() {
             document.getElementById('settingsOverlay').classList.remove('active');
         }
+
+        // Apps
+        const ctxApps =
+            document.getElementById('appsChart').getContext('2d');
+        const appsChart = new Chart(ctxApps, {
+            type: 'bubble',
+            data: {
+                labels: ['', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
+                datasets: [{
+                    label: 'Investment',
+                    data: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, .02)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
     </script>
 </body>
 </html>
