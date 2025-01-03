@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/powerbi-client/dist/powerbi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Financial</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #333333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100%;
-            width: 100%;
+            height: 100vh;
+            width: 100vw;
             margin: 0;
         }
 
@@ -26,23 +29,24 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             z-index: -1;
         }
 
         .financial-section {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            width: 90%;
+            max-width: 1920px;
+            margin: 20px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(4px); /* Background blur for frosted glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            color: #333333; /* Darker text color */
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -65,7 +69,7 @@
             .header-buttons h1 {
                 flex-grow: 1;
                 text-align: center;
-                margin: 0 auto;
+                margin: 0;
             }
 
         .button-container {
@@ -79,17 +83,17 @@
         .footer-container {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 auto;
             gap: 10px;
-            bottom: 0;
+            margin: 0 auto;
             position: absolute;
+            bottom: 10px;
         }
 
         button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-            color: #333333; /* Darker text color */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            background: rgba(255, 255, 255, 0.2);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -97,9 +101,9 @@
         }
 
             button:hover {
-                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                background: rgba(255, 255, 255, 0.3);
                 transform: scale(1.05);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             }
 
         #siri-container {
@@ -110,9 +114,9 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1920px) {
             .financial-section {
-                max-width: 100%;
+                width: 100%;
                 padding: 10px;
                 margin: 0 auto;
             }
@@ -131,6 +135,38 @@
                     margin-bottom: 10px;
                 }
         }
+
+        .chart-container {
+            width: 1920px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+            .canvas-chart {
+                width: 100%;
+                transition: all 0.5s ease;
+                opacity: 0;
+                transform: scale(0);
+                display: none;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 4px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 0 auto;
+            }
+
+            .canvas-chart.show {
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 4px;
+                background: rgba(255, 255, 255, .8);
+                opacity: 1;
+                transform: scale(1,1);
+                display: block;
+                margin: 0 auto;
+            }
     </style>
 </head>
 <body>
@@ -144,16 +180,37 @@
         <div id="siri-container"></div>
 
         <div class="button-container">
-            <button onclick="goToPage('budgetOverview.html')">Budget Overview</button>
-            <button onclick="goToPage('investmentPerformance.html')">Investment Performance</button>
-            <button onclick="goToPage('netWorthSummary.html')">Net-Worth Summary</button>
-            <button onclick="goToPage('bankingInstitution.html')">Banking Institution</button>
-            <button onclick="goToPage('creditBureau.html')">Credit Bureau</button>
-            <button onclick="goToPage('brokerageFirm.html')">Brokerage Firm</button>
-            <button onclick="goToPage('financialApps.html')">Financial Apps</button>
+            <button onclick="toggleChart('budgetChart')">Budget Overview</button>
+            <button onclick="toggleChart('investmentChart')">Investment Performance</button>
+            <button onclick="toggleChart('netWorthChart')">Net-Worth Summary</button>
+            <button onclick="toggleChart('bankingChart')">Banking Institution</button>
+            <button onclick="toggleChart('creditChart')">Credit Bureau</button>
+            <button onclick="toggleChart('brokerageChart')">Brokerage Firm</button>
         </div>
     </div>
     <br>
+
+    <div class="chart-container" id="chart-container">
+        <div class="canvas-chart" id="budgetChartContainer">
+            <canvas id="budgetChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="investmentChartContainer">
+            <canvas id="investmentChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="netWorthChartContainer">
+            <canvas id="netWorthChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="bankingChartContainer">
+            <canvas id="bankingChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="creditChartContainer">
+            <canvas id="creditChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="brokerageChartContainer">
+            <canvas id="brokerageChart"></canvas>
+        </div>
+    </div>
+
     <div class="footer-container" id="footer-container">
         <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
     </div>
@@ -175,6 +232,215 @@
                 color: '#ff0000',
                 autostart: true
             });
+        });
+
+        // Chart Animations and Functionality
+        const charts = {
+            budgetChart: document.getElementById('budgetChartContainer'),
+            investmentChart: document.getElementById('investmentChartContainer'),
+            netWorthChart: document.getElementById('netWorthChartContainer'),
+            bankingChart: document.getElementById('bankingChartContainer'),
+            creditChart: document.getElementById('creditChartContainer'),
+            brokerageChart: document.getElementById('brokerageChartContainer')
+        };
+
+        function toggleChart(chartId) {
+            const chart = charts[chartId];
+            chart.classList.toggle('show');
+            resizeCharts();
+        }
+
+        function resizeCharts() {
+            const visibleCharts = Object.values(charts).filter(chart => chart.classList.contains('show'));
+            const chartWidth = visibleCharts.length === 1 ? '100%' : (100 / visibleCharts.length) + '%';
+            visibleCharts.forEach(chart => {
+                chart.style.width = chartWidth;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.values(charts).forEach(chart => {
+                chart.classList.remove('show');
+            });
+        });
+
+        // Charts
+        // Budget Overview
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(ctxBudget, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Monthly Budget',
+                    data: [10000, 12000, 14000, 16000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32000],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        // Investment Performance
+        const ctxInvestment = document.getElementById('investmentChart').getContext('2d');
+        const investmentChart = new Chart(ctxInvestment, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Investment Performance',
+                    data: [5000, 7000, 8000, 9000, 10000, 20000, 22000, 14000, 26000, 18000, 20000, 32000],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        // Net-Worth Summary
+        const ctxNetWorth = document.getElementById('netWorthChart').getContext('2d');
+        const netWorthChart = new Chart(ctxNetWorth, {
+            type: 'pie',
+            data: {
+                labels: ['Assets', 'Liabilities'],
+                datasets: [{
+                    label: 'Net-Worth Distribution',
+                    data: [500000, 200000],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        // Banking Institution
+        const ctxBanking = document.getElementById('bankingChart').getContext('2d');
+        const bankingChart = new Chart(ctxBanking, {
+            type: 'doughnut',
+            data: {
+                labels: ['Checking', 'Savings', 'Credit'],
+                datasets: [{
+                    label: 'Banking Institution Available Balances',
+                    data: [10927.86, 200000.00, 100000.00],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        // Credit Bureau
+        const ctxCredit = document.getElementById('creditChart').getContext('2d');
+        const creditChart = new Chart(ctxCredit, {
+            type: 'radar',
+            data: {
+                labels: ['Experian', 'Equifax', 'TransUnion'],
+                datasets: [{
+                    label: 'Credit Scores',
+                    data: [775, 785, 790],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        // Brokerage Firm
+        const ctxBrokerage = document.getElementById('brokerageChart').getContext('2d');
+        const brokerageChart = new Chart(ctxBrokerage, {
+            type: 'polarArea',
+            data: {
+                labels: ['Technology', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
+                datasets: [{
+                    label: 'Investment',
+                    data: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
         });
     </script>
 </body>
