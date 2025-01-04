@@ -1,179 +1,183 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/powerbi-client/dist/powerbi.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Financial</title>
     <style>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-body {
-    font-family: 'Orbitron', sans-serif;
-    background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    z-index: -1;
-}
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.4);
+                z-index: -1;
+            }
 
-.financial-section {
-    display: flex;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1); /* Increased transparency */
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    backdrop-filter: blur(3px); /* Reduced blur for clearer background */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #333333;
-    animation: float 3s ease-in-out infinite;
-}
+        .financial-section {
+            position: relative;
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
+        }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
 
-.header-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
+            50% {
+                transform: translateY(-10px);
+            }
+        }
 
-.header-buttons h1 {
-    flex-grow: 1;
-    text-align: center;
-    margin: 0;
-}
+            .header-buttons {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-}
+                .header-buttons h1 {
+                    flex-grow: 1;
+                    text-align: center;
+                    margin: 0;
+                    color: #333333;
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                }
 
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0 auto;
-    position: absolute;
-    bottom: 5px;
-}
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-button {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #333333;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 auto;
+            position: absolute;
+            bottom: 10px;
+        }
 
-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.chart-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: repeat(2, 1fr);
-    gap: 10px;
-}
+            button:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
 
-.canvas-chart {
-    display: none;
-    width: 100%;
-    height: 100%;
-}
+        #siri-container {
+            width: 100%;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
 
-.canvas-chart.show {
-    display: block;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    background: rgba(255, 255, 255, .8);
-    opacity: 1;
-    transform: scale(1,1);
-}
+        .chart-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            position: relative;
+        }
 
-#siri-container {
-    width: 100%;
-    max-width: auto;
-    height: auto;
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0);
-}
+            .canvas-chart {
+                width: 100%;
+                transition: all 0.5s ease;
+                opacity: 0;
+                transform: scale(0);
+                display: none;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 4px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 0 auto;
+            }
 
-@media (max-width: 1920px) {
-    .financial-section {
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin: 0 auto;
-    }
+            .canvas-chart.show {
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 4px;
+                background: rgba(255, 255, 255, .8);
+                opacity: 1;
+                transform: scale(1,1);
+                display: block;
+                margin: 0 auto;
+            }
 
-    .button-container, .footer-container {
-        align-items: center;
-    }
+        @media (max-width: 1080px) {
+            .identity-section {
+                max-width: 100%;
+                padding: 10px;
+                margin: 0 auto;
+            }
 
-    .chart-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
+            .button-container, .footer-container, .chart-container {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .canvas-chart.show {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
+            .header-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .header-buttons {
-        align-items: center;
-    }
+                .header-buttons h1 {
+                    margin-bottom: 10px;
+                }
+        }
+    </style>
+</head>
 
-    .header-buttons h1 {
-        margin-bottom: 10px;
-    }
-}
-</style>
-
-<body>
     <div class="overlay"></div>
     <div class="financial-section" id="financial">
         <div class="header-buttons">
             <button onclick="goToPage('settings.html')">Settings</button>
-            <h1>Financial</h1>
+            <h1 align="center">Financial</h1>
             <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
         </div>
         <div id="siri-container"></div>
@@ -187,281 +191,260 @@ button:hover {
             <button onclick="toggleChart('brokerageChart')">Brokerage Firm</button>
         </div>
     </div>
+    <br>
 
-    <div class="chart-section" id="chart-section">
-        <div class="chart-container" id="chart-container">
-            <div class="canvas-chart" id="budgetChartContainer">
-                <canvas id="budgetChart"></canvas>
-            </div>
-            <div class="canvas-chart" id="investmentChartContainer">
-                <canvas id="investmentChart"></canvas>
-            </div>
-            <div class="canvas-chart" id="netWorthChartContainer">
-                <canvas id="netWorthChart"></canvas>
-            </div>
-            <div class="canvas-chart" id="bankingChartContainer">
-                <canvas id="bankingChart"></canvas>
-            </div>
-            <div class="canvas-chart" id="creditChartContainer">
-                <canvas id="creditChart"></canvas>
-            </div>
-            <div class="canvas-chart" id="brokerageChartContainer">
-                <canvas id="brokerageChart"></canvas>
-            </div>
+    <div class="chart-container" id="chart-container">
+        <div class="canvas-chart" id="budgetChartContainer">
+            <canvas id="budgetChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="investmentChartContainer">
+            <canvas id="investmentChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="netWorthChartContainer">
+            <canvas id="netWorthChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="bankingChartContainer">
+            <canvas id="bankingChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="creditChartContainer">
+            <canvas id="creditChart"></canvas>
+        </div>
+        <div class="canvas-chart" id="brokerageChartContainer">
+            <canvas id="brokerageChart"></canvas>
         </div>
     </div>
 
     <div class="footer-container" id="footer-container">
         <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
     </div>
-</body>
 
-<script>
-function goToPage(page) {
-    window.location.href = page;
-}
+    <script>
+        function goToPage(page) {
+            window.location.href = page;
+        }
 
-document.addEventListener('DOMContentLoaded', () => {
-    var siriWave = new SiriWave({
-        container: document.getElementById('siri-container'),
-        width: 400,
-        height: 50,
-        style: 'ios9',
-        speed: 0.2,
-        amplitude: 3,
-        frequency: 6,
-        color: '#ff0000',
-        autostart: true
-    });
-
-    Object.values(charts).forEach(chart => {
-        chart.classList.remove('show');
-    });
-});
-
-// Chart Animations and Functionality
-const charts = {
-    budgetChart: document.getElementById('budgetChartContainer'),
-    investmentChart: document.getElementById('investmentChartContainer'),
-    netWorthChart: document.getElementById('netWorthChartContainer'),
-    bankingChart: document.getElementById('bankingChartContainer'),
-    creditChart: document.getElementById('creditChartContainer'),
-    brokerageChart: document.getElementById('brokerageChartContainer')
-};
-
-function toggleChart(chartId) {
-    const chart = charts[chartId];
-    chart.classList.toggle('show');
-    resizeCharts();
-}
-
-function resizeCharts() {
-    const visibleCharts = Object.values(charts).filter(chart => chart.classList.contains('show'));
-    const chartCount = visibleCharts.length;
-
-    if (chartCount === 1) {
-        visibleCharts.forEach(chart => {
-            chart.style.gridColumn = 'span 2';
-            chart.style.gridRow = 'span 2';
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 375,
+                height: 200,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 1,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
         });
-    } else if (chartCount === 2) {
-        visibleCharts.forEach(chart => {
-            chart.style.gridColumn = 'span 1';
-            chart.style.gridRow = 'span 2';
-        });
-    } else if (chartCount === 3) {
-        visibleCharts[0].style.gridColumn = 'span 2';
-        visibleCharts[0].style.gridRow = 'span 1';
-        visibleCharts[1].style.gridColumn = 'span 1';
-        visibleCharts[1].style.gridRow = 'span 1';
-        visibleCharts[2].style.gridColumn = 'span 1';
-        visibleCharts[2].style.gridRow = 'span 1';
-    } else {
-        visibleCharts.forEach(chart => {
-            chart.style.gridColumn = 'span 1';
-            chart.style.gridRow = 'span 1';
-        });
-    }
-}
 
-// Charts
-// Budget Overview
-const ctxBudget = document.getElementById('budgetChart').getContext('2d');
-const budgetChart = new Chart(ctxBudget, {
-    type: 'line',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [{
-            label: 'Monthly Budget',
-            data: [10000, 12000, 14000, 16000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32000],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+        // Chart Animations and Functionality
+        const charts = {
+            budgetChart: document.getElementById('budgetChartContainer'),
+            investmentChart: document.getElementById('investmentChartContainer'),
+            netWorthChart: document.getElementById('netWorthChartContainer'),
+            bankingChart: document.getElementById('bankingChartContainer'),
+            creditChart: document.getElementById('creditChartContainer'),
+            brokerageChart: document.getElementById('brokerageChartContainer')
+        };
+
+        function toggleChart(chartId) {
+            const chart = charts[chartId];
+            chart.classList.toggle('show');
+            resizeCharts();
+        }
+
+        function resizeCharts() {
+            const visibleCharts = Object.values(charts).filter(chart => chart.classList.contains('show'));
+            const chartWidth = visibleCharts.length === 1 ? '100%' : (100 / visibleCharts.length) + '%';
+            visibleCharts.forEach(chart => {
+                chart.style.width = chartWidth;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.values(charts).forEach(chart => {
+                chart.classList.remove('show');
+            });
+        });
+
+        // Charts
+        // Budget Overview
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(ctxBudget, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Monthly Budget',
+                    data: [10000, 12000, 14000, 16000, 18000, 20000, 22000, 24000, 26000, 28000, 30000, 32000],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        },
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutBounce'
-        }
-    }
-});
+        });
 
-// Investment Performance
-const ctxInvestment = document.getElementById('investmentChart').getContext('2d');
-const investmentChart = new Chart(ctxInvestment, {
-    type: 'bar',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [{
-            label: 'Investment Performance',
-            data: [5000, 7000, 8000, 9000, 10000, 20000, 22000, 14000, 26000, 18000, 20000, 32000],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+        // Investment Performance
+        const ctxInvestment = document.getElementById('investmentChart').getContext('2d');
+        const investmentChart = new Chart(ctxInvestment, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Investment Performance',
+                    data: [5000, 7000, 8000, 9000, 10000, 20000, 22000, 14000, 26000, 18000, 20000, 32000],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        },
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutBounce'
-        }
-    }
-});
+        });
 
-// Net-Worth Summary
-const ctxNetWorth = document.getElementById('netWorthChart').getContext('2d');
-const netWorthChart = new Chart(ctxNetWorth, {
-    type: 'pie',
-    data: {
-        labels: ['Assets', 'Liabilities'],
-        datasets: [{
-            label: 'Net-Worth Distribution',
-            data: [500000, 200000],
-            backgroundColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutBounce'
-        }
-    }
-});
+        // Net-Worth Summary
+        const ctxNetWorth = document.getElementById('netWorthChart').getContext('2d');
+        const netWorthChart = new Chart(ctxNetWorth, {
+            type: 'pie',
+            data: {
+                labels: ['Assets', 'Liabilities'],
+                datasets: [{
+                    label: 'Net-Worth Distribution',
+                    data: [500000, 200000],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
 
-// Banking Institution
-const ctxBanking = document.getElementById('bankingChart').getContext('2d');
-const bankingChart = new Chart(ctxBanking, {
-    type: 'doughnut',
-    data: {
-        labels: ['Checking', 'Savings', 'Credit'],
-        datasets: [{
-            label: 'Banking Institution Available Balances',
-            data: [10927.86, 200000.00, 100000.00],
-            backgroundColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutBounce'
-        }
-    }
-});
+        // Banking Institution
+        const ctxBanking = document.getElementById('bankingChart').getContext('2d');
+        const bankingChart = new Chart(ctxBanking, {
+            type: 'doughnut',
+            data: {
+                labels: ['Checking', 'Savings', 'Credit'],
+                datasets: [{
+                    label: 'Banking Institution Available Balances',
+                    data: [10927.86, 200000.00, 100000.00],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
 
-// Credit Bureau
-const ctxCredit = document.getElementById('creditChart').getContext('2d');
-const creditChart = new Chart(ctxCredit, {
-    type: 'radar',
-    data: {
-        labels: ['Experian', 'Equifax', 'TransUnion'],
-        datasets: [{
-            label: 'Credit Scores',
-            data: [775, 785, 790],
-            backgroundColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutBounce'
-        }
-    }
-});
+        // Credit Bureau
+        const ctxCredit = document.getElementById('creditChart').getContext('2d');
+        const creditChart = new Chart(ctxCredit, {
+            type: 'radar',
+            data: {
+                labels: ['Experian', 'Equifax', 'TransUnion'],
+                datasets: [{
+                    label: 'Credit Scores',
+                    data: [775, 785, 790],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
 
-// Brokerage Firm
-const ctxBrokerage = document.getElementById('brokerageChart').getContext('2d');
-const brokerageChart = new Chart(ctxBrokerage, {
-    type: 'polarArea',
-    data: {
-        labels: ['Technology', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
-        datasets: [{
-            label: 'Investment',
-            data: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320],
-            backgroundColor: [
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        animation: {
-            duration: 2000,
-            easing: 'easeInOutBounce'
-        }
-    }
-});
+        // Brokerage Firm
+        const ctxBrokerage = document.getElementById('brokerageChart').getContext('2d');
+        const brokerageChart = new Chart(ctxBrokerage, {
+            type: 'polarArea',
+            data: {
+                labels: ['Technology', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
+                datasets: [{
+                    label: 'Investment',
+                    data: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
     </script>
 </body>
 </html>
