@@ -66,7 +66,7 @@
             .header-buttons h1 {
                 flex-grow: 1;
                 text-align: center;
-                margin: auto;
+                margin: 0;
                 color: #333333;
                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
@@ -162,23 +162,41 @@
     </div>
 
     <script>
-        function goToPage(page) {
+    function goToPage(page) {
+        const redirects = {
+            'healthSummary.html': 'inProgress.html',
+            'appointmentReminder.html': 'inProgress.html',
+            'medicationTracker.html': 'inProgress.html',
+            'heartRate.html': 'inProgress.html',
+            'sleep.html': 'inProgress.html',
+            'medicalRecords.html': 'inProgress.html',
+            'medicalProviders.html': 'inProgress.html',
+            'settings.html': 'settings.html',
+            'welcome.html': 'welcome.html',
+            'appointmentReminders.pdf': 'appointmentReminders.pdf'
+        };
+
+        if (redirects[page]) {
+            window.location.href = redirects[page];
+        } else {
             window.location.href = page;
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            var siriWave = new SiriWave({
-                container: document.getElementById('siri-container'),
-                width: 400,
-                height: 50,
-                style: 'ios9',
-                speed: 0.2,
-                amplitude: 3,
-                frequency: 6,
-                color: '#ff0000',
-                autostart: true
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 400,
+            height: 50,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 3,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>

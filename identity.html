@@ -223,7 +223,24 @@
         }
 
         function goToPage(page) {
-            window.location.href = page;
+            const redirects = {
+                'profile.html': 'inProgress.html',
+                'securitySettings.html': 'inProgress.html',
+                'digitalIDCards.html': 'inProgress.html',
+                'identityMonitoringAlerts.html': 'inProgress.html',
+                'recentActivities.html': 'inProgress.html',
+                'medicalID.html': 'inProgress.html',
+                'insuranceCard.html': 'inProgress.html',
+                'allDataAgencies.html': 'inProgress.html',
+                'settings.html': 'settings.html',
+                'welcome.html': 'welcome.html'
+            };
+
+            if (redirects[page]) {
+                window.location.href = redirects[page];
+            } else {
+                window.location.href = page;
+            }
         }
     </script>
 

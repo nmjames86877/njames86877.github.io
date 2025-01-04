@@ -1,13 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
-    <title>Accessibility</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <title>MicroLink Prototype</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
         body {
             font-family: 'Orbitron', sans-serif;
             background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
@@ -18,7 +17,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: 0;
+            margin: 0 auto;
         }
 
         .overlay {
@@ -31,20 +30,28 @@
             z-index: -1;
         }
 
-        .accessibility-section {
+        .welcome-section {
             position: relative;
             width: 100%;
+            height: 100%;
             margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #333333;
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(3px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
             animation: float 3s ease-in-out infinite;
         }
+
+            .welcome-section h1 {
+                font-size: 3em;
+                margin-bottom: 20px;
+                text-shadow: 0 0 0 #00ff00;
+            }
 
         @keyframes float {
             0%, 100% {
@@ -56,18 +63,19 @@
             }
         }
 
-        .header-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+        .chart-container {
+            position: relative;
+            width: auto;
+            height: 400px;
+            margin: 0 auto;
+            padding: 5px;
+            animation: rotate 10s linear infinite;
         }
 
-            .header-buttons h1 {
-                flex-grow: 1;
-                text-align: center;
-                margin: 0;
-            }
+        .pie-chart {
+            width: 75%;
+            height: 75%;
+        }
 
         .button-container {
             display: flex;
@@ -79,11 +87,12 @@
 
         .footer-container {
             display: flex;
-            flex-wrap: wrap;
+            align-content: center;
             gap: 10px;
-            margin: 0 auto;
-            position: absolute;
+            position: fixed;
             bottom: 10px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1); /* Optional: Add a background color */
         }
 
         button {
@@ -107,80 +116,69 @@
             width: 100%;
             max-width: auto;
             height: 50px;
-            margin: 0 auto;
+            margin: auto;
             background-color: rgba(0, 0, 0, 0);
         }
 
         @media (max-width: 1080px) {
-            .accessibility-section {
+            .welcome-section {
+                width: 1080px;
                 max-width: 100%;
                 padding: 10px;
                 margin: 0 auto;
             }
 
-            .button-container, .footer-container {
+            .button-container {
                 flex-direction: column;
                 align-items: center;
             }
 
-            .header-buttons {
+            .welcome-section h1 {
                 flex-direction: column;
-                align-items: center;
+                align-content: center;
             }
 
-                .header-buttons h1 {
-                    margin-bottom: 10px;
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
                 }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes float {
+                0%, 100% {
+                    transform: translate(-50%, -50%) translateY(0);
+                }
+
+                50% {
+                    transform: translate(-50%, -50%) translateY(-20px);
+                }
+            }
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="accessibility-section" id="accessibility">
-        <div class="header-buttons">
-            <button onclick="goToPage('settings.html')">Settings</button>
-            <h1>Accessibility</h1>
-            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
-        </div>
+    <div class="welcome-section" id="welcome">
+        <h1 align="center">MicroLink Prototype</h1>
         <div id="siri-container"></div>
-
-        <div class="button-container">
-            <button onclick="goToPage('voiceCommands.html')">Voice Commands</button>
-            <button onclick="goToPage('highContrast.html')">High Contrast Mode</button>
-            <button onclick="goToPage('fontSize.html')">Font Size Adjustment</button>
-            <button onclick="goToPage('screenReader.html')">Screen Reader</button>
-            <button onclick="goToPage('textToSpeech.html')">Text-to-Speech</button>
-            <button onclick="goToPage('magnifier.html')">Magnifier</button>
-            <button onclick="goToPage('keyboardShortcuts.html')">Keyboard Shortcuts</button>
-        </div>
+        <br>
+        <h2 align="center">Sorry, This Page Is Still Under Construction.  Check Back For Updates</h2>
+        <br>
+        <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
+        <br>
     </div>
-    <br>
     <div class="footer-container" id="footer-container">
-        <button onclick="goToPage('voiceCommandUsage.pdf')">Voice Command Usage</button>
+       
+        <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
+        
+        <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
     </div>
 
     <script>
-        function goToPage(page) {
-            const redirects = {
-                'settings.html': 'settings.html',
-                'welcome.html': 'welcome.html',
-                'voiceCommands.html': 'inProgress.html',
-                'highContrast.html': 'inProgress.html',
-                'fontSize.html': 'inProgress.html',
-                'screenReader.html': 'inProgress.html',
-                'textToSpeech.html': 'inProgress.html',
-                'magnifier.html': 'inProgress.html',
-                'keyboardShortcuts.html': 'inProgress.html',
-                'voiceCommandUsage.pdf': 'voiceCommandUsage.pdf'
-            };
-
-            if (redirects[page]) {
-                window.location.href = redirects[page];
-            } else {
-                window.location.href = page;
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
                 container: document.getElementById('siri-container'),
@@ -194,6 +192,11 @@
                 autostart: true
             });
         });
+
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
     </script>
 </body>
 </html>

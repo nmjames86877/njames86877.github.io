@@ -163,7 +163,24 @@
 
     <script>
         function goToPage(page) {
-            window.location.href = page;
+            const redirects = {
+                'settings.html': 'settings.html',
+                'welcome.html': 'welcome.html',
+                'socialFeed.html': 'inProgress.html',
+                'entertainmentHighlights.html': 'inProgress.html',
+                'upcomingEvents.html': 'inProgress.html',
+                'friendsActivities.html': 'inProgress.html',
+                'mediaLibrary.html': 'inProgress.html',
+                'eventInvitations.html': 'inProgress.html',
+                'streamingServices.html': 'inProgress.html',
+                'entertainmentViewing.pdf': 'entertainmentViewing.pdf'
+            };
+
+            if (redirects[page]) {
+                window.location.href = redirects[page];
+            } else {
+                window.location.href = page;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
