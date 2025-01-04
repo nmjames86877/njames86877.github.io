@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Lifestyle</title>
     <style>
@@ -107,8 +107,8 @@
 
         #siri-container {
             width: 100%;
-            max-width: 400px;
-            height: 150px;
+            max-width: auto;
+            height: 50px;
             margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
         }
@@ -163,22 +163,22 @@
 
     <script>
         function goToPage(page) {
-    window.location.href = page;
-}
+            window.location.href = page;
+        }
 
-document.addEventListener('DOMContentLoaded', () => {
-    var siriWave = new SiriWave({
-        container: document.getElementById('siri-container'),
-        width: 400,
-        height: 50,
-        style: 'ios9',
-        speed: 0.2,
-        amplitude: 3,
-        frequency: 6,
-        color: '#ff0000',
-        autostart: true
-    });
-});
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 400,
+                height: 50,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 3,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
+        });
     </script>
 </body>
 </html>
