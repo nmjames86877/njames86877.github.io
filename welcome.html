@@ -41,7 +41,7 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px); /* Background blur for frosted glass effect */
+    backdrop-filter: blur(3px); /* Background blur for frosted glass effect */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
     color: #333333; /* Darker text color */
     animation: float 3s ease-in-out infinite;
@@ -50,7 +50,7 @@
     .welcome-section h1 {
         font-size: 3em;
         margin-bottom: 20px;
-        text-shadow: 0 0 0x #00ff00;
+        text-shadow: 0 0 0 #00ff00;
     }
 
 @keyframes float {
@@ -90,7 +90,7 @@
     align-content: center;
     gap: 10px;
     position: fixed;
-    bottom: 3px;
+    bottom: 10px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.1); /* Optional: Add a background color */
 }
