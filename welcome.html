@@ -4,167 +4,167 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=.75">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75">
     <title>Welcome to MicroLink</title>
     <style>
         body {
-            font-family: 'Orbitron', sans-serif;
-            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #333333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            margin: 0 auto;
-            top: 2px;
-        }
+    font-family: 'Orbitron', sans-serif;
+    background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.4);
-            z-index: -1;
-        }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: -1;
+}
 
-        .welcome-section {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            margin: auto;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #333333;
-            animation: float 3s ease-in-out infinite;
-        }
+.welcome-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px); /* Background blur for frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    color: #333333; /* Darker text color */
+    animation: float 3s ease-in-out infinite;
+}
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-        
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+    .welcome-section h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 0 0 0x #00ff00;
+    }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
         .chart-container {
             position: relative;
             width: auto;
-            height: auto;
+            height: 400px;
             margin: 0 auto;
             padding: 5px;
             animation: rotate 10s linear infinite;
         }
 
-            .pie-chart {
-                width: auto
-                margin: 0 auto;
-            }
+.pie-chart {
+    width: 75%;
+    height: 75%;
+}
 
-        .footer-container {
-            display: flex;
-            align-content: center;
-            gap: 10px;
-            position: fixed;
-            bottom: 3px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1); /* Optional: Add a background color */
-        }
-        
-        .button-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        button {
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-            color: #333333; /* Darker text color */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-            button:hover {
-                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
-                transform: scale(1.05);
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            }
-        
-        #siri-container {
-            width: 100%;
-            max-width: auto;
-            height: auto;
-            margin: auto;
-            background-color: rgba(0, 0, 0, 0);
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.footer-container {
+    display: flex;
+    align-content: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 3px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1); /* Optional: Add a background color */
+}
+
+button {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    color: #333333; /* Darker text color */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+#siri-container {
+    width: 100%;
+    max-width: auto;
+    height: 50px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 1080px) {
+    .welcome-section {
+        width: 1080px;
+        max-width: 100%;
+        padding: 10px;
+        margin: 0 auto;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .welcome-section h1 {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
         }
 
-        @media (max-width: 1080px) {
-            .welcome-section {
-                width: 100%;
-                max-width: auto;
-                padding: 10px;
-                margin: 0 auto;
-            }
-        
-            .button-container {
-                width: 100%;
-                align-items: center;
-            }
-            
-            .modal {
-                display: none;
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 80%;
-                height: 80%;
-                background-color: white;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                z-index: 1000;
-            }
-            
-            .modal iframe {
-                width: 100%;
-                height: 100%;
-                border: none;
-            }
-            
-            .overlay-modal {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 999;
-            }
+        100% {
+            transform: rotate(360deg);
         }
     }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translate(-50%, -50%) translateY(0);
+        }
+
+        50% {
+            transform: translate(-50%, -50%) translateY(-20px);
+        }
+    }
+}
 
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <div class="welcome-section" id="welcome">
-        <h1 font="Orbitron" align="center">MicroLink Prototype</h1>
+        <h1 align="center">MicroLink Prototype</h1>
         <div id="siri-container"></div>
         <br>
         <div class="chart-container">
@@ -182,15 +182,8 @@
         <br>
         <br>
     </div>
-        
-        <div class="overlay-modal" id="overlay" onclick="closeModal()"></div>
-            
-        <div class="modal" id="modal">
-            <iframe src="HCI101 3.2 Human Computer Interfaces.pdf" type="application/pdf"></iframe>
-        </div>
-    
         <div class="footer-container" id="footer-container">
-            <button onclick="openModal('modal')">Video Demo of the MicroLink Prototype</button>
+            <button onclick="goToPage('HCI101 3.2 Human Computer Interfaces.pdf')">Video Demo of the MicroLink Prototype</button>
             <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
             <button onclick="goToPage('settings.html')">Settings</button>
             <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
@@ -234,16 +227,6 @@
 
         function goToSettings() {
             window.location.href = 'settings.html';
-        }
-        
-        function openModal() {
-            document.getElementById('modal').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 </body>
