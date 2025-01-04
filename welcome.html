@@ -127,6 +127,36 @@
                 width: 100%;
                 align-items: center;
             }
+            
+            .modal {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80%;
+                height: 80%;
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+            
+            .modal iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+            
+            .overlay-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
         }
     }
 
@@ -154,8 +184,14 @@
         <br>
     </div>
         
+        <div class="overlay-modal" id="overlay" onclick="closeModal()"></div>
+            
+        <div class="modal" id="modal">
+            <iframe src="path/to/your/document.docx"></iframe>
+        </div>
+    
         <div class="footer-container" id="footer-container">
-            <button onclick="goToPage('https://1drv.ms/w/c/4eadc999ac7755f8/EaEbg3GN7ehBgbFZbh_NRcUBp2u16lbY0MCHbPflqGa2Mw?e=IZPcysideoDemo.html')">Video Demo of the MicroLink Prototype</button>
+            <button onclick="openModal('https://1drv.ms/w/c/4eadc999ac7755f8/EaEbg3GN7ehBgbFZbh_NRcUBp2u16lbY0MCHbPflqGa2Mw?e=IZPcysideoDemo.html')">Video Demo of the MicroLink Prototype</button>
             <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
             <button onclick="goToPage('settings.html')">Settings</button>
             <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
