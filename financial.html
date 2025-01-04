@@ -111,22 +111,23 @@
         .chart-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-rows: repeat(2, 1fr);
             gap: 10px;
         }
 
             .canvas-chart {
+                display: none;
                 width: 100%;
                 height: 100%;
             }
 
             .canvas-chart.show {
+                display: block;
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 border-radius: 4px;
                 background: rgba(255, 255, 255, .8);
                 opacity: 1;
                 transform: scale(1,1);
-                display: block;
-                margin: 0 auto;
             }
 
         #siri-container {
@@ -151,6 +152,13 @@
             
             .chart-container {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .canvas-chart.show {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
 
             .header-buttons {
                 align-items: center;
@@ -237,27 +245,48 @@
             creditChart: document.getElementById('creditChartContainer'),
             brokerageChart: document.getElementById('brokerageChartContainer')
         };
-
+        
         function toggleChart(chartId) {
             const chart = charts[chartId];
             chart.classList.toggle('show');
             resizeCharts();
         }
-
+        
         function resizeCharts() {
             const visibleCharts = Object.values(charts).filter(chart => chart.classList.contains('show'));
-            const chartWidth = visibleCharts.length === 1 ? '100%' : (100 / visibleCharts.length) + '%';
-            visibleCharts.forEach(chart => {
-                chart.style.width = chartWidth;
-            });
+            const chartCount = visibleCharts.length;
+        
+            if (chartCount === 1) {
+                visibleCharts.forEach(chart => {
+                    chart.style.gridColumn = 'span 2';
+                    chart.style.gridRow = 'span 2';
+                });
+            } else if (chartCount === 2) {
+                visibleCharts.forEach(chart => {
+                    chart.style.gridColumn = 'span 1';
+                    chart.style.gridRow = 'span 2';
+                });
+            } else if (chartCount === 3) {
+                visibleCharts[0].style.gridColumn = 'span 2';
+                visibleCharts[0].style.gridRow = 'span 1';
+                visibleCharts[1].style.gridColumn = 'span 1';
+                visibleCharts[1].style.gridRow = 'span 1';
+                visibleCharts[2].style.gridColumn = 'span 1';
+                visibleCharts[2].style.gridRow = 'span 1';
+            } else {
+                visibleCharts.forEach(chart => {
+                    chart.style.gridColumn = 'span 1';
+                    chart.style.gridRow = 'span 1';
+                });
+            }
         }
-
+        
         document.addEventListener('DOMContentLoaded', () => {
             Object.values(charts).forEach(chart => {
                 chart.classList.remove('show');
             });
         });
-
+        
         // Charts
         // Budget Overview
         const ctxBudget = document.getElementById('budgetChart').getContext('2d');
