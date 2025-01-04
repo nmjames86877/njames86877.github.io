@@ -8,139 +8,169 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #333333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            margin: 0;
-        }
+    body {
+        font-family: 'Orbitron', sans-serif;
+        background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #333333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.4);
-            z-index: -1;
-        }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.4);
+        z-index: -1;
+    }
 
+    .health-section {
+        position: relative;
+        width: 100%;
+        margin: auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        backdrop-filter: blur(3px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #333333;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header-buttons h1 {
+        flex-grow: 1;
+        text-align: center;
+        margin: 0;
+        color: #333333;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 5px;
+    }
+
+    button {
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #333333;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #siri-container {
+        width: 100%;
+        max-width: 400px;
+        height: 150px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .modal iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .overlay-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    @media (max-width: 1080px) {
         .health-section {
-            position: relative;
-            width: 100%;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #333333;
-            animation: float 3s ease-in-out infinite;
+            max-width: 100%;
+            padding: 10px;
+            margin: 0 auto;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
+        .button-container, .footer-container {
+            flex-direction: column;
+            align-items: center;
         }
 
         .header-buttons {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
         }
 
-            .header-buttons h1 {
-                flex-grow: 1;
-                text-align: center;
-                margin: 0;
-                color: #333333;
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+        .header-buttons h1 {
+            margin-bottom: 10px;
         }
-
-        .footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 0 auto;
-            position: absolute;
-            bottom: 5px;
-        }
-
-        button {
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-            color: #333333; /* Darker text color */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-            button:hover {
-                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
-                transform: scale(1.05);
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            }
-
-        #siri-container {
-            width: 100%;
-            max-width: 400px;
-            height: 150px;
-            margin: 0 auto;
-            background-color: rgba(0, 0, 0, 0);
-        }
-
-        @media (max-width: 1080px) {
-            .health-section {
-                max-width: 100%;
-                padding: 10px;
-                margin: 0 auto;
-            }
-
-            .button-container, .footer-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .header-buttons {
-                align-items: center;
-            }
-
-                .header-buttons h1 {
-                    margin-bottom: 10px;
-                }
-        }
+    }
     </style>
 </head>
 <body>
+    <body>
     <div class="overlay"></div>
     <div class="health-section" id="health">
         <div class="header-buttons">
-            <button onclick="goToPage('settings.html')">Settings</button><br>
-            <h1>Health & Medical</h1><br>
+            <button onclick="openModal('settings.html')">Settings</button>
+            <h1>Health & Medical</h1>
             <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
         </div>
         <div id="siri-container"></div>
@@ -160,24 +190,39 @@
         <button onclick="goToPage('appointmentReminders.pdf')">Week to Date Health Overview Chart</button>
     </div>
 
+    <div class="overlay-modal" id="overlay" onclick="closeModal()"></div>
+    <div class="modal" id="modal">
+        <iframe src="settings.html"></iframe>
+    </div>
+
     <script>
         function goToPage(page) {
-            window.location.href = page;
-        }
+        window.location.href = page;
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            var siriWave = new SiriWave({
-                container: document.getElementById('siri-container'),
-                width: 375,
-                height: 200,
-                style: 'ios9',
-                speed: 0.2,
-                amplitude: 1,
-                frequency: 6,
-                color: '#ff0000',
-                autostart: true
-            });
+    function openModal() {
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var siriWave = new SiriWave({
+            container: document.getElementById('siri-container'),
+            width: 400,
+            height: 50,
+            style: 'ios9',
+            speed: 0.2,
+            amplitude: 3,
+            frequency: 6,
+            color: '#ff0000',
+            autostart: true
         });
+    });
     </script>
 </body>
 </html>
