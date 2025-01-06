@@ -4,174 +4,143 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to MicroLink</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
         body {
-    font-family: 'Orbitron', sans-serif;
-    background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    z-index: -1;
-}
-
-.welcome-section {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(3px); /* Background blur for frosted glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-    color: #333333; /* Darker text color */
-    animation: float 3s ease-in-out infinite;
-}
-
-    .welcome-section h1 {
-        font-size: 3em;
-        margin-bottom: 20px;
-        text-shadow: 0 0 0 #00ff00;
-    }
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-        .chart-container {
-            position: relative;
-            width: auto;
-            height: 400px;
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
             margin: 0 auto;
-            padding: 5px;
-            animation: rotate 10s linear infinite;
         }
 
-.pie-chart {
-    width: 75%;
-    height: 75%;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.footer-container {
-    display: flex;
-    align-content: center;
-    gap: 10px;
-    position: fixed;
-    bottom: 10px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1); /* Optional: Add a background color */
-}
-
-button {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-    color: #333333; /* Darker text color */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-button:hover {
-    background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-#siri-container {
-    width: 100%;
-    max-width: auto;
-    height: 50px;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-@media (max-width: 1080px) {
-    .welcome-section {
-        width: 1080px;
-        max-width: 100%;
-        padding: 10px;
-        margin: 0 auto;
-    }
-
-    .button-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .welcome-section h1 {
-        flex-direction: column;
-        align-content: center;
-    }
-
-    @keyframes rotate {
-        0% {
-            transform: rotate(0deg);
+        .overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
         }
 
-        100% {
-            transform: rotate(360deg);
+        .welcome-section {
+            position: relative;
+            width: 100%;
+            margin: auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(3px); /* Background blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            color: #333333; /* Darker text color */
+            animation: float 3s ease-in-out infinite;
         }
-    }
 
-    @keyframes float {
-        0%, 100% {
-            transform: translate(-50%, -50%) translateY(0);
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
-        50% {
-            transform: translate(-50%, -50%) translateY(-20px);
-        }
-    }
-}
+            .chart-container {
+                width: 50%;
+                height: 50%;
+                margin: 0 auto;
+                padding: 5px;
+            }
 
+            .pie-chart {
+                display: flex;
+                width: 50%;
+                height: 50%;
+            }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            gap: 10px;
+            position: absolute;
+            bottom: 10px;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+            color: #333333; /* Darker text color */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
+
+        #siri-container {
+            width: 100%;
+            max-width: auto;
+            height: 50px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        @media (max-width: 1080px) {
+            .welcome-section {
+                max-width: 100%;
+                padding: 10px;
+                margin: 0 auto;
+            }
+
+            .button-container, footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .welcome-section h1 {
+                flex-direction: column;
+                align-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
     <div class="welcome-section" id="welcome">
         <h1 align="center">MicroLink Prototype</h1>
-        <div id="siri-container"></div>
-        <br>
-        <div class="chart-container">
+        <div class="siri-container" id="siri-container"></div>
+        
+        <div class="chart-container" id="chart-container">
             <canvas id="pieChart" class="pie-chart"></canvas>
         </div>
 
-        <br>
         <div class="button-container">
             <button onclick="goToPage('financial.html')">Go To Financial</button>
             <button onclick="goToPage('accessibility.html')">Go To Accessibility</button>
@@ -179,17 +148,22 @@ button:hover {
             <button onclick="goToPage('identity.html')">Go To Identity</button>
             <button onclick="goToPage('healthMedical.html')">Go To Health & Medical</button>
         </div>
-        <br>
-        <br>
+        
     </div>
-        <div class="footer-container" id="footer-container">
-            <button onclick="goToPage('HCI101 3.2 Human Computer Interfaces.pdf')">Video Demo of the MicroLink Prototype</button>
-            <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
-            <button onclick="goToPage('settings.html')">Settings</button>
-            <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
-        </div>
+        
+    <div class="footer-container" id="footer-container">
+        <button onclick="goToPage('HCI101 3.2 Human Computer Interfaces.pdf')">Video Demo of the MicroLink Prototype</button>
+        <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
+        <button onclick="goToPage('settings.html')">Settings</button>
+        <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
+    </div>
 
     <script>
+
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
                 container: document.getElementById('siri-container'),
@@ -220,14 +194,6 @@ button:hover {
                 }
             });
         });
-
-        function goToPage(page) {
-            window.location.href = page;
-        }
-
-        function goToSettings() {
-            window.location.href = 'settings.html';
-        }
     </script>
 </body>
 </html>

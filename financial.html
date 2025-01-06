@@ -23,15 +23,15 @@
             margin: 0;
         }
 
-            .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.4);
-                z-index: -1;
-            }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+        }
 
         .financial-section {
             position: relative;
@@ -118,9 +118,9 @@
         }
 
         .chart-container {
-            height: auto;
-            width: 100%;
             display: flex;
+            height: auto;
+            width: 50%;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
@@ -128,6 +128,7 @@
             position: fixed;
             top: 300px;
             bottom: auto;
+            scroll-behavior: auto;
         }
 
             .canvas-chart {
