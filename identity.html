@@ -117,8 +117,8 @@
             position: absolute;
             bottom: 25%;
             transform: translate(-50%, -50%);
-            width: 50%;
-            height: 50%;
+            width: auto;
+            height: auto;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
@@ -128,7 +128,7 @@
         }
 
             .iframe-container.visible {
-                display: block;
+                display: flex;
                 opacity: 1;
                 backdrop-filter: blur(0);
             }
@@ -140,7 +140,7 @@
                 margin: 0 auto;
             }
 
-            .button-container, .footer-container, .iframe-container {
+            .button-container, .footer-container {
                 flex-direction: column;
                 align-items: center;
             }
