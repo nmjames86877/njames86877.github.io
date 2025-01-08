@@ -119,6 +119,7 @@
             transform: translate(-50%, -50%);
             width: auto;
             height: auto;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
@@ -183,11 +184,11 @@
             <button id="dataButton" onclick="toggleIframe()">CFPB Complaints</button>
             <div class="hover-content" id="hover-content"></div>
         </div>
-    </div>
-    <div class="iframe-container" id="iframe-container">
+        
+        <div class="iframe-container" id="iframe-container">
         <iframe title="CFPB_Complaints" width="275" height="275" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" frameborder="0"></iframe>
+        </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
