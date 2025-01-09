@@ -275,7 +275,7 @@
         });
         
             // Send the data to the server to append to the log file
-            fetch('/feedbackComments', {
+            fetch('feedbackComments.csv', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/csv'
