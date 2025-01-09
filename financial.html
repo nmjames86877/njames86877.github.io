@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -216,6 +216,7 @@
         <div class="canvas-chart" id="brokerageChartContainer">
             <canvas id="brokerageChart"></canvas>
         </div>
+        <input type="checkbox" id="showAmounts">show amounts</input>
     </div>
 
     <div class="footer-container" id="footer-container">
@@ -273,6 +274,17 @@
 
         // Charts
         // Budget Overview
+        // Privacy Feature Show Amounts
+        
+        const showAmountsCheckbox = document.getElementById('showAmounts');
+        const asterisksData = chart.data.datasets[0].data.map(() => '*');
+        function updateChartData() {
+            chart.data.datasets[0].data = showAmountsCheckbox.checked ? chart.data.datasets[0].data : asterisksData;
+            chart.update();
+        }
+        
+        showAmountsCheckbox.addEventListener('change', updateChartData);
+        
         const ctxBudget = document.getElementById('budgetChart').getContext('2d');
         const budgetChart = new Chart(ctxBudget, {
             type: 'line',
