@@ -216,10 +216,11 @@
         <div class="canvas-chart" id="brokerageChartContainer">
             <canvas id="brokerageChart"></canvas>
         </div>
-        <input type="checkbox" id="showAmounts">show amounts</input>
+        
     </div>
 
     <div class="footer-container" id="footer-container">
+        <input type="checkbox" id="showAmounts">show amounts</input>
         <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
     </div>
 
@@ -283,8 +284,8 @@
             chart.update();
         }
         
-        showAmountsCheckbox.addEventListener('change', updateChartData);
-        
+        const showAmountsCheckbox.addEventListener('change', updateChartData);
+        }
         const ctxBudget = document.getElementById('budgetChart').getContext('2d');
         const budgetChart = new Chart(ctxBudget, {
             type: 'line',
