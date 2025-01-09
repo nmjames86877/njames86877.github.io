@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -271,6 +271,23 @@
             document.querySelectorAll('input[type="range"]').forEach(input => {
                 const valueSpan = document.getElementById(`${input.id}-value`);
                 valueSpan.textContent = 5;
+            });
+        });
+        
+            // Send the data to the server to append to the log file
+            fetch('/feedbackComments.csv', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/csv'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Log file updated:', result);
+            })
+            .catch(error => {
+                console.error('Error updating log file:', error);
             });
         });
     </script>
