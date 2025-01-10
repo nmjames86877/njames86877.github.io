@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.75">
     <title>Welcome to MicroLink</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron');
 
         body {
             font-family: 'Orbitron', sans-serif;
@@ -152,7 +152,7 @@
     </div>
 
     <div class="footer-container" id="footer-container">
-        <button onclick="goToPage('videoDemo')">Video Demo of MicroLink Prototype</button>
+        <button onclick="goToPage('HCI101 3.2 Human Computer Interfaces.pdf')">Video Demo of MicroLink Prototype</button>
         <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
         <button onclick="goToPage('settings.html')">Settings</button>
         <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
@@ -163,10 +163,6 @@
         function goToPage(page) {
             window.location.href = page;
             }
-        function goToPage(videoDemo) {
-            window.location.href = 'https://share.icloud.com/photos/0b4H4UjHjesdodytNGrofUgQg';
-            window.open(page, "_blank")
-        }
 
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
