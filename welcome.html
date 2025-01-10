@@ -160,11 +160,9 @@
 
     <script>
 
-        function goToPage(pages) {
-            for (let i = 0; i < pages.length; i++) {
-                window.open(pages[i], '_blank');
+        function goToPage(page) {
+            window.location.href = page;
             }
-        }
 
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
