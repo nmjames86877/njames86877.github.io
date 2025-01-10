@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.75">
     <title>Welcome to MicroLink</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700');
 
         body {
             font-family: 'Orbitron', sans-serif;
@@ -109,7 +109,7 @@
             width: 100%;
             max-width: auto;
             height: 50px;
-            margin: auto;
+            margin: 20px 0;
             background-color: rgba(0, 0, 0, 0);
         }
 
@@ -137,11 +137,9 @@
     <div class="welcome-section" id="welcome">
         <h1 align="center">MicroLink Prototype</h1>
         <div class="siri-container" id="siri-container"></div>
-
         <div class="chart-container" id="chart-container">
             <canvas id="pieChart" class="pie-chart"></canvas>
         </div>
-
         <div class="button-container">
             <button onclick="goToPage('financial.html')">Go To Financial</button>
             <button onclick="goToPage('accessibility.html')">Go To Accessibility</button>
@@ -153,7 +151,7 @@
     </div>
 
     <div class="footer-container" id="footer-container">
-        <button onclick="goToPage('https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drivesdk')">Video Demo of the MicroLink Prototype</button>
+        <button onclick="goToPage('MicroLinkPrototype_VideoDemo_01-09-0007 16-32-32_1.MP4')">Video Demo of the MicroLink Prototype</button>
         <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
         <button onclick="goToPage('settings.html')">Settings</button>
         <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
@@ -168,7 +166,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
                 container: document.getElementById('siri-container'),
-                width: 400,
                 height: 50,
                 style: 'ios9',
                 speed: 0.2,
@@ -184,6 +181,7 @@
                 data: {
                     labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibilty'],
                     datasets: [{
+                        label: 'Notifications',
                         data: [10, 15, 20, 15, 40],
                         backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', 'lightblue'],
                         hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', 'offwhite']
