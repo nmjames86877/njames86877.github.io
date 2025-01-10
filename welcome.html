@@ -160,8 +160,10 @@
 
     <script>
 
-        function goToPage(page[]) {
-            window.location.href = page[];
+        function goToPage(pages) {
+            for (let i = 0; i < pages.length; i++) {
+                window.open(pages[i], '_blank');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
