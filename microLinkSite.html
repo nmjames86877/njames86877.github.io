@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Site Page MicroLink Prototype</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+            body {
+                font-family: 'Orbitron', sans-serif;
+                background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+                background-size: cover;
+                color: #333333;
+                margin: 0;
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 100vh;
+                position: relative;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
+                z-index: -1;
+            }
+        </style>
+    </head >
+
+<body>
+    <div class="overlay"></div>
+    <h2> Welcome Page</h2>
+    <a href="welcome.html"> MicroLink Prototype Welcome</a>
+    <a href="financial.html"> Financial Section</a>
+    <a href="accessibility.html"> Accessibilty Section</a>
+    <a href="lifestyle.html"> Lifestyle Section</a>
+    <a href="identity.html"> Identity Section</a>
+    <a href="healthMedical.html"> Health & Medical Section</a>
+
+    <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link"> Video Demo</a>
+    <a href="feedback.html"> Feedback Section</a>
+    <a href="settings.html"> Settings Section</a>
+    <a href="https://github.com/nmjames86877/njames86877.github.io/commits/main"> Recent Updates Section</a>
+
+
+    <h2> Financial Section</h2>
+    <a href="investmentPerformance.pdf"> Investment Performance - PDF</a>
+
+
+    <h2> Accessibility Section</h2>
+    <a href="voiceCommandUsage.pdf"> Voice Command Usage - PDF</a>
+
+
+    <h2> Lifestyle Section</h2>
+    <a href="entertainmentViewing.pdf" > Entertainment Usage - PDF</a>
+
+
+    <h2> Identity Section</h2>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" > Consumer Financial Protection Bureau - Power BI</a >
+
+
+    <h2> Health & Medical Section</h2>
+    <a href="appointmentReminders.pdf"> Appointment Reminder Summary - PDF</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: document.getElementById('siri-container').offsetWidth,
+                height: 50,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 3,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
+    </script>
+</body>
+</html>
