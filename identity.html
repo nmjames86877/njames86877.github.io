@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,12 +18,13 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
         }
 
         .overlay {
             position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
@@ -33,7 +34,7 @@
         .identity-section {
             position: relative;
             width: 100%;
-            margin: 0 auto;
+            margin: auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1); /* Increased transparency */
             border-radius: 8px;
@@ -65,7 +66,7 @@
             .header-buttons h1 {
                 flex-grow: 1;
                 text-align: center;
-                margin: 0 auto;
+                margin: 0;
                 color: #333333;
                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
@@ -79,13 +80,20 @@
         }
 
         .footer-container {
-            display: flex;
-            justify-content: center;
+            display: flow;
             flex-wrap: wrap;
             margin: 0 auto;
             gap: 10px;
             bottom: 10px;
             position: absolute;
+        }
+
+        .chart-container {
+            display: flex;
+            height: 300px;
+            width: 300px;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         button {
@@ -115,9 +123,12 @@
 
         .iframe-container {
             display: none;
-            width: 100%;
-            height: auto;
-            margin: 20px auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
@@ -132,14 +143,21 @@
                 backdrop-filter: blur(0);
             }
 
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         @media (max-width: 1080px) {
-            .identity-section {
+            .identity-section, .iframe-container {
                 max-width: 100%;
                 padding: 10px;
                 margin: 0 auto;
             }
 
             .button-container, .footer-container {
+                flex-direction: column;
                 align-items: center;
             }
 
@@ -175,23 +193,21 @@
             <button onclick="goToPage('allDataAgencies.html')">All Data Agencies</button>
         </div>
     </div>
-    
     <br>
     <div class="footer-container" id="footer-container">
-        <div class="iframe-container" id="iframe-container" align="center">
-        <iframe title="CFPB_Complaints" width="350" height="300" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" frameborder="0"></iframe>
-        </div>
-        
         <div class="hover-button">
             <button id="dataButton" onclick="toggleIframe()">CFPB Complaints</button>
             <div class="hover-content" id="hover-content"></div>
         </div>
     </div>
+    <div class="iframe-container" id="iframe-container">
+        <iframe title="CFPB_Complaints" width="600" height="373" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" frameborder="0"></iframe>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             var siriWave = new SiriWave({
                 container: document.getElementById('siri-container'),
-                width: 400,
                 height: 50,
                 style: 'ios9',
                 speed: 0.2,
