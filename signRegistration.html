@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+        }
+
+        .container {
+            width: 75%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .title {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #333333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .button:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.01);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .facebook {
+            background-color: #3b5998;
+            color: #fff;
+        }
+
+        .google {
+            background-color: #db4437;
+            color: #fff;
+        }
+
+        .apple {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="title">MicroLink Prototype</div>
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="registerEmail" placeholder="Email" required><br>
+            <input type="password" id="registerPassword" placeholder="Password" required><br>
+            <button type="submit" class="button">Register</button>
+        </form>
+        <div class="error" id="registerError"></div>
+        <hr>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="loginEmail" placeholder="Email" required><br>
+            <input type="password" id="loginPassword" placeholder="Password" required><br>
+            <button type="submit" class="button">Login</button>
+        </form>
+        <div class="error" id="loginError"></div>
+        <hr>
+        <button class="button facebook" onclick="loginWithFacebook()">Login with Facebook</button>
+        <button class="button google" onclick="loginWithGoogle()">Login with Google</button>
+        <button class="button apple" onclick="loginWithApple()">Login with Apple</button>
+        <hr>
+        <button class="button" onclick="resetPassword()">Reset Password</button>
+    </div>
+
+    <!-- Facebook SDK -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: 'YOUR_FACEBOOK_APP_ID',
+                cookie: true,
+                xfbml: true,
+                version: 'v10.0'
+            });
+        };
+
+        function loginWithFacebook() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    console.log('Welcome! Fetching your information.... ');
+                    FB.api('/me', function (response) {
+                        console.log('Good to see you, ' + response.name + '.');
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            });
+        }
+    </script>
+
+    <!-- Google API -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function loginWithGoogle() {
+            gapi.load('auth2', function () {
+                var auth2 = gapi.auth2.init({
+                    client_id: 'YOUR_GOOGLE_CLIENT_ID',
+                });
+                auth2.signIn().then(function (googleUser) {
+                    console.log('User signed in: ' + googleUser.getBasicProfile().getName());
+                });
+            });
+        }
+    </script>
+
+    <!-- Apple Sign-In -->
+    <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+    <script>
+        AppleID.auth.init({
+            clientId: 'YOUR_APPLE_CLIENT_ID',
+            scope: 'name email',
+            redirectURI: 'YOUR_REDIRECT_URI',
+            state: 'YOUR_STATE',
+        });
+
+        function loginWithApple() {
+            AppleID.auth.signIn().then(function (response) {
+                console.log('User signed in: ' + response.user);
+            }).catch(function (error) {
+                console.error('Error during Apple sign-in: ' + error);
+            });
+        }
+    </script>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Add your registration logic here
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            if (email && password) {
+                // Simulate successful registration
+                alert('Registration successful!');
+                // Store user session and token
+                sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('userToken', 'exampleToken');
+            } else {
+                document.getElementById('registerError').textContent = 'Please fill in all fields.';
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Add your login logic here
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (email && password) {
+                // Simulate successful login
+                alert('Login successful!');
+                // Store user session and token
+                sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('userToken', 'exampleToken');
+                // Set token expiration time
+                const expirationTime = new Date().getTime() + 3600000; // 1 hour
+                sessionStorage.setItem('tokenExpiration', expirationTime);
+            } else {
+                document.getElementById('loginError').textContent = 'Please fill in all fields.';
+            }
+        });
+
+        function resetPassword() {
+            const email = prompt('Please enter your email for password reset:');
+            if (email) {
+                // Add your password reset logic here
+                alert('Password reset link sent to ' + email);
+            } else {
+                alert('Email is required for password reset.');
+            }
+        }
+
+        // Secure API keys in front-end code
+        function getApiKey() {
+            // Fetch the API key from a secure server or environment variable
+            return fetch('/getApiKey')
+                .then(response => response.json())
+                .then(data => data.apiKey)
+                .catch(error => console.error('Error fetching API key:', error));
+        }
+
+        // Check token expiration and refresh if necessary
+        function checkTokenExpiration() {
+            const tokenExpiration = sessionStorage.getItem('tokenExpiration');
+            if (tokenExpiration && new Date().getTime() > tokenExpiration) {
+                refreshToken();
+            }
+        }
+
+        function refreshToken() {
+            // Add your token refresh logic here
+            console.log('Token expired. Refreshing token...');
+            // Simulate token refresh
+            const newToken = 'newExampleToken';
+            sessionStorage.setItem('userToken', newToken);
+            const newExpirationTime = new Date().getTime() + 3600000; // 1 hour
+            sessionStorage.setItem('tokenExpiration', newExpirationTime);
+            console.log('Token refreshed successfully.');
+        }
+
+        // Check token expiration on page load
+        window.onload = checkTokenExpiration;
+    </script>
+</body>
+</html>
+
