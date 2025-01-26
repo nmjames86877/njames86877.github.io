@@ -198,6 +198,9 @@
                 autostart: true
             });
 
+            const dataSet = [10, 15, 20, 15, 40];
+            const randomData = dataSet.map(() => dataSet[Math.floor(Math.random() * dataSet.length)]);
+
             const ctx = document.getElementById('pieChart').getContext('2d');
             const pieChart = new Chart(ctx, {
                 type: 'pie',
@@ -205,7 +208,7 @@
                     labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibilty'],
                     datasets: [{
                         label: 'Notifications',
-                        data: [10, 15, 20, 15, 40],
+                        data: randomData,
                         backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', 'lightblue'],
                         hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', 'offwhite']
                     }]
