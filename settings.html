@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings Overlay</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
         body {
-        font-family: 'Orbitron', sans-serif;
-        background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-        background-size: cover;
-        color: #333333;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: 0;
         }
 
         .overlay {
@@ -27,11 +29,6 @@
             background: rgba(255, 255, 255, 0.4);
             z-index: -1;
         }
-
-            .overlay.active {
-                visibility: visible;
-                opacity: 1;
-            }
 
         .settings-container {
             background: #FFFFFF;
@@ -60,9 +57,9 @@
                 display: block;
                 width: 100%;
                 padding: 10px;
-                background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-                color: #333333; /* Darker text color */
-                border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+                background: rgba(255, 255, 255, 0.2);
+                color: #333333;
+                border: 1px solid rgba(255, 255, 255, 0.3);
                 border-radius: 4px;
                 cursor: pointer;
                 transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -71,7 +68,7 @@
             }
 
                 .settings-container button:hover {
-                    background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                    background: rgba(255, 255, 255, 0.3);
                     transform: scale(1.05);
                     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 }
@@ -95,6 +92,7 @@
             <label>
                 <input type="checkbox" id="locationServices"> Location Services
             </label>
+            <button onclick="resetPassword()">Reset Password</button>
             <button onclick="closeSettings()">Close</button>
         </div>
     </div>
@@ -108,42 +106,57 @@
             document.getElementById('settingsOverlay').classList.remove('active');
         }
 
-        // Apps
-        const ctxApps =
-            document.getElementById('appsChart').getContext('2d');
-        const appsChart = new Chart(ctxApps, {
-            type: 'bubble',
-            data: {
-                labels: ['', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
-                datasets: [{
-                    label: 'Investment',
-                    data: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320],
-                    backgroundColor: [
-                        'rgba(75, 192, 192, .02)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutBounce'
-                }
+        function resetPassword() {
+            const email = prompt('Please enter your email for password reset:');
+            if (email) {
+                // Add your password reset logic here
+                alert('Password reset link sent to ' + email);
+            } else {
+                alert('Email is required for password reset.');
+            }
+        }
+
+        // Dark Mode Toggle
+        document.getElementById('darkMode').addEventListener('change', function () {
+            if (this.checked) {
+                document.body.style.backgroundColor = '#333';
+                document.body.style.color = '#fff';
+            } else {
+                document.body.style.backgroundColor = '';
+                document.body.style.color = '#333';
             }
         });
 
+        // Enable Notifications Toggle
+        document.getElementById('notifications').addEventListener('change', function () {
+            if (this.checked) {
+                alert('Notifications enabled');
+            } else {
+                alert('Notifications disabled');
+            }
+        });
+
+        // Auto Update Toggle
+        document.getElementById('autoUpdate').addEventListener('change', function () {
+            if (this.checked) {
+                alert('Auto Update enabled');
+            } else {
+                alert('Auto Update disabled');
+            }
+        });
+
+        // Location Services Toggle
+        document.getElementById('locationServices').addEventListener('change', function () {
+            if (this.checked) {
+                alert('Location Services enabled');
+            } else {
+                alert('Location Services disabled');
+            }
+        });
     </script>
 </body>
 </html>
+
+
+
+

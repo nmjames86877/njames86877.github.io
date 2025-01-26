@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,12 +18,13 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
         }
 
         .overlay {
             position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
@@ -33,7 +34,7 @@
         .health-section {
             position: relative;
             width: 100%;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1); /* Increased transparency */
             border-radius: 8px;
@@ -106,7 +107,6 @@
 
         #siri-container {
             width: 100%;
-            max-width: auto;
             height: 50px;
             margin: 0 auto;
             background-color: rgba(0, 0, 0, 0);
@@ -120,6 +120,7 @@
             }
 
             .button-container, .footer-container {
+                flex-direction: column;
                 align-items: center;
             }
 
@@ -157,7 +158,6 @@
     <br>
     <div class="footer-container" id="footer-container">
         <button onclick="goToPage('appointmentReminders.pdf')">Week to Date Health Overview Chart</button>
-        <button onclick="openiFrame('deviceList')">Medical Devices</button>
     </div>
 
     <script>
@@ -185,7 +185,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         var siriWave = new SiriWave({
             container: document.getElementById('siri-container'),
-            width: 400,
             height: 50,
             style: 'ios9',
             speed: 0.2,

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,7 @@
         .identity-section {
             position: relative;
             width: 100%;
-            margin: auto;
+            margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1); /* Increased transparency */
             border-radius: 8px;
@@ -123,7 +123,7 @@
         .iframe-container {
             display: none;
             position: fixed;
-            top: 50%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 80vw;
@@ -156,6 +156,7 @@
             }
 
             .button-container, .footer-container {
+                flex-direction: column;
                 align-items: center;
             }
 
@@ -180,7 +181,7 @@
         </div>
         <div id="siri-container"></div>
 
-        <div class="button-container">
+        <div class="button-container" id="button-container">
             <button onclick="goToPage('profile.html')">Profile</button>
             <button onclick="goToPage('securitySettings.html')">Security Settings</button>
             <button onclick="goToPage('digitalIDCards.html')">Digital ID Cards</button>
@@ -199,7 +200,7 @@
         </div>
     </div>
     <div class="iframe-container" id="iframe-container">
-        <iframe title="CFPB_Complaints" width="600" height="373" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013"></iframe>
+        <iframe title="CFPB_Complaints" width="600" height="373" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" frameborder="0"></iframe>
     </div>
 
     <script>
