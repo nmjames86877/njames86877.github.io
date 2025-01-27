@@ -24,7 +24,6 @@
         .overlay {
             position: absolute;
             top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
@@ -192,6 +191,64 @@
                 autostart: true
             });
         });
+
+        // Chart Animations and Functionality
+        const charts = {
+            voiceCommandsChart: document.getElementById('voiceCommandsChartContainer'),
+            highContrastChart: document.getElementById('highContrastChartContainer'),
+            fontSizeChart: document.getElementById('fontSizeChartContainer'),
+            screenReaderChart: document.getElementById('screenReaderChartContainer'),
+            textToSpeechChart: document.getElementById('textToSpeechChartContainer'),
+            magnifierChart: document.getElementById('magnifierChartContainer'),
+            keyboardShortcutsChart: document.getElementById('keyboardShortcutsChartContainer')
+        };
+
+        const tabContainer = document.getElementById('tab-container');
+
+        function toggleChart(chartId) {
+            const chart = charts[chartId];
+            const tabId = chartId + 'Tab';
+            let tab = document.getElementById(tabId);
+
+            if (!tab) {
+                tab = document.createElement('div');
+                tab.id = tabId;
+                tab.className = 'tab';
+                tab.innerText = chartId.replace('Chart', ' Chart');
+                tab.onclick = () => showChart(chartId);
+                tabContainer.appendChild(tab);
+            }
+
+            if (chart.classList.contains('active')) {
+                chart.classList.remove('active');
+                tab.classList.remove('active');
+            } else {
+                showChart(chartId);
+            }
+        }
+
+        function showChart(chartId) {
+            Object.keys(charts).forEach(id => {
+                const chart = charts[id];
+                const tab = document.getElementById(id + 'Tab');
+                if (id === chartId) {
+                    chart.classList.add('active');
+                    tab.classList.add('active');
+                } else {
+                    chart.classList.remove('active');
+                    if (tab) {
+                        tab.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.values(charts).forEach(chart => {
+                chart.classList.remove('active');
+            });
+        });
+
     </script>
 </body>
 </html>

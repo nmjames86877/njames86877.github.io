@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -156,6 +156,61 @@
                 margin-top: 0;
             }
 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
         @media (max-width: 1080px) {
             .container {
                 max-width: 100%;
@@ -222,11 +277,36 @@
                 <label for="design-recommendations">Do you have any design recommendations?</label>
                 <textarea id="design-recommendations" name="design-recommendations" class="text-box" rows="4"></textarea>
             </div>
-            <button type="submit" class="submit-btn">Submit Feedback</button>
+            <button type="submit" class="submit-btn" id="submit">Submit Feedback</button>
+            <br>
+            <button type="button" class="view-feedback-btn" id="view-feedback">View Recent Feedback</button>
         </form>
 
         <div class="posts-container" id="posts-container">
             <!-- Feedback posts will be added here -->
+        </div>
+    </div>
+
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Recent Feedback</h2>
+            <table id="feedbackTable">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Question 1</th>
+                        <th>Question 2</th>
+                        <th>Question 3</th>
+                        <th>Question 4</th>
+                        <th>Question 5</th>
+                        <th>Design Recommendations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Feedback data will be inserted here -->
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -250,29 +330,122 @@
                 data[key] = value;
             });
 
+            const timestamp = new Date().toISOString();
+            data.timestamp = timestamp;
+
+            // Save feedback to local storage
+            let feedbackList = JSON.parse(localStorage.getItem('feedbackList')) || [];
+            feedbackList.push(data);
+            localStorage.setItem('feedbackList', JSON.stringify(feedbackList));
+
+            
+            // View 
+            document.getElementById('view-feedback').addEventListener('click', function () {
+                fetch('/get-feedback')
+                    .then(response => response.json())
+                    .then(feedbackList => {
+                        const tbody = document.getElementById('feedbackTable').getElementsByTagName('tbody')[0];
+                        tbody.innerHTML = ''; // Clear existing rows
+
+                        feedbackList.forEach(entry => {
+                            const row = tbody.insertRow();
+                            row.insertCell(0).textContent = entry.timestamp;
+                            row.insertCell(1).textContent = entry.question1;
+                            row.insertCell(2).textContent = entry.question2;
+                            row.insertCell(3).textContent = entry.question3;
+                            row.insertCell(4).textContent = entry.question4;
+                            row.insertCell(5).textContent = entry.question5;
+                            row.insertCell(6).textContent = entry['design-recommendations'];
+                        });
+
+                        modal.style.display = "block";
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+
+
+
+
+
+
+
+
+
+            // Send feedback to server to update feedbackView.txt
+            fetch('/submit-feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result);
+
+                    // Clear the form
+                    this.reset();
+                    document.querySelectorAll('input[type="range"]').forEach(input => {
+                        const valueSpan = document.getElementById(`${input.id}-value`);
+                        valueSpan.textContent = 5;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
             // Create a new post element
             const post = document.createElement('div');
             post.classList.add('post');
             post.innerHTML = `
-                <h3>Feedback Post</h3>
-                <p><strong>Question 1:</strong> ${data.question1}</p>
-                <p><strong>Question 2:</strong> ${data.question2}</p>
-                <p><strong>Question 3:</strong> ${data.question3}</p>
-                <p><strong>Question 4:</strong> ${data.question4}</p>
-                <p><strong>Question 5:</strong> ${data.question5}</p>
-                <p><strong>Design Recommendations:</strong> ${data['design-recommendations']}</p>
-            `;
+        <h3>Feedback Post</h3>
+        <p><strong>Question 1:</strong> ${data.question1}</p>
+        <p><strong>Question 2:</strong> ${data.question2}</p>
+        <p><strong>Question 3:</strong> ${data.question3}</p>
+        <p><strong>Question 4:</strong> ${data.question4}</p>
+        <p><strong>Question 5:</strong> ${data.question5}</p>
+        <p><strong>Design Recommendations:</strong> ${data['design-recommendations']}</p>
+    `;
 
             // Add the new post to the posts container
             document.getElementById('posts-container').appendChild(post);
-
-            // Clear the form
-            this.reset();
-            document.querySelectorAll('input[type="range"]').forEach(input => {
-                const valueSpan = document.getElementById(`${input.id}-value`);
-                valueSpan.textContent = 5;
-            });
         });
+
+        // Modal functionality
+        const modal = document.getElementById("feedbackModal");
+        const btn = document.getElementById("view-feedback-btn");
+        const span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            const feedbackList = JSON.parse(localStorage.getItem('feedbackList')) || [];
+            const tbody = document.getElementById('feedbackTable').getElementsByTagName('tbody')[0];
+            tbody.innerHTML = ''; // Clear existing rows
+
+            feedbackList.forEach(entry => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = entry.timestamp;
+                row.insertCell(1).textContent = entry.question1;
+                row.insertCell(2).textContent = entry.question2;
+                row.insertCell(3).textContent = entry.question3;
+                row.insertCell(4).textContent = entry.question4;
+                row.insertCell(5).textContent = entry.question5;
+                row.insertCell(6).textContent = entry['design-recommendations'];
+            });
+
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
     </script>
 </body>
