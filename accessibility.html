@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Accessibility</title>
     <style>
@@ -14,16 +15,18 @@
             background-size: cover;
             color: #333333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: 0;
+            margin: auto;
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
@@ -31,8 +34,8 @@
         }
 
         .accessibility-section {
-            position: relative;
-            width: 100%;
+            position: fixed;
+            width: 98%;
             margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1); /* Increased transparency */
@@ -65,7 +68,9 @@
             .header-buttons h1 {
                 flex-grow: 1;
                 text-align: center;
-                margin: 0;
+                margin: 0 auto;
+                color: #333333;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
 
         .button-container {
@@ -87,9 +92,9 @@
 
         button {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-            color: #333333; /* Darker text color */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+            background: rgba(255, 255, 255, 0.2);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -97,7 +102,7 @@
         }
 
             button:hover {
-                background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+                background: rgba(255, 255, 255, 0.3);
                 transform: scale(1.05);
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             }
@@ -109,15 +114,60 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tab {
+            display: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            margin: 0 5px;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .tab:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .tab.active {
+                background: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            }
+
+        .chart-container {
+            display: none;
+            width: 45vh;
+            margin: 350px auto;
+        }
+
+            .chart-container.active {
+                display: block;
+                background: rgba(255, 255, 255, 0.8);
+            }
+
+        .canvas-chart {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
         @media (max-width: 1080px) {
             .accessibility-section {
-                max-width: 100%;
+                width: 95%;
                 padding: 10px;
-                margin: 0 auto;
             }
 
             .button-container, .footer-container {
-                flex-direction: row;
                 align-items: center;
             }
 
@@ -126,15 +176,19 @@
                 align-items: center;
             }
 
-                .header-buttons h1 {
-                    margin-bottom: 10px;
-                }
+            .chart-container.active {
+                flex-wrap: wrap;
+            }
+
+            .header-buttons h1 {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="accessibility-section" id="accessibility-section">
+    <div class="accessibility-section" id="accessibility">
         <div class="header-buttons">
             <button onclick="goToPage('settings.html')">Settings</button>
             <h1>Accessibility</h1>
@@ -143,14 +197,39 @@
         <div id="siri-container"></div>
 
         <div class="button-container">
-            <button onclick="goToPage('voiceCommands.html')">Voice Commands</button>
-            <button onclick="goToPage('highContrast.html')">High Contrast Mode</button>
-            <button onclick="goToPage('fontSize.html')">Font Size Adjustment</button>
-            <button onclick="goToPage('screenReader.html')">Screen Reader</button>
-            <button onclick="goToPage('textToSpeech.html')">Text-to-Speech</button>
-            <button onclick="goToPage('magnifier.html')">Magnifier</button>
-            <button onclick="goToPage('keyboardShortcuts.html')">Keyboard Shortcuts</button>
+            <button onclick="toggleChart('voiceCommandsChart')">Voice Commands</button>
+            <button onclick="toggleChart('highContrastChart')">High Contrast Mode</button>
+            <button onclick="toggleChart('fontSizeChart')">Font Size Adjustment</button>
+            <button onclick="toggleChart('screenReaderChart')">Screen Reader</button>
+            <button onclick="toggleChart('textToSpeechChart')">Text-to-Speech</button>
+            <button onclick="toggleChart('magnifierChart')">Magnifier</button>
+            <button onclick="toggleChart('keyboardShortcutsChart')">Keyboard Shortcuts</button>
         </div>
+    </div>
+    <br>
+
+    <div class="tab-container" id="tab-container"></div>
+
+    <div class="chart-container" id="voiceCommandsChartContainer">
+        <canvas id="voiceCommandsChart"></canvas>
+    </div>
+    <div class="chart-container" id="highContrastChartContainer">
+        <canvas id="highContrastChart"></canvas>
+    </div>
+    <div class="chart-container" id="fontSizeChartContainer">
+        <canvas id="fontSizeChart"></canvas>
+    </div>
+    <div class="chart-container" id="screenReaderChartContainer">
+        <canvas id="screenReaderChart"></canvas>
+    </div>
+    <div class="chart-container" id="textToSpeechChartContainer">
+        <canvas id="textToSpeechChart"></canvas>
+    </div>
+    <div class="chart-container" id="magnifierChartContainer">
+        <canvas id="magnifierChart"></canvas>
+    </div>
+    <div class="chart-container" id="keyboardShortcutsChartContainer">
+        <canvas id="keyboardShortcutsChart"></canvas>
     </div>
     <br>
     <div class="footer-container" id="footer-container">
@@ -249,6 +328,170 @@
             });
         });
 
+        // Generate random data for charts
+        function getRandomData(length, min, max) {
+            return Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+
+        // Voice Commands Chart
+        const ctxVoiceCommands = document.getElementById('voiceCommandsChart').getContext('2d');
+        const voiceCommandsChart = new Chart(ctxVoiceCommands, {
+            type: 'bar',
+            data: {
+                labels: ['Command 1', 'Command 2', 'Command 3', 'Command 4', 'Command 5'],
+                datasets: [{
+                    label: 'Usage Frequency',
+                    data: getRandomData(5, 10, 100),
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // High Contrast Mode Chart
+        const ctxHighContrast = document.getElementById('highContrastChart').getContext('2d');
+        const highContrastChart = new Chart(ctxHighContrast, {
+            type: 'pie',
+            data: {
+                labels: ['Enabled', 'Disabled'],
+                datasets: [{
+                    label: 'High Contrast Mode Usage',
+                    data: getRandomData(2, 10, 100),
+                    backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Font Size Adjustment Chart
+        const ctxFontSize = document.getElementById('fontSizeChart').getContext('2d');
+        const fontSizeChart = new Chart(ctxFontSize, {
+            type: 'line',
+            data: {
+                labels: ['Small', 'Medium', 'Large', 'Extra Large'],
+                datasets: [{
+                    label: 'Font Size Preference',
+                    data: getRandomData(4, 10, 100),
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Screen Reader Chart
+        const ctxScreenReader = document.getElementById('screenReaderChart').getContext('2d');
+        const screenReaderChart = new Chart(ctxScreenReader, {
+            type: 'doughnut',
+            data: {
+                labels: ['Enabled', 'Disabled'],
+                datasets: [{
+                    label: 'Screen Reader Usage',
+                    data: getRandomData(2, 10, 100),
+                    backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Text-to-Speech Chart
+        const ctxTextToSpeech = document.getElementById('textToSpeechChart').getContext('2d');
+        const textToSpeechChart = new Chart(ctxTextToSpeech, {
+            type: 'radar',
+            data: {
+                labels: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5'],
+                datasets: [{
+                    label: 'Text-to-Speech Usage',
+                    data: getRandomData(5, 10, 100),
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Magnifier Chart
+        const ctxMagnifier = document.getElementById('magnifierChart').getContext('2d');
+        const magnifierChart = new Chart(ctxMagnifier, {
+            type: 'polarArea',
+            data: {
+                labels: ['Zoom Level 1', 'Zoom Level 2', 'Zoom Level 3', 'Zoom Level 4', 'Zoom Level 5'],
+                datasets: [{
+                    label: 'Magnifier Usage',
+                    data: getRandomData(5, 10, 100),
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Keyboard Shortcuts Chart
+        const ctxKeyboardShortcuts = document.getElementById('keyboardShortcutsChart').getContext('2d');
+        const keyboardShortcutsChart = new Chart(ctxKeyboardShortcuts, {
+            type: 'bar',
+            data: {
+                labels: ['Shortcut 1', 'Shortcut 2', 'Shortcut 3', 'Shortcut 4', 'Shortcut 5'],
+                datasets: [{
+                    label: 'Usage Frequency',
+                    data: getRandomData(5, 10, 100),
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>

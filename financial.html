@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +21,14 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
@@ -34,8 +36,8 @@
         }
 
         .financial-section {
-            position: relative;
-            width: 99%;
+            position: fixed;
+            width: 98%;
             margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1); /* Increased transparency */
@@ -145,32 +147,30 @@
 
         .chart-container {
             display: none;
-            height: auto;
-            width: 75%;
-            margin: 20px auto;
+            width: 45vh;
+            margin: 350px auto;
         }
 
-            .chart-container.active {
-                display: block;
-                background: rgba(255, 255, 255, 0.8);
-            }
+        .chart-container.active {
+            display: block;
+            background: rgba(255, 255, 255, 0.8);
+        }
 
-        .canvas-chart {
+            .canvas-chart {
             
-            border: 1px solid rgba(255, 255, 255, 0.3); 
-            border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-        }
-
-        @media (max-width: 1080px) {
-            .financial-section {
-                width: 100%;
-                padding: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.3); 
+                border-radius: 4px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 margin: 0 auto;
             }
 
-            .button-container, .footer-container, .chart-container {
+        @media (max-width: 1080px) {
+            .financial-section {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .button-container, .footer-container {
                 align-items: center;
             }
 
@@ -179,9 +179,13 @@
                 align-items: center;
             }
 
-                .header-buttons h1 {
-                    margin-bottom: 10px;
-                }
+            .chart-container.active {
+                flex-wrap: wrap;
+            }
+
+            .header-buttons h1 {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -215,6 +219,7 @@
     <div class="chart-container" id="investmentChartContainer">
         <canvas id="investmentChart"></canvas>
     </div>
+    <br>
     <div class="chart-container" id="netWorthChartContainer">
         <canvas id="netWorthChart"></canvas>
     </div>
@@ -227,13 +232,16 @@
     <div class="chart-container" id="brokerageChartContainer">
         <canvas id="brokerageChart"></canvas>
     </div>
-
+    <br>
     <div class="footer-container" id="footer-container">
-        <input type="checkbox" id="showAmounts">show amounts</input>
+        <input vertical-align="content" type="checkbox" id="showAmounts" checked>
+        <button onclick="toggleCheckbox()" id="toggleButton">Hide Amounts</button>
         <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
     </div>
 
-    <script>function goToPage(page) {
+<script>
+
+    function goToPage(page) {
         window.location.href = page;
     }
 
@@ -248,6 +256,20 @@
             color: '#ff0000',
             autostart: true
         });
+    });
+
+    function toggleCheckbox() {
+        const checkbox = document.getElementById('showAmounts');
+        const button = document.getElementById('toggleButton');
+        checkbox.checked = !checkbox.checked;
+        button.textContent = checkbox.checked ? 'Hide Amounts' : 'Show Amounts';
+        updateChartData();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const button = document.getElementById('toggleButton');
+        const checkbox = document.getElementById('showAmounts');
+        button.textContent = checkbox.checked ? 'Hide Amounts' : 'Show Amounts';
     });
 
     // Chart Animations and Functionality
@@ -326,7 +348,7 @@
         bankingChart: originalData.bankingChart.map(() => '*'),
         creditChart: originalData.creditChart.map(() => '*'),
         brokerageChart: originalData.brokerageChart.map(() => '*')
-    };
+        };
 
     function updateChartData() {
         const showAmounts = showAmountsCheckbox.checked;
@@ -348,7 +370,7 @@
 
     const ctxBudget = document.getElementById('budgetChart').getContext('2d');
     const budgetChart = new Chart(ctxBudget, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
@@ -376,7 +398,7 @@
     // Investment Performance
     const ctxInvestment = document.getElementById('investmentChart').getContext('2d');
     const investmentChart = new Chart(ctxInvestment, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
@@ -521,7 +543,8 @@
                 easing: 'easeInOutBounce'
             }
         }
-    });</script>
+    });
+</script>
 
 </body>
 </html>
