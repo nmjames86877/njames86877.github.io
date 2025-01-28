@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=.75">
     <title>Welcome to MicroLink</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
@@ -150,7 +150,7 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
     <div class="welcome-section" id="welcome-section">
         <div class="header-buttons">
             <h1>MicroLink Prototype</h1>
@@ -161,7 +161,7 @@
             <canvas id="pieChart" class="pie-chart"></canvas>
         </div>
 
-        <div class="button-container">
+        <div class="button-container" id="button-container">
             <button onclick="goToPage('financial.html')">Go To Financial</button>
             <button onclick="goToPage('accessibility.html')">Go To Accessibility</button>
             <button onclick="goToPage('lifestyle.html')">Go To Lifestyle</button>
