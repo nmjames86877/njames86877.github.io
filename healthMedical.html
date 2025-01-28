@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,12 +18,14 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: 0;
+            margin: auto;
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
@@ -31,8 +33,8 @@
         }
 
         .health-section {
-            position: relative;
-            width: 100%;
+            position: fixed;
+            width: 98%;
             margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1); /* Increased transparency */
@@ -113,13 +115,11 @@
 
         @media (max-width: 1080px) {
             .health-section {
-                max-width: 100%;
+                width: 95%;
                 padding: 10px;
-                margin: 0 auto;
             }
 
             .button-container, .footer-container {
-                flex-direction: row;
                 align-items: center;
             }
 
@@ -136,7 +136,7 @@
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="health-section" id="health-section">
+    <div class="health-section" id="health">
         <div class="header-buttons">
             <button onclick="goToPage('settings.html')">Settings</button>
             <h1>Health & Medical</h1>
