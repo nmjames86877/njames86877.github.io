@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,9 +32,9 @@
 
         .container {
             position: relative;
-            width: 100%;
+            width: 95%;
             max-width: 75%;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
             border-radius: 8px;
@@ -47,7 +47,7 @@
         }
 
         @keyframes float {
-            0%, 100% {
+            50% {
                 transform: translateY(0);
             }
 
@@ -213,9 +213,9 @@
 
         @media (max-width: 1080px) {
             .container {
-                max-width: 100%;
+                width: 95%;
                 padding: 10px;
-                margin: 0 auto;
+                margin: 10px auto;
             }
 
             .header-buttons, .text-box, .container {
@@ -364,14 +364,6 @@
                         console.error('Error:', error);
                     });
             });
-
-
-
-
-
-
-
-
 
             // Send feedback to server to update feedbackView.txt
             fetch('/submit-feedback', {
