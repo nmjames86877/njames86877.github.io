@@ -18,7 +18,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .overlay {
@@ -33,7 +33,6 @@
         }
 
         .lifestyle-section {
-            position: fixed;
             width: 98%;
             margin: 20px auto;
             padding: 20px;
@@ -48,7 +47,7 @@
         }
 
         @keyframes float {
-            0%, 100% {
+            50% {
                 transform: translateY(0);
             }
 
@@ -113,7 +112,7 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1920px) {
             .lifestyle-section {
                 width: 95%;
                 padding: 10px;
@@ -135,7 +134,7 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
     <div class="lifestyle-section" id="lifestyle-section">
         <div class="header-buttons">
             <button onclick="goToPage('settings.html')">Settings</button>
@@ -158,6 +157,10 @@
     <div class="footer-container" id="footer-container">
         <button onclick="goToPage('entertainmentViewing.pdf')">Entertainment Viewing</button>
     </div>
+
+    <!--<p>
+        Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved.  Privacy Policy | Terms of Use | Legal | Site Map
+    </p>-->
 
     <script>
         function goToPage(page) {
@@ -194,6 +197,6 @@
             });
         });
     </script>
-    
+
 </body>
 </html>

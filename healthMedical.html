@@ -18,7 +18,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .overlay {
@@ -33,7 +33,6 @@
         }
 
         .health-section {
-            position: fixed;
             width: 98%;
             margin: 20px auto;
             padding: 20px;
@@ -48,7 +47,7 @@
         }
 
         @keyframes float {
-            0%, 100% {
+            50% {
                 transform: translateY(0);
             }
 
@@ -113,7 +112,7 @@
             background-color: rgba(0, 0, 0, 0);
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1920px) {
             .health-section {
                 width: 95%;
                 padding: 10px;
@@ -158,42 +157,46 @@
     <div class="footer-container" id="footer-container">
         <button onclick="goToPage('appointmentReminders.pdf')">Week to Date Health Overview Chart</button>
     </div>
+    
+    <!--<p>
+        Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved.  Privacy Policy | Terms of Use | Legal | Site Map
+    </p>-->
 
     <script>
-    function goToPage(page) {
-        const redirects = {
-            'healthSummary.html': 'inProgress.html',
-            'appointmentReminder.html': 'inProgress.html',
-            'medicationTracker.html': 'inProgress.html',
-            'heartRate.html': 'inProgress.html',
-            'sleep.html': 'inProgress.html',
-            'medicalRecords.html': 'inProgress.html',
-            'medicalProviders.html': 'inProgress.html',
-            'settings.html': 'settings.html',
-            'welcome.html': 'welcome.html',
-            'appointmentReminders.pdf': 'appointmentReminders.pdf'
-        };
+        function goToPage(page) {
+            const redirects = {
+                'healthSummary.html': 'inProgress.html',
+                'appointmentReminder.html': 'inProgress.html',
+                'medicationTracker.html': 'inProgress.html',
+                'heartRate.html': 'inProgress.html',
+                'sleep.html': 'inProgress.html',
+                'medicalRecords.html': 'inProgress.html',
+                'medicalProviders.html': 'inProgress.html',
+                'settings.html': 'settings.html',
+                'welcome.html': 'welcome.html',
+                'appointmentReminders.pdf': 'appointmentReminders.pdf'
+            };
 
-        if (redirects[page]) {
-            window.location.href = redirects[page];
-        } else {
-            window.location.href = page;
+            if (redirects[page]) {
+                window.location.href = redirects[page];
+            } else {
+                window.location.href = page;
+            }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            height: 50,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 3,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                height: 50,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 3,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>

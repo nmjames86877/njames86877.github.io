@@ -1,10 +1,8 @@
 ﻿<!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=.75">
-    <script src="https://cdn.jsdelivr.net/npm/powerbi-client/dist/powerbi.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <title>Financial</title>
@@ -21,7 +19,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .overlay {
@@ -36,7 +34,6 @@
         }
 
         .financial-section {
-            position: fixed;
             width: 98%;
             margin: 20px auto;
             padding: 20px;
@@ -51,7 +48,7 @@
         }
 
         @keyframes float {
-            0%, 100% {
+            50%% {
                 transform: translateY(0);
             }
 
@@ -163,7 +160,7 @@
                 margin: 0 auto;
             }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1920px) {
             .financial-section {
                 width: 95%;
                 padding: 10px;
@@ -237,313 +234,316 @@
         <button onclick="toggleCheckbox()" id="toggleButton">Hide Amounts</button>
         <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
     </div>
+    <br>
+    <!--<p>
+        Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved.  Privacy Policy | Terms of Use | Legal | Site Map
+    </p>-->
+    <script>
 
-<script>
-
-    function goToPage(page) {
-        window.location.href = page;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        var siriWave = new SiriWave({
-            container: document.getElementById('siri-container'),
-            height: 50,
-            style: 'ios9',
-            speed: 0.2,
-            amplitude: 3,
-            frequency: 6,
-            color: '#ff0000',
-            autostart: true
-        });
-    });
-
-    function toggleCheckbox() {
-        const checkbox = document.getElementById('showAmounts');
-        const button = document.getElementById('toggleButton');
-        checkbox.checked = !checkbox.checked;
-        button.textContent = checkbox.checked ? 'Hide Amounts' : 'Show Amounts';
-        updateChartData();
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const button = document.getElementById('toggleButton');
-        const checkbox = document.getElementById('showAmounts');
-        button.textContent = checkbox.checked ? 'Hide Amounts' : 'Show Amounts';
-    });
-
-    // Chart Animations and Functionality
-    const charts = {
-        budgetChart: document.getElementById('budgetChartContainer'),
-        investmentChart: document.getElementById('investmentChartContainer'),
-        netWorthChart: document.getElementById('netWorthChartContainer'),
-        bankingChart: document.getElementById('bankingChartContainer'),
-        creditChart: document.getElementById('creditChartContainer'),
-        brokerageChart: document.getElementById('brokerageChartContainer')
-    };
-
-    const tabContainer = document.getElementById('tab-container');
-
-    function toggleChart(chartId) {
-        const chart = charts[chartId];
-        const tabId = chartId + 'Tab';
-        let tab = document.getElementById(tabId);
-
-        if (!tab) {
-            tab = document.createElement('div');
-            tab.id = tabId;
-            tab.className = 'tab';
-            tab.innerText = chartId.replace('Chart', ' Chart');
-            tab.onclick = () => showChart(chartId);
-            tabContainer.appendChild(tab);
+        function goToPage(page) {
+            window.location.href = page;
         }
 
-        if (chart.classList.contains('active')) {
-            chart.classList.remove('active');
-            tab.classList.remove('active');
-        } else {
-            showChart(chartId);
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                height: 50,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 3,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
+        });
+
+        function toggleCheckbox() {
+            const checkbox = document.getElementById('showAmounts');
+            const button = document.getElementById('toggleButton');
+            checkbox.checked = !checkbox.checked;
+            button.textContent = checkbox.checked ? 'Hide Amounts' : 'Show Amounts';
+            updateChartData();
         }
-    }
 
-    function showChart(chartId) {
-        Object.keys(charts).forEach(id => {
-            const chart = charts[id];
-            const tab = document.getElementById(id + 'Tab');
-            if (id === chartId) {
-                chart.classList.add('active');
-                tab.classList.add('active');
-            } else {
-                chart.classList.remove('active');
-                if (tab) {
-                    tab.classList.remove('active');
-                }
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('toggleButton');
+            const checkbox = document.getElementById('showAmounts');
+            button.textContent = checkbox.checked ? 'Hide Amounts' : 'Show Amounts';
         });
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        Object.values(charts).forEach(chart => {
-            chart.classList.remove('active');
-        });
-    });
-
-    // Charts
-    // Budget Overview
-    // Privacy Feature Show Amounts
-
-    const showAmountsCheckbox = document.getElementById('showAmounts');
-    const originalData = {
-        budgetChart: [30000, 12000, 22000, 16000, 18000, 20000, 17000, 24000, 30000, 28000, 42000, 32000],
-        investmentChart: [5000, 7000, 8000, 9000, 10000, 20000, 22000, 14000, 26000, 18000, 20000, 32000],
-        netWorthChart: [500000, 200000],
-        bankingChart: [10927.86, 200000.00, 100000.00],
-        creditChart: [775, 785, 790],
-        brokerageChart: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320]
-    };
-    const asterisksData = {
-        budgetChart: originalData.budgetChart.map(() => '*'),
-        investmentChart: originalData.investmentChart.map(() => '*'),
-        netWorthChart: originalData.netWorthChart.map(() => '*'),
-        bankingChart: originalData.bankingChart.map(() => '*'),
-        creditChart: originalData.creditChart.map(() => '*'),
-        brokerageChart: originalData.brokerageChart.map(() => '*')
+        // Chart Animations and Functionality
+        const charts = {
+            budgetChart: document.getElementById('budgetChartContainer'),
+            investmentChart: document.getElementById('investmentChartContainer'),
+            netWorthChart: document.getElementById('netWorthChartContainer'),
+            bankingChart: document.getElementById('bankingChartContainer'),
+            creditChart: document.getElementById('creditChartContainer'),
+            brokerageChart: document.getElementById('brokerageChartContainer')
         };
 
-    function updateChartData() {
-        const showAmounts = showAmountsCheckbox.checked;
-        budgetChart.data.datasets[0].data = showAmounts ? originalData.budgetChart : asterisksData.budgetChart;
-        investmentChart.data.datasets[0].data = showAmounts ? originalData.investmentChart : asterisksData.investmentChart;
-        netWorthChart.data.datasets[0].data = showAmounts ? originalData.netWorthChart : asterisksData.netWorthChart;
-        bankingChart.data.datasets[0].data = showAmounts ? originalData.bankingChart : asterisksData.bankingChart;
-        creditChart.data.datasets[0].data = showAmounts ? originalData.creditChart : asterisksData.creditChart;
-        brokerageChart.data.datasets[0].data = showAmounts ? originalData.brokerageChart : asterisksData.brokerageChart;
+        const tabContainer = document.getElementById('tab-container');
 
-        budgetChart.update();
-        investmentChart.update();
-        netWorthChart.update();
-        bankingChart.update();
-        creditChart.update();
-        brokerageChart.update();
-    }
-    showAmountsCheckbox.addEventListener('change', updateChartData);
+        function toggleChart(chartId) {
+            const chart = charts[chartId];
+            const tabId = chartId + 'Tab';
+            let tab = document.getElementById(tabId);
 
-    const ctxBudget = document.getElementById('budgetChart').getContext('2d');
-    const budgetChart = new Chart(ctxBudget, {
-        type: 'bar',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [{
-                label: 'Monthly Budget',
-                data: originalData.budgetChart,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+            if (!tab) {
+                tab = document.createElement('div');
+                tab.id = tabId;
+                tab.className = 'tab';
+                tab.innerText = chartId.replace('Chart', ' Chart');
+                tab.onclick = () => showChart(chartId);
+                tabContainer.appendChild(tab);
+            }
+
+            if (chart.classList.contains('active')) {
+                chart.classList.remove('active');
+                tab.classList.remove('active');
+            } else {
+                showChart(chartId);
+            }
+        }
+
+        function showChart(chartId) {
+            Object.keys(charts).forEach(id => {
+                const chart = charts[id];
+                const tab = document.getElementById(id + 'Tab');
+                if (id === chartId) {
+                    chart.classList.add('active');
+                    tab.classList.add('active');
+                } else {
+                    chart.classList.remove('active');
+                    if (tab) {
+                        tab.classList.remove('active');
+                    }
                 }
-            },
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutBounce'
-            }
+            });
         }
-    });
 
-    // Investment Performance
-    const ctxInvestment = document.getElementById('investmentChart').getContext('2d');
-    const investmentChart = new Chart(ctxInvestment, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [{
-                label: 'Investment Performance',
-                data: originalData.investmentChart,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.values(charts).forEach(chart => {
+                chart.classList.remove('active');
+            });
+        });
+
+        // Charts
+        // Budget Overview
+        // Privacy Feature Show Amounts
+
+        const showAmountsCheckbox = document.getElementById('showAmounts');
+        const originalData = {
+            budgetChart: [30000, 12000, 22000, 16000, 18000, 20000, 17000, 24000, 30000, 28000, 42000, 32000],
+            investmentChart: [5000, 7000, 8000, 9000, 10000, 20000, 22000, 14000, 26000, 18000, 20000, 32000],
+            netWorthChart: [500000, 200000],
+            bankingChart: [10927.86, 200000.00, 100000.00],
+            creditChart: [775, 785, 790],
+            brokerageChart: [4000, 7858, 7903, 1080, 1920, 8000, 7680, 4320]
+        };
+        const asterisksData = {
+            budgetChart: originalData.budgetChart.map(() => '*'),
+            investmentChart: originalData.investmentChart.map(() => '*'),
+            netWorthChart: originalData.netWorthChart.map(() => '*'),
+            bankingChart: originalData.bankingChart.map(() => '*'),
+            creditChart: originalData.creditChart.map(() => '*'),
+            brokerageChart: originalData.brokerageChart.map(() => '*')
+        };
+
+        function updateChartData() {
+            const showAmounts = showAmountsCheckbox.checked;
+            budgetChart.data.datasets[0].data = showAmounts ? originalData.budgetChart : asterisksData.budgetChart;
+            investmentChart.data.datasets[0].data = showAmounts ? originalData.investmentChart : asterisksData.investmentChart;
+            netWorthChart.data.datasets[0].data = showAmounts ? originalData.netWorthChart : asterisksData.netWorthChart;
+            bankingChart.data.datasets[0].data = showAmounts ? originalData.bankingChart : asterisksData.bankingChart;
+            creditChart.data.datasets[0].data = showAmounts ? originalData.creditChart : asterisksData.creditChart;
+            brokerageChart.data.datasets[0].data = showAmounts ? originalData.brokerageChart : asterisksData.brokerageChart;
+
+            budgetChart.update();
+            investmentChart.update();
+            netWorthChart.update();
+            bankingChart.update();
+            creditChart.update();
+            brokerageChart.update();
+        }
+        showAmountsCheckbox.addEventListener('change', updateChartData);
+
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(ctxBudget, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Monthly Budget',
+                    data: originalData.budgetChart,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
                 }
+            }
+        });
+
+        // Investment Performance
+        const ctxInvestment = document.getElementById('investmentChart').getContext('2d');
+        const investmentChart = new Chart(ctxInvestment, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Investment Performance',
+                    data: originalData.investmentChart,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderWidth: 1
+                }]
             },
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutBounce'
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        }
-    });
+        });
 
-    // Net-Worth Summary
-    const ctxNetWorth = document.getElementById('netWorthChart').getContext('2d');
-    const netWorthChart = new Chart(ctxNetWorth, {
-        type: 'pie',
-        data: {
-            labels: ['Assets', 'Liabilities'],
-            datasets: [{
-                label: 'Net-Worth Distribution',
-                data: originalData.netWorthChart,
-                backgroundColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutBounce'
+        // Net-Worth Summary
+        const ctxNetWorth = document.getElementById('netWorthChart').getContext('2d');
+        const netWorthChart = new Chart(ctxNetWorth, {
+            type: 'pie',
+            data: {
+                labels: ['Assets', 'Liabilities'],
+                datasets: [{
+                    label: 'Net-Worth Distribution',
+                    data: originalData.netWorthChart,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        }
-    });
+        });
 
-    // Banking Institution
-    const ctxBanking = document.getElementById('bankingChart').getContext('2d');
-    const bankingChart = new Chart(ctxBanking, {
-        type: 'doughnut',
-        data: {
-            labels: ['Checking', 'Savings', 'Credit'],
-            datasets: [{
-                label: 'Banking Institution Available Balances',
-                data: originalData.bankingChart,
-                backgroundColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutBounce'
+        // Banking Institution
+        const ctxBanking = document.getElementById('bankingChart').getContext('2d');
+        const bankingChart = new Chart(ctxBanking, {
+            type: 'doughnut',
+            data: {
+                labels: ['Checking', 'Savings', 'Credit'],
+                datasets: [{
+                    label: 'Banking Institution Available Balances',
+                    data: originalData.bankingChart,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        }
-    });
+        });
 
-    // Credit Bureau
-    const ctxCredit = document.getElementById('creditChart').getContext('2d');
-    const creditChart = new Chart(ctxCredit, {
-        type: 'radar',
-        data: {
-            labels: ['Experian', 'Equifax', 'TransUnion'],
-            datasets: [{
-                label: 'Credit Scores',
-                data: originalData.creditChart,
-                backgroundColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutBounce'
+        // Credit Bureau
+        const ctxCredit = document.getElementById('creditChart').getContext('2d');
+        const creditChart = new Chart(ctxCredit, {
+            type: 'radar',
+            data: {
+                labels: ['Experian', 'Equifax', 'TransUnion'],
+                datasets: [{
+                    label: 'Credit Scores',
+                    data: originalData.creditChart,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        }
-    });
+        });
 
-    // Brokerage Firm
-    const ctxBrokerage = document.getElementById('brokerageChart').getContext('2d');
-    const brokerageChart = new Chart(ctxBrokerage, {
-        type: 'polarArea',
-        data: {
-            labels: ['Technology', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
-            datasets: [{
-                label: 'Investment',
-                data: originalData.brokerageChart,
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutBounce'
+        // Brokerage Firm
+        const ctxBrokerage = document.getElementById('brokerageChart').getContext('2d');
+        const brokerageChart = new Chart(ctxBrokerage, {
+            type: 'polarArea',
+            data: {
+                labels: ['Technology', 'Healthcare', 'Finance', 'Energy', 'Consumer Goods', 'Bonds', 'Banking', 'Software', 'Crypto'],
+                datasets: [{
+                    label: 'Investment',
+                    data: originalData.brokerageChart,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
 </body>
 </html>

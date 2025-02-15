@@ -19,7 +19,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .overlay {
@@ -34,7 +34,6 @@
         }
 
         .accessibility-section {
-            position: fixed;
             width: 98%;
             margin: 20px auto;
             padding: 20px;
@@ -49,7 +48,7 @@
         }
 
         @keyframes float {
-            0%, 100% {
+            50% {
                 transform: translateY(0);
             }
 
@@ -161,7 +160,7 @@
             margin: 0 auto;
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1920px) {
             .accessibility-section {
                 width: 95%;
                 padding: 10px;
@@ -235,6 +234,10 @@
     <div class="footer-container" id="footer-container">
         <button onclick="goToPage('voiceCommandUsage.pdf')">Voice Command Usage</button>
     </div>
+
+    <!--<p>
+        Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved.  Privacy Policy | Terms of Use | Legal | Site Map
+    </p>-->
 
     <script>
         function goToPage(page) {

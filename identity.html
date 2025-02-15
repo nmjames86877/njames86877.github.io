@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=.75">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
@@ -18,7 +18,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .overlay {
@@ -33,7 +33,6 @@
         }
 
         .identity-section {
-            position: fixed;
             width: 98%;
             margin: 20px auto;
             padding: 20px;
@@ -48,7 +47,7 @@
         }
 
         @keyframes float {
-            0%, 100% {
+            50% {
                 transform: translateY(0);
             }
 
@@ -149,7 +148,7 @@
             border: none;
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1920px) {
             .identity-section, .iframe-container {
                 max-width: 100%;
                 padding: 10px;
@@ -201,6 +200,10 @@
     <div class="iframe-container" id="iframe-container">
         <iframe title="CFPB_Complaints" width="600" height="373" src="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" frameborder="0"></iframe>
     </div>
+
+    <!--<p>
+        Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved.  Privacy Policy | Terms of Use | Legal | Site Map
+    </p>-->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
