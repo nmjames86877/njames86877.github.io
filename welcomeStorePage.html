@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=.75">
+    <title>MicroLink Storefront</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: auto;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+        }
+
+        .store-section {
+            width: 98%;
+            margin: 25px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .header-buttons h1 {
+                flex-grow: 1;
+                text-align: center;
+                font-size: 3.5vh;
+                margin: 0;
+                color: #333333;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+        .cart-container {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: rgba(255,255,255,0.55);
+            border-radius: 8px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+            padding: 18px 22px 14px 22px;
+            min-width: 220px;
+            z-index: 100;
+        }
+
+        .cart-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .cart-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 8px 0;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .cart-remove {
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 2px 7px;
+            font-size: 0.9em;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+            .cart-remove:hover {
+                background: #b30000;
+            }
+
+        .cart-total {
+            font-weight: bold;
+            color: #1E90FF;
+            margin-bottom: 4px;
+        }
+
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.55);
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            padding: 24px 18px;
+            min-width: 260px;
+            max-width: 320px;
+            text-align: left;
+            position: relative;
+        }
+
+        .product-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #1E90FF;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .purchase-btn {
+            background: #1E90FF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+            .purchase-btn:hover {
+                background: #005fa3;
+            }
+
+        .demo-btn {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+            .demo-btn:hover {
+                background: #357a38;
+            }
+
+        .subproducts-list {
+            margin-top: 10px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .subproduct-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .subproduct-label {
+            flex: 1;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: absolute;
+            bottom: 30px;
+        }
+
+        #siri-container {
+            width: 100%;
+            height: 50px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 40px auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90vw;
+            max-width: 1100px;
+            min-height: 70vh;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 8px 16px;
+            background: #1E90FF;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .close-modal {
+            background: #fff;
+            color: #1E90FF;
+            border: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+            .close-modal:hover {
+                background: #e6e6e6;
+            }
+
+        .modal-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            border-radius: 0 0 10px 10px;
+            min-height: 60vh;
+        }
+
+        @media (max-width: 1920px) {
+            .store-section {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .products-container {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="store-section" id="store-section">
+        <div class="header-buttons">
+            <h1>MicroLink Storefront</h1>
+        </div>
+        <div id="siri-container"></div>
+
+        <div class="cart-container" id="cart-container">
+            <div class="cart-title">Shopping Cart</div>
+            <ul class="cart-list" id="cart-list"></ul>
+            <div class="cart-total" id="cart-total">Total: $0</div>
+        </div>
+
+        <div class="products-container">
+            <!-- Financial Section -->
+            <div class="product-card">
+                <div class="product-title">Financial</div>
+                <div class="product-price">$65</div>
+                <button class="purchase-btn" onclick="addToCart('Financial')">Purchase</button>
+                <ul class="subproducts-list">
+                    <li class="subproduct-item">
+                        <span class="subproduct-label">Go To Financial</span>
+                        <button class="demo-btn" onclick="openDemoModal('../MicroLinkPrototype/Site/financial.html')">Demo</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- Accessibility Section -->
+            <div class="product-card">
+                <div class="product-title">Accessibility</div>
+                <div class="product-price">$65</div>
+                <button class="purchase-btn" onclick="addToCart('Accessibility')">Purchase</button>
+                <ul class="subproducts-list">
+                    <li class="subproduct-item">
+                        <span class="subproduct-label">Go To Accessibility</span>
+                        <button class="demo-btn" onclick="openDemoModal('../MicroLinkPrototype/Site/accessibility.html')">Demo</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- Lifestyle Section -->
+            <div class="product-card">
+                <div class="product-title">Lifestyle</div>
+                <div class="product-price">$65</div>
+                <button class="purchase-btn" onclick="addToCart('Lifestyle')">Purchase</button>
+                <ul class="subproducts-list">
+                    <li class="subproduct-item">
+                        <span class="subproduct-label">Go To Lifestyle</span>
+                        <button class="demo-btn" onclick="openDemoModal('../MicroLinkPrototype/Site/lifestyle.html')">Demo</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- Identity Section -->
+            <div class="product-card">
+                <div class="product-title">Identity</div>
+                <div class="product-price">$65</div>
+                <button class="purchase-btn" onclick="addToCart('Identity')">Purchase</button>
+                <ul class="subproducts-list">
+                    <li class="subproduct-item">
+                        <span class="subproduct-label">Go To Identity</span>
+                        <button class="demo-btn" onclick="openDemoModal('../MicroLinkPrototype/Site/identity.html')">Demo</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- Health & Medical Section -->
+            <div class="product-card">
+                <div class="product-title">Health & Medical</div>
+                <div class="product-price">$65</div>
+                <button class="purchase-btn" onclick="addToCart('Health & Medical')">Purchase</button>
+                <ul class="subproducts-list">
+                    <li class="subproduct-item">
+                        <span class="subproduct-label">Go To Health & Medical</span>
+                        <button class="demo-btn" onclick="openDemoModal('../MicroLinkPrototype/Site/healthMedical.html')">Demo</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for Demo -->
+    <div id="demo-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeDemoModal()">&times;</button>
+            </div>
+            <iframe id="demo-iframe" class="modal-iframe" src="" title="Demo"></iframe>
+        </div>
+    </div>
+    <br>
+    <div class="footer-container" id="footer-container">
+        <button onclick="goToPage('https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link')">Video Demo of the MicroLink Prototype</button>
+        <button onclick="goToPage('microLinkSite.html')">Site Map</button>
+        <button onclick="goToPage('feedback.html')">Feedback & Comments</button>
+        <button onclick="goToPage('settings.html')">Settings</button>
+        <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">List of Recent Updates</button>
+    </div>
+
+    <script>
+        // Shopping cart logic
+        const cart = [];
+        const cartList = document.getElementById('cart-list');
+        const cartTotal = document.getElementById('cart-total');
+        const PRODUCT_PRICE = 65;
+
+        function addToCart(product) {
+            if (!cart.includes(product)) {
+                cart.push(product);
+                updateCart();
+            }
+        }
+
+        function removeFromCart(product) {
+            const idx = cart.indexOf(product);
+            if (idx > -1) {
+                cart.splice(idx, 1);
+                updateCart();
+            }
+        }
+
+        function updateCart() {
+            cartList.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                li.innerHTML = `
+                        <span>${item}</span>
+                        <button class="cart-remove" onclick="removeFromCart('${item}')">x</button>
+                    `;
+                cartList.appendChild(li);
+            });
+            cartTotal.textContent = 'Total: $' + (cart.length * PRODUCT_PRICE);
+        }
+
+        // Modal logic for demo
+        function openDemoModal(url) {
+            document.getElementById('demo-iframe').src = url;
+            document.getElementById('demo-modal').style.display = 'block';
+        }
+        function closeDemoModal() {
+            document.getElementById('demo-modal').style.display = 'none';
+            document.getElementById('demo-iframe').src = '';
+        }
+        window.onclick = function (event) {
+            const modal = document.getElementById('demo-modal');
+            if (event.target === modal) {
+                closeDemoModal();
+            }
+        }
+
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                height: 50,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 3,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
+        });
+    </script>
+</body>
+</html>
