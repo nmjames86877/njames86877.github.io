@@ -3,7 +3,7 @@ function goToPage(page) {
     }
 
 function goToSettings() {
-    window.location.href = 'settings.html';
+    window.location.href = './settings.html';
     }
     
     document.addEventListener('DOMContentLoaded', () => {

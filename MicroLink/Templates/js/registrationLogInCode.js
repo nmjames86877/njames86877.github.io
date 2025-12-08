@@ -16,7 +16,7 @@ function showRegistration() {
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault();
     // Placeholder for login logic
-    window.location.href = 'welcome.html';
+    window.location.href = './welcome.html';
 });
 
 document.getElementById('registration-form').addEventListener('submit', function(event) {
@@ -33,7 +33,7 @@ function onGoogleSignIn(googleUser) {
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
     // Placeholder for Google login logic
-    window.location.href = 'welcome.html';
+    window.location.href = './welcome.html';
 }
 
 // Facebook SDK Initialization
@@ -56,7 +56,7 @@ function onFacebookSignIn() {
             FB.api('/me', function(response) {
                 console.log('Good to see you, ' + response.name + '.');
                 // Placeholder for Facebook login logic
-                window.location.href = 'welcome.html';
+                window.location.href = './welcome.html';
             });
         } else {
             console.log('User cancelled login or did not fully authorize.');
@@ -68,5 +68,5 @@ function onFacebookSignIn() {
 function onAppleSignIn() {
     // Placeholder for Apple login logic
     console.log('Apple Sign-In clicked');
-    window.location.href = 'welcome.html';
+    window.location.href = './welcome.html';
 }

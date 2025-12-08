@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function goToWelcome() {
-        window.location.href = 'welcome.html';
+        window.location.href = './welcome.html';
     }
 
     function showSubsection(sectionId, subsectionId) {

@@ -83,7 +83,7 @@ function playStation() {
     //write to the log for debugging
     console.log("playStation() started");
     //referecne to ISS-sounds.mp3 src file
-    mySound = new sound("ISS-sounds.mp3");
+    mySound = new sound("../../Assets/audio/ISS-sounds.mp3");
     console.log("playing ISS-sounds using the sound() function");
     mySound.play();
 }
@@ -92,7 +92,7 @@ function playFrog() {
     //write to the log for debugging
     console.log("playFrog() started");
     //reference to frog-noises.mp3 src file
-    mySound2 = new sound("frog-noises.mp3");
+    mySound2 = new sound("../../Assets/audio/frog-noises.mp3");
     console.log("playing Frog sounds using the sound() function");
     mySound2.play();
 }
