@@ -227,7 +227,7 @@ Full attribution and licensing information available in footer.
             padding: 20px;
             text-align: center;
             width: 100%;
-            margin-top: 160px;
+            margin-top: 175px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -269,6 +269,7 @@ Full attribution and licensing information available in footer.
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             font-style: italic;
             line-height: 1.6;
+            margin-bottom: 10px;
         }
 
         .product-footer-disclaimer a {
@@ -474,11 +475,11 @@ Full attribution and licensing information available in footer.
         </div>
 
         <div class="button-container">
-            <button onclick="goToPage('financial.html')">Financial</button>
-            <button onclick="goToPage('accessibility.html')">Accessibility</button>
-            <button onclick="goToPage('lifestyle.html')">Lifestyle</button>
-            <button onclick="goToPage('identity.html')">Identity</button>
-            <button onclick="goToPage('healthMedical.html')">Health & Medical</button>
+            <button a href="financial.html">Financial</button>
+            <button a href="accessibility.html">Accessibility</button>
+            <button a href="ifestyle.html">Lifestyle</button>
+            <button a href="identity.html">Identity</button>
+            <button a href="healthMedical.html">Health & Medical</button>
         </div>
     </div>
     <!--
@@ -501,7 +502,7 @@ Full attribution and licensing information available in footer.
             <span>•</span>
             <a href="terms.html">Terms</a>
             <span>•</span>
-            <a href="settings.html">Accessibility</a>
+            <a href="settings.html">Settings</a>
             <span>•</span>
             <a href="feedback.html">Support</a>
             <span>•</span>
@@ -512,8 +513,8 @@ Full attribution and licensing information available in footer.
         </div>
         <div class="product-footer-disclaimer">
             ⚠️ This is a prototype system. Features and functionality are subject to change without notice.
-            By using this system, you acknowledge that this is pre-release software provided "as-is" without warranties.
-            <br><br>
+        </div>           
+            <!--<div class="open-source-acknowledgement">
             <strong>Open Source Acknowledgments:</strong><br>
             This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library,
             and <strong>Chart.js</strong>, an open-source charting library.
@@ -525,8 +526,8 @@ Full attribution and licensing information available in footer.
             <br>
             • <strong>Chart.js</strong> © Contributors | MIT License | 
             <a href="https://github.com/chartjs/Chart.js" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
-        </div>
-    </div>
+            </div>
+        </div>-->
 
     <div id="legalContentPanel" class="legal-content-panel">
         <div id="legalContent">
@@ -535,12 +536,6 @@ Full attribution and licensing information available in footer.
     </div>
 
     <footer class="enterprise-footer" id="enterpriseFooter">
-        <div class="enterprise-footer-logo">
-            <img src="LILL_Logo_IMG_8660.png" 
-                 alt="Lilly Pad LLC" 
-                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
-            <span>Lilly Pad LLC</span>
-        </div>
         <div class="enterprise-footer-links">
             <a href="#" data-legal="privacy">Privacy</a>
             <a href="#" data-legal="terms">Terms</a>
@@ -548,7 +543,13 @@ Full attribution and licensing information available in footer.
             <a href="#" data-legal="contact">Contact</a>
         </div>
         <div class="enterprise-footer-copyright">
-            © 2025 Lilly Pad LLC
+            © 2025 Lilly Pad LLC. All Rights Reserved.
+        </div>
+        <div class="enterprise-footer-logo">
+            <img src="LILL_Logo_IMG_8660.png" 
+                 alt="Lilly Pad LLC" 
+                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
+            <span>Lilly Pad LLC</span>
         </div>
     </footer>
 
@@ -626,6 +627,9 @@ Full attribution and licensing information available in footer.
                     {
                         heading: 'Intellectual Property',
                         text: 'All intellectual property rights in this prototype system and its contents are owned by Lilly Pad LLC. Patent Pending. Unauthorized use is prohibited under applicable laws.'
+                    },
+                        heading: 'Open Source Acknowledgments',
+                        text: 'This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library, and <strong>Chart.js</strong>, an open-source charting library.  Both are free to use under the <strong>MIT License</strong>.  Credit and appreciation are extended to the original contributors for their innovation and work.'
                     }
                 ]
             },
@@ -828,4 +832,5 @@ Full attribution and licensing information available in footer.
         }
     </script>
 </body>
+
 </html>
