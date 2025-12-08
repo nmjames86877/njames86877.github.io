@@ -8,6 +8,7 @@ This repository contains multiple projects organized in a clean folder hierarchy
 .
 ├── index.html                  # Main entry point
 ├── LICENSE                     # Repository license
+├── README.md                   # This file
 ├── MicroLink/                  # MicroLink product
 │   ├── Templates/
 │   │   ├── html/              # HTML templates
@@ -17,14 +18,16 @@ This repository contains multiple projects organized in a clean folder hierarchy
 │       ├── images/            # Image assets
 │       ├── audio/             # Audio files
 │       └── documents/         # PDF and CSV documents
-└── CSC102-Portfolio/          # CSC 102 educational portfolio
-    ├── Templates/
-    │   ├── html/              # HTML templates
-    │   ├── css/               # Stylesheets
-    │   └── js/                # JavaScript files
-    └── Assets/
-        ├── images/            # Image assets
-        └── audio/             # Audio files
+├── CSC102-Portfolio/          # CSC 102 educational portfolio
+│   ├── Templates/
+│   │   ├── html/              # HTML templates
+│   │   ├── css/               # Stylesheets
+│   │   └── js/                # JavaScript files
+│   └── Assets/
+│       ├── images/            # Image assets
+│       └── audio/             # Audio files
+└── Miscellaneous/             # Miscellaneous files
+    └── Archive/               # Archived old/duplicate files
 ```
 
 ## Projects
@@ -52,6 +55,14 @@ Educational portfolio containing assignments and projects:
 
 - **Templates** folders contain code files organized by type (HTML, CSS, JavaScript)
 - **Assets** folders contain media and document files organized by type (images, audio, documents)
+- **Miscellaneous/Archive** contains old and duplicate files that were previously in the repository root or nested folders
+
+## Archive
+
+The `Miscellaneous/Archive` folder contains:
+- Old versions of files from the nested `njames86877.github.io-main` folder
+- Duplicate files that were replaced during reorganization
+- Historical files preserved for reference
 
 ## License
 
