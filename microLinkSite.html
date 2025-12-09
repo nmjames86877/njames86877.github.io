@@ -30,6 +30,85 @@
                 background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
                 z-index: -1;
             }
+
+            .product-footer {
+            position: fixed;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-top: 175px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+            .product-footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .product-footer-links a {
+            color: #333333;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .product-footer-links a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-footer-brand {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+            .enterprise-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            color: #e0e0e0;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.65em;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            height: 28px;
+        }
+
+        .enterprise-footer.expanded {
+            padding: 20px 15px;
+            height: auto;
+        }
+
+        .enterprise-footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .enterprise-footer-logo img {
+            height: 18px;
+            width: auto;
+        }
         </style>
     </head >
 
@@ -91,4 +170,5 @@
 
 </body>
 </html>
+
 
