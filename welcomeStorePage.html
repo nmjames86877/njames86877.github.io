@@ -73,14 +73,15 @@
             }
 
         .cart-container {
-            position: fixed;
+            position: ;
             top: 20px;
             right: 30px;
             background: rgba(255,255,255,0.55);
             border-radius: 8px;
             box-shadow: 0 2px 16px rgba(0,0,0,0.12);
             padding: 18px 22px 14px 22px;
-            min-width: 220px;
+            min-width: 260px;
+            max-width: 320px;
             z-index: 100;
         }
 
@@ -110,7 +111,7 @@
             color: #fff;
             border: none;
             border-radius: 3px;
-            padding: 2px 7px;
+            padding: 2px 5px;
             font-size: 0.9em;
             cursor: pointer;
             margin-left: 8px;
@@ -170,9 +171,13 @@
 
             button:hover {
                 background: rgba(255, 255, 255, 0.3);
-                transform: scale(1.05);
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
+        
+        .cart-remove {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
         .purchase-btn {
             background: #1E90FF;
