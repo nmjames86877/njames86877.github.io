@@ -8,33 +8,33 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-            body {
-                font-family: 'Orbitron', sans-serif;
-                background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-                background-size: cover;
-                color: #333333;
-                margin: 0;
-                padding: 15px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                min-height: 100vh;
-                position: relative;
-            }
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
 
-            .overlay {
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here */
-                z-index: -1;
-            }
+        .overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7); /* Adjust the opacity here */
+            z-index: -1;
+        }
 
-            .product-footer {
+        .product-footer {
             position: fixed;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(8px);
             padding: 20px;
             text-align: center;
@@ -43,41 +43,42 @@
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+            .product-footer-brand {
+                position: fixed;
+                bottom: 30;
+                font-size: 0.75em;
+                opacity: 0.7;
+                margin-top: 10px;
+            }
             .product-footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
 
-        .product-footer-links a {
-            color: #333333;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
+            .product-footer-links a {
+                color: #333333;
+                text-decoration: none;
+                opacity: 0.8;
+                transition: all 0.3s ease;
+                padding: 5px 10px;
+                border-radius: 4px;
+            }
 
-        .product-footer-links a:hover {
-            opacity: 1;
-            background: rgba(255, 255, 255, 0.2);
-        }
+                .product-footer-links a:hover {
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.2);
+                }
 
-        .product-footer-brand {
-            font-size: 0.75em;
-            opacity: 0.7;
-            margin-top: 10px;
-        }
-
-            .enterprise-footer {
+        .enterprise-footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(255, 255, 255, 1);
             backdrop-filter: blur(10px);
             color: #e0e0e0;
             padding: 6px 15px;
@@ -92,23 +93,23 @@
             height: 28px;
         }
 
-        .enterprise-footer.expanded {
-            padding: 20px 15px;
-            height: auto;
-        }
+            .enterprise-footer.expanded {
+                padding: 20px 15px;
+                height: auto;
+            }
 
-        .enterprise-footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            opacity: 0.9;
-        }
+            .enterprise-footer-logo {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                opacity: 0.9;
+            }
 
-        .enterprise-footer-logo img {
-            height: 18px;
-            width: auto;
-        }
+                .enterprise-footer-logo img {
+                    height: 18px;
+                    width: auto;
+                }
         </style>
     </head >
 
@@ -170,5 +171,6 @@
 
 </body>
 </html>
+
 
 
