@@ -139,11 +139,11 @@ Full attribution and licensing information available in footer.
             text-align: center;
             backdrop-filter: blur(3px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: float 6s ease-in-out infinite;
+            animation: float 5s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% {
+            50% {
                 transform: translateY(0);
             }
             50% {
@@ -204,18 +204,16 @@ Full attribution and licensing information available in footer.
             font-family: 'Orbitron', sans-serif;
         }
             
-        .ribbon {
-              width: 60px;
-              font-size: 14px;
+        ribbon {
+              width: auto;
+              font-size: 10px;
               padding: 4px;
               position: absolute;
               right: -25px;
               top: -12px;
               text-align: center;
-              border-radius: 25px;
-              transform: rotate(20deg);
-              background-color: #ff9800;
-              color: white;
+              border-radius: 10px;
+              background-color: #00BFFF;
             }
 
         button:hover {
@@ -490,13 +488,13 @@ Full attribution and licensing information available in footer.
             <canvas id="pieChart" class="pie-chart"></canvas>
         </div>
 
-        <div class="button-container" span class="ribbon">
+        <div class="button-container" id="buttoncontainer">
             <button onclick="goToPage('financial.html')">Financial<span class="ribbon"></span></button>
             <button onclick="goToPage('accessibility.html')">Accessibility<span class="ribbon"></span></button>
             <button onclick="goToPage('lifestyle.html')">Lifestyle<span class="ribbon"></span></button>
             <button onclick="goToPage('identity.html')">Identity<span class="ribbon"></span></button>
             <button onclick="goToPage('healthMedical.html')">Health & Medical<span class="ribbon"></span></button>
-        </div>
+        </div></span>
     </div>
     <!--
     <div class="footer-container">
@@ -854,6 +852,7 @@ Full attribution and licensing information available in footer.
 </body>
 
 </html>
+
 
 
 
