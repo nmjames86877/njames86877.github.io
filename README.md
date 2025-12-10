@@ -1,6 +1,6 @@
 # Nicholas M James - Portfolio & Projects
 
-This repository contains two main products organized hierarchically for easy navigation and maintenance.
+This repository contains three main products organized hierarchically for easy navigation and maintenance.
 
 ## Repository Structure
 
@@ -11,6 +11,20 @@ The repository is organized using a hierarchical structure based on Product/Proj
 ├── index.html                          # Landing page for all products
 ├── LICENSE                             # Repository license
 ├── README.md                           # This file
+│
+├── ElizabethAI/                        # Elizabeth AI Product
+│   ├── Templates/
+│   │   ├── html/                       # HTML templates
+│   │   │   └── elizabeth.html          # Elizabeth AI interface
+│   │   ├── css/                        # Stylesheets
+│   │   │   └── styles.css              # Elizabeth AI styles
+│   │   └── js/                         # JavaScript files
+│   │       └── elizabeth.js            # Elizabeth AI logic and 3D rendering
+│   └── Assets/
+│       ├── images/                     # Image assets
+│       │   └── Elizabeth.PNG           # Elizabeth avatar image
+│       ├── audio/                      # Audio files (future use)
+│       └── documents/                  # Documentation (future use)
 │
 ├── MicroLink/                          # MicroLink Product
 │   ├── Templates/
@@ -28,7 +42,6 @@ The repository is organized using a hierarchical structure based on Product/Proj
 │   │   │   ├── signRegistration.html  # User registration
 │   │   │   ├── microLinkSite.html     # Site information
 │   │   │   ├── microlinkapp.html      # Main application
-│   │   │   ├── elizabeth.html         # Elizabeth AI interface
 │   │   │   ├── apiFetch.html          # API demonstration
 │   │   │   └── inProgress.html        # Work in progress page
 │   │   ├── css/                       # Stylesheets
@@ -36,8 +49,7 @@ The repository is organized using a hierarchical structure based on Product/Proj
 │   │   │   ├── financialStyle.css
 │   │   │   ├── registrationLogInStyle.css
 │   │   │   ├── microlinkappStyles.css
-│   │   │   ├── apiFetchStyle.css
-│   │   │   └── styles.css
+│   │   │   └── apiFetchStyle.css
 │   │   └── js/                        # JavaScript files
 │   │       ├── welcomeCode.js
 │   │       ├── financialCode.js
@@ -92,9 +104,19 @@ The repository is organized using a hierarchical structure based on Product/Proj
 
 ## Products
 
+### Elizabeth AI
+Elizabeth™ - Your AI Companion & Guardian. An advanced AI interface featuring:
+- Multiple interaction modes (Friend, Business, Legal, Life Coach, Relationship, Guardian)
+- Voice synthesis with customizable pitch, rate, and volume
+- 3D avatar visualization with facial animations
+- Comprehensive human rights protection mode
+- Emergency resources and crisis support
+- Interactive chat interface with emotional context
+
+**Entry Point:** `ElizabethAI/Templates/html/elizabeth.html`
+
 ### MicroLink
 MicroLink is an innovative web-based platform that provides:
-- AI-powered assistance (Elizabeth AI)
 - Financial tracking and management
 - Health and medical record tracking
 - Lifestyle and accessibility tools
