@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Log In</title>
+    <link rel="stylesheet" href="../css/registrationLogInStyle.css">
+    <script src="../js/registrationLogInCode.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</head>
+<body>
+    <div class="login-section" id="login">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" required>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="social-login">
+            <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+            <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+            <button id="apple-signin-btn" onclick="onAppleSignIn()">Sign in with Apple</button>
+        </div>
+        <p>Don't have an account? <a href="#" onclick="showRegistration()">Register here</a></p>
+    </div>
+    <div class="registration-section" id="registration">
+        <h1>Register</h1>
+        <form id="registration-form">
+            <label for="register-username">Username:</label>
+            <input type="text" id="register-username" required>
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" required>
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" required>
+            <button type="submit">Register</button>
+        </form>
+        <div class="social-login">
+            <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+            <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+            <button id="apple-signin-btn" onclick="onAppleSignIn()">Sign in with Apple</button>
+        </div>
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+    </div>
+</body>
+</html>
