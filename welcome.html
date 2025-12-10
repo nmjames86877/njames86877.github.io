@@ -203,6 +203,20 @@ Full attribution and licensing information available in footer.
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-family: 'Orbitron', sans-serif;
         }
+            
+        .ribbon {
+              width: 60px;
+              font-size: 14px;
+              padding: 4px;
+              position: absolute;
+              right: -25px;
+              top: -12px;
+              text-align: center;
+              border-radius: 25px;
+              transform: rotate(20deg);
+              background-color: #ff9800;
+              color: white;
+            }
 
         button:hover {
             background: rgba(255, 255, 255, 0.32);
@@ -477,11 +491,11 @@ Full attribution and licensing information available in footer.
         </div>
 
         <div class="button-container">
-            <button onclick="goToPage('financial.html')">Financial</button>
-            <button onclick="goToPage('accessibility.html')">Accessibility</button>
-            <button onclick="goToPage('lifestyle.html')">Lifestyle</button>
-            <button onclick="goToPage('identity.html')">Identity</button>
-            <button onclick="goToPage('healthMedical.html')">Health & Medical</button>
+            <button onclick="goToPage('financial.html')"<span class="ribbon">Financial</span></button>
+            <button onclick="goToPage('accessibility.html')"<span class="ribbon">Accessibility</span></button>
+            <button onclick="goToPage('lifestyle.html')"<span class="ribbon">Lifestyle</span></button>
+            <button onclick="goToPage('identity.html')"<span class="ribbon">Identity</span></button>
+            <button onclick="goToPage('healthMedical.html')"<span class="ribbon">Health & Medical</span></button>
         </div>
     </div>
     <!--
@@ -840,6 +854,7 @@ Full attribution and licensing information available in footer.
 </body>
 
 </html>
+
 
 
 
