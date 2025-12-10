@@ -487,11 +487,11 @@ Full attribution and licensing information available in footer.
         </div>
 
         <div class="button-container" id="buttoncontainer">
-            <button onclick="goToPage('financial.html')">Financial<span class="ribbon"></span></button>
-            <button onclick="goToPage('accessibility.html')">Accessibility<span class="ribbon"></span></button>
-            <button onclick="goToPage('lifestyle.html')">Lifestyle<span class="ribbon"></span></button>
-            <button onclick="goToPage('identity.html')">Identity<span class="ribbon"></span></button>
-            <button onclick="goToPage('healthMedical.html')">Health & Medical<span class="ribbon"></span></button>
+            <button onclick="goToPage('financial.html')">Financial<span class="ribbon" id="financial-notification"></span></button>
+            <button onclick="goToPage('accessibility.html')">Accessibility<span class="ribbon" id="accessibility-notification"></span></button>
+            <button onclick="goToPage('lifestyle.html')">Lifestyle<span class="ribbon" id="lifestyle-notification"></span></button>
+            <button onclick="goToPage('identity.html')">Identity<span class="ribbon" id="identity-notification"></span></button>
+            <button onclick="goToPage('healthMedical.html')">Health & Medical<span class="ribbon" id="health-medical-notification"></span></button>
         </div></span>
     </div>
     <!--
@@ -783,7 +783,6 @@ Full attribution and licensing information available in footer.
                 }
             }
         });
-
             } catch (error) {
                 console.error('Initialization error:', error);
             }
@@ -802,21 +801,21 @@ Full attribution and licensing information available in footer.
         });
 
         // Update Button Ribbon Values
-        updateRibbonValues(pieChartInstance.data.labels.datasets[0].data);
+        updateRibbonValues(pieChartInstance.data.datasets[0].data);
         
         function updateRibbonValues(data) {
             const elements = [
                 'financial-notifications',
                 'identity-notifications',
                 'lifestyle-notifications',
-                'health & medical-notifications',
+                'health-medical-notifications',
                 'accessibility-notifications'
             ];
             
             elements.forEach((id, index) => {
                 const element = document.getElementById(id);
                 if (element) {
-                    element.textContent = data;
+                    element.textContent = data[index];
                 }
             });
         }
