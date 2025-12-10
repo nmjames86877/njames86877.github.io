@@ -803,20 +803,21 @@ Full attribution and licensing information available in footer.
         });
 
         // Update Button Ribbon Values
+        updateRibbonValues(pieChartInstance.data.labels.datasets[0].data);
+        
         function updateRibbonValues(data) {
-            updateRibbonValues(pieChartInstance.data.datasets[0].data);
             const elements = [
                 'financial-notifications',
                 'identity-notifications',
                 'lifestyle-notifications',
-                'health-notifications',
+                'health & medical-notifications',
                 'accessibility-notifications'
             ];
             
             elements.forEach((id, index) => {
                 const element = document.getElementById(id);
                 if (element) {
-                    element.textContent = data[index];
+                    element.textContent = data;
                 }
             });
         }
@@ -852,6 +853,7 @@ Full attribution and licensing information available in footer.
 </body>
 
 </html>
+
 
 
 
