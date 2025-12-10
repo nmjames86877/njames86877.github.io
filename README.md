@@ -119,8 +119,9 @@ Elizabeth™ - Your AI Companion & Guardian. An advanced AI interface featuring:
 MicroLink is an innovative web-based platform that provides:
 - Financial tracking and management
 - Health and medical record tracking
-- Lifestyle and accessibility tools
-- User authentication and registration
+- Lifestyle and social media integration
+- Accessibility management and tracking 
+- Identity tracking and record management
 - Interactive voice and visual interfaces
 
 **Entry Point:** `MicroLink/Templates/html/welcome.html`
