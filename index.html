@@ -1,156 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--For Prof. Prater Class CSC 102
-    09Oct2023
-    
-    This is my assignment for week1-1 The Foundation NMJ
-
-    30Oct2023
-    
-    4.1 Event driven programming
-    Add start and stop buttons to start and stop memeImage moving-->
-
 <head>
-    <script src="indexCode.js"></script>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicholas M James's Website</title>
-</head>
-
-<body>
-    <script>
-        //this is a javascript comment nmj
-    </script>
-
-    <header>
-        <h1>Welcome Nicholas M James's Webpage</h1>
-    </header>
-
-    <br>
-    <nav>
-        <h2>
-            Page Navigation
-        </h2>
-        <a href="./index.html">Home</a><br>
-        <a href="./boards.html">Boards</a><br>
-        <a href="./game.html">Games</a><br>
-        <a href="./strings.html">Strings</a><br>
-        <a href="./welcome.html">MicroLink</a><br>
-    </nav>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <!--marquee to allow movement-->
-    <marquee id="myMarquee" direction="right">
-        <img id="memImage" src="OIP.jpg">
-    </marquee>
-    <center><button onclick="startFun();" id="startButton">Start</button><button onclick="stopFun();"
-            id="stopButton">Stop</button>
-
-        <h3>Well Did You?</h3>
-        They Took Out His Vocal Chordes So He Couldn't Croak
-    </center>
-    
-    <br>
-    <br>
-    <br>
-    <br>
-
-
+    <title>Nicholas M James - Portfolio & Projects</title>
     <style>
-        td,
-        th {
-            border: 1px solid;
-            text-align: center;
-            padding: 8px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        td {
-            text-align: left;
-            padding: 8px;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .project-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-link:hover {
+            opacity: 0.9;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                padding: 30px;
+            }
         }
     </style>
-    <table style="width: 100%" id="tableSmashBros">
-        <!--These are my Table headers-->
-        <tr>
-            <th onclick="sortTable(0)">Rank</th>
-            <th onclick="sortTable(1)">Name</th>
-            <th onclick="sortTable(2)">Weight Class</th>
-            <th onclick="sortTable(3)">Plays</th>
-
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>4</td>
-            <td>Lucas</td>
-            <td>Medium</td>
-            <td>5600</td>
-
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>3</td>
-            <td>Mewtwo</td>
-            <td>Medium</td>
-            <td>6500</td>
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>2</td>
-            <td>Dr. Mario</td>
-            <td>Heavy</td>
-            <td>7450</td>
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>1</td>
-            <td>King DeDeDe</td>
-            <td>Heavy</td>
-            <td>9000</td>
-        </tr>
-    </table>
-    <br>
-    <br>
-
-    <!--for event driven programming, assignment 4.2-->
-
-
-    
-   
-        <p class="frogHappy">
-            <center>
-    <h3>Do You Know Why Frogs Are So Happy?</h3>
-    <img src="whyarefrogssohappy.jpg" id="frogHappy">
-            </center>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nicholas M James</h1>
+            <p class="subtitle">Portfolio & Projects</p>
+        </header>
+        
+        <div class="projects">
+            <div class="project-card">
+                <h2 class="project-title">MicroLink</h2>
+                <p class="project-description">
+                    An innovative web-based platform featuring AI-powered assistance, financial tracking, 
+                    health management, and lifestyle tools. Built with modern web technologies and 
+                    designed for accessibility and user experience.
+                </p>
+                <a href="MicroLink/Templates/html/welcome.html" class="project-link">Launch MicroLink →</a>
+            </div>
             
-        </p>
-
-
-    <br>
-    <center>
+            <div class="project-card">
+                <h2 class="project-title">CSC102 Portfolio</h2>
+                <p class="project-description">
+                    Educational portfolio showcasing projects from CSC 102 Computer Science course. 
+                    Features interactive games, string manipulation tools, and various programming 
+                    exercises demonstrating fundamental CS concepts.
+                </p>
+                <a href="CSC102-Portfolio/Templates/html/index.html" class="project-link">View Portfolio →</a>
+            </div>
+        </div>
         
         <footer>
-
-            University of Advancing Technology<br>
-            2625 W Baseline Road<br>
-            Tempe, AZ 85283-1056<br>
-            602-383-8228
-
+            <p>&copy; 2025 Nicholas M James. All rights reserved.</p>
         </footer>
-
-    </center>
+    </div>
 </body>
-
 </html>
