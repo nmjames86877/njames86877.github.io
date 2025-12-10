@@ -730,6 +730,7 @@ Full attribution and licensing information available in footer.
         let siriWaveInstance = null;
         let pieChartInstance = null;
 
+        // SiriWave anmiation initialization
         document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Initialize Siri Wave
@@ -744,35 +745,34 @@ Full attribution and licensing information available in footer.
                     autostart: true
                 });
 
-                // Generate random data for pie chart
-                const dataSet = [10, 15, 20, 15, 40];
-                const randomData = dataSet.map(() => dataSet[Math.floor(Math.random() * dataSet.length)]);
+        // Generate random data for pie chart
+        const dataSet = [10, 15, 20, 15, 40];
+        const randomData = dataSet.map(() => dataSet[Math.floor(Math.random() * dataSet.length)]);
 
-                // Initialize pie chart
-                const ctx = document.getElementById('pieChart').getContext('2d');
-                pieChartInstance = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibility'],
-                        datasets: [{
-                            label: 'Notifications',
-                            data: randomData,
-                            backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', '#ADD8E6'],
-                            hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', '#87CEEB']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom'
-                            }
-                        }
+        // Initialize pie chart
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        pieChartInstance = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibility'],
+                datasets: [{
+                    label: 'Notifications',
+                    data: randomData,
+                    backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', '#ADD8E6'],
+                    hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', '#87CEEB']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
                     }
-                });
+                }
+            }
+        });
 
-                updateRibbonValues(pieChartInstance.data.datasets[0].data);
             } catch (error) {
                 console.error('Initialization error:', error);
             }
@@ -790,7 +790,9 @@ Full attribution and licensing information available in footer.
             }
         });
 
+        // Update Button Ribbon Values
         function updateRibbonValues(data) {
+            updateRibbonValues(pieChartInstance.data.datasets[0].data);
             const elements = [
                 'financial-notifications',
                 'identity-notifications',
@@ -838,6 +840,7 @@ Full attribution and licensing information available in footer.
 </body>
 
 </html>
+
 
 
 
