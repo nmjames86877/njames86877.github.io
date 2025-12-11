@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Site Page MicroLink Prototype</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7); /* Adjust the opacity here */
+            z-index: -1;
+        }
+
+        .product-footer {
+            position: fixed;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-top: 175px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+            .product-footer-brand {
+                position: fixed;
+                bottom: 30;
+                font-size: 0.75em;
+                opacity: 0.7;
+                margin-top: 10px;
+            }
+            .product-footer-links {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+
+            .product-footer-links a {
+                color: #333333;
+                text-decoration: none;
+                opacity: 0.8;
+                transition: all 0.3s ease;
+                padding: 5px 10px;
+                border-radius: 4px;
+            }
+
+                .product-footer-links a:hover {
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.2);
+                }
+
+        .enterprise-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 1);
+            backdrop-filter: blur(10px);
+            color: black;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.65em;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            height: 28px;
+        }
+
+            .enterprise-footer.expanded {
+                padding: 20px 15px;
+                height: auto;
+            }
+
+            .enterprise-footer-logo {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                opacity: 0.9;
+            }
+
+                .enterprise-footer-logo img {
+                    height: 18px;
+                    width: auto;
+                }
+        </style>
+    </head >
+
+<body>
+    <div class="overlay"></div>
+    <h2> Welcome Page</h2>
+    <a href="stg_welcome.html"> MicroLink Prototype Welcome</a>
+    <a href="stg_financial.html"> Financial Section</a>
+    <a href="stg_accessibility.html"> Accessibilty Section</a>
+    <a href="stg_lifestyle.html"> Lifestyle Section</a>
+    <a href="stg_identity.html"> Identity Section</a>
+    <a href="stg_healthMedical.html"> Health & Medical Section</a>
+    <a href="stg_welcomeStorePage.html"> MicroLink Prototype StoreFront</a>
+
+    <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link"> Video Demo</a>
+    <a href="stg_feedback.html"> Feedback Section</a>
+    <a href="stg_settings.html"> Settings Section</a>
+    <a href="https://github.com/nmjames86877/njames86877.github.io/commits/main"> Recent Updates Section</a>
+
+
+    <h2> Financial Section</h2>
+    <a href="investmentPerformance.pdf"> Investment Performance - PDF</a>
+
+
+    <h2> Accessibility Section</h2>
+    <a href="voiceCommandUsage.pdf"> Voice Command Usage - PDF</a>
+
+
+    <h2> Lifestyle Section</h2>
+    <a href="entertainmentViewing.pdf" > Entertainment Usage - PDF</a>
+
+
+    <h2> Identity Section</h2>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiNWQ5NGNjZmItY2MyZC00NzZjLWI1NTktOGYzOTRhNWFkMGYxIiwidCI6Ijc2NTQ4YjJmLTU4MmQtNGJmYy1iMjllLWM3N2Y0Y2VlNDg1MyIsImMiOjZ9&pageName=ReportSection3558d4e81b05101dc013" > Consumer Financial Protection Bureau - Power BI</a >
+
+
+    <h2> Health & Medical Section</h2>
+    <a href="appointmentReminders.pdf"> Appointment Reminder Summary - PDF</a>
+
+    <div class="product-footer-brand"> MICROLINK™ — A Product of Lilly Pad LLC</div>
+
+    <footer class="enterprise-footer" id="enterpriseFooter">
+        <div class="enterprise-footer-links">
+            <a href="#" data-legal="privacy">Privacy</a>
+            <a href="#" data-legal="terms">Terms</a>
+            <a href="#" data-legal="legal">Legal</a>
+            <a href="#" data-legal="contact">Contact</a>
+        </div>
+    
+        <div class="enterprise-footer-copyright">
+            © 2025 Lilly Pad LLC. All Rights Reserved.
+        </div>
+        <div class="enterprise-footer-logo">
+            <img src="../../Assets/images/LILL_Logo_IMG_8660.png" 
+                 alt="Lilly Pad LLC" 
+                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
+            <span>Lilly Pad LLC</span>
+        </div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

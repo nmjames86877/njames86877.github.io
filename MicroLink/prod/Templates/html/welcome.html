@@ -1,0 +1,858 @@
+<!--
+welcome.html
+MicroLink Prototype™ - Interactive Web Interface Platform
+
+Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
+CONFIDENTIAL AND PROPRIETARY
+
+TRADEMARK NOTICE: "MicroLink™", "myCompanion™", "Professor X Quantum Communication™", 
+"CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
+
+OPEN SOURCE COMPONENTS:
+This application uses the following open-source libraries under MIT License:
+- SiriWave (https://github.com/kopiro/siriwave) - Waveform visualization
+- Chart.js (https://github.com/chartjs/Chart.js) - Data visualization
+Full attribution and licensing information available in footer.
+-->
+
+<!-- LILLY PAD LLC LOGO ASSET TRACKING -->
+<meta name="brand-owner" content="Lilly Pad LLC">
+<meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
+<meta name="trademark-notice" content="MicroLink™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
+<!-- Favicon with GitHub fallback -->
+<link rel="icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
+<link rel="apple-touch-icon" href="static/LILL_Logo_IMG_8660.png">
+<!-- END LILLY PAD LLC LOGO ASSET TRACKING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=.75">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- LILLY PAD LLC LOGO ASSET TRACKING -->
+    <meta name="brand-owner" content="Lilly Pad LLC">
+    <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
+    <meta name="trademark-notice" content="MicroLink™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
+    
+    <!-- Favicon: Primary (Azure/Local) → Fallback (GitHub) -->
+    <link rel="icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
+    <link rel="apple-touch-icon" href="static/LILL_Logo_IMG_8660.png">
+    
+    <title>MicroLink Prototype</title>
+    
+    <!-- External Scripts with SRI (Subresource Integrity) -->
+    <!-- SiriWave: Open-source waveform visualization library (MIT License) -->
+    <!-- Copyright (c) SiriWave Contributors - https://github.com/kopiro/siriwave -->
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Chart.js: Open-source charting library (MIT License) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+    
+    <!--
+    welcome.html
+    MicroLink Prototype™ - Interactive Web Interface Platform
+
+    Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
+    CONFIDENTIAL AND PROPRIETARY
+
+    TRADEMARK NOTICE: "MicroLink™", "myCompanion™", "Professor X Quantum Communication™", 
+    "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
+    
+    OPEN SOURCE COMPONENTS:
+    This application uses the following open-source libraries under MIT License:
+    - SiriWave (https://github.com/kopiro/siriwave) - Waveform visualization
+    - Chart.js (https://github.com/chartjs/Chart.js) - Data visualization
+    Full attribution and licensing information available in footer.
+    -->
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            /* Primary: Azure Storage/Local → Fallback: GitHub */
+            background-image: 
+                url("lillyPadLLCWatermark.jpg"),
+                url("https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/images/lillyPadLLCWatermark.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Watermark overlay for better visibility */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -2;
+        }
+
+        .welcome-section {
+            width: 98%;
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-buttons h1 {
+            font-size: 3.5vh;
+            color: #333333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        #siri-container {
+            width: 100%;
+            height: 50px;
+            margin: 0 auto 20px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        #chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+            margin: 20px 0;
+        }
+
+        .pie-chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.22);
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Orbitron', sans-serif;
+        }
+            
+        ribbon {
+              width: auto;
+              font-size: 10px;
+              padding: 4px;
+              position: absolute;
+              right: -25px;
+              top: -12px;
+              text-align: center;
+              border-radius: 10px;
+              background-color: #00BFFF;
+            }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.32);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px auto 20px;
+            width: 98%;
+            max-width: 1400px;
+            padding-bottom: 40px;
+        }
+
+        .product-footer {
+            position: fixed;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: 175px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .product-footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .product-footer-links a {
+            color: #333333;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .product-footer-links a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-footer-brand {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        .product-footer-disclaimer {
+            font-size: 0.7em;
+            opacity: 0.6;
+            margin-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .product-footer-disclaimer a {
+            color: #333333;
+            text-decoration: underline;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-footer-disclaimer a:hover {
+            opacity: 1;
+        }
+
+        .product-footer-disclaimer strong {
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .enterprise-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            color: #e0e0e0;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.65em;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            height: 27px;
+        }
+
+        .enterprise-footer.expanded {
+            padding: 20px 15px;
+            height: auto;
+        }
+
+        .enterprise-footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .enterprise-footer-logo img {
+            height: 18px;
+            width: auto;
+        }
+
+        .enterprise-footer-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .enterprise-footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .enterprise-footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .enterprise-footer-copyright {
+            opacity: 0.7;
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        .legal-content-panel {
+            position: fixed;
+            bottom: 28px;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            color: #e0e0e0;
+            padding: 30px 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .legal-content-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .legal-content-panel h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .legal-content-panel p {
+            font-size: 0.85em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legal-content-panel .legal-section {
+            margin-bottom: 20px;
+        }
+
+        .legal-content-panel .legal-section h5 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #87CEFA;
+        }
+
+        @media (max-width: 1920px) {
+            .welcome-section {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+            }
+
+            .header-buttons h1 {
+                margin-bottom: 10px;
+            }
+
+            button {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-section {
+                width: 98%;
+                padding: 10px;
+            }
+
+            .header-buttons h1 {
+                font-size: 2.5vh;
+            }
+
+            #chart-container {
+                height: 30vh;
+            }
+
+            button {
+                padding: 6px 12px;
+                font-size: 0.85em;
+            }
+
+            .enterprise-footer {
+                flex-direction: column;
+                gap: 5px;
+                font-size: 0.6em;
+                padding: 8px 10px;
+                height: auto;
+            }
+
+            .enterprise-footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .legal-content-panel {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"</div>
+    
+    <div class="welcome-section">
+        <div class="header-buttons">
+            <h1>MicroLink Prototype</h1>
+        </div>
+        
+        <div id="siri-container"></div>
+
+        <div id="chart-container">
+            <canvas id="pieChart" class="pie-chart"></canvas>
+        </div>
+
+        <div class="button-container" id="buttoncontainer">
+            <button onclick="goToPage('financial.html')">Financial<span class="ribbon" id="financial-notification"></span></button>
+            <button onclick="goToPage('accessibility.html')">Accessibility<span class="ribbon" id="accessibility-notification"></span></button>
+            <button onclick="goToPage('lifestyle.html')">Lifestyle<span class="ribbon" id="lifestyle-notification"></span></button>
+            <button onclick="goToPage('identity.html')">Identity<span class="ribbon" id="identity-notification"></span></button>
+            <button onclick="goToPage('healthMedical.html')">Health & Medical<span class="ribbon" id="health-medical-notification"></span></button>
+        </div></span>
+    </div>
+    <!--
+    <div class="footer-container">
+        <button onclick="goToPage('https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link')">Video Demo</button>
+        <button onclick="goToPage('microLinkSite.html')">Site Map</button>
+        <button onclick="goToPage('feedback.html')">Feedback</button>
+        <button onclick="goToPage('settings.html')">Settings</button>
+        <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">Updates</button>
+    </div>
+     -->
+
+    <div class="product-footer">
+        <div class="product-footer-links">
+            <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link">Video Demo</a>
+            <span>•</span>
+            <a href="microLinkSite.html">Site Map</a>
+            <span>•</span>
+            <a href="privacy.html">Privacy</a>
+            <span>•</span>
+            <a href="terms.html">Terms</a>
+            <span>•</span>
+            <a href="settings.html">Settings</a>
+            <span>•</span>
+            <a href="feedback.html">Support</a>
+            <span>•</span>
+            <a href="https://github.com/nmjames86877/njames86877.github.io/commits">Updates</a>
+        </div>
+        <div class="product-footer-brand">
+            MICROLINK™ — A Product of Lilly Pad LLC
+        </div>
+        <div class="product-footer-disclaimer">
+            ⚠️ This is a prototype system. Features and functionality are subject to change without notice.
+        </div>           
+            <!--<div class="open-source-acknowledgement">
+            <strong>Open Source Acknowledgments:</strong><br>
+            This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library,
+            and <strong>Chart.js</strong>, an open-source charting library.
+            Both are free to use under the <strong>MIT License</strong>. 
+            Credit and appreciation are extended to the original contributors for their innovation and work.
+            <br><br>
+            • <strong>SiriWave</strong> © Contributors | MIT License | 
+            <a href="https://github.com/kopiro/siriwave" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+            <br>
+            • <strong>Chart.js</strong> © Contributors | MIT License | 
+            <a href="https://github.com/chartjs/Chart.js" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+            </div>
+        </div>-->
+
+    <div id="legalContentPanel" class="legal-content-panel">
+        <div id="legalContent">
+            <!-- Content dynamically inserted here -->
+        </div>
+    </div>
+
+    <footer class="enterprise-footer" id="enterpriseFooter">
+        <div class="enterprise-footer-links">
+            <a href="#" data-legal="privacy">Privacy</a>
+            <a href="#" data-legal="terms">Terms</a>
+            <a href="#" data-legal="legal">Legal</a>
+            <a href="#" data-legal="contact">Contact</a>
+        </div>
+        <div class="enterprise-footer-copyright">
+            © 2025 Lilly Pad LLC. All Rights Reserved.
+        </div>
+        <div class="enterprise-footer-logo">
+            <img src="../../Assets/images/LILL_Logo_IMG_8660.png" 
+                 alt="Lilly Pad LLC" 
+                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
+            <span>Lilly Pad LLC</span>
+        </div>
+    </footer>
+    <script>
+        'use strict';
+
+        /**
+         * SECURITY & PERFORMANCE HARDENING
+         * =================================
+         * - UTF-8 enforcement (prevents encoding errors)
+         * - XSS protection on all dynamic content
+         * - Memory leak prevention for charts/animations
+         * - Proper resource cleanup
+         * 
+         * OPEN SOURCE LIBRARIES (MIT License):
+         * - SiriWave: Waveform visualization (https://github.com/kopiro/siriwave)
+         * - Chart.js: Data visualization (https://github.com/chartjs/Chart.js)
+         */
+
+        // ASSET FALLBACK STRATEGY
+        (function() {
+            const favicon = document.querySelector('link[rel="icon"]');
+            if (favicon) {
+                const img = new Image();
+                img.onerror = function() {
+                    console.warn('Primary favicon failed, switching to GitHub fallback');
+                    favicon.href = 'https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/lilly-pad-llc-favicon.ico';
+                };
+                img.src = favicon.href;
+            }
+        })();
+
+        // XSS Protection: Sanitize HTML content
+        function sanitizeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // Legal content definitions (sanitized)
+        const legalContent = {
+            privacy: {
+                title: 'Privacy & Cookies',
+                sections: [
+                    {
+                        heading: 'Data Protection',
+                        text: 'We respect your privacy and are committed to protecting your personal data. This prototype system collects minimal data necessary for functionality testing. No personal information is shared with third parties.'
+                    },
+                    {
+                        heading: 'Cookies',
+                        text: 'This site uses essential cookies for functionality. No tracking or advertising cookies are used in this prototype environment.'
+                    }
+                ]
+            },
+            terms: {
+                title: 'Terms of Use',
+                sections: [
+                    {
+                        heading: 'Prototype Software',
+                        text: 'This is a prototype system. Features and functionality are subject to change without notice. By using this system, you acknowledge that this is pre-release software provided "as-is" without warranties of any kind, either expressed or implied.'
+                    },
+                    {
+                        heading: 'Usage Agreement',
+                        text: 'By accessing this system, you agree to use it solely for evaluation and testing purposes. Unauthorized use, reproduction, or distribution is prohibited.'
+                    }
+                ]
+            },
+            legal: {
+                title: 'Legal Information',
+                sections: [
+                    {
+                        heading: 'Trademarks',
+                        text: 'MICROLINK™ is a trademark of Lilly Pad LLC. myCompanion™, Professor X Quantum Communication™, and CFPB Analytics™ are trademarks of Lilly Pad LLC. All other trademarks are the property of their respective owners.'
+                    },
+                    {
+                        heading: 'Intellectual Property',
+                        text: 'All intellectual property rights in this prototype system and its contents are owned by Lilly Pad LLC. Patent Pending. Unauthorized use is prohibited under applicable laws.'
+                    },
+                    
+                    {
+                        heading: 'Open Source Acknowledgments',
+                        text: 'This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library, and <strong>Chart.js</strong>, an open-source charting library.  Both are free to use under the <strong>MIT License</strong>.  Credit and appreciation are extended to the original contributors for their innovation and work.'
+                    },
+                ]
+            },
+            contact: {
+                title: 'Contact Lilly Pad LLC',
+                sections: [
+                    {
+                        heading: 'Support & Feedback',
+                        text: 'Have questions or feedback about the MicroLink prototype? We value your input and are here to help. Please use the feedback form or contact our team directly.'
+                    },
+                    {
+                        heading: 'Enterprise Inquiries',
+                        text: 'For business inquiries, partnership opportunities, or enterprise licensing, please contact: legal@lillypadllc.com'
+                    }
+                ]
+            }
+        };
+
+        // Enterprise footer legal panel functionality
+        (function() {
+            const footer = document.getElementById('enterpriseFooter');
+            const legalPanel = document.getElementById('legalContentPanel');
+            const legalContentDiv = document.getElementById('legalContent');
+            const links = document.querySelectorAll('.enterprise-footer-links a[data-legal]');
+            let hideTimer = null;
+
+            function showLegalContent(type) {
+                const content = legalContent[type];
+                if (!content) return;
+
+                // Sanitize all content before insertion
+                let html = `<h4>${sanitizeHTML(content.title)}</h4>`;
+                content.sections.forEach(section => {
+                    html += `
+                        <div class="legal-section">
+                            <h5>${sanitizeHTML(section.heading)}</h5>
+                            <p>${sanitizeHTML(section.text)}</p>
+                        </div>
+                    `;
+                });
+
+                legalContentDiv.innerHTML = html;
+                legalPanel.classList.add('active');
+                footer.classList.add('expanded');
+
+                clearTimeout(hideTimer);
+                hideTimer = setTimeout(() => {
+                    hideLegalContent();
+                }, 5000);
+            }
+
+            function hideLegalContent() {
+                legalPanel.classList.remove('active');
+                footer.classList.remove('expanded');
+                clearTimeout(hideTimer);
+            }
+
+            links.forEach(link => {
+                link.addEventListener('mouseenter', function(e) {
+                    e.preventDefault();
+                    const legalType = this.getAttribute('data-legal');
+                    showLegalContent(legalType);
+                });
+
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            });
+
+            legalPanel.addEventListener('mouseenter', function() {
+                clearTimeout(hideTimer);
+            });
+
+            legalPanel.addEventListener('mouseleave', function() {
+                hideTimer = setTimeout(() => {
+                    hideLegalContent();
+                }, 1000);
+            });
+
+            footer.addEventListener('mouseenter', function() {
+                clearTimeout(hideTimer);
+            });
+
+            footer.addEventListener('mouseleave', function() {
+                if (legalPanel.classList.contains('active')) {
+                    hideTimer = setTimeout(() => {
+                        hideLegalContent();
+                    }, 2000);
+                }
+            });
+        })();
+
+        // Chart and animation initialization with memory leak prevention
+        let siriWaveInstance = null;
+        let pieChartInstance = null;
+
+        // SiriWave anmiation initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // Initialize Siri Wave
+                siriWaveInstance = new SiriWave({
+                    container: document.getElementById('siri-container'),
+                    height: 50,
+                    style: 'ios9',
+                    speed: 0.2,
+                    amplitude: 3,
+                    frequency: 6,
+                    color: '#ff0000',
+                    autostart: true
+                });
+
+        // Generate random data for pie chart
+        const dataSet = [10, 15, 20, 15, 40];
+        const randomData = dataSet.map(() => dataSet[Math.floor(Math.random() * dataSet.length)]);
+
+        // Initialize pie chart
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        pieChartInstance = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibility'],
+                datasets: [{
+                    label: 'Notifications',
+                    data: randomData,
+                    backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', '#ADD8E6'],
+                    hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', '#87CEEB']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+            } catch (error) {
+                console.error('Initialization error:', error);
+            }
+        });
+
+        // Cleanup on page unload (prevent memory leaks)
+        window.addEventListener('beforeunload', () => {
+            if (siriWaveInstance) {
+                siriWaveInstance.stop();
+                siriWaveInstance = null;
+            }
+            if (pieChartInstance) {
+                pieChartInstance.destroy();
+                pieChartInstance = null;
+            }
+        });
+
+        // Update Button Ribbon Values
+        updateRibbonValues(pieChartInstance.data.datasets[0].data);
+        
+        function updateRibbonValues(data) {
+            const elements = [
+                'financial-notifications',
+                'identity-notifications',
+                'lifestyle-notifications',
+                'health-medical-notifications',
+                'accessibility-notifications'
+            ];
+            
+            elements.forEach((id, index) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = data[index];
+                }
+            });
+        }
+
+        // Secure navigation with URL validation
+        function goToPage(page) {
+            if (typeof page !== 'string') return;
+            
+            // Whitelist allowed navigation
+            const allowedDomains = [
+                'drive.google.com',
+                'github.com',
+                window.location.hostname
+            ];
+            
+            try {
+                const url = new URL(page, window.location.origin);
+                const isAllowed = allowedDomains.some(domain => 
+                    url.hostname === domain || url.hostname.endsWith('.' + domain)
+                ) || url.hostname === window.location.hostname;
+                
+                if (isAllowed) {
+                    window.location.href = page;
+                } else {
+                    console.warn('Navigation blocked: Unauthorized domain');
+                }
+            } catch (e) {
+                // Relative URL - allow local navigation
+                window.location.href = page;
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

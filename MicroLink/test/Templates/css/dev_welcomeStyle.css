@@ -1,0 +1,25 @@
+body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: auto;
+        font-family: Arial, sans-serif;
+        background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
