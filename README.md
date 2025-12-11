@@ -94,41 +94,93 @@ Each product has three environments:
 │           ├── audio/
 │           └── documents/
 │
-└── CSC102-Portfolio/                  # CSC102 Portfolio Product
-    ├── index.html                     # Product landing (redirects to prod)
-    ├── Templates/                     # Original templates (maintained for reference)
-    ├── Assets/                        # Original assets (maintained for reference)
+├── Educational-Academic-Portfolio/    # Educational & Academic Portfolio
+│   ├── index.html                     # Product landing (redirects to prod)
+│   ├── Templates/                     # Original templates (maintained for reference)
+│   ├── Assets/                        # Original assets (maintained for reference)
+│   │
+│   ├── prod/                          # PRODUCTION Environment
+│   │   ├── Templates/
+│   │   │   ├── html/                  # Production HTML (professional naming)
+│   │   │   │   ├── index.html
+│   │   │   │   ├── boards.html
+│   │   │   │   ├── game.html
+│   │   │   │   └── strings.html
+│   │   │   ├── css/                   # Production stylesheets
+│   │   │   └── js/                    # Production JavaScript
+│   │   └── Assets/
+│   │       ├── images/                # Production images
+│   │       │   ├── logos/             # Brand logos and watermarks
+│   │       │   ├── icons/             # UI icons and graphics
+│   │       │   └── backgrounds/       # Background images
+│   │       └── audio/                 # Production audio files
+│   │           ├── effects/           # Sound effects
+│   │           ├── music/             # Background music
+│   │           └── voice/             # Voice recordings
+│   │
+│   ├── staging/                       # STAGING Environment (stg_ prefix)
+│   │   ├── Templates/
+│   │   │   ├── html/                  # Staging HTML files (stg_*.html)
+│   │   │   ├── css/                   # Staging stylesheets (stg_*.css)
+│   │   │   └── js/                    # Staging JavaScript (stg_*.js)
+│   │   └── Assets/
+│   │       ├── images/
+│   │       │   ├── logos/
+│   │       │   ├── icons/
+│   │       │   └── backgrounds/
+│   │       └── audio/
+│   │           ├── effects/
+│   │           ├── music/
+│   │           └── voice/
+│   │
+│   └── test/                          # TEST/DEV Environment (dev_ prefix)
+│       ├── Templates/
+│       │   ├── html/                  # Development HTML files (dev_*.html)
+│       │   ├── css/                   # Development stylesheets (dev_*.css)
+│       │   └── js/                    # Development JavaScript (dev_*.js)
+│       └── Assets/
+│           ├── images/
+│           │   ├── logos/
+│           │   ├── icons/
+│           │   └── backgrounds/
+│           └── audio/
+│               ├── effects/
+│               ├── music/
+│               └── voice/
+│
+└── Professional-Portfolio/            # Professional Portfolio
+    ├── index.html                     # Portfolio landing page
     │
-    ├── prod/                          # PRODUCTION Environment
-    │   ├── Templates/
-    │   │   ├── html/                  # Production HTML (professional naming)
-    │   │   │   ├── index.html
-    │   │   │   ├── boards.html
-    │   │   │   ├── game.html
-    │   │   │   └── strings.html
-    │   │   ├── css/                   # Production stylesheets
-    │   │   └── js/                    # Production JavaScript
-    │   └── Assets/
-    │       ├── images/                # Production images
-    │       └── audio/                 # Production audio files
+    ├── Data-Science/                  # Data Science Category
+    │   ├── index.html                 # Category landing (redirects to prod)
+    │   ├── prod/                      # PRODUCTION Environment
+    │   │   ├── Templates/
+    │   │   │   ├── html/              # Production HTML
+    │   │   │   │   └── index.html
+    │   │   │   ├── css/               # Production stylesheets
+    │   │   │   └── js/                # Production JavaScript
+    │   │   └── Assets/
+    │   │       ├── images/            # Categorized images
+    │   │       │   ├── logos/
+    │   │       │   ├── icons/
+    │   │       │   └── backgrounds/
+    │   │       ├── audio/             # Categorized audio
+    │   │       │   ├── effects/
+    │   │       │   ├── music/
+    │   │       │   └── voice/
+    │   │       └── documents/         # Categorized documents
+    │   │           ├── guides/        # Tutorials and how-to guides
+    │   │           ├── reports/       # Analytics and reports
+    │   │           ├── data/          # CSV and data files
+    │   │           └── references/    # Specifications and references
+    │   ├── staging/                   # STAGING Environment
+    │   └── test/                      # TEST/DEV Environment
     │
-    ├── staging/                       # STAGING Environment (stg_ prefix)
-    │   ├── Templates/
-    │   │   ├── html/                  # Staging HTML files (stg_*.html)
-    │   │   ├── css/                   # Staging stylesheets (stg_*.css)
-    │   │   └── js/                    # Staging JavaScript (stg_*.js)
-    │   └── Assets/
-    │       ├── images/
-    │       └── audio/
-    │
-    └── test/                          # TEST/DEV Environment (dev_ prefix)
-        ├── Templates/
-        │   ├── html/                  # Development HTML files (dev_*.html)
-        │   ├── css/                   # Development stylesheets (dev_*.css)
-        │   └── js/                    # Development JavaScript (dev_*.js)
-        └── Assets/
-            ├── images/
-            └── audio/
+    └── Software-Engineering/          # Software Engineering Category
+        ├── index.html                 # Category landing (redirects to prod)
+        ├── prod/                      # PRODUCTION Environment (same structure as Data-Science)
+        ├── staging/                   # STAGING Environment
+        └── test/                      # TEST/DEV Environment
 ```
 
 ## Products
@@ -161,7 +213,7 @@ MicroLink is an innovative web-based platform that provides:
 - Staging: `MicroLink/staging/Templates/html/stg_welcome.html`
 - Test/Dev: `MicroLink/test/Templates/html/dev_welcome.html`
 
-### CSC102 Portfolio
+### Educational & Academic Portfolio
 Educational portfolio showcasing projects from CSC 102 Computer Science course, including:
 - Interactive games and exercises
 - String manipulation demonstrations
@@ -169,9 +221,34 @@ Educational portfolio showcasing projects from CSC 102 Computer Science course, 
 - Programming fundamentals
 
 **Entry Points:**
-- Production: `CSC102-Portfolio/prod/Templates/html/index.html`
-- Staging: `CSC102-Portfolio/staging/Templates/html/stg_index.html`
-- Test/Dev: `CSC102-Portfolio/test/Templates/html/dev_index.html`
+- Production: `Educational-Academic-Portfolio/prod/Templates/html/index.html`
+- Staging: `Educational-Academic-Portfolio/staging/Templates/html/stg_index.html`
+- Test/Dev: `Educational-Academic-Portfolio/test/Templates/html/dev_index.html`
+
+### Professional Portfolio
+Professional portfolio showcasing advanced projects and expertise, organized by domain:
+
+#### Data Science
+Machine Learning, Data Analytics, and AI Solutions:
+- Predictive modeling and pattern recognition
+- Statistical analysis and business intelligence
+- Interactive dashboards and data visualization
+
+**Entry Points:**
+- Production: `Professional-Portfolio/Data-Science/prod/Templates/html/index.html`
+- Staging: `Professional-Portfolio/Data-Science/staging/Templates/html/index.html`
+- Test/Dev: `Professional-Portfolio/Data-Science/test/Templates/html/index.html`
+
+#### Software Engineering
+Full-Stack Development, System Architecture, and Engineering Solutions:
+- End-to-end application development
+- Scalable system architecture design
+- Cloud infrastructure and DevOps
+
+**Entry Points:**
+- Production: `Professional-Portfolio/Software-Engineering/prod/Templates/html/index.html`
+- Staging: `Professional-Portfolio/Software-Engineering/staging/Templates/html/index.html`
+- Test/Dev: `Professional-Portfolio/Software-Engineering/test/Templates/html/index.html`
 
 ## Environment Structure
 
@@ -251,3 +328,25 @@ See [LICENSE](LICENSE) file for details.
 ## Contact
 
 Nicholas M James - [@nmjames86877](https://github.com/nmjames86877)
+
+## Asset Organization
+
+All product assets are organized into a hierarchical subtype structure for better organization and scalability:
+
+### Images
+- **logos/** - Brand logos and watermarks
+- **icons/** - UI icons and graphics
+- **backgrounds/** - Background images
+
+### Audio
+- **effects/** - Sound effects
+- **music/** - Background music
+- **voice/** - Voice recordings
+
+### Documents
+- **guides/** - Tutorials and how-to guides
+- **reports/** - Analytics and reports
+- **data/** - CSV and data files
+- **references/** - Specifications and references
+
+This structure is consistently applied across all products (MicroLink, ElizabethAI, Educational-Academic-Portfolio, and Professional-Portfolio) and all environments (prod, staging, test).
