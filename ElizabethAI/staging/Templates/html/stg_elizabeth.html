@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<!-- myCompanion™ and Elizabeth™ is a trademark of Lilly Pad LLC. All rights reserved. -->
+<!-- Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elizabeth - AI Companion & Guardian</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: #000011;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ffff;
+            font-size: 18px;
+            z-index: 100;
+        }
+        
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #00ffff;
+            font-size: 14px;
+            z-index: 100;
+        }
+        
+        /* Elizabeth Avatar Display */
+        #elizabeth-avatar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #00ffff;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            z-index: 150;
+            transition: all 0.3s ease;
+        }
+        
+        #elizabeth-avatar:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        
+        #elizabeth-avatar.guardian-mode {
+            border-color: #ff6b35;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+        
+        #elizabeth-avatar.guardian-mode:hover {
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.8);
+        }
+        
+        #elizabeth-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        /* Avatar status indicator */
+        #avatar-status {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00ff00;
+            border: 2px solid #ffffff;
+            animation: pulse 2s infinite;
+        }
+        
+        #avatar-status.guardian-mode {
+            background: #ff6b35;
+            animation: guardian-pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes guardian-pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Emergency Button */
+        #emergency-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff0000, #ff6b35);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            transition: all 0.3s ease;
+            animation: emergency-ready 2s infinite;
+        }
+        
+        #emergency-button:hover {
+            transform: scale(1.1);
+            animation: emergency-urgent 0.5s infinite;
+        }
+        
+        @keyframes emergency-ready {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
+        }
+        
+        @keyframes emergency-urgent {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 1); }
+        }
+        
+        #chat-interface {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: 400px;
+            background: rgba(0, 17, 68, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 15px;
+            color: #ffffff;
+            z-index: 200;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+        
+        #chat-interface.guardian-mode {
+            border-color: #ff6b35;
+            background: rgba(68, 17, 0, 0.9);
+        }
+        
+        #chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #00ffff;
+        }
+        
+        #chat-header.guardian-mode {
+            border-bottom-color: #ff6b35;
+        }
+        
+        #chat-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #00ffff;
+        }
+        
+        #chat-header.guardian-mode img {
+            border-color: #ff6b35;
+        }
+        
+        #chat-header h3 {
+            margin: 0;
+            color: #00ffff;
+            font-size: 16px;
+        }
+        
+        #chat-header.guardian-mode h3 {
+            color: #ff6b35;
+        }
+        
+        #mode-indicator {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #00ffff;
+            margin-left: auto;
+        }
+        
+        #mode-indicator.guardian-mode {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+        
+        #chat-messages {
+            height: 250px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        #chat-messages.guardian-mode {
+            border-color: #663300;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .message {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 8px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            background: rgba(0, 255, 255, 0.2);
+            text-align: right;
+            margin-left: auto;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .elizabeth-message {
+            background: rgba(51, 102, 255, 0.2);
+            text-align: left;
+            margin-right: auto;
+            border: 1px solid rgba(51, 102, 255, 0.3);
+        }
+        
+        .elizabeth-message.guardian-mode {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+        
+        .emergency-message {
+            background: rgba(255, 0, 0, 0.3) !important;
+            border: 2px solid #ff0000 !important;
+            animation: urgent-flash 1s infinite;
+        }
+        
+        @keyframes urgent-flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .elizabeth-message::before {
+            content: "🤖 ";
+            color: #00ffff;
+        }
+        
+        .elizabeth-message.guardian-mode::before {
+            content: "🛡️ ";
+            color: #ff6b35;
+        }
+        
+        #chat-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        #chat-input.guardian-mode {
+            border-color: #ff6b35;
+        }
+        
+        #chat-input:focus {
+            outline: none;
+            border-color: #66ccff;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+        
+        #chat-input.guardian-mode:focus {
+            border-color: #ff9966;
+            box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+        }
+        
+        #mode-selector {
+            position: absolute;
+            top: 160px;
+            right: 10px;
+            z-index: 100;
+        }
+        
+        #mode-selector select {
+            background: rgba(0, 17, 68, 0.9);
+            color: #00ffff;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            padding: 8px;
+            font-size: 12px;
+        }
+        
+        #mode-selector select option[value="guardian"] {
+            background: rgba(68, 17, 0, 0.9);
+            color: #ff6b35;
+            font-weight: bold;
+        }
+        
+        #toggle-chat {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 17, 68, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: #00ffff;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 150;
+            transition: all 0.3s ease;
+        }
+        
+        #toggle-chat:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .status-indicator {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            color: #00ff00;
+            font-size: 12px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: 1px solid #00ff00;
+        }
+        
+        .status-indicator.guardian-mode {
+            color: #ff6b35;
+            border-color: #ff6b35;
+            background: rgba(68, 17, 0, 0.5);
+        }
+        
+        /* Speaking animation for avatar */
+        .speaking {
+            animation: speaking-pulse 0.5s infinite alternate;
+        }
+        
+        @keyframes speaking-pulse {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 255, 0, 0.8); }
+        }
+        
+        .speaking.guardian-mode {
+            animation: guardian-speaking-pulse 0.5s infinite alternate;
+        }
+        
+        @keyframes guardian-speaking-pulse {
+            0% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+        
+        /* Introduction modal */
+        #intro-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        #intro-content {
+            background: rgba(0, 17, 68, 0.95);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        #intro-content img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #00ffff;
+            margin-bottom: 20px;
+        }
+        
+        #intro-content h2 {
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+        
+        #intro-content button {
+            background: #00ffff;
+            color: #000011;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        
+        #intro-content button:hover {
+            background: #66ccff;
+        }
+        
+        #guardian-intro {
+            background: #ff6b35;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        #guardian-intro:hover {
+            background: #ff9966;
+        }
+        
+        /* Emergency modal */
+        #emergency-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        #emergency-content {
+            background: rgba(68, 0, 0, 0.95);
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            color: #ffffff;
+            animation: emergency-urgent 1s infinite;
+        }
+        
+        #emergency-content h2 {
+            color: #ff0000;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .emergency-contact {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        #emergency-content button {
+            background: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            font-weight: bold;
+        }
+        
+        #emergency-content button:hover {
+            background: #cc0000;
+        }
+        
+        /* Voice Settings Panel */
+        #voice-settings {
+            position: absolute;
+            top: 220px;
+            right: 10px;
+            width: 280px;
+            background: rgba(0, 17, 68, 0.95);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 15px;
+            color: #ffffff;
+            z-index: 100;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+        
+        #voice-settings.guardian-mode {
+            border-color: #ff6b35;
+            background: rgba(68, 17, 0, 0.95);
+        }
+        
+        #voice-settings h3 {
+            margin: 0 0 15px 0;
+            color: #00ffff;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid #00ffff;
+            padding-bottom: 8px;
+        }
+        
+        #voice-settings.guardian-mode h3 {
+            color: #ff6b35;
+            border-bottom-color: #ff6b35;
+        }
+        
+        .voice-control {
+            margin-bottom: 12px;
+        }
+        
+        .voice-control label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #cccccc;
+        }
+        
+        .voice-control input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(0, 255, 255, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .voice-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00ffff;
+            cursor: pointer;
+            box-shadow: 0 0 4px rgba(0, 255, 255, 0.5);
+        }
+        
+        .voice-control input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00ffff;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 4px rgba(0, 255, 255, 0.5);
+        }
+        
+        #voice-settings.guardian-mode .voice-control input[type="range"] {
+            background: rgba(255, 107, 53, 0.3);
+        }
+        
+        #voice-settings.guardian-mode .voice-control input[type="range"]::-webkit-slider-thumb {
+            background: #ff6b35;
+            box-shadow: 0 0 4px rgba(255, 107, 53, 0.5);
+        }
+        
+        #voice-settings.guardian-mode .voice-control input[type="range"]::-moz-range-thumb {
+            background: #ff6b35;
+            box-shadow: 0 0 4px rgba(255, 107, 53, 0.5);
+        }
+        
+        .voice-value {
+            display: inline-block;
+            float: right;
+            font-size: 11px;
+            color: #00ffff;
+            font-weight: bold;
+        }
+        
+        #voice-settings.guardian-mode .voice-value {
+            color: #ff6b35;
+        }
+        
+        .voice-control select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #00ffff;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 11px;
+        }
+        
+        #voice-settings.guardian-mode .voice-control select {
+            border-color: #ff6b35;
+        }
+        
+        .voice-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .voice-btn {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid #00ffff;
+            border-radius: 4px;
+            background: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .voice-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+        }
+        
+        #voice-settings.guardian-mode .voice-btn {
+            border-color: #ff6b35;
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+        }
+        
+        #voice-settings.guardian-mode .voice-btn:hover {
+            background: rgba(255, 107, 53, 0.2);
+        }
+        
+        #voice-toggle {
+            position: absolute;
+            top: 200px;
+            right: 10px;
+            background: rgba(0, 17, 68, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 6px;
+            width: 40px;
+            height: 30px;
+            color: #00ffff;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 110;
+            transition: all 0.3s ease;
+        }
+        
+        #voice-toggle:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        #voice-toggle.guardian-mode {
+            border-color: #ff6b35;
+            color: #ff6b35;
+            background: rgba(68, 17, 0, 0.9);
+        }
+        
+        #voice-toggle.guardian-mode:hover {
+            background: rgba(255, 107, 53, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Introduction Modal -->
+    <div id="intro-modal">
+        <div id="intro-content">
+            <img src="../../Assets/images/Elizabeth.PNG" alt="Elizabeth AI" />
+            <h2>Meet Elizabeth - My AI Guardian</h2>
+            <p>My Elizabeth is almost ready to briefly demo herself to you.  She will interact through conversation, guidance, and <strong>comprehensive human rights protection</strong>.</p>
+            <button onclick="closeIntroModal()">Start Conversation</button>
+            <button id="guardian-intro" onclick="startGuardianMode()">🛡️ Activate Guardian Mode</button>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
+    <div id="emergency-modal">
+        <div id="emergency-content">
+            <h2>🚨 EMERGENCY ASSISTANCE 🚨</h2>
+            <div class="emergency-contact">
+                <strong>IMMEDIATE DANGER: Call 911</strong>
+            </div>
+            <div class="emergency-contact">
+                <strong>Suicide Prevention: 988</strong>
+            </div>
+            <div class="emergency-contact">
+                <strong>Domestic Violence: 1-800-799-7233</strong>
+            </div>
+            <div class="emergency-contact">
+                <strong>Crisis Text Line: Text HOME to 741741</strong>
+            </div>
+            <p>If you are in immediate danger, please contact emergency services right away.</p>
+            <button onclick="closeEmergencyModal()">I Understand</button>
+            <button onclick="activateGuardianSupport()">🛡️ Get Guardian Support</button>
+        </div>
+    </div>
+
+    <div id="loading">Loading Elizabeth...</div>
+    <div id="info">Elizabeth - AI myCompanion & Guardian</div>
+    <div class="status-indicator" id="status">Status: Initializing...</div>
+
+    <!-- Emergency Button -->
+    <div id="emergency-button" onclick="showEmergencyModal()" title="Emergency Resources & Crisis Support">🚨</div>
+
+    <!-- Elizabeth Avatar -->
+    <div id="elizabeth-avatar">
+        <img src="../../Assets/images/Elizabeth.PNG" alt="Elizabeth AI" />
+        <div id="avatar-status"></div>
+    </div>
+
+    <div id="mode-selector">
+        <select id="mode-select">
+            <option value="friend">🤖 Friend Mode</option>
+            <option value="business">💼 Business Mode</option>
+            <option value="legal">⚖️ Legal Mode</option>
+            <option value="life_coach">🎯 Life Coach Mode</option>
+            <option value="relationship">💕 Relationship Mode</option>
+            <option value="guardian">🛡️ Guardian Mode - Human Rights Protection</option>
+        </select>
+    </div>
+
+    <div id="toggle-chat">💬</div>
+
+    <div id="chat-interface">
+        <div id="chat-header">
+            <img src="../../Assets/images/Elizabeth.PNG" alt="Elizabeth" />
+            <h3>Elizabeth AI</h3>
+            <div id="mode-indicator">Friend</div>
+        </div>
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Type your message..." maxlength="500">
+    </div>
+
+    <!-- Voice Settings Toggle -->
+    <div id="voice-toggle" onclick="toggleVoiceSettings()" title="Voice Settings">🎤</div>
+
+    <!-- Voice Settings Panel -->
+    <div id="voice-settings">
+        <h3>🎭 Elizabeth's Voice Settings</h3>
+        
+        <div class="voice-control">
+            <label for="pitch-slider">Voice Pitch <span class="voice-value" id="pitch-value">1.20</span></label>
+            <input type="range" id="pitch-slider" min="0.8" max="1.8" step="0.05" value="1.20">
+        </div>
+        
+        <div class="voice-control">
+            <label for="rate-slider">Speaking Rate <span class="voice-value" id="rate-value">0.92</span></label>
+            <input type="range" id="rate-slider" min="0.5" max="1.5" step="0.05" value="0.92">
+        </div>
+        
+        <div class="voice-control">
+            <label for="volume-slider">Volume <span class="voice-value" id="volume-value">0.80</span></label>
+            <input type="range" id="volume-slider" min="0.3" max="1.0" step="0.05" value="0.80">
+        </div>
+        
+        <div class="voice-control">
+            <label for="voice-select">Voice Engine</label>
+            <select id="voice-select">
+                <option value="auto">🤖 Auto-Select Best Voice</option>
+                <option value="browser">🌐 Browser Default</option>
+            </select>
+        </div>
+        
+        <div class="voice-buttons">
+            <button class="voice-btn" onclick="testElizabethVoice()">Test Voice</button>
+            <button class="voice-btn" onclick="resetVoiceSettings()">Reset</button>
+            <button class="voice-btn" onclick="saveVoiceSettings()">Save</button>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+                "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/GLTFLoader.js",
+                "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js",
+                "gsap": "https://unpkg.com/gsap@3.12.2/index.js"
+            }
+        }
+    </script>
+
+    <script>
+        // Global variables
+        let chatVisible = false;
+        let currentMode = 'friend';
+        let isElizabethSpeaking = false;
+        let voiceSettingsVisible = false;
+        let elizabethVoiceSettings = {
+            pitch: 1.20,
+            rate: 0.92,
+            volume: 0.80,
+            voiceEngine: 'auto',
+            selectedVoice: null
+        };
+
+        // Backend API URL (adjust if running on different port)
+        const API_BASE = window.location.origin;
+
+        // Update status function
+        function updateStatus(message) {
+            const statusElement = document.getElementById('status');
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+        }
+
+        // Generate fallback response when backend is unavailable
+        function generateFallbackResponse(message) {
+            const fallbackResponses = {
+                friend: [
+                    "I'm here to listen and help. Tell me more about what's on your mind.",
+                    "That's interesting! I'd love to help you explore that further.",
+                    "I understand. How are you feeling about that?",
+                    "Thanks for sharing that with me. What would you like to talk about next?"
+                ],
+                guardian: [
+                    "🛡️ I'm here to protect your rights and ensure your safety. What do you need assistance with?",
+                    "🛡️ Your safety and well-being are my priority. How can I help you today?",
+                    "🛡️ I'm monitoring your situation. Is there anything urgent I should know about?",
+                    "🛡️ Guardian support is active. What resources or assistance do you need?"
+                ],
+                business: [
+                    "Let me help you with that business matter. What specific area would you like to focus on?",
+                    "I can assist with various business needs. What's your main concern today?",
+                    "That's a great business question. Let me help you think through the options."
+                ],
+                legal: [
+                    "⚖️ I can help you understand legal concepts, but remember I'm not a licensed attorney. What legal topic interests you?",
+                    "⚖️ Legal matters can be complex. What specific area would you like to explore?",
+                    "⚖️ I'm here to help with legal information. What would you like to know?"
+                ]
+            };
+
+            const responses = fallbackResponses[currentMode] || fallbackResponses.friend;
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Close introduction modal
+        function closeIntroModal() {
+            document.getElementById('intro-modal').style.display = 'none';
+            setTimeout(() => {
+                addMessage('elizabeth', "Hello! I'm Elizabeth, your AI companion and guardian. How may I assist you today?");
+            }, 1000);
+        }
+
+        // Start in Guardian mode
+        function startGuardianMode() {
+            document.getElementById('intro-modal').style.display = 'none';
+            setGuardianMode();
+            setTimeout(() => {
+                addMessage('elizabeth', "🛡️ Guardian Mode activated. I'm here to protect your rights and provide crisis support. Your safety and human rights are my top priority. How can I help you today?", true);
+            }, 1000);
+        }
+
+        // Emergency modal functions
+        function showEmergencyModal() {
+            document.getElementById('emergency-modal').style.display = 'flex';
+        }
+
+        function closeEmergencyModal() {
+            document.getElementById('emergency-modal').style.display = 'none';
+        }
+
+        function activateGuardianSupport() {
+            closeEmergencyModal();
+            setGuardianMode();
+            if (!chatVisible) {
+                toggleChat();
+            }
+            addMessage('elizabeth', "🚨 Guardian support activated. I'm here to help with crisis intervention, legal rights, and emergency resources. What urgent assistance do you need?", true);
+        }
+
+        // Set Guardian mode styling and functionality
+        function setGuardianMode() {
+            currentMode = 'guardian';
+            document.getElementById('mode-select').value = 'guardian';
+
+            // Update visual styling
+            const avatar = document.getElementById('elizabeth-avatar');
+            const avatarStatus = document.getElementById('avatar-status');
+            const chatInterface = document.getElementById('chat-interface');
+            const chatHeader = document.getElementById('chat-header');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const status = document.getElementById('status');
+            const modeIndicator = document.getElementById('mode-indicator');
+            const voiceSettings = document.getElementById('voice-settings');
+            const voiceToggle = document.getElementById('voice-toggle');
+
+            avatar.classList.add('guardian-mode');
+            avatarStatus.classList.add('guardian-mode');
+            chatInterface.classList.add('guardian-mode');
+            chatHeader.classList.add('guardian-mode');
+            chatMessages.classList.add('guardian-mode');
+            chatInput.classList.add('guardian-mode');
+            status.classList.add('guardian-mode');
+            modeIndicator.classList.add('guardian-mode');
+            voiceSettings.classList.add('guardian-mode');
+            voiceToggle.classList.add('guardian-mode');
+
+            modeIndicator.textContent = 'Guardian 🛡️';
+            updateStatus('Guardian Mode - Human Rights Protection Active');
+        }
+
+        // Remove Guardian mode styling
+        function removeGuardianMode() {
+            const elements = ['elizabeth-avatar', 'avatar-status', 'chat-interface',
+                'chat-header', 'chat-messages', 'chat-input', 'status', 'mode-indicator',
+                'voice-settings', 'voice-toggle'];
+
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.classList.remove('guardian-mode');
+                }
+            });
+        }
+
+        // Toggle chat interface
+        function toggleChat() {
+            chatVisible = !chatVisible;
+            const chatInterface = document.getElementById('chat-interface');
+            chatInterface.style.display = chatVisible ? 'block' : 'none';
+
+            if (chatVisible && document.getElementById('chat-messages').children.length === 0) {
+                const message = currentMode === 'guardian' ?
+                    "🛡️ Guardian protection active. I'm here to help with your rights and safety. What do you need?" :
+                    "I'm here and ready to help! What's on your mind?";
+                addMessage('elizabeth', message, currentMode === 'guardian');
+            }
+        }
+
+        // Add message to chat interface
+        function addMessage(sender, message, isGuardian = false, isEmergency = false) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+
+            if (isGuardian && sender === 'elizabeth') {
+                messageDiv.classList.add('guardian-mode');
+            }
+
+            if (isEmergency) {
+                messageDiv.classList.add('emergency-message');
+            }
+
+            if (sender === 'system') {
+                messageDiv.style.background = 'rgba(255, 255, 0, 0.2)';
+                messageDiv.style.textAlign = 'center';
+                messageDiv.style.fontStyle = 'italic';
+                messageDiv.style.border = '1px solid rgba(255, 255, 0, 0.3)';
+            } else if (sender === 'error') {
+                messageDiv.style.background = 'rgba(255, 0, 0, 0.2)';
+                messageDiv.style.textAlign = 'center';
+                messageDiv.style.border = '1px solid rgba(255, 0, 0, 0.3)';
+            }
+
+            messageDiv.textContent = message;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Voice Settings Functions
+        function loadVoiceSettings() {
+            const saved = localStorage.getItem('elizabethVoiceSettings');
+            if (saved) {
+                elizabethVoiceSettings = { ...elizabethVoiceSettings, ...JSON.parse(saved) };
+                updateVoiceUI();
+            }
+        }
+
+        function saveVoiceSettings() {
+            localStorage.setItem('elizabethVoiceSettings', JSON.stringify(elizabethVoiceSettings));
+            addMessage('system', '🎭 Voice settings saved! Elizabeth will remember your preferences.');
+            
+            const utterance = new SpeechSynthesisUtterance("Voice settings saved!");
+            applyVoiceSettings(utterance);
+            speechSynthesis.speak(utterance);
+        }
+
+        function resetVoiceSettings() {
+            elizabethVoiceSettings = {
+                pitch: currentMode === 'guardian' ? 1.1 : 1.20,
+                rate: currentMode === 'guardian' ? 0.85 : 0.92,
+                volume: 0.80,
+                voiceEngine: 'auto',
+                selectedVoice: null
+            };
+            updateVoiceUI();
+            addMessage('system', '🎭 Voice settings reset to Elizabeth\'s defaults.');
+        }
+
+        function toggleVoiceSettings() {
+            voiceSettingsVisible = !voiceSettingsVisible;
+            const voicePanel = document.getElementById('voice-settings');
+            voicePanel.style.display = voiceSettingsVisible ? 'block' : 'none';
+
+            if (voiceSettingsVisible) {
+                populateVoiceSelect();
+                updateVoiceUI();
+            }
+        }
+
+        function updateVoiceUI() {
+            document.getElementById('pitch-slider').value = elizabethVoiceSettings.pitch;
+            document.getElementById('rate-slider').value = elizabethVoiceSettings.rate;
+            document.getElementById('volume-slider').value = elizabethVoiceSettings.volume;
+            document.getElementById('voice-select').value = elizabethVoiceSettings.voiceEngine;
+            
+            document.getElementById('pitch-value').textContent = elizabethVoiceSettings.pitch.toFixed(2);
+            document.getElementById('rate-value').textContent = elizabethVoiceSettings.rate.toFixed(2);
+            document.getElementById('volume-value').textContent = elizabethVoiceSettings.volume.toFixed(2);
+        }
+
+        function populateVoiceSelect() {
+            const voiceSelect = document.getElementById('voice-select');
+            const currentVoices = speechSynthesis.getVoices();
+            
+            while (voiceSelect.children.length > 2) {
+                voiceSelect.removeChild(voiceSelect.lastChild);
+            }
+            
+            currentVoices.forEach(voice => {
+                if (voice.lang.startsWith('en')) {
+                    const option = document.createElement('option');
+                    option.value = voice.name;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    voiceSelect.appendChild(option);
+                }
+            });
+        }
+
+        function applyVoiceSettings(utterance) {
+            utterance.pitch = elizabethVoiceSettings.pitch;
+            utterance.rate = elizabethVoiceSettings.rate;
+            utterance.volume = elizabethVoiceSettings.volume;
+            
+            if (elizabethVoiceSettings.voiceEngine !== 'browser' && elizabethVoiceSettings.voiceEngine !== 'auto') {
+                const voices = speechSynthesis.getVoices();
+                const selectedVoice = voices.find(voice => voice.name === elizabethVoiceSettings.voiceEngine);
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                    return;
+                }
+            }
+            
+            if (elizabethVoiceSettings.voiceEngine === 'auto') {
+                const voices = speechSynthesis.getVoices();
+                const preferredVoices = [
+                    'Samantha', 'Karen', 'Susan', 'Victoria', 'Allison',
+                    'Microsoft Zira', 'Google UK English Female', 'en-US-AriaNeural'
+                ];
+                
+                for (const preferred of preferredVoices) {
+                    const voice = voices.find(v => v.name.includes(preferred));
+                    if (voice) {
+                        utterance.voice = voice;
+                        break;
+                    }
+                }
+            }
+        }
+
+        function testElizabethVoice() {
+            const testPhrases = [
+                "Hello! This is my voice with your custom settings.",
+                "I'm Elizabeth, your AI companion. How do I sound?",
+                "These are my personalized voice settings just for you."
+            ];
+            
+            const phrase = testPhrases[Math.floor(Math.random() * testPhrases.length)];
+            const utterance = new SpeechSynthesisUtterance(phrase);
+            
+            applyVoiceSettings(utterance);
+            
+            utterance.onstart = () => {
+                const avatar = document.getElementById('elizabeth-avatar');
+                avatar.classList.add('speaking');
+            };
+            
+            utterance.onend = () => {
+                document.getElementById('elizabeth-avatar').classList.remove('speaking');
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                applyVoiceSettings(utterance);
+                
+                const modeAdjustment = currentMode === 'guardian' ? -0.1 : 0;
+                utterance.pitch = Math.max(0.8, Math.min(1.8, elizabethVoiceSettings.pitch + modeAdjustment));
+                utterance.rate = currentMode === 'guardian' ? 
+                    Math.max(0.7, elizabethVoiceSettings.rate - 0.07) : 
+                    elizabethVoiceSettings.rate;
+
+                utterance.onstart = () => {
+                    isElizabethSpeaking = true;
+                    const avatar = document.getElementById('elizabeth-avatar');
+                    avatar.classList.add('speaking');
+                    if (currentMode === 'guardian') {
+                        avatar.classList.add('guardian-mode');
+                    }
+                    document.getElementById('avatar-status').style.background = currentMode === 'guardian' ? '#ff6b35' : '#ffff00';
+                    
+                    if (window.ElizabethAPI && window.ElizabethAPI.speak) {
+                        const emotion = currentMode === 'guardian' ? 'guardian' : 'friendly';
+                        window.ElizabethAPI.setExpression(true, emotion);
+                    }
+                };
+
+                utterance.onend = () => {
+                    isElizabethSpeaking = false;
+                    document.getElementById('elizabeth-avatar').classList.remove('speaking');
+                    document.getElementById('avatar-status').style.background = currentMode === 'guardian' ? '#ff6b35' : '#00ff00';
+                    
+                    if (window.ElizabethAPI && window.ElizabethAPI.setExpression) {
+                        window.ElizabethAPI.setExpression(false);
+                    }
+                };
+
+                utterance.onerror = (event) => {
+                    console.warn('🎤 Elizabeth voice error:', event.error);
+                    isElizabethSpeaking = false;
+                    document.getElementById('elizabeth-avatar').classList.remove('speaking');
+                };
+
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Event Listeners Setup
+        document.addEventListener('DOMContentLoaded', () => {
+            loadVoiceSettings();
+            
+            // Set up event listeners
+            document.getElementById('toggle-chat').addEventListener('click', toggleChat);
+
+            // Avatar click interaction
+            document.getElementById('elizabeth-avatar').addEventListener('click', () => {
+                if (!isElizabethSpeaking) {
+                    const message = currentMode === 'guardian' ?
+                        "Guardian mode active. I'm here to protect your rights and provide crisis support. Click the chat button to begin." :
+                        "Hello! Click the chat button to start our conversation, or select a different mode from the dropdown menu.";
+                    speakText(message);
+                }
+            });
+
+            // Mode selector
+            document.getElementById('mode-select').addEventListener('change', async (e) => {
+                const newMode = e.target.value;
+
+                if (newMode === 'guardian') {
+                    setGuardianMode();
+                } else {
+                    removeGuardianMode();
+                    document.getElementById('mode-indicator').textContent = e.target.options[e.target.selectedIndex].text.split(' ').slice(1).join(' ');
+                }
+
+                try {
+                    const response = await fetch(`${API_BASE}/api/set_mode`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ mode: newMode })
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        currentMode = data.mode;
+                        const modeMessage = `Mode changed to: ${data.mode.replace('_', ' ')}`;
+                        addMessage('system', modeMessage);
+
+                        if (newMode !== 'guardian') {
+                            updateStatus(`Mode: ${data.mode.replace('_', ' ')}`);
+                        }
+
+                        const speechMessage = newMode === 'guardian' ?
+                            "Guardian mode activated. Your rights and safety are now my top priority." :
+                            `Switching to ${data.mode.replace('_', ' ')} mode.`;
+                        speakText(speechMessage);
+                    }
+                } catch (error) {
+                    console.error('Error changing mode:', error);
+                    addMessage('error', 'Failed to change mode. Using offline mode.');
+                }
+            });
+
+            // Chat input handling
+            document.getElementById('chat-input').addEventListener('keypress', async (e) => {
+                if (e.key === 'Enter' && e.target.value.trim()) {
+                    const message = e.target.value.trim();
+                    e.target.value = '';
+
+                    addMessage('user', message);
+
+                    try {
+                        const response = await fetch(`${API_BASE}/api/chat`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ message: message })
+                        });
+
+                        const data = await response.json();
+                        if (data.response) {
+                            const isEmergency = data.response.includes('🚨') || data.response.includes('EMERGENCY');
+                            addMessage('elizabeth', data.response, currentMode === 'guardian', isEmergency);
+                            speakText(data.response);
+                        }
+                    } catch (error) {
+                        console.error('Error sending message:', error);
+                        const fallbackResponse = generateFallbackResponse(message);
+                        addMessage('elizabeth', fallbackResponse, currentMode === 'guardian');
+                        speakText(fallbackResponse);
+                    }
+                }
+            });
+            
+            // Voice control sliders
+            document.getElementById('pitch-slider').addEventListener('input', (e) => {
+                elizabethVoiceSettings.pitch = parseFloat(e.target.value);
+                document.getElementById('pitch-value').textContent = elizabethVoiceSettings.pitch.toFixed(2);
+            });
+            
+            document.getElementById('rate-slider').addEventListener('input', (e) => {
+                elizabethVoiceSettings.rate = parseFloat(e.target.value);
+                document.getElementById('rate-value').textContent = elizabethVoiceSettings.rate.toFixed(2);
+            });
+            
+            document.getElementById('volume-slider').addEventListener('input', (e) => {
+                elizabethVoiceSettings.volume = parseFloat(e.target.value);
+                document.getElementById('volume-value').textContent = elizabethVoiceSettings.volume.toFixed(2);
+            });
+            
+            document.getElementById('voice-select').addEventListener('change', (e) => {
+                elizabethVoiceSettings.voiceEngine = e.target.value;
+            });
+        });
+
+        // Initialize voice system when voices are loaded
+        if ('speechSynthesis' in window) {
+            speechSynthesis.onvoiceschanged = () => {
+                if (voiceSettingsVisible) {
+                    populateVoiceSelect();
+                }
+            };
+        }
+    </script>
+
+    <script type="module" src="../js/stg_elizabeth.js"></script>
+</body>
+</html>

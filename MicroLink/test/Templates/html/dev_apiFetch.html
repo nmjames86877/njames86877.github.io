@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Complaints CSV</title>
+    <style>
+        body {
+            width: flex;
+            height: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+        
+        #response-body {
+            width: 150px;
+            height: 200px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Complaints CSV</h1>
+    <button id="update-button">Update CSV</button>
+    <p id="response-code"></p>
+    <p id="request-url"></p>
+    <div id="response-body"></div>
+    <script>
+        document.getElementById('update-button').addEventListener('click', async () => {
+            const button = document.getElementById('update-button');
+            const responseCode = document.getElementById('response-code');
+            const requestUrl = document.getElementById('request-url');
+            const responseBody = document.getElementById('response-body');
+            button.textContent = 'Fetching...';
+
+            // API URL
+            const url = "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?field=all&date_received_min=2024-12-01";
+            requestUrl.textContent = `Request URL: ${url}`;
+
+            try {
+                // Fetch data from the API
+                const response = await fetch(url);
+                responseCode.textContent = `Response Code: ${response.status}`;
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                responseBody.textContent = JSON.stringify(data, null, 2);
+
+                // Check if data.hits and data.hits.hits exist
+                if (data.hits && data.hits.hits) {
+                    // CSV column headers
+                    const headers = [
+                        "complaint_id", "date_received", "state", "product", "issue", "date_sent_to_company",
+                        "company", "complaint_what_happened", "has_narrative", "company_response",
+                        "consumer_disputed", "submitted_via", "sub_issue", "sub_product",
+                        "company_public_response", "timely", "zip_code", "consumer_consent_provided", "tags"
+                    ];
+
+                    // Create CSV content
+                    let csvContent = headers.join(",") + "\n";
+                    data.hits.hits.forEach(complaint => {
+                        const row = [
+                            complaint._source.complaint_id,
+                            complaint._source.date_received,
+                            complaint._source.state,
+                            complaint._source.product,
+                            complaint._source.issue,
+                            complaint._source.date_sent_to_company,
+                            complaint._source.company,
+                            complaint._source.complaint_what_happened,
+                            complaint._source.has_narrative,
+                            complaint._source.company_response,
+                            complaint._source.consumer_disputed,
+                            complaint._source.submitted_via,
+                            complaint._source.sub_issue,
+                            complaint._source.sub_product,
+                            complaint._source.company_public_response,
+                            complaint._source.timely,
+                            complaint._source.zip_code,
+                            complaint._source.consumer_consent_provided,
+                            complaint._source.tags
+                        ].join(",");
+                        csvContent += row + "\n";
+                    });
+
+                    // Create a Blob from the CSV content
+                    const blob = new Blob([csvContent], { type: 'text/csv' });
+                    const downloadUrl = window.URL.createObjectURL(blob);
+
+                    // Update button to act as download link
+                    button.textContent = 'Ready';
+                    button.setAttribute('href', downloadUrl);
+                    button.setAttribute('download', 'complaints.csv');
+                } else {
+                    responseCode.textContent += ' | Error: Invalid data format';
+                    button.textContent = 'Update CSV';
+                }
+            } catch (error) {
+                responseCode.textContent += ` | Error fetching data: ${error.message}`;
+                button.textContent = 'Update CSV';
+            }
+        });
+    </script>
+</body>
+</html>

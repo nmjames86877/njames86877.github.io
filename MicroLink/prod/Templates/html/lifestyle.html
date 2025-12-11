@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+    <title>Lifestyle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+        }
+
+        .lifestyle-section {
+            width: 98%;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(3px); /* Reduced blur for clearer background */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333333;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .header-buttons h1 {
+                flex-grow: 1;
+                text-align: center;
+                margin: 0;
+                color: #333333;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            gap: 10px;
+            bottom: 10px;
+            position: absolute;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1); /* Increased transparency */
+            color: #333333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            button:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
+
+        #siri-container {
+            width: 100%;
+            height: 50px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        @media (max-width: 1920px) {
+            .lifestyle-section {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .button-container, .footer-container {
+                align-items: center;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+                .header-buttons h1 {
+                    margin-bottom: 10px;
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="lifestyle-section" id="lifestyle-section">
+        <div class="header-buttons">
+            <button onclick="goToPage('settings.html')">Settings</button>
+            <h1>Lifestyle</h1>
+            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
+        </div>
+        <div id="siri-container"></div>
+
+        <div class="button-container" id="button-container">
+            <button onclick="goToPage('socialFeed.html')">Social Feed</button>
+            <button onclick="goToPage('entertainmentHighlights.html')">Entertainment Highlights</button>
+            <button onclick="goToPage('upcomingEvents.html')">Upcoming Events</button>
+            <button onclick="goToPage('friendsActivities.html')">Friends' Activities</button>
+            <button onclick="goToPage('mediaLibrary.html')">Media Library</button>
+            <button onclick="goToPage('eventInvitations.html')">Event Invitations</button>
+            <button onclick="goToPage('streamingServices.html')">Streaming Services</button>
+        </div>
+    </div>
+    <br>
+    <div class="footer-container" id="footer-container">
+        <button onclick="goToPage('entertainmentViewing.pdf')">Entertainment Viewing</button>
+    </div>
+
+    <!--<p>
+        Copyright (c) 2025 Lilly Pad LLC.  All Rights Reserved.  Privacy Policy | Terms of Use | Legal | Site Map
+    </p>-->
+
+    <script>
+        function goToPage(page) {
+            const redirects = {
+                'settings.html': 'settings.html',
+                'welcome.html': 'welcome.html',
+                'socialFeed.html': 'inProgress.html',
+                'entertainmentHighlights.html': 'inProgress.html',
+                'upcomingEvents.html': 'inProgress.html',
+                'friendsActivities.html': 'inProgress.html',
+                'mediaLibrary.html': 'inProgress.html',
+                'eventInvitations.html': 'inProgress.html',
+                'streamingServices.html': 'inProgress.html',
+                'entertainmentViewing.pdf': 'entertainmentViewing.pdf'
+            };
+
+            if (redirects[page]) {
+                window.location.href = redirects[page];
+            } else {
+                window.location.href = page;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var siriWave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                height: 50,
+                style: 'ios9',
+                speed: 0.2,
+                amplitude: 3,
+                frequency: 6,
+                color: '#ff0000',
+                autostart: true
+            });
+        });
+    </script>
+
+</body>
+</html>
