@@ -30,7 +30,12 @@ Each product has three environments:
 │   │   │   ├── css/                    # Production stylesheets
 │   │   │   └── js/                     # Production JavaScript
 │   │   └── Assets/
-│   │       └── images/                 # Production image assets
+│   │       ├── images/                 # Production image assets
+│   │       └── documents/              # Production documents
+│   │           ├── guides/             # User guides and tutorials
+│   │           ├── reports/            # Generated reports and analytics
+│   │           ├── data/               # Raw data files and CSV exports
+│   │           └── references/         # Reference materials and specs
 │   │
 │   ├── staging/                        # STAGING Environment (stg_ prefix)
 │   │   ├── Templates/
@@ -41,7 +46,12 @@ Each product has three environments:
 │   │   │   └── js/                     # Staging JavaScript
 │   │   │       └── stg_elizabeth.js
 │   │   └── Assets/
-│   │       └── images/                 # Staging assets
+│   │       ├── images/                 # Staging assets
+│   │       └── documents/              # Staging documents
+│   │           ├── guides/             # User guides and tutorials
+│   │           ├── reports/            # Generated reports and analytics
+│   │           ├── data/               # Raw data files and CSV exports
+│   │           └── references/         # Reference materials and specs
 │   │
 │   └── test/                           # TEST/DEV Environment (dev_ prefix)
 │       ├── Templates/
@@ -52,7 +62,12 @@ Each product has three environments:
 │       │   └── js/                     # Development JavaScript
 │       │       └── dev_elizabeth.js
 │       └── Assets/
-│           └── images/                 # Development assets
+│           ├── images/                 # Development assets
+│           └── documents/              # Development documents
+│               ├── guides/             # User guides and tutorials
+│               ├── reports/            # Generated reports and analytics
+│               ├── data/               # Raw data files and CSV exports
+│               └── references/         # Reference materials and specs
 │
 ├── MicroLink/                          # MicroLink Product
 │   ├── index.html                      # Product landing (redirects to prod)
@@ -73,6 +88,10 @@ Each product has three environments:
 │   │       ├── images/                 # Production images
 │   │       ├── audio/                  # Production audio files
 │   │       └── documents/              # Production documents
+│   │           ├── guides/             # User guides and tutorials
+│   │           ├── reports/            # Generated reports and analytics
+│   │           ├── data/               # Raw data files and CSV exports
+│   │           └── references/         # Reference materials and specs
 │   │
 │   ├── staging/                        # STAGING Environment (stg_ prefix)
 │   │   ├── Templates/
@@ -83,6 +102,10 @@ Each product has three environments:
 │   │       ├── images/
 │   │       ├── audio/
 │   │       └── documents/
+│   │           ├── guides/             # User guides and tutorials
+│   │           ├── reports/            # Generated reports and analytics
+│   │           ├── data/               # Raw data files and CSV exports
+│   │           └── references/         # Reference materials and specs
 │   │
 │   └── test/                           # TEST/DEV Environment (dev_ prefix)
 │       ├── Templates/
@@ -93,6 +116,10 @@ Each product has three environments:
 │           ├── images/
 │           ├── audio/
 │           └── documents/
+│               ├── guides/             # User guides and tutorials
+│               ├── reports/            # Generated reports and analytics
+│               ├── data/               # Raw data files and CSV exports
+│               └── references/         # Reference materials and specs
 │
 └── CSC102-Portfolio/                  # CSC102 Portfolio Product
     ├── index.html                     # Product landing (redirects to prod)
@@ -110,7 +137,12 @@ Each product has three environments:
     │   │   └── js/                    # Production JavaScript
     │   └── Assets/
     │       ├── images/                # Production images
-    │       └── audio/                 # Production audio files
+    │       ├── audio/                 # Production audio files
+    │       └── documents/             # Production documents
+    │           ├── guides/            # User guides and tutorials
+    │           ├── reports/           # Generated reports and analytics
+    │           ├── data/              # Raw data files and CSV exports
+    │           └── references/        # Reference materials and specs
     │
     ├── staging/                       # STAGING Environment (stg_ prefix)
     │   ├── Templates/
@@ -119,7 +151,12 @@ Each product has three environments:
     │   │   └── js/                    # Staging JavaScript (stg_*.js)
     │   └── Assets/
     │       ├── images/
-    │       └── audio/
+    │       ├── audio/
+    │       └── documents/
+    │           ├── guides/            # User guides and tutorials
+    │           ├── reports/           # Generated reports and analytics
+    │           ├── data/              # Raw data files and CSV exports
+    │           └── references/        # Reference materials and specs
     │
     └── test/                          # TEST/DEV Environment (dev_ prefix)
         ├── Templates/
@@ -128,7 +165,12 @@ Each product has three environments:
         │   └── js/                    # Development JavaScript (dev_*.js)
         └── Assets/
             ├── images/
-            └── audio/
+            ├── audio/
+            └── documents/
+                ├── guides/            # User guides and tutorials
+                ├── reports/           # Generated reports and analytics
+                ├── data/              # Raw data files and CSV exports
+                └── references/        # Reference materials and specs
 ```
 
 ## Products
@@ -204,6 +246,28 @@ All internal file references have been updated to maintain proper navigation wit
 - CSS/JS references use environment-specific filenames (e.g., `dev_*.css`, `stg_*.js`)
 - Asset paths remain relative to environment root (`../../Assets/`)
 - Cross-product references point to same environment (test→test, staging→staging, prod→prod)
+
+## Asset Organization
+
+### Documents Subcategories
+Each product's Assets/documents folder is organized into four subcategories:
+
+#### guides/
+Store user guides, tutorials, and instructional documents that help users understand and use the system effectively.
+- Example: HCI101 Human Computer Interfaces guide
+
+#### reports/
+Store system-generated reports, analytics, and summary documents for tracking and review.
+- Examples: Investment performance reports, appointment summaries, usage analytics
+
+#### data/
+Store raw data files, CSV exports, and datasets used for analysis and reporting.
+- Examples: Customer complaints data, feedback comments
+
+#### references/
+Store reference materials, specifications, API documentation, and other supporting documents.
+
+This organizational structure applies consistently across all three environments (prod, staging, test) for all products.
 
 ## Branches
 
