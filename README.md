@@ -94,7 +94,7 @@ Each product has three environments:
 │           ├── audio/
 │           └── documents/
 │
-├── Educational-Academic-Portfolio/    # Educational & Academic Portfolio
+├── Scholastic-Portfolio/    # Scholastic Portfolio
 │   ├── index.html                     # Product landing (redirects to prod)
 │   ├── Templates/                     # Original templates (maintained for reference)
 │   ├── Assets/                        # Original assets (maintained for reference)
@@ -213,7 +213,7 @@ MicroLink is an innovative web-based platform that provides:
 - Staging: `MicroLink/staging/Templates/html/stg_welcome.html`
 - Test/Dev: `MicroLink/test/Templates/html/dev_welcome.html`
 
-### Educational & Academic Portfolio
+### Scholastic Portfolio
 Educational portfolio showcasing projects from CSC 102 Computer Science course, including:
 - Interactive games and exercises
 - String manipulation demonstrations
@@ -221,9 +221,9 @@ Educational portfolio showcasing projects from CSC 102 Computer Science course, 
 - Programming fundamentals
 
 **Entry Points:**
-- Production: `Educational-Academic-Portfolio/prod/Templates/html/index.html`
-- Staging: `Educational-Academic-Portfolio/staging/Templates/html/stg_index.html`
-- Test/Dev: `Educational-Academic-Portfolio/test/Templates/html/dev_index.html`
+- Production: `Scholastic-Portfolio/prod/Templates/html/index.html`
+- Staging: `Scholastic-Portfolio/staging/Templates/html/stg_index.html`
+- Test/Dev: `Scholastic-Portfolio/test/Templates/html/dev_index.html`
 
 ### Professional Portfolio
 Professional portfolio showcasing advanced projects and expertise, organized by domain:
@@ -331,22 +331,41 @@ Nicholas M James - [@nmjames86877](https://github.com/nmjames86877)
 
 ## Asset Organization
 
-All product assets are organized into a hierarchical subtype structure for better organization and scalability:
+All product assets are organized into a multi-level hierarchical structure: **Type → SubType → SubSubType** for better organization and scalability.
 
-### Images
+### Structure: Assets/{Type}/{SubType}/{SubSubType}/
+
+#### Images
 - **logos/** - Brand logos and watermarks
+  - `company/` - Company branding and corporate logos
 - **icons/** - UI icons and graphics
+  - `financial/` - Finance-related icons and charts
 - **backgrounds/** - Background images
+  - `nature/` - Nature-themed backgrounds
 
-### Audio
+#### Audio
 - **effects/** - Sound effects
+  - `space/` - Space-related sound effects
 - **music/** - Background music
+  - `ambient/` - Ambient background music
 - **voice/** - Voice recordings
+  - `assistant/` - AI assistant voice recordings
 
-### Documents
+#### Documents
 - **guides/** - Tutorials and how-to guides
+  - `technical/` - Technical documentation and guides
 - **reports/** - Analytics and reports
+  - `financial/` - Financial reports and analytics
+  - `health/` - Health and medical reports
+  - `lifestyle/` - Lifestyle and entertainment reports
+  - `accessibility/` - Accessibility reports and analytics
+  - `identity/` - Identity and profile reports
 - **data/** - CSV and data files
+  - `feedback/` - User feedback and complaints data
 - **references/** - Specifications and references
+  - `technical/` - Technical specifications and references
 
-This structure is consistently applied across all products (MicroLink, ElizabethAI, Educational-Academic-Portfolio, and Professional-Portfolio) and all environments (prod, staging, test).
+### Example Path
+`MicroLink/prod/Assets/documents/reports/financial/investmentPerformance.pdf`
+
+This structure is consistently applied across all products (MicroLink, ElizabethAI, Scholastic-Portfolio, and Professional-Portfolio) and all environments (prod, staging, test).

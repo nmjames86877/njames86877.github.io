@@ -8,23 +8,37 @@ This document summarizes the major structural changes made to the repository to 
 
 ### 1. Asset Subtype Categorization
 
-Implemented a hierarchical subcategory structure for all assets across all products and environments:
+Implemented a multi-level hierarchical structure: **Type → SubType → SubSubType** for all assets across all products and environments:
 
 #### Images Subcategories
 - **logos/** - Brand logos, watermarks, and company branding
+  - `company/` - Company branding and corporate logos
 - **icons/** - UI icons, graphics, and interface elements
+  - `financial/` - Finance-related icons and charts
 - **backgrounds/** - Background images and textures
+  - `nature/` - Nature-themed backgrounds
 
 #### Audio Subcategories
 - **effects/** - Sound effects and UI audio feedback
+  - `space/` - Space-related sound effects
 - **music/** - Background music and audio tracks
+  - `ambient/` - Ambient background music
 - **voice/** - Voice recordings and spoken content
+  - `assistant/` - AI assistant voice recordings
 
 #### Documents Subcategories
 - **guides/** - Tutorials, how-to guides, and instructional content
+  - `technical/` - Technical documentation and guides
 - **reports/** - Analytics reports, performance summaries, and insights
+  - `financial/` - Financial reports and analytics
+  - `health/` - Health and medical reports
+  - `lifestyle/` - Lifestyle and entertainment reports
+  - `accessibility/` - Accessibility reports and analytics
+  - `identity/` - Identity and profile reports
 - **data/** - CSV files, datasets, and raw data
+  - `feedback/` - User feedback and complaints data
 - **references/** - Specifications, documentation, and reference materials
+  - `technical/` - Technical specifications and references
 
 #### Implementation Scope
 - ✅ MicroLink/prod/Assets/
@@ -38,8 +52,8 @@ Implemented a hierarchical subcategory structure for all assets across all produ
 
 #### Renamed Portfolio
 - **Old Name:** CSC102-Portfolio
-- **New Name:** Educational-Academic-Portfolio
-- **Reason:** More descriptive name that clearly indicates the educational nature of the content
+- **New Name:** Scholastic-Portfolio
+- **Reason:** Clearer and more professional name that indicates academic and scholastic content
 
 #### New Professional Portfolio
 Created a new top-level Professional-Portfolio directory with the following structure:
@@ -107,11 +121,13 @@ Professional-Portfolio/
 - **MicroLink/test/Templates/css/** - 2 files updated
 - **MicroLink/Templates/css/** - 2 files updated
 
-#### Path Updates Applied
-- Background images: `url('lillyPadLLCWatermark.jpg')` → `url('../../Assets/images/logos/lillyPadLLCWatermark.jpg')`
-- Logo images: `src="../../Assets/images/LILL_Logo_IMG_8660.png"` → `src="../../Assets/images/logos/LILL_Logo_IMG_8660.png"`
-- Icon images: `src="../../Assets/images/pie-chart.png"` → `src="../../Assets/images/icons/pie-chart.png"`
-- Documents: `href="investmentPerformance.pdf"` → `href="../../Assets/documents/reports/investmentPerformance.pdf"`
+#### Path Updates Applied (Multi-Level Structure)
+- Background images: `url('lillyPadLLCWatermark.jpg')` → `url('../../Assets/images/logos/company/lillyPadLLCWatermark.jpg')`
+- Logo images: `src="../../Assets/images/LILL_Logo_IMG_8660.png"` → `src="../../Assets/images/logos/company/LILL_Logo_IMG_8660.png"`
+- Icon images: `src="../../Assets/images/pie-chart.png"` → `src="../../Assets/images/icons/financial/pie-chart.png"`
+- Documents: `href="investmentPerformance.pdf"` → `href="../../Assets/documents/reports/financial/investmentPerformance.pdf"`
+
+**Structure:** `Assets/{Type}/{SubType}/{SubSubType}/filename`
 
 ### 4. Documentation Updates
 
@@ -127,7 +143,7 @@ Updated the following documentation files:
 ### 5. Main Landing Page Updates
 
 Updated `index.html` to include:
-- Changed "CSC102 Portfolio" to "Educational & Academic Portfolio"
+- Changed "CSC102 Portfolio" to "Scholastic Portfolio"
 - Added new "Professional Portfolio" card
 - Updated all navigation links to use new structure
 
@@ -176,10 +192,10 @@ Updated `index.html` to include:
 ### Legacy Support
 - Original MicroLink/Assets/ folder maintained with same structure for reference
 - Original MicroLink/Templates/ folder maintained for backward compatibility
-- Educational-Academic-Portfolio maintains all original CSC102-Portfolio content
+- Scholastic-Portfolio maintains all original CSC102-Portfolio content
 
 ### Breaking Changes
-⚠️ External links referencing "CSC102-Portfolio" will need to be updated to "Educational-Academic-Portfolio"
+⚠️ External links referencing "CSC102-Portfolio" will need to be updated to "Scholastic-Portfolio"
 
 ## Future Work
 
