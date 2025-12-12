@@ -331,41 +331,52 @@ Nicholas M James - [@nmjames86877](https://github.com/nmjames86877)
 
 ## Asset Organization
 
-All product assets are organized into a multi-level hierarchical structure: **Type → SubType → SubSubType** for better organization and scalability.
+All product assets are organized following **industry-standard multi-level hierarchical structure** (3-4 levels) tailored to the brand and organized by category and relevance for optimal scalability and organization.
 
-### Structure: Assets/{Type}/{SubType}/{SubSubType}/
+### Structure: Assets/{Type}/{Purpose}/{Category}/{Variant}/
+
+This structure follows industry best practices with clear semantic organization:
 
 #### Images
-- **logos/** - Brand logos and watermarks
-  - `company/` - Company branding and corporate logos
-- **icons/** - UI icons and graphics
-  - `financial/` - Finance-related icons and charts
-- **backgrounds/** - Background images
-  - `nature/` - Nature-themed backgrounds
+**Brand Assets**
+- `brand/logos/company/` - Company branding and corporate logos (Lilly Pad LLC)
+- `brand/watermarks/company/` - Company watermarks for document protection
+
+**UI Assets**
+- `ui/icons/financial/` - Financial dashboard icons and charts
+- `ui/backgrounds/nature/` - Nature-themed UI backgrounds
 
 #### Audio
-- **effects/** - Sound effects
-  - `space/` - Space-related sound effects
-- **music/** - Background music
-  - `ambient/` - Ambient background music
-- **voice/** - Voice recordings
-  - `assistant/` - AI assistant voice recordings
+**Effects**
+- `effects/ambient/space/` - Ambient space sound effects
+
+**Music**
+- `music/background/ambient/` - Background ambient music tracks
+
+**Voice**
+- `voice/assistant/responses/` - AI assistant voice response recordings
 
 #### Documents
-- **guides/** - Tutorials and how-to guides
-  - `technical/` - Technical documentation and guides
-- **reports/** - Analytics and reports
-  - `financial/` - Financial reports and analytics
-  - `health/` - Health and medical reports
-  - `lifestyle/` - Lifestyle and entertainment reports
-  - `accessibility/` - Accessibility reports and analytics
-  - `identity/` - Identity and profile reports
-- **data/** - CSV and data files
-  - `feedback/` - User feedback and complaints data
-- **references/** - Specifications and references
-  - `technical/` - Technical specifications and references
+**Guides**
+- `guides/technical/tutorials/` - Technical how-to guides and tutorials
 
-### Example Path
-`MicroLink/prod/Assets/documents/reports/financial/investmentPerformance.pdf`
+**Reports**
+- `reports/analytics/financial/` - Financial analytics and performance reports
+- `reports/analytics/health/` - Health and medical analytics reports
+- `reports/analytics/lifestyle/` - Lifestyle and entertainment analytics
+- `reports/analytics/accessibility/` - Accessibility usage analytics
+- `reports/analytics/identity/` - Identity and profile analytics
+- `reports/user-feedback/complaints/` - User complaint reports
 
-This structure is consistently applied across all products (MicroLink, ElizabethAI, Scholastic-Portfolio, and Professional-Portfolio) and all environments (prod, staging, test).
+**Data**
+- `data/user-feedback/surveys/` - User survey data and feedback CSV files
+
+**References**
+- `references/technical/specifications/` - Technical specifications and reference docs
+
+### Example Paths
+- `MicroLink/prod/Assets/images/brand/logos/company/LILL_Logo_IMG_8660.png`
+- `MicroLink/prod/Assets/documents/reports/analytics/financial/investmentPerformance.pdf`
+- `MicroLink/prod/Assets/audio/effects/ambient/space/ISS-sounds.mp3`
+
+This industry-standard structure is consistently applied across all products (MicroLink, ElizabethAI, Scholastic-Portfolio, and Professional-Portfolio) and all environments (prod, staging, test).
