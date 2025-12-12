@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Portfolio - Nicholas M James</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .projects-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .project-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #4fc3f7;
+        }
+        
+        .project-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background: rgba(79, 195, 247, 0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+        
+        .coming-soon {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .coming-soon h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4fc3f7;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .back-link a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        
+        .back-link a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Data Science Portfolio</h1>
+            <p class="subtitle">Machine Learning | Data Analytics | AI Solutions | Visualization</p>
+        </header>
+        
+        <div class="coming-soon">
+            <h2>🚀 Projects Coming Soon</h2>
+            <p>Data Science projects and case studies are currently being prepared.</p>
+            <p>Check back soon for machine learning models, data analytics dashboards, and AI solutions.</p>
+        </div>
+        
+        <div class="projects-section">
+            <h2 class="section-title">Areas of Expertise</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Machine Learning</h3>
+                    <p>Development and deployment of ML models for predictive analytics and pattern recognition.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Scikit-learn</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Data Analytics</h3>
+                    <p>Statistical analysis and business intelligence solutions for data-driven decision making.</p>
+                    <div class="project-tags">
+                        <span class="tag">Pandas</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Data Visualization</h3>
+                    <p>Interactive dashboards and visual representations of complex datasets.</p>
+                    <div class="project-tags">
+                        <span class="tag">Matplotlib</span>
+                        <span class="tag">Plotly</span>
+                        <span class="tag">Tableau</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="back-link">
+            <a href="../../../../../index.html">← Back to Main Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -40,7 +40,7 @@ This is the main reorganized branch with files structured by product/project, th
 │       ├── images/
 │       ├── audio/
 │       └── documents/
-└── CSC102-Portfolio/             # CSC102 educational portfolio
+└── Scholastic-Portfolio/             # CSC102 educational portfolio
     ├── Templates/
     │   ├── html/
     │   ├── css/
@@ -65,7 +65,7 @@ git checkout feature/hierarchical-organization
 **To access the applications:**
 - **Landing Page:** Open `index.html` in your browser
 - **MicroLink:** `MicroLink/Templates/html/welcome.html`
-- **CSC102 Portfolio:** `CSC102-Portfolio/Templates/html/index.html`
+- **CSC102 Portfolio:** `Scholastic-Portfolio/Templates/html/index.html`
 
 ### 3. `copilot/create-archiving-structure`
 **Purpose:** Working branch for this reorganization task

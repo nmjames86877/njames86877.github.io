@@ -68,10 +68,10 @@ open feedback.html
 - CSS styling is applied
 - JavaScript functions work
 
-### 2. Test CSC102-Portfolio Product
+### 2. Test Scholastic-Portfolio Product
 ```bash
-# Navigate to CSC102-Portfolio
-cd CSC102-Portfolio/Templates/html/
+# Navigate to Scholastic-Portfolio
+cd Scholastic-Portfolio/Templates/html/
 
 # Open and test each page:
 open index.html
@@ -104,7 +104,7 @@ open index.html
 - Professional appearance
 
 ### 4. Test Cross-Product Navigation
-- From CSC102-Portfolio index.html, click "MicroLink" link
+- From Scholastic-Portfolio index.html, click "MicroLink" link
 - Verify it navigates to MicroLink welcome page
 - Navigate back using browser back button
 - Test all cross-product links
