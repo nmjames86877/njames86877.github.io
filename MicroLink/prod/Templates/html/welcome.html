@@ -133,11 +133,11 @@ Full attribution and licensing information available in footer.
             text-align: center;
             backdrop-filter: blur(3px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: float 5s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
-            50% {
+            0%, 100% {
                 transform: translateY(0);
             }
             50% {
@@ -178,7 +178,7 @@ Full attribution and licensing information available in footer.
             height: 100%;
         }
 
-        .button-container {
+        #button-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -186,7 +186,7 @@ Full attribution and licensing information available in footer.
             margin-top: 20px;
         }
 
-        .button {
+        #button {
             padding: 8px 16px;
             background: rgba(255, 255, 255, 0.22);
             color: #333333;
@@ -195,7 +195,7 @@ Full attribution and licensing information available in footer.
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron', 'sans-serif';
         }
             
         .ribbon {
@@ -210,7 +210,7 @@ Full attribution and licensing information available in footer.
               background-color: #00BFFF;
             }
 
-        .button:hover {
+        button:hover {
             background: rgba(255, 255, 255, 0.32);
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
