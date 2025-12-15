@@ -5,7 +5,7 @@ MicroLink Prototype™ - Interactive Web Interface Platform
 Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
 CONFIDENTIAL AND PROPRIETARY
 
-TRADEMARK NOTICE: "MicroLink™", "myCompanion™", "Professor X Quantum Communication™", 
+TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
 "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
 
 OPEN SOURCE COMPONENTS:
@@ -18,7 +18,7 @@ Full attribution and licensing information available in footer.
 <!-- LILLY PAD LLC LOGO ASSET TRACKING -->
 <meta name="brand-owner" content="Lilly Pad LLC">
 <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
-<meta name="trademark-notice" content="MicroLink™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
+<meta name="trademark-notice" content="Elizabeth AI™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
 <!-- Favicon with GitHub fallback -->
 <link rel="icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
 <link rel="shortcut icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
@@ -40,7 +40,7 @@ Full attribution and licensing information available in footer.
     <!-- LILLY PAD LLC LOGO ASSET TRACKING -->
     <meta name="brand-owner" content="Lilly Pad LLC">
     <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
-    <meta name="trademark-notice" content="MicroLink™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
+    <meta name="trademark-notice" content="Elizabeth AI™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
     
     <!-- Favicon: Primary (Azure/Local) → Fallback (GitHub) -->
     <link rel="icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
@@ -64,7 +64,7 @@ Full attribution and licensing information available in footer.
     Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
     CONFIDENTIAL AND PROPRIETARY
 
-    TRADEMARK NOTICE: "MicroLink™", "myCompanion™", "Professor X Quantum Communication™", 
+    TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
     "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
     
     OPEN SOURCE COMPONENTS:
@@ -100,6 +100,7 @@ Full attribution and licensing information available in footer.
             min-height: 100vh;
             width: 100%;
             position: relative;
+            padding-bottom: 28px;
         }
 
         /* Watermark overlay for better visibility */
@@ -111,7 +112,9 @@ Full attribution and licensing information available in footer.
             width: 100%;
             height: 100%;
             background: inherit;
-            z-index: -1;
+            opacity: 0.3;
+            z-index: -2;
+            pointer-events: none;
         }
 
         .overlay {
@@ -121,25 +124,26 @@ Full attribution and licensing information available in footer.
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.4);
-            z-index: -2;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .welcome-section {
             width: 98%;
             max-width: 1400px;
             margin: 25px auto;
-            padding: 10px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             backdrop-filter: blur(3px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: float 5s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
-            50% {
+            0%, 100% {
                 transform: translateY(0);
             }
             50% {
@@ -199,18 +203,6 @@ Full attribution and licensing information available in footer.
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-family: 'Orbitron', sans-serif;
         }
-            
-        ribbon {
-              width: auto;
-              font-size: 10px;
-              padding: 4px;
-              position: absolute;
-              right: -25px;
-              top: -12px;
-              text-align: center;
-              border-radius: 10px;
-              background-color: #00BFFF;
-            }
 
         button:hover {
             background: rgba(255, 255, 255, 0.32);
@@ -230,14 +222,12 @@ Full attribution and licensing information available in footer.
         }
 
         .product-footer {
-            position: fixed;
-            bottom: 0;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
-            padding: 10px;
+            padding: 20px;
             text-align: center;
             width: 100%;
-            margin-top: 175px;
+            margin-top: 160px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -246,7 +236,7 @@ Full attribution and licensing information available in footer.
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 20px;
             font-size: 0.9em;
             margin-bottom: 15px;
         }
@@ -256,7 +246,7 @@ Full attribution and licensing information available in footer.
             text-decoration: none;
             opacity: 0.8;
             transition: all 0.3s ease;
-            padding: 5px;
+            padding: 5px 10px;
             border-radius: 4px;
         }
 
@@ -275,10 +265,10 @@ Full attribution and licensing information available in footer.
             font-size: 0.7em;
             opacity: 0.6;
             margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             font-style: italic;
             line-height: 1.6;
-            margin-bottom: 10px;
         }
 
         .product-footer-disclaimer a {
@@ -314,7 +304,7 @@ Full attribution and licensing information available in footer.
             z-index: 1000;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-            height: 27px;
+            height: 28px;
         }
 
         .enterprise-footer.expanded {
@@ -470,7 +460,7 @@ Full attribution and licensing information available in footer.
     </style>
 </head>
 <body>
-    <div class="overlay"</div>
+    <div class="overlay"></div>
     
     <div class="welcome-section">
         <div class="header-buttons">
@@ -483,13 +473,13 @@ Full attribution and licensing information available in footer.
             <canvas id="pieChart" class="pie-chart"></canvas>
         </div>
 
-        <div class="button-container" id="buttoncontainer">
-            <button onclick="goToPage('financial.html')">Financial<span class="ribbon" id="financial-notification"></span></button>
-            <button onclick="goToPage('accessibility.html')">Accessibility<span class="ribbon" id="accessibility-notification"></span></button>
-            <button onclick="goToPage('lifestyle.html')">Lifestyle<span class="ribbon" id="lifestyle-notification"></span></button>
-            <button onclick="goToPage('identity.html')">Identity<span class="ribbon" id="identity-notification"></span></button>
-            <button onclick="goToPage('healthMedical.html')">Health & Medical<span class="ribbon" id="health-medical-notification"></span></button>
-        </div></span>
+        <div class="button-container">
+            <button onclick="goToPage('financial.html')">Financial</button>
+            <button onclick="goToPage('accessibility.html')">Accessibility</button>
+            <button onclick="goToPage('lifestyle.html')">Lifestyle</button>
+            <button onclick="goToPage('identity.html')">Identity</button>
+            <button onclick="goToPage('healthMedical.html')">Health & Medical</button>
+        </div>
     </div>
     <!--
     <div class="footer-container">
@@ -503,7 +493,7 @@ Full attribution and licensing information available in footer.
 
     <div class="product-footer">
         <div class="product-footer-links">
-            <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link">Video Demo</a>
+            <a href="(https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link)">Video Demo</a>
             <span>•</span>
             <a href="microLinkSite.html">Site Map</a>
             <span>•</span>
@@ -511,19 +501,19 @@ Full attribution and licensing information available in footer.
             <span>•</span>
             <a href="terms.html">Terms</a>
             <span>•</span>
-            <a href="settings.html">Settings</a>
+            <a href="settings.html">Accessibility</a>
             <span>•</span>
             <a href="feedback.html">Support</a>
             <span>•</span>
-            <a href="https://github.com/nmjames86877/njames86877.github.io/commits">Updates</a>
+            <a href="(https://github.com/nmjames86877/njames86877.github.io/commits/)">Updates</a>
         </div>
         <div class="product-footer-brand">
             MICROLINK™ — A Product of Lilly Pad LLC
         </div>
         <div class="product-footer-disclaimer">
             ⚠️ This is a prototype system. Features and functionality are subject to change without notice.
-        </div>           
-            <!--<div class="open-source-acknowledgement">
+            By using this system, you acknowledge that this is pre-release software provided "as-is" without warranties.
+            <br><br>
             <strong>Open Source Acknowledgments:</strong><br>
             This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library,
             and <strong>Chart.js</strong>, an open-source charting library.
@@ -535,8 +525,8 @@ Full attribution and licensing information available in footer.
             <br>
             • <strong>Chart.js</strong> © Contributors | MIT License | 
             <a href="https://github.com/chartjs/Chart.js" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
-            </div>
-        </div>-->
+        </div>
+    </div>
 
     <div id="legalContentPanel" class="legal-content-panel">
         <div id="legalContent">
@@ -545,6 +535,12 @@ Full attribution and licensing information available in footer.
     </div>
 
     <footer class="enterprise-footer" id="enterpriseFooter">
+        <div class="enterprise-footer-logo">
+            <img src="LILL_Logo_IMG_8660.png" 
+                 alt="Lilly Pad LLC" 
+                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
+            <span>Lilly Pad LLC</span>
+        </div>
         <div class="enterprise-footer-links">
             <a href="#" data-legal="privacy">Privacy</a>
             <a href="#" data-legal="terms">Terms</a>
@@ -552,15 +548,10 @@ Full attribution and licensing information available in footer.
             <a href="#" data-legal="contact">Contact</a>
         </div>
         <div class="enterprise-footer-copyright">
-            © 2025 Lilly Pad LLC. All Rights Reserved.
-        </div>
-        <div class="enterprise-footer-logo">
-            <img src="../../Assets/images/LILL_Logo_IMG_8660.png" 
-                 alt="Lilly Pad LLC" 
-                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
-            <span>Lilly Pad LLC</span>
+            © 2025 Lilly Pad LLC
         </div>
     </footer>
+
     <script>
         'use strict';
 
@@ -630,17 +621,12 @@ Full attribution and licensing information available in footer.
                 sections: [
                     {
                         heading: 'Trademarks',
-                        text: 'MICROLINK™ is a trademark of Lilly Pad LLC. myCompanion™, Professor X Quantum Communication™, and CFPB Analytics™ are trademarks of Lilly Pad LLC. All other trademarks are the property of their respective owners.'
+                        text: 'MICROLINK™ is a trademark of Lilly Pad LLC. ELIZABETH AI™, myCompanion™, Professor X Quantum Communication™, and CFPB Analytics™ are trademarks of Lilly Pad LLC. All other trademarks are the property of their respective owners.'
                     },
                     {
                         heading: 'Intellectual Property',
                         text: 'All intellectual property rights in this prototype system and its contents are owned by Lilly Pad LLC. Patent Pending. Unauthorized use is prohibited under applicable laws.'
-                    },
-                    
-                    {
-                        heading: 'Open Source Acknowledgments',
-                        text: 'This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library, and <strong>Chart.js</strong>, an open-source charting library.  Both are free to use under the <strong>MIT License</strong>.  Credit and appreciation are extended to the original contributors for their innovation and work.'
-                    },
+                    }
                 ]
             },
             contact: {
@@ -736,7 +722,6 @@ Full attribution and licensing information available in footer.
         let siriWaveInstance = null;
         let pieChartInstance = null;
 
-        // SiriWave anmiation initialization
         document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Initialize Siri Wave
@@ -751,33 +736,35 @@ Full attribution and licensing information available in footer.
                     autostart: true
                 });
 
-        // Generate random data for pie chart
-        const dataSet = [10, 15, 20, 15, 40];
-        const randomData = dataSet.map(() => dataSet[Math.floor(Math.random() * dataSet.length)]);
+                // Generate random data for pie chart
+                const dataSet = [10, 15, 20, 15, 40];
+                const randomData = dataSet.map(() => dataSet[Math.floor(Math.random() * dataSet.length)]);
 
-        // Initialize pie chart
-        const ctx = document.getElementById('pieChart').getContext('2d');
-        pieChartInstance = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibility'],
-                datasets: [{
-                    label: 'Notifications',
-                    data: randomData,
-                    backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', '#ADD8E6'],
-                    hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', '#87CEEB']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top'
+                // Initialize pie chart
+                const ctx = document.getElementById('pieChart').getContext('2d');
+                pieChartInstance = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Financial', 'Identity', 'Lifestyle', 'Health & Medical', 'Accessibility'],
+                        datasets: [{
+                            label: 'Notifications',
+                            data: randomData,
+                            backgroundColor: ['#1E90FF', '#00BFFF', '#87CEFA', '#B0E0E6', '#ADD8E6'],
+                            hoverBackgroundColor: ['#1C86EE', '#009ACD', '#4682B4', '#5F9EA0', '#87CEEB']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
                     }
-                }
-            }
-        });
+                });
+
+                updateRibbonValues(pieChartInstance.data.datasets[0].data);
             } catch (error) {
                 console.error('Initialization error:', error);
             }
@@ -795,15 +782,12 @@ Full attribution and licensing information available in footer.
             }
         });
 
-        // Update Button Ribbon Values
-        updateRibbonValues(pieChartInstance.data.datasets[0].data);
-        
         function updateRibbonValues(data) {
             const elements = [
                 'financial-notifications',
                 'identity-notifications',
                 'lifestyle-notifications',
-                'health-medical-notifications',
+                'health-notifications',
                 'accessibility-notifications'
             ];
             
@@ -844,15 +828,4 @@ Full attribution and licensing information available in footer.
         }
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
