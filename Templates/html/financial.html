@@ -1,0 +1,92 @@
+<!--
+financial.html
+MicroLink Prototype™ - Interactive Web Interface Platform
+
+Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
+CONFIDENTIAL AND PROPRIETARY
+
+TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
+"CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=.75">
+    
+    <!-- LILLY PAD LLC LOGO ASSET TRACKING -->
+    <meta name="brand-owner" content="Lilly Pad LLC">
+    <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
+    <meta name="trademark-notice" content="Elizabeth AI™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
+    
+    <!-- Favicon: GitHub Path MicroLink/Assets/images/ -->
+    <link rel="icon" type="image/x-icon" href="../../Assets/images/lilly-pad-llc-favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../../Assets/images/lilly-pad-llc-favicon.ico">
+    <link rel="apple-touch-icon" href="../../Assets/images/LILL_Logo_IMG_8660.png">
+    
+    <title>Financial - MicroLink Prototype</title>
+    
+    <!-- External Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Centralized Styles -->
+    <link rel="stylesheet" href="../css/microlink-common.css">
+    <link rel="stylesheet" href="../css/footer-branding.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <div class="financial-section" id="financial-section">
+        <div class="header-buttons">
+            <button onclick="goToPage('settings.html')">Settings</button>
+            <h1 align="center">Financial</h1>
+            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
+        </div>
+        <div id="siri-container"></div>
+
+        <div class="button-container" id="button-container">
+            <button onclick="toggleChart('budgetChart')">Budget Overview</button>
+            <button onclick="toggleChart('investmentChart')">Investment Performance</button>
+            <button onclick="toggleChart('netWorthChart')">Net-Worth Summary</button>
+            <button onclick="toggleChart('bankingChart')">Banking Institution</button>
+            <button onclick="toggleChart('creditChart')">Credit Bureau</button>
+            <button onclick="toggleChart('brokerageChart')">Brokerage Firm</button>
+        </div>
+    </div>
+    <br>
+
+    <div class="tab-container" id="tab-container"></div>
+
+    <div class="chart-container" id="budgetChartContainer">
+        <canvas id="budgetChart"></canvas>
+    </div>
+    <div class="chart-container" id="investmentChartContainer">
+        <canvas id="investmentChart"></canvas>
+    </div>
+    <br>
+    <div class="chart-container" id="netWorthChartContainer">
+        <canvas id="netWorthChart"></canvas>
+    </div>
+    <div class="chart-container" id="bankingChartContainer">
+        <canvas id="bankingChart"></canvas>
+    </div>
+    <div class="chart-container" id="creditChartContainer">
+        <canvas id="creditChart"></canvas>
+    </div>
+    <div class="chart-container" id="brokerageChartContainer">
+        <canvas id="brokerageChart"></canvas>
+    </div>
+    <br>
+    <div class="footer-container" id="footer-container">
+        <input vertical-align="content" type="checkbox" id="showAmounts" checked>
+        <button onclick="toggleCheckbox()" id="toggleButton">Hide Amounts</button>
+        <button onclick="goToPage('investmentPerformance.pdf')">Investment Performance</button>
+    </div>
+
+    <!-- Centralized Scripts -->
+    <script src="../js/microlink-common.js"></script>
+    <script src="../js/financial.js"></script>
+</body>
+</html>
