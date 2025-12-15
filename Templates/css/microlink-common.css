@@ -1,0 +1,306 @@
+/**
+ * microlink-common.css
+ * MicroLink Prototype™ - Common Styles for All Pages
+ * 
+ * Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
+ * CONFIDENTIAL AND PROPRIETARY
+ * 
+ * TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
+ * "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    /* GitHub Deployment Paths: MicroLink/Assets/images/ */
+    background-image: 
+        url("../../Assets/images/lillyPadLLCWatermark.jpg"),
+        url("https://raw.githubusercontent.com/nmjames86877/njames86877.github.io/main/MicroLink/Assets/images/lillyPadLLCWatermark.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    padding-bottom: 28px;
+    margin: 0 auto;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.3;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Common Section Styles */
+.welcome-section,
+.financial-section,
+.accessibility-section,
+.lifestyle-section,
+.identity-section,
+.health-medical-section {
+    width: 98%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #333333;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-buttons h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 3.5vh;
+    color: #333333;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Button Styles */
+button {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.22);
+    color: #333333;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Orbitron', sans-serif;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.32);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* SiriWave Container */
+#siri-container {
+    width: 100%;
+    height: 50px;
+    margin: 0 auto 20px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Chart Containers */
+#chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    margin: 20px 0;
+}
+
+.pie-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.chart-container {
+    display: none;
+    width: 45vh;
+}
+
+.chart-container.active {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.canvas-chart {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+/* Tab Container */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tab {
+    display: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    margin: 0 5px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.tab.active {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Identity Page - Iframe Container */
+.iframe-container {
+    display: none;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 50vh;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease, backdrop-filter 0.5s ease;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.iframe-container.visible {
+    display: block;
+    opacity: 1;
+    backdrop-filter: blur(0);
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1920px) {
+    .welcome-section,
+    .financial-section,
+    .accessibility-section,
+    .lifestyle-section,
+    .identity-section,
+    .health-medical-section,
+    .iframe-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .button-container, 
+    .footer-container {
+        align-items: center;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-buttons h1 {
+        margin-bottom: 10px;
+    }
+
+    .chart-container.active {
+        flex-wrap: wrap;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-section,
+    .financial-section,
+    .accessibility-section,
+    .lifestyle-section,
+    .identity-section,
+    .health-medical-section {
+        width: 98%;
+        padding: 10px;
+    }
+
+    .header-buttons h1 {
+        font-size: 2.5vh;
+    }
+
+    #chart-container {
+        height: 30vh;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+}
