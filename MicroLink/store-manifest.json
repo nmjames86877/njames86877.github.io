@@ -1,0 +1,13 @@
+{
+  "name": "LILL_BIO_TRACE",
+  "publisherDisplayName": "Lilly Pad LLC",
+  "description": "Biometric traceability module for sovereign remedy.",
+  "version": "1.2.0",
+  "author": "Nicholas M James",
+  "copyright": "© 2025 Lilly Pad LLC",
+  "logo": "assets/logo.png",
+  "keywords": ["biometric", "modular", "symbolic", "remedy", "traceability"],
+  "license": "Proprietary – Lilly Pad LLC",
+  "homepage": "https://lillypadllc.com",
+  "support": "support@lillypadllc.com"
+}
