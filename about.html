@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About MicroLink Prototype</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333333;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7); /* Adjust the opacity here */
+            z-index: -1;
+        }
+
+	.about-section {
+            width: 98%;
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+	.persona-insights {
+	    display: block;
+            width: 98%;
+            max-width: 1400px;
+            margin: 35px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+
+        .product-footer {
+            position: fixed;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-top: 175px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+            .product-footer-brand {
+                position: fixed;
+                bottom: 30;
+                font-size: 0.75em;
+                opacity: 0.7;
+                margin-top: 10px;
+            }
+            .product-footer-links {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+
+            .product-footer-links a {
+                color: #333333;
+                text-decoration: none;
+                opacity: 0.8;
+                transition: all 0.3s ease;
+                padding: 5px 10px;
+                border-radius: 4px;
+            }
+
+                .product-footer-links a:hover {
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.2);
+                }
+
+        .enterprise-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 1);
+            backdrop-filter: blur(10px);
+            color: black;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.65em;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            height: 28px;
+        }
+
+            .enterprise-footer.expanded {
+                padding: 20px 15px;
+                height: auto;
+            }
+
+            .enterprise-footer-logo {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                opacity: 0.9;
+            }
+
+                .enterprise-footer-logo img {
+                    height: 18px;
+                    width: auto;
+                }
+        </style>
+    </head >
+
+<body>
+    <div class="overlay"></div>
+    
+<div class="about-section" id="about-section">
+<h1> About MicroLink</h1>
+</div>
+
+
+<div class="personaInsights" id="persona-insights">
+
+<h1>Personas and Insights – MicroLink</h1>
+
+<div class="personapicture" id="engPhyDisPros">
+	<img src="MicroLinkengPhyDisPros.jpg">
+
+<h2>Student Studying Engineering with Physical Disability</h2>
+<p>
+<h3>Accessibility</h3>
+
+Current Technology:<br> 
+
+Current microchip implants, such as RFID and NFC chips, are primarily used for identification and access control. These implants can store user data and communicate with digital readers in close proximity, allowing for functions like unlocking doors or making payments. <br>
+
+User Need Identified:<br> 
+
+Many people with disabilities struggle with the physical act of using traditional identification methods like keys or cards. This can be particularly challenging for those with severe motor impairments, who may find it difficult to interact with digital devices and access essential services. <br>
+
+Design Opportunities:<br> 
+
+One design opportunity is to develop implants that incorporate advanced encrypted sensor recognition technology. These implants could detect and interpret a range of gestures, allowing users to perform tasks such as unlocking doors, controlling smart home devices, and navigating digital interfaces with ease. By integrating this technology with existing accessibility tools, developers can create a seamless user experience that empowers disparate individuals to live more independently. Additionally, ensuring that these implants are customizable to accommodate different levels of motor impairment will be crucial in meeting the diverse needs of users.<br>
+</p>
+</div>
+
+
+<div class="personapicture" id="engCogDisADHD">
+	<img src="MicroLinkengCogDisADHD">
+
+<h2>Tech Enthusiast with ADHD </h2>
+<p>
+<h3>Identity Management</h3>
+
+Current Technology:<br> 
+
+Microchip implants currently used for identification and access control have raised concerns about privacy and data security. Technologies like NFC and RFID are widely used, but they also pose risks of unauthorized data access and surveillance. <br>
+
+User Need Identified:<br>
+
+There is a growing concern about the potential for government surveillance and misuse of implanted microchips. This concern is a significant barrier to the widespread adoption of microchip implants, as many individuals fear their personal data could be accessed without their consent. <br>
+
+Design Opportunities:<br>
+
+One promising design opportunity is to develop implants with robust user-controlled data sharing features. These implants could include advanced encryption and customizable privacy settings, enabling users to manage their identity data access preferences easily. For instance, users could choose to share specific health data with their healthcare providers while keeping other information private. Additionally, implementing transparent identity data usage policies and providing users with regular updates on how their identity data is being used would help build trust and encourage adoption. By prioritizing user consent and control, developers can address privacy concerns and promote the responsible use of implant technology. <br>
+</p>
+</div>
+
+
+<div class="personapicture" id="engCogDisPTSD">
+	<img src="MicroLinkengCogDisPTSD.jpg">
+
+<h2>Opticians Apprentice with PTSD </h2>
+<p>
+<h3>Healthcare Monitoring</h3>
+
+Current Technology: <br>
+
+Current health-related implants include devices like pacemakers and glucose monitors, which provide critical health monitoring and management. Emerging technologies like brain-computer interfaces (BCIs) are also being developed to help individuals with severe disabilities control external devices with their thoughts. <br>
+
+User Need Identified: <br>
+
+Current implants do not provide real-time health monitoring for chronic conditions like diabetes or heart disease. This lack of continuous monitoring can lead to delayed interventions and poorer health outcomes for individuals with chronic illnesses. 
+
+Design Opportunities: <br>
+
+Developing implants with predictive health analytics presents a significant design opportunity. These implants could continuously monitor vital signs and other health metrics, using advanced algorithms to predict potential health issues. For example, an implant could detect early signs of a heart attack and alert the user and their healthcare provider immediately. This proactive approach to health management would not only improve patient outcomes but also reduce healthcare costs by preventing emergency situations. Integrating these implants with electronic health records and telemedicine platforms would further enhance their utility, allowing for seamless communication between patients and healthcare providers.
+</p>
+</div>
+</div>
+
+    <div class="product-footer">
+        <div class="product-footer-links">
+            <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link">Video Demo</a>
+            <span>•</span>
+            <a href="HCI101 Personas and Insights - MicroLink.pdf">About</a>
+            <span>•</span>
+            <a href="microLinkSite.html">Site Map</a>
+            <span>•</span>
+            <a href="privacy.html">Privacy</a>
+            <span>•</span>
+            <a href="terms.html">Terms</a>
+            <span>•</span>
+            <a href="settings.html">Settings</a>
+            <span>•</span>
+            <a href="feedback.html">Support</a>
+            <span>•</span>
+            <a href="https://github.com/nmjames86877/njames86877.github.io/commits/main">Updates</a>
+        </div>
+
+    <div class="product-footer-brand"> MICROLINK™ — A Product of Lilly Pad LLC</div>
+
+    <footer class="enterprise-footer" id="enterpriseFooter">
+        <div class="enterprise-footer-links">
+            <a href="#" data-legal="privacy">Privacy</a>
+            <a href="#" data-legal="terms">Terms</a>
+            <a href="#" data-legal="legal">Legal</a>
+            <a href="#" data-legal="contact">Contact</a>
+        </div>
+    
+        <div class="enterprise-footer-copyright">
+            © 2025 Lilly Pad LLC. All Rights Reserved.
+        </div>
+        <div class="enterprise-footer-logo">
+            <img src="LILL_Logo_IMG_8660.png" 
+                 alt="Lilly Pad LLC" 
+                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
+            <span>Lilly Pad LLC</span>
+        </div>
+
+</body>
+</html>
+
+
+
+
+
+
