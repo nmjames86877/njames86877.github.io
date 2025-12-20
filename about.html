@@ -294,7 +294,35 @@ Developing implants with predictive health analytics presents a significant desi
         </div>
      </footer>
      </div>
-
+     <script>
+     // Secure navigation with URL validation
+        function goToPage(page) {
+            if (typeof page !== 'string') return;
+            
+            // Whitelist allowed navigation
+            const allowedDomains = [
+                'drive.google.com',
+                'github.com',
+                window.location.hostname
+            ];
+            
+            try {
+                const url = new URL(page, window.location.origin);
+                const isAllowed = allowedDomains.some(domain => 
+                    url.hostname === domain || url.hostname.endsWith('.' + domain)
+                ) || url.hostname === window.location.hostname;
+                
+                if (isAllowed) {
+                    window.location.href = page;
+                } else {
+                    console.warn('Navigation blocked: Unauthorized domain');
+                }
+            } catch (e) {
+                // Relative URL - allow local navigation
+                window.location.href = page;
+            }
+        }
+     </script>
 </body>
 </html>
 
