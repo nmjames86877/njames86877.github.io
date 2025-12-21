@@ -15,7 +15,7 @@ This application uses the following open-source libraries under MIT License:
 Full attribution and licensing information available in footer.
 -->
 
-<!-- LILLY PAD LLC LOGO ASSET TRACKING -->
+<!-- Lilly Pad LLC Brand & Asset Tracking -->
 <meta name="brand-owner" content="Lilly Pad LLC">
 <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
 <meta name="trademark-notice" content="Elizabeth AI™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
@@ -34,10 +34,10 @@ Full attribution and licensing information available in footer.
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-Frame-Options" content="ORIGIN">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <!-- LILLY PAD LLC LOGO ASSET TRACKING -->
+    <!-- Lilly Pad LLC Brand & Asset Tracking -->
     <meta name="brand-owner" content="Lilly Pad LLC">
     <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
     <meta name="trademark-notice" content="Elizabeth AI™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
@@ -57,23 +57,6 @@ Full attribution and licensing information available in footer.
     <!-- Chart.js: Open-source charting library (MIT License) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
     
-    <!--
-    welcome.html
-    MicroLink Prototype™ - Interactive Web Interface Platform
-
-    Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
-    CONFIDENTIAL AND PROPRIETARY
-
-    TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
-    "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
-    
-    OPEN SOURCE COMPONENTS:
-    This application uses the following open-source libraries under MIT License:
-    - SiriWave (https://github.com/kopiro/siriwave) - Waveform visualization
-    - Chart.js (https://github.com/chartjs/Chart.js) - Data visualization
-    Full attribution and licensing information available in footer.
-    -->
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
@@ -83,9 +66,26 @@ Full attribution and licensing information available in footer.
             box-sizing: border-box;
         }
 
+        html {
+            height: 100%;
+        }
+
         body {
             font-family: 'Orbitron', sans-serif;
-            /* Primary: Azure Storage/Local → Fallback: GitHub */
+            color: #333333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fixed background layer */
+        .fixed-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
             background-image: 
                 url("lillyPadLLCWatermark.jpg"),
                 url("https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/images/lillyPadLLCWatermark.jpg");
@@ -93,39 +93,29 @@ Full attribution and licensing information available in footer.
             background-position: center center;
             background-attachment: fixed;
             background-size: cover;
-            color: #333333;
+        }
+
+        /* Fixed overlay layer */
+        .fixed-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Main content container */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            min-height: calc(100vh - 28px);
+            padding-bottom: 200px; /* Space for footers */
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            padding-bottom: 28px;
-        }
-
-        /* Watermark overlay for better visibility */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            opacity: 0.8;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.4);
-            z-index: -1;
-            pointer-events: none;
         }
 
         .welcome-section {
@@ -133,13 +123,15 @@ Full attribution and licensing information available in footer.
             max-width: 1400px;
             margin: 25px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             backdrop-filter: blur(3px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes float {
@@ -210,28 +202,18 @@ Full attribution and licensing information available in footer.
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .footer-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 30px auto 20px;
-            width: 98%;
-            max-width: 1400px;
-            padding-bottom: 40px;
-        }
-
         .product-footer {
             position: fixed;
-            bottom: 0;
+            bottom: 28px;
+            left: 0;
+            right: 0;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
             padding: 20px;
             text-align: center;
-            width: 100%;
-            margin-top: 175px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 999;
         }
 
         .product-footer-links {
@@ -366,7 +348,7 @@ Full attribution and licensing information available in footer.
             visibility: hidden;
             transform: translateY(20px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
+            z-index: 998;
             max-height: 300px;
             overflow-y: auto;
             box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.5);
@@ -459,41 +441,62 @@ Full attribution and licensing information available in footer.
             .legal-content-panel {
                 font-size: 0.9em;
             }
+
+            /* On mobile, allow background to scroll for better performance */
+            .fixed-background {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    
-    <div class="welcome-section">
-        <div class="header-buttons">
-            <h1>MicroLink Prototype</h1>
-        </div>
-        
-        <div id="siri-container"></div>
-
-        <div id="chart-container">
-            <canvas id="pieChart" class="pie-chart"></canvas>
-        </div>
-
-        <div class="button-container">
-            <button onclick="goToPage('financial.html')">Financial</button>
-            <button onclick="goToPage('accessibility.html')">Accessibility</button>
-            <button onclick="goToPage('lifestyle.html')">Lifestyle</button>
-            <button onclick="goToPage('identity.html')">Identity</button>
-            <button onclick="goToPage('healthMedical.html')">Health & Medical</button>
-        </div>
-    </div>
     <!--
-    <div class="footer-container">
-        <button onclick="goToPage('https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link')">Video Demo</button>
-        <button onclick="goToPage('microLinkSite.html')">Site Map</button>
-        <button onclick="goToPage('feedback.html')">Feedback</button>
-        <button onclick="goToPage('settings.html')">Settings</button>
-        <button onclick="goToPage('https://github.com/nmjames86877/njames86877.github.io/commits/main')">Updates</button>
-    </div>
-     -->
+    welcome.html
+    MicroLink Prototype™ - Interactive Web Interface Platform
 
+    Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
+    CONFIDENTIAL AND PROPRIETARY
+
+    TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
+    "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
+
+    OPEN SOURCE COMPONENTS:
+    This application uses the following open-source libraries under MIT License:
+    - SiriWave (https://github.com/kopiro/siriwave) - Waveform visualization
+    - Chart.js (https://github.com/chartjs/Chart.js) - Data visualization
+    Full attribution and licensing information available in footer.
+    -->
+    
+    <!-- Fixed background layer -->
+    <div class="fixed-background"></div>
+    
+    <!-- Fixed overlay layer -->
+    <div class="fixed-overlay"></div>
+    
+    <!-- Main scrollable content -->
+    <div class="main-content">
+        <div class="welcome-section">
+            <div class="header-buttons">
+                <h1>MicroLink Prototype</h1>
+            </div>
+            
+            <div id="siri-container"></div>
+
+            <div id="chart-container">
+                <canvas id="pieChart" class="pie-chart"></canvas>
+            </div>
+
+            <div class="button-container">
+                <button onclick="goToPage('financial.html')">Financial</button>
+                <button onclick="goToPage('accessibility.html')">Accessibility</button>
+                <button onclick="goToPage('lifestyle.html')">Lifestyle</button>
+                <button onclick="goToPage('identity.html')">Identity</button>
+                <button onclick="goToPage('healthMedical.html')">Health & Medical</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed product footer -->
     <div class="product-footer">
         <div class="product-footer-links">
             <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link">Video Demo</a>
@@ -513,21 +516,7 @@ Full attribution and licensing information available in footer.
         </div>
         <div class="product-footer-disclaimer">
             ⚠️ This is a prototype system. Features and functionality are subject to change without notice.
-        </div>           
-            <!--<div class="open-source-acknowledgement">
-            <strong>Open Source Acknowledgments:</strong><br>
-            This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library,
-            and <strong>Chart.js</strong>, an open-source charting library.
-            Both are free to use under the <strong>MIT License</strong>. 
-            Credit and appreciation are extended to the original contributors for their innovation and work.
-            <br><br>
-            • <strong>SiriWave</strong> © Contributors | MIT License | 
-            <a href="https://github.com/kopiro/siriwave" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
-            <br>
-            • <strong>Chart.js</strong> © Contributors | MIT License | 
-            <a href="https://github.com/chartjs/Chart.js" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
-            </div>
-        </div>-->
+        </div>
         
         <div id="legalContentPanel" class="legal-content-panel">
             <div id="legalContent">
@@ -552,8 +541,8 @@ Full attribution and licensing information available in footer.
             <div class="enterprise-footer-copyright">
                 © 2025 Lilly Pad LLC. All Rights Reserved.
             </div>
-    
         </footer>
+    </div>
 
     <script>
         'use strict';
@@ -630,11 +619,10 @@ Full attribution and licensing information available in footer.
                         heading: 'Intellectual Property',
                         text: 'All intellectual property rights in this prototype system and its contents are owned by Lilly Pad LLC. Patent Pending. Unauthorized use is prohibited under applicable laws.'
                     },
-                    
                     {
                         heading: 'Open Source Acknowledgments',
-                        text: 'This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library, and <strong>Chart.js</strong>, an open-source charting library.  Both are free to use under the <strong>MIT License</strong>.  Credit and appreciation are extended to the original contributors for their innovation and work.'
-                    },
+                        text: 'This project utilizes <strong>SiriWave</strong>, an open-source waveform visualization library, and <strong>Chart.js</strong>, an open-source charting library. Both are free to use under the <strong>MIT License</strong>. Credit and appreciation are extended to the original contributors for their innovation and work.'
+                    }
                 ]
             },
             contact: {
@@ -836,14 +824,4 @@ Full attribution and licensing information available in footer.
         }
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
