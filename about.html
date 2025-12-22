@@ -1,38 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=.75">
-        <title>About MicroLink Prototype</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=.75">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Lilly Pad LLC Brand & Asset Tracking -->
+    <meta name="brand-owner" content="Lilly Pad LLC">
+    <meta name="logo-asset-id" content="lilly-pad-llc-logo-20251022004658">
+    <meta name="trademark-notice" content="Elizabeth AI™, myCompanion™, Professor X Quantum Communication™ are trademarks of Lilly Pad LLC">
+    
+    <!-- Favicon: Primary (Azure/Local) → Fallback (GitHub) -->
+    <link rel="icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/lilly-pad-llc-favicon.ico">
+    <link rel="apple-touch-icon" href="static/LILL_Logo_IMG_8660.png">
+    
+    <title>About MicroLink Prototype</title>
+    
+    <!-- External Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
 
         body {
             font-family: 'Orbitron', sans-serif;
-            background: url('lillyPadLLCWatermark.jpg') no-repeat center center fixed;
-            background-size: cover;
             color: #333333;
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 0vh;
+            min-height: 100vh;
+            overflow-x: hidden;
             position: relative;
         }
 
-        .overlay {
-            position: absolute;
+        /* Fixed background layer */
+        .fixed-background {
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.7); /* Adjust the opacity here */
-            z-index: -1;
+            z-index: -2;
+            background-image: 
+                url("lillyPadLLCWatermark.jpg"),
+                url("https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/images/lillyPadLLCWatermark.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
         }
 
-	.about-section {
+        /* Fixed overlay layer */
+        .fixed-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Main content container */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            min-height: calc(100vh - 28px);
+            padding: 15px;
+            padding-bottom: 200px; /* Space for footers */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-section {
+            width: 98%;
             max-width: 1400px;
             margin: 25px auto;
             padding: 20px;
@@ -44,18 +101,36 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             animation: float 6s ease-in-out infinite;
         }
-	
-	.header-buttons {
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            gap: 15px;
         }
 
-	.personaInsights {
+        .header-buttons h1 {
+            font-size: 3.5vh;
+            color: #333333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            flex: 1;
+            text-align: center;
+        }
+
+        .personaInsights {
             width: 100%;
-        	    margin: 0;
-            padding: 5px;
+            margin: 20px 0;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
@@ -63,34 +138,65 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-	.personapicture {
-        	    display: block;
+        .personaInsights h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .personapicture {
+            display: block;
             width: 100%;
+            margin: 30px 0;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(3px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
         }
 
-	#personaInsights h1 {
-        position: center;
+        .personapicture h2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: #333333;
         }
 
-	#imgPhyDisPros {
-	    width: 15vh;
-	}
+        .personapicture h3 {
+            font-size: 1.2em;
+            color: #0066cc;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-	#imgCogDisADHD {
-	    width: 15vh;
-	}
+        .personapicture img {
+            width: 15vh;
+            height: 15vh;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
 
-	#imgCogDisPTSD {
-	    width: 15vh;
-	}
+        .personapicture p {
+            line-height: 1.6;
+            margin: 10px 0;
+            text-align: justify;
+        }
 
+        .personapicture strong {
+            display: inline-block;
+            margin: 15px 0 5px 0;
+            color: #0066cc;
+            font-weight: bold;
+        }
 
-	button {
+        button {
             padding: 8px 16px;
             background: rgba(255, 255, 255, 0.22);
             color: #333333;
@@ -100,6 +206,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-family: 'Orbitron', sans-serif;
+            white-space: nowrap;
         }
 
         button:hover {
@@ -110,54 +217,55 @@
 
         .product-footer {
             position: fixed;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.5);
+            bottom: 28px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
-            padding: 10px;
+            padding: 20px;
             text-align: center;
-            width: 100%;
-            margin-top: 175px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 999;
         }
-            .product-footer-brand {
-                position: fixed;
-                bottom: 30;
-                font-size: 0.75em;
-                opacity: 0.7;
-                margin-top: 10px;
-            }
-            .product-footer-links {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-                font-size: 0.9em;
-                margin-bottom: 15px;
-            }
 
-            .product-footer-links a {
-                color: #333333;
-                text-decoration: none;
-                opacity: 0.8;
-                transition: all 0.3s ease;
-                padding: 5px 10px;
-                border-radius: 4px;
-            }
+        .product-footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
 
-                .product-footer-links a:hover {
-                    opacity: 1;
-                    background: rgba(255, 255, 255, 0.2);
-                }
+        .product-footer-links a {
+            color: #333333;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .product-footer-links a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-footer-brand {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
 
         .enterprise-footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 1);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
-            color: black;
+            color: #e0e0e0;
             padding: 6px 15px;
             display: flex;
             justify-content: center;
@@ -170,25 +278,51 @@
             height: 28px;
         }
 
-            .enterprise-footer.expanded {
-                padding: 20px 15px;
-                height: auto;
-            }
+        .enterprise-footer.expanded {
+            padding: 20px 15px;
+            height: auto;
+        }
 
-            .enterprise-footer-logo {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-weight: 600;
-                opacity: 0.9;
-            }
+        .enterprise-footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
 
-                .enterprise-footer-logo img {
-                    height: 18px;
-                    width: auto;
-                }
-                
-            @media (max-width: 1920px) {
+        .enterprise-footer-logo img {
+            height: 18px;
+            width: auto;
+        }
+
+        .enterprise-footer-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .enterprise-footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .enterprise-footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .enterprise-footer-copyright {
+            opacity: 0.7;
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 1920px) {
             .about-section {
                 width: 95%;
                 padding: 15px;
@@ -196,6 +330,7 @@
 
             .header-buttons {
                 flex-direction: column;
+                gap: 10px;
             }
 
             .header-buttons h1 {
@@ -217,9 +352,25 @@
                 font-size: 2.5vh;
             }
 
+            .header-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
             button {
                 padding: 6px 12px;
                 font-size: 0.85em;
+            }
+
+            .personapicture h2 {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .personapicture img {
+                width: 12vh;
+                height: 12vh;
             }
 
             .enterprise-footer {
@@ -236,79 +387,98 @@
                 gap: 8px;
             }
 
-            .legal-content-panel {
-                font-size: 0.9em;
+            /* On mobile, allow background to scroll for better performance */
+            .fixed-background {
+                background-attachment: scroll;
             }
-        </style>
-    </head >
-
+        }
+    </style>
+</head>
 <body>
-    <div class="overlay"></div>
+    <!--
+    about.html
+    MicroLink Prototype™ - Interactive Web Interface Platform
+
+    Copyright (c) 2025 Lilly Pad LLC. All Rights Reserved.
+    CONFIDENTIAL AND PROPRIETARY
+
+    TRADEMARK NOTICE: "Elizabeth AI™", "myCompanion™", "Professor X Quantum Communication™", 
+    "CFPB Analytics™", and all related marks are trademarks of Lilly Pad LLC.
+    -->
     
-<div class="about-section">
-	<div class="header-buttons">
-            <button onclick="goToPage('MicroLink Protoype Rapid User Testing Report.pdf')">Persona User Testing</button>
-            <h1> About - MicroLink</h1>
-            <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
+    <!-- Fixed background layer -->
+    <div class="fixed-background"></div>
+    
+    <!-- Fixed overlay layer -->
+    <div class="fixed-overlay"></div>
+    
+    <!-- Main scrollable content -->
+    <div class="main-content">
+        <div class="about-section">
+            <div class="header-buttons">
+                <button onclick="goToPage('MicroLink Protoype Rapid User Testing Report.pdf')">Persona User Testing</button>
+                <h1>About - MicroLink</h1>
+                <button onclick="goToPage('welcome.html')">Dashboard Top Level</button>
+            </div>
         </div>
-	</div>
 
-<div class="personaInsights" id="persona-insights">
-<h1>Personas and Insights</h1>
+        <div class="personaInsights" id="persona-insights">
+            <h1>Personas and Insights</h1>
 
-<div class="personapicture" id="engPhyDisPros">
-<h2><img src="MicroLinkengPhyDisPros.jpeg" id="imgPhyDisPros">Student Studying Engineering with Physical Disability</h2>
-<h3>Accessibility</h3>
+            <div class="personapicture" id="engPhyDisPros">
+                <h2>
+                    <img src="MicroLinkengPhyDisPros.jpeg" alt="Student Studying Engineering with Physical Disability">
+                    Student Studying Engineering with Physical Disability
+                </h2>
+                <h3>Accessibility</h3>
 
-Current Technology: <br> 
-<p>
-Current microchip implants, such as RFID and NFC chips, are primarily used for identification and access control. These implants can store user data and communicate with digital readers in close proximity, allowing for functions like unlocking doors or making payments.</p>
+                <strong>Current Technology:</strong>
+                <p>Current microchip implants, such as RFID and NFC chips, are primarily used for identification and access control. These implants can store user data and communicate with digital readers in close proximity, allowing for functions like unlocking doors or making payments.</p>
 
-User Need Identified: <br> 
-<p>
-Many people with disabilities struggle with the physical act of using traditional identification methods like keys or cards. This can be particularly challenging for those with severe motor impairments, who may find it difficult to interact with digital devices and access essential services.</p>
+                <strong>User Need Identified:</strong>
+                <p>Many people with disabilities struggle with the physical act of using traditional identification methods like keys or cards. This can be particularly challenging for those with severe motor impairments, who may find it difficult to interact with digital devices and access essential services.</p>
 
-Design Opportunities: <br> 
-<p>
-One design opportunity is to develop implants that incorporate advanced encrypted sensor recognition technology. These implants could detect and interpret a range of gestures, allowing users to perform tasks such as unlocking doors, controlling smart home devices, and navigating digital interfaces with ease. By integrating this technology with existing accessibility tools, developers can create a seamless user experience that empowers disparate individuals to live more independently. Additionally, ensuring that these implants are customizable to accommodate different levels of motor impairment will be crucial in meeting the diverse needs of users.</p>
-</div>
+                <strong>Design Opportunities:</strong>
+                <p>One design opportunity is to develop implants that incorporate advanced encrypted sensor recognition technology. These implants could detect and interpret a range of gestures, allowing users to perform tasks such as unlocking doors, controlling smart home devices, and navigating digital interfaces with ease. By integrating this technology with existing accessibility tools, developers can create a seamless user experience that empowers disparate individuals to live more independently. Additionally, ensuring that these implants are customizable to accommodate different levels of motor impairment will be crucial in meeting the diverse needs of users.</p>
+            </div>
 
+            <div class="personapicture" id="engCogDisADHD">
+                <h2>
+                    <img src="MicroLinkengCogDisADHD.jpeg" alt="Tech Enthusiast with ADHD">
+                    Tech Enthusiast with ADHD
+                </h2>
+                <h3>Identity Management</h3>
 
-<div class="personapicture" id="engCogDisADHD">
-<h2><img src="MicroLinkengCogDisADHD.jpeg" id="imgCogDisADHD">Tech Enthusiast with ADHD</h2>
-<h3>Identity Management</h3>
+                <strong>Current Technology:</strong>
+                <p>Microchip implants currently used for identification and access control have raised concerns about privacy and data security. Technologies like NFC and RFID are widely used, but they also pose risks of unauthorized data access and surveillance.</p>
 
-Current Technology: <br> 
-<p>
-Microchip implants currently used for identification and access control have raised concerns about privacy and data security. Technologies like NFC and RFID are widely used, but they also pose risks of unauthorized data access and surveillance.</p>
+                <strong>User Need Identified:</strong>
+                <p>There is a growing concern about the potential for government surveillance and misuse of implanted microchips. This concern is a significant barrier to the widespread adoption of microchip implants, as many individuals fear their personal data could be accessed without their consent.</p>
 
-User Need Identified: <br>
-<p>
-There is a growing concern about the potential for government surveillance and misuse of implanted microchips. This concern is a significant barrier to the widespread adoption of microchip implants, as many individuals fear their personal data could be accessed without their consent.</p>
+                <strong>Design Opportunities:</strong>
+                <p>One promising design opportunity is to develop implants with robust user-controlled data sharing features. These implants could include advanced encryption and customizable privacy settings, enabling users to manage their identity data access preferences easily. For instance, users could choose to share specific health data with their healthcare providers while keeping other information private. Additionally, implementing transparent identity data usage policies and providing users with regular updates on how their identity data is being used would help build trust and encourage adoption. By prioritizing user consent and control, developers can address privacy concerns and promote the responsible use of implant technology.</p>
+            </div>
 
-Design Opportunities: <br>
-<p>
-One promising design opportunity is to develop implants with robust user-controlled data sharing features. These implants could include advanced encryption and customizable privacy settings, enabling users to manage their identity data access preferences easily. For instance, users could choose to share specific health data with their healthcare providers while keeping other information private. Additionally, implementing transparent identity data usage policies and providing users with regular updates on how their identity data is being used would help build trust and encourage adoption. By prioritizing user consent and control, developers can address privacy concerns and promote the responsible use of implant technology.</p>
-</div>
+            <div class="personapicture" id="engCogDisPTSD">
+                <h2>
+                    <img src="MicroLinkengCogDisPTSD.jpeg" alt="Opticians Apprentice with PTSD">
+                    Opticians Apprentice with PTSD
+                </h2>
+                <h3>Healthcare Monitoring</h3>
 
+                <strong>Current Technology:</strong>
+                <p>Current health-related implants include devices like pacemakers and glucose monitors, which provide critical health monitoring and management. Emerging technologies like brain-computer interfaces (BCIs) are also being developed to help individuals with severe disabilities control external devices with their thoughts.</p>
 
-<div class="personapicture" id="engCogDisPTSD">
-<h2><img src="MicroLinkengCogDisPTSD.jpeg" id="imgCogDisPTSD">Opticians Apprentice with PTSD</h2>
-<h3>Healthcare Monitoring</h3>
+                <strong>User Need Identified:</strong>
+                <p>Current implants do not provide real-time health monitoring for chronic conditions like diabetes or heart disease. This lack of continuous monitoring can lead to delayed interventions and poorer health outcomes for individuals with chronic illnesses.</p>
 
-Current Technology: <br>
-<p>
-Current health-related implants include devices like pacemakers and glucose monitors, which provide critical health monitoring and management. Emerging technologies like brain-computer interfaces (BCIs) are also being developed to help individuals with severe disabilities control external devices with their thoughts.</p>
+                <strong>Design Opportunities:</strong>
+                <p>Developing implants with predictive health analytics presents a significant design opportunity. These implants could continuously monitor vital signs and other health metrics, using advanced algorithms to predict potential health issues. For example, an implant could detect early signs of a heart attack and alert the user and their healthcare provider immediately. This proactive approach to health management would not only improve patient outcomes but also reduce healthcare costs by preventing emergency situations. Integrating these implants with electronic health records and telemedicine platforms would further enhance their utility, allowing for seamless communication between patients and healthcare providers.</p>
+            </div>
+        </div>
+    </div>
 
-User Need Identified: <br>
-<p>
-Current implants do not provide real-time health monitoring for chronic conditions like diabetes or heart disease. This lack of continuous monitoring can lead to delayed interventions and poorer health outcomes for individuals with chronic illnesses.</p>
-
-Design Opportunities: <br>
-<p>
-Developing implants with predictive health analytics presents a significant design opportunity. These implants could continuously monitor vital signs and other health metrics, using advanced algorithms to predict potential health issues. For example, an implant could detect early signs of a heart attack and alert the user and their healthcare provider immediately. This proactive approach to health management would not only improve patient outcomes but also reduce healthcare costs by preventing emergency situations. Integrating these implants with electronic health records and telemedicine platforms would further enhance their utility, allowing for seamless communication between patients and healthcare providers.</p>
-</div>
-</div>
+    <!-- Fixed product footer -->
     <div class="product-footer">
         <div class="product-footer-links">
             <a href="https://drive.google.com/file/d/1pxnth9acosJ9MA0SMqXYyCrbel8E8pOp/view?usp=drive_link">Video Demo</a>
@@ -317,38 +487,52 @@ Developing implants with predictive health analytics presents a significant desi
             <span>•</span>
             <a href="microLinkSite.html">Site Map</a>
             <span>•</span>
-            <a href="privacy.html">Privacy</a>
-            <span>•</span>
-            <a href="terms.html">Terms</a>
-            <span>•</span>
             <a href="settings.html">Settings</a>
             <span>•</span>
             <a href="feedback.html">Support</a>
             <span>•</span>
             <a href="https://github.com/nmjames86877/njames86877.github.io/commits/main">Updates</a>
         </div>
-    <div class="product-footer-brand"> MICROLINK™ — A Product of Lilly Pad LLC</div>
-	<br>
-    <footer class="enterprise-footer" id="enterpriseFooter">
-        <div class="enterprise-footer-logo">
-            <img src="LILL_Logo_IMG_8660.png" 
-                 alt="Lilly Pad LLC" 
-                 onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
-            <span>Lilly Pad LLC</span>
+        <div class="product-footer-brand">
+            MICROLINK™ — A Product of Lilly Pad LLC
         </div>
-	<div class="enterprise-footer-links">
-            <a href="#" data-legal="privacy">Privacy</a>
-            <a href="#" data-legal="terms">Terms</a>
-            <a href="#" data-legal="legal">Legal</a>
-            <a href="#" data-legal="contact">Contact</a>
-        </div>
-        <div class="enterprise-footer-copyright">
-            © 2025 Lilly Pad LLC. All Rights Reserved.
-        </div>
-     </footer>
-     </div>
-     <script>
-     // Secure navigation with URL validation
+        
+        <footer class="enterprise-footer" id="enterpriseFooter">
+            <div class="enterprise-footer-logo">
+                <img src="LILL_Logo_IMG_8660.png" 
+                     alt="Lilly Pad LLC" 
+                     onerror="this.src='https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/LILL_Logo_IMG_8660.png'">
+                <span>Lilly Pad LLC</span>
+            </div>
+            <div class="enterprise-footer-links">
+                <a href="#" data-legal="privacy">Privacy</a>
+                <a href="#" data-legal="terms">Terms</a>
+                <a href="#" data-legal="legal">Legal</a>
+                <a href="#" data-legal="contact">Contact</a>
+            </div>
+            <div class="enterprise-footer-copyright">
+                © 2025 Lilly Pad LLC. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        'use strict';
+
+        // ASSET FALLBACK STRATEGY
+        (function() {
+            const favicon = document.querySelector('link[rel="icon"]');
+            if (favicon) {
+                const img = new Image();
+                img.onerror = function() {
+                    console.warn('Primary favicon failed, switching to GitHub fallback');
+                    favicon.href = 'https://raw.githubusercontent.com/njames86877/njames86877.github.io/main/LillyPadLLC-Rebrand/assets/logos/lilly-pad-llc-favicon.ico';
+                };
+                img.src = favicon.href;
+            }
+        })();
+
+        // Secure navigation with URL validation
         function goToPage(page) {
             if (typeof page !== 'string') return;
             
@@ -375,12 +559,6 @@ Developing implants with predictive health analytics presents a significant desi
                 window.location.href = page;
             }
         }
-     </script>
+    </script>
 </body>
 </html>
-
-
-
-
-
-
