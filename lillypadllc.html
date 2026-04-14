@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+ <!-- SEO and Social Media Meta Tags -->
+    <meta name="description" content="Lilly Pad LLC - Automated Think Smarter Not Harder Solutions. Ethical AI Integration, Asset Protection & IP Stewardship. Data-driven business solutions with integrity.">
+    <meta name="keywords" content="Lilly Pad LLC, Ethical AI, Business Automation, Data-Driven Solutions, Asset Protection, IP Stewardship, MicroLink, Elizabeth AI">
+    <meta name="author" content="Lilly Pad LLC">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Lilly Pad LLC - Think Smarter. Not Harder.">
+    <meta property="og:description" content="Automated, data-driven solutions built with ethical AI integration and integrity.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lillypadllc.com">
+    <meta property="og:image" content="./assets/logos/LILL_Logo_IMG_8660.JPG">
+    
+  <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lilly Pad LLC - Think Smarter. Not Harder.">
+    <meta name="twitter:description" content="Automated, data-driven solutions built with ethical AI integration and integrity.">
+    <meta name="twitter:image" content="./assets/logos/LILL_Logo_IMG_8660.JPG">
+    
+    <!-- Favicon - Updated path for SharePoint/Azure -->
+    <link rel="icon" href="./assets/logos/lilly-pad-llc-favicon.ico.png" type="image/png">
+    <link rel="shortcut icon" href="./assets/logos/lilly-pad-llc-favicon.ico.png" type="image/png">
+ 
+
+    <!-- Microsoft Clarity Analytics -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "tx5o5p5xm0");
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA_MEASUREMENT_ID');
+    </script>
+
+    <!--
+    landing_page.html
+    MicroLink Platform™ - Seasonal Dynamic Landing Page
+
+    © 2025 Lilly Pad LLC. All Rights Reserved.
+
+    ELIZABETH AI™, PROFESSOR X QUANTUM COMMUNICATION™, CFPB ANALYTICS™,
+    MICROLINK™, and FEEDBACKANALYZER™ are trademarks of Lilly Pad LLC.
+
+    CONFIDENTIAL AND PROPRIETARY INFORMATION
+    Patent Pending - All Rights Reserved
+    -->
+
+    <style>
+        * {
+     margin: 0;
+            padding: 0;
+ box-sizing: border-box;
+        }
+
+     :root {
+    /* Dynamic seasonal colors - will be set by JavaScript */
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #7e22ce;
+     --particle-color: rgba(255, 255, 255, 0.1);
+            --text-glow: rgba(255, 255, 255, 0.5);
+        }
+
+        body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+       background: var(--primary-color);
+      color: white;
+ position: relative;
+        }
+
+            /* Lilly Pad LLC Watermark Background - Updated for SharePoint/Azure */
+         body::before {
+       content: '';
+                position: fixed;
+    top: 0;
+  left: 0;
+     width: 100%;
+          height: 100%;
+          background: url('./assets/images/lillyPadLLCWatermark.jpg') no-repeat center center fixed, linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+          background-size: cover;
+  background-blend-mode: overlay;
+      opacity: 0.3;
+ z-index: -2;
+     pointer-events: none;
+   }
+
+            /* Animated water overlay */
+         body::after {
+      content: '';
+        position: fixed;
+                top: 0;
+     left: 0;
+     width: 100%;
+    height: 100%;
+        background: radial-gradient(ellipse at 20% 30%, var(--particle-color) 0%, transparent 60%), radial-gradient(ellipse at 80% 70%, var(--particle-color) 0%, transparent 60%), radial-gradient(ellipse at 50% 50%, var(--secondary-color) 0%, transparent 90%);
+ z-index: -1;
+       pointer-events: none;
+    animation: waterFlow 20s ease-in-out infinite;
+           opacity: 0.15; /* Reduced opacity to show watermark better */
+          }
+
+  @keyframes waterFlow {
+        0%, 100% {
+          transform: scale(1) translateY(0);
+     }
+
+  50% {
+    transform: scale(1.1) translateY(-20px);
+}
+        }
+
+        /* Smooth scrolling */
+        html {
+    scroll-behavior: smooth;
+        }
+
+        /* Animated background particles with seasonal colors */
+    .particle {
+            position: fixed;
+            background: var(--particle-color);
+         border-radius: 50%;
+   animation: float 20s infinite;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--particle-color);
+        }
+
+   @keyframes float {
+            0%, 100% {
+         transform: translateY(100vh) translateX(0) scale(0);
+     opacity: 0;
+        }
+
+            10% {
+                opacity: 1;
+       }
+
+   90% {
+                opacity: 1;
+ }
+
+            100% {
+        transform: translateY(-100px) translateX(100px) scale(1);
+       opacity: 0;
+       }
+    }
+
+      /* Hero Section with seasonal gradient */
+    .hero-section {
+            min-height: 100vh;
+            display: flex;
+     flex-direction: column;
+         justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            position: relative;
+       perspective: 1200px;
+            overflow: hidden;
+        }
+
+     /* Seasonal indicator badge */
+        .season-badge {
+         position: fixed;
+   top: 20px;
+            right: 20px;
+ background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+            padding: 10px 25px;
+            font-size: 0.9em;
+  font-weight: bold;
+color: white;
+       z-index: 1000;
+    animation: seasonPulse 3s ease-in-out infinite;
+            box-shadow: 0 5px 20px var(--text-glow);
+    }
+
+        @keyframes seasonPulse {
+            0%, 100% {
+     transform: scale(1);
+   box-shadow: 0 5px 20px var(--text-glow);
+          }
+
+          50% {
+       transform: scale(1.05);
+      box-shadow: 0 8px 30px var(--text-glow);
+  }
+        }
+
+        .logo-container {
+     text-align: center;
+perspective: 2000px;
+ position: relative;
+z-index: 10;
+            animation: fadeInScale 1.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+      from {
+                opacity: 0;
+    transform: scale(0.8) translateY(30px);
+}
+
+            to {
+    opacity: 1;
+       transform: scale(1) translateY(0);
+        }
+        }
+
+     .logo-wrapper {
+  display: inline-block;
+            transform-style: preserve-3d;
+            animation: spin3d 6s linear infinite;
+         position: relative;
+            filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.6));
+      }
+
+ .logo-wrapper:hover {
+        animation-duration: 2s;
+         filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.8)) brightness(1.1);
+ }
+
+      .spinning-logo {
+            width: 350px;
+      height: 350px;
+   object-fit: contain;
+    border-radius: 50%;
+ }
+
+        .logo-wrapper::before {
+            content: '';
+       position: absolute;
+      top: 50%;
+            left: 50%;
+        width: 380px;
+          height: 380px;
+            border: 3px solid var(--particle-color);
+     border-radius: 50%;
+    transform: translate(-50%, -50%);
+animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 20px var(--text-glow), inset 0 0 20px var(--text-glow);
+     }
+
+   @keyframes pulse {
+       0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+         opacity: 0.6;
+            }
+
+            50% {
+  transform: translate(-50%, -50%) scale(1.05);
+     opacity: 1;
+            }
+}
+
+        @keyframes spin3d {
+            0% {
+        transform: rotateY(0deg) rotateX(0deg);
+            }
+
+    25% {
+       transform: rotateY(90deg) rotateX(15deg);
+        }
+
+       50% {
+            transform: rotateY(180deg) rotateX(0deg);
+          }
+
+            75% {
+            transform: rotateY(270deg) rotateX(-15deg);
+    }
+
+       100% {
+  transform: rotateY(360deg) rotateX(0deg);
+            }
+        }
+
+        .hero-title {
+       color: white;
+margin-top: 40px;
+font-size: 3.5em;
+ text-shadow: 0 0 10px var(--text-glow), 0 0 20px var(--text-glow), 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+       animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+      font-size: 1.5em;
+     margin-top: 20px;
+  opacity: 0.9;
+   font-weight: 300;
+    letter-spacing: 2px;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+    text-shadow: 0 0 10px var(--text-glow), 0 0 20px var(--text-glow), 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+         50% {
+       text-shadow: 0 0 20px var(--text-glow), 0 0 30px var(--text-glow), 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+      .scroll-indicator {
+            position: absolute;
+       bottom: 40px;
+  left: 50%;
+   transform: translateX(-50%);
+      animation: bounce 2s infinite;
+            cursor: pointer;
+     }
+
+ .scroll-indicator::before {
+          content: '↓';
+    font-size: 2em;
+                color: rgba(255, 255, 255, 0.7);
+   }
+
+        @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+            }
+
+          40% {
+            transform: translateX(-50%) translateY(-20px);
+  }
+
+       60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+     /* Content Sections with seasonal backgrounds */
+   .content-section {
+            min-height: 100vh;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+            padding: 100px 20px;
+  position: relative;
+            opacity: 0;
+          transform: translateY(50px);
+   transition: opacity 1s ease, transform 1s ease;
+        }
+
+            .content-section.visible {
+          opacity: 1;
+           transform: translateY(0);
+            }
+
+      /* Ripple effect backgrounds with seasonal colors */
+    .section-ripple {
+            background: radial-gradient(circle at center, var(--primary-color) 0%, var(--accent-color) 70%);
+            opacity: 0.95; /* Slightly transparent to show watermark */
+        }
+
+      .section-wave {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+         opacity: 0.95; /* Slightly transparent to show watermark */
+      }
+
+        .section-pond {
+    background: radial-gradient(ellipse at bottom, var(--accent-color) 0%, var(--primary-color) 100%);
+opacity: 0.95; /* Slightly transparent to show watermark */
+    }
+
+     .section-content {
+            max-width: 1200px;
+   width: 100%;
+       display: grid;
+     grid-template-columns: 1fr 1fr;
+  gap: 60px;
+         align-items: center;
+            position: relative;
+     z-index: 10;
+        }
+
+     .section-content.reverse {
+        direction: rtl;
+ }
+
+              .section-content.reverse > * {
+         direction: ltr;
+  }
+
+      .section-text h2 {
+          font-size: 3em;
+ margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--secondary-color) 100%);
+      -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+    background-clip: text;
+        }
+
+  .section-text p {
+       font-size: 1.2em;
+   line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .section-visual {
+         position: relative;
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        /* Lily Pad Floating Animation with seasonal colors */
+        .lily-pad {
+            width: 400px;
+            height: 400px;
+background: radial-gradient(ellipse at center, var(--secondary-color) 20%, var(--primary-color) 50%, var(--accent-color) 100%);
+            border-radius: 50% 50% 45% 45%;
+   position: relative;
+            animation: floatLily 4s ease-in-out infinite;
+      box-shadow: 0 20px 60px var(--text-glow);
+     }
+
+      .lily-pad::before {
+     content: '';
+  position: absolute;
+    top: 10%;
+         right: 10%;
+         width: 30%;
+   height: 30%;
+           background: radial-gradient(circle, var(--particle-color), transparent);
+   border-radius: 50%;
+   }
+
+.lily-pad::after {
+       content: '';
+    position: absolute;
+       top: 50%;
+      left: 50%;
+             width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, transparent 40%, var(--accent-color) 100%);
+          border-radius: 50%;
+       transform: translate(-50%, -50%);
+      opacity: 0.5;
+     }
+
+ @keyframes floatLily {
+            0%, 100% {
+transform: translateY(0) rotate(0deg);
+  }
+
+   50% {
+    transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        /* Water Ripple Effect with seasonal colors */
+        .ripple-container {
+        width: 500px;
+            height: 500px;
+          position: relative;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+     }
+
+        .ripple {
+      position: absolute;
+        border: 2px solid var(--secondary-color);
+   border-radius: 50%;
+            animation: rippleExpand 3s ease-out infinite;
+          opacity: 0.5;
+  }
+
+     .ripple:nth-child(1) {
+        animation-delay: 0s;
+     }
+
+            .ripple:nth-child(2) {
+animation-delay: 1s;
+         }
+
+       .ripple:nth-child(3) {
+  animation-delay: 2s;
+       }
+
+        @keyframes rippleExpand {
+     0% {
+    width: 50px;
+   height: 50px;
+   opacity: 1;
+   }
+
+   100% {
+   width: 500px;
+          height: 500px;
+opacity: 0;
+  }
+        }
+
+     /* Feature Cards with seasonal styling */
+        .feature-grid {
+         display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+       max-width: 1200px;
+            margin: 0 auto;
+    padding: 0 20px;
+        }
+
+        .feature-card {
+         background: var(--particle-color);
+      backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+   border-radius: 20px;
+       padding: 40px;
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+              box-shadow: 0 20px 60px var(--accent-color);
+    background: rgba(255, 255, 255, 0.08);
+        border-color: var(--secondary-color);
+  }
+
+        .feature-icon {
+   font-size: 3em;
+     margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--text-glow));
+        }
+
+        .feature-card h3 {
+     font-size: 1.8em;
+     margin-bottom: 15px;
+        }
+
+        .feature-card p {
+        font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.7);
+     line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+        min-height: 80vh;
+  display: flex;
+         flex-direction: column;
+            justify-content: center;
+    align-items: center;
+            background: radial-gradient(ellipse at center, var(--accent-color) 0%, var(--primary-color) 100%);
+            text-align: center;
+         padding: 100px 20px;
+     opacity: 0.92; /* Slightly transparent to show watermark */
+    }
+
+        .cta-title {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+   animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .cta-subtitle {
+            font-size: 1.5em;
+  margin-bottom: 50px;
+     opacity: 0.9;
+        }
+
+        .cta-button {
+     background: linear-gradient(135deg, #ffffff 0%, var(--secondary-color) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 20px 50px;
+        border-radius: 50px;
+            cursor: pointer;
+        font-size: 1.3em;
+ font-weight: bold;
+         color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+     transition: all 0.3s ease;
+ text-decoration: none;
+       display: inline-block;
+     position: relative;
+          overflow: hidden;
+        }
+
+ /* Shimmer effect overlay */
+         .cta-button::before {
+        content: '';
+    position: absolute;
+   top: -50%;
+          left: -50%;
+        width: 200%;
+           height: 200%;
+       background: linear-gradient( 45deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70% );
+     animation: shimmer 3s ease-in-out infinite;
+            }
+
+        @keyframes shimmer {
+         0% {
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+
+     100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+  }
+
+        .cta-button:hover {
+   transform: translateY(-5px) scale(1.05);
+     box-shadow: 0 15px 40px var(--text-glow);
+}
+
+            .cta-button:hover::before {
+   animation-duration: 1.5s; /* Faster shimmer on hover */
+  }
+
+        /* Number Counter Animation */
+        .stats-container {
+            display: flex;
+         gap: 80px;
+      margin-top: 60px;
+     flex-wrap: wrap;
+     justify-content: center;
+     }
+
+ .stat-item {
+        text-align: center;
+      }
+
+ .stat-number {
+ font-size: 4em;
+    font-weight: bold;
+            background: linear-gradient(135deg, #ffffff 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+        font-size: 1.2em;
+      margin-top: 10px;
+      opacity: 0.8;
+}
+
+        /* Responsive Design */
+      @media (max-width: 968px) {
+      .section-content {
+      grid-template-columns: 1fr;
+          gap: 40px;
+       }
+
+           .section-content.reverse {
+        direction: ltr;
+      }
+
+     .hero-title {
+     font-size: 2.5em;
+    }
+
+            .hero-subtitle {
+           font-size: 1.2em;
+            }
+
+          .section-text h2 {
+    font-size: 2em;
+    }
+
+            .spinning-logo {
+ width: 250px;
+         height: 250px;
+      }
+
+            .logo-wrapper::before {
+        width: 280px;
+    height: 280px;
+       }
+
+            .lily-pad {
+          width: 300px;
+                height: 300px;
+  }
+
+            .ripple-container {
+                width: 350px;
+    height: 350px;
+            }
+
+    .cta-title {
+       font-size: 2.5em;
+            }
+
+            .season-badge {
+   top: 10px;
+right: 10px;
+                font-size: 0.8em;
+     padding: 8px 15px;
+  }
+        }
+
+        /* Floating elements */
+        .floating-element {
+       position: absolute;
+            animation: gentleFloat 6s ease-in-out infinite;
+        opacity: 0.1;
+            filter: drop-shadow(0 0 5px var(--particle-color));
+  }
+
+      @keyframes gentleFloat {
+          0%, 100% {
+     transform: translateY(0) translateX(0);
+        }
+
+      50% {
+          transform: translateY(-30px) translateX(20px);
+   }
+        }
+
+      /* Copyright footer */
+        .copyright-footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+  padding: 20px;
+   text-align: center;
+  font-size: 0.9em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+      /* SharePoint Compatibility Fixes */
+        #s4-workspace {
+            overflow: visible !important;
+        }
+     
+        .ms-webpart-chrome-title {
+        display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Seasonal indicator badge -->
+    <div class="season-badge" id="seasonBadge">Loading Season...</div>
+
+    <!-- Background particles -->
+    <script>
+        // SharePoint Compatibility Check
+        (function() {
+            var isSharePoint = typeof _spPageContextInfo !== 'undefined';
+            if (isSharePoint) {
+    console.log('SharePoint environment detected');
+      // Add SharePoint-specific initialization if needed
+        }
+        })();
+
+        // Seasonal color configuration
+        const seasonalThemes = {
+       spring: {
+        name: '🌸 Spring',
+        primary: '#2d5016',    // Deep forest green
+     secondary: '#4ade80',  // Fresh spring green
+       accent: '#22d3ee',     // Sky blue
+                particle: 'rgba(74, 222, 128, 0.2)',
+    glow: 'rgba(34, 211, 238, 0.5)'
+ },
+  summer: {
+        name: '☀️ Summer',
+             primary: '#1e40af',    // Deep ocean blue
+        secondary: '#3b82f6',  // Bright summer blue
+     accent: '#fbbf24',     // Sunny yellow
+  particle: 'rgba(59, 130, 246, 0.2)',
+    glow: 'rgba(251, 191, 36, 0.5)'
+    },
+   autumn: {
+     name: '🍂 Autumn',
+         primary: '#7c2d12',    // Deep autumn brown
+           secondary: '#f97316',  // Orange
+        accent: '#dc2626',     // Red
+          particle: 'rgba(249, 115, 22, 0.2)',
+   glow: 'rgba(220, 38, 38, 0.5)'
+        },
+       winter: {
+        name: '❄️ Winter',
+ primary: '#1e3a8a',    // Deep winter blue
+ secondary: '#60a5fa',  // Ice blue
+     accent: '#e0f2fe',     // Snow white
+       particle: 'rgba(224, 242, 254, 0.2)',
+                glow: 'rgba(96, 165, 250, 0.5)'
+     }
+        };
+
+  // Determine current season based on date
+    function getCurrentSeason() {
+      const now = new Date();
+            const month = now.getMonth(); // 0-11
+            
+        // Northern Hemisphere seasons
+            if (month >= 2 && month <= 4) return 'spring';  // Mar-May
+            if (month >= 5 && month <= 7) return 'summer';      // Jun-Aug
+            if (month >= 8 && month <= 10) return 'autumn';     // Sep-Nov
+     return 'winter';           // Dec-Feb
+        }
+
+        // Apply seasonal theme
+    function applySeasonalTheme() {
+   const season = getCurrentSeason();
+   const theme = seasonalThemes[season];
+            
+  // Update CSS variables
+     document.documentElement.style.setProperty('--primary-color', theme.primary);
+    document.documentElement.style.setProperty('--secondary-color', theme.secondary);
+  document.documentElement.style.setProperty('--accent-color', theme.accent);
+  document.documentElement.style.setProperty('--particle-color', theme.particle);
+            document.documentElement.style.setProperty('--text-glow', theme.glow);
+      
+  // Update season badge
+            const badge = document.getElementById('seasonBadge');
+            if (badge) {
+                badge.textContent = theme.name;
+            }
+ 
+            console.log(`Applied ${season} theme`);
+      }
+
+  // Apply theme immediately
+     applySeasonalTheme();
+
+   // Generate particles
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+   particle.className = 'particle';
+     particle.style.width = Math.random() * 100 + 50 + 'px';
+          particle.style.height = particle.style.width;
+          particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 20 + 's';
+      particle.style.animationDuration = Math.random() * 10 + 15 + 's';
+    document.body.appendChild(particle);
+        }
+    </script>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="logo-container">
+        <div class="logo-wrapper">
+     <!-- Updated logo path for SharePoint/Azure deployment -->
+                <img src="./assets/logos/LILL_Logo_IMG_8660.JPG" alt="Lilly Pad LLC Logo" class="spinning-logo" onerror="this.style.display='none'">
+      </div>
+<h1 class="hero-title">Lilly Pad LLC</h1>
+ <p class="hero-subtitle">Think Smarter. Not Harder.</p>
+   </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section section-ripple">
+        <div class="section-content">
+     <div class="section-text">
+    <h2>Automated Solutions That Make Sense</h2>
+       <p>We believe business should flow naturally—like water finding its path. Our automated, data-driven solutions help you work smarter, not harder.</p>
+       <p>From concept to completion, we design, develop, drive, and organize quality needs-based solutions that solve real problems with integrity and intelligence.</p>
+            </div>
+            <div class="section-visual">
+    <div class="lily-pad"></div>
+   </div>
+ </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="content-section section-wave">
+        <div class="section-content reverse">
+            <div class="section-text">
+         <h2>Ethical AI. Real Results.</h2>
+            <p>We invigorate businesses with AI integrations built on transparency, accountability, and privacy protection—never at the expense of human values.</p>
+       <p>Our approach creates ripples of positive change: protecting your assets, stewarding your intellectual property, and governing with human rights at the forefront.</p>
+        </div>
+   <div class="section-visual">
+          <div class="ripple-container">
+      <div class="ripple"></div>
+           <div class="ripple"></div>
+           <div class="ripple"></div>
+  <div style="font-size: 5em, z-index: 10, position: relative;">💧</div>
+        </div>
+            </div>
+     </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="content-section section-pond" style="min-height: auto; padding: 120px 20px;">
+        <div style="width: 100%; text-align: center; margin-bottom: 80px;">
+   <h2 style="font-size: 3em; background: linear-gradient(135deg, #ffffff 0%, var(--secondary-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+         Our Foundation: The Four Pillars
+            </h2>
+        </div>
+        <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+     <h3>Design</h3>
+        <p>Needs-based solutions crafted with precision. We don't build what's trendy—we build what works for your unique challenges.</p>
+     </div>
+     <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+      <h3>Develop</h3>
+<p>Automated data-driven systems that eliminate repetitive work. Your team focuses on strategy while our solutions handle the execution.</p>
+            </div>
+         <div class="feature-card">
+         <div class="feature-icon">🚀</div>
+          <h3>Drive</h3>
+             <p>Implementation with momentum. We don't just deliver—we ensure adoption, integration, and measurable impact from day one.</p>
+            </div>
+       <div class="feature-card">
+    <div class="feature-icon">📊</div>
+     <h3>Organize</h3>
+                <p>Structure that scales. Our systems bring clarity to chaos, turning scattered data into strategic insights.</p>
+            </div>
+     <div class="feature-card">
+    <div class="feature-icon">🤖</div>
+      <h3>Ethical AI Integration</h3>
+   <p>AI with integrity. Transparent algorithms, accountable processes, and unwavering privacy protection in every solution.</p>
+          </div>
+       <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+         <h3>Asset Protection & IP Stewardship</h3>
+      <p>Your innovations deserve protection. We serve as your legal vessel for safeguarding intellectual property and human rights governance.</p>
+            </div>
+     </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="content-section section-ripple" style="min-height: 60vh;">
+        <div style="text-align: center; max-width: 1200px;">
+       <h2 style="font-size: 3em; margin-bottom: 30px; background: linear-gradient(135deg, #ffffff 0%, var(--secondary-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+   Building the Future, Together
+    </h2>
+  <p style="font-size: 1.3em; margin-bottom: 40px; opacity: 0.9; line-height: 1.8;">
+       At Lilly Pad LLC, we're more than a technology company. We're architects of efficiency, guardians of innovation, and partners in your growth. Our commitment to ethics and integrity isn't a marketing message—it's the foundation of every line of code we write.
+      </p>
+     <div class="stats-container">
+  <div class="stat-item">
+           <div class="stat-number counter" data-target="100">0</div>
+               <div class="stat-label">% Data-Driven</div>
+    </div>
+            <div class="stat-item">
+ <div class="stat-number counter" data-target="24">0</div>
+     <div class="stat-label">/7 Support</div>
+                </div>
+     <div class="stat-item">
+            <div class="stat-number counter" data-target="99">0</div>
+        <div class="stat-label">.9% Uptime</div>
+   </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="cta-title">Ready to Think Smarter?</h2>
+      <p class="cta-subtitle" style="max-width: 800px; margin: 0 auto 50px;">
+   Join businesses who've discovered that working harder isn't the answer—working smarter is. Let's design your automated solution together, with ethics and excellence at the core.
+        </p>
+        <a href="mailto:nicholasj@lillypadllc.onmicrosoft.com" class="cta-button">Start Your Journey</a>
+  <p style="margin-top: 40px; font-size: 1.1em; opacity: 0.8; max-width: 700px; margin-left: auto; margin-right: auto;">
+            <em>"Like a lily pad provides a stable platform on water, we provide the foundation for your business to thrive—naturally, sustainably, and with room to grow."</em>
+        </p>
+ </section>
+
+    <!-- Copyright Footer -->
+    <footer class="copyright-footer">
+      <p>© 2025 Lilly Pad LLC. All Rights Reserved.</p>
+     <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">
+ ELIZABETH AI™, PROFESSOR X QUANTUM COMMUNICATION™, CFPB ANALYTICS™, and MICROLINK™<br>
+  are trademarks of Lilly Pad LLC. Patent Pending.
+        </p>
+        <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.85; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto;">
+        Automated "Think Smarter Not Harder" Solutions | Ethical AI Integration | Asset Protection & IP Stewardship
+        </p>
+        <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.6;">
+ Built with integrity. Powered by innovation. Protected by design.
+        </p>
+    </footer>
+
+ <script>
+ // Intersection Observer for scroll animations
+        const observerOptions = {
+     threshold: 0.2,
+rootMargin: '0px 0px -100px 0px'
+        };
+
+      const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+       if (entry.isIntersecting) {
+               entry.target.classList.add('visible');
+  
+         // Trigger counter animation if this section has counters
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+              if (!counter.classList.contains('counted')) {
+         animateCounter(counter);
+            counter.classList.add('counted');
+  }
+        });
+     }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter animation
+     function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+   const increment = target / (duration / 16);
+            let current = 0;
+
+   const timer = setInterval(() => {
+         current += increment;
+     if (current >= target) {
+  element.textContent = target + (target === 99 ? '.9' : '+');
+       clearInterval(timer);
+      } else {
+   element.textContent = Math.floor(current);
+    }
+    }, 16);
+        }
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+   e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+  target.scrollIntoView({
+   behavior: 'smooth',
+ block: 'start'
+      });
+  }
+          });
+        });
+
+   // Parallax effect on scroll
+        let scrollPos = 0;
+        window.addEventListener('scroll', () => {
+ scrollPos = window.pageYOffset;
+       
+       // Parallax for logo
+            const logo = document.querySelector('.logo-container');
+   if (logo) {
+      logo.style.transform = `translateY(${scrollPos * 0.5}px)`;
+  logo.style.opacity = 1 - (scrollPos / 800);
+            }
+
+       // Hide scroll indicator after scrolling
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator && scrollPos > 100) {
+scrollIndicator.style.opacity = '0';
+   } else if (scrollIndicator) {
+       scrollIndicator.style.opacity = '1';
+         }
+        });
+
+     // Add floating elements dynamically
+   const sections = document.querySelectorAll('.content-section');
+   sections.forEach((section, index) => {
+            if (index % 2 === 0) {
+          const floater = document.createElement('div');
+  floater.className = 'floating-element';
+       floater.textContent = '💧';
+                floater.style.fontSize = '3em';
+   floater.style.top = Math.random() * 80 + 10 + '%';
+  floater.style.left = Math.random() * 80 + 10 + '%';
+  floater.style.animationDelay = Math.random() * 3 + 's';
+       section.appendChild(floater);
+        }
+ });
+        
+      // Error handling for images
+        document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+    console.warn('Failed to load image:', this.src);
+      // Could add fallback image here if needed
+            });
+        });
+    </script>
+</body>
+</html>
