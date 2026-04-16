@@ -1,156 +1,909 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--For Prof. Prater Class CSC 102
-    09Oct2023
-    
-    This is my assignment for week1-1 The Foundation NMJ
-
-    30Oct2023
-    
-    4.1 Event driven programming
-    Add start and stop buttons to start and stop memeImage moving-->
-
 <head>
-    <script src="indexCode.js"></script>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicholas M James's Website</title>
-</head>
-
-<body>
-    <script>
-        //this is a javascript comment nmj
-    </script>
-
-    <header>
-        <h1>Welcome Nicholas M James's Webpage</h1>
-    </header>
-
-    <br>
-    <nav>
-        <h2>
-            Page Navigation
-        </h2>
-        <a href="./index.html">Home</a><br>
-        <a href="./boards.html">Boards</a><br>
-        <a href="./game.html">Games</a><br>
-        <a href="./strings.html">Strings</a><br>
-        <a href="./welcome.html">MicroLink</a><br>
-    </nav>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <!--marquee to allow movement-->
-    <marquee id="myMarquee" direction="right">
-        <img id="memImage" src="OIP.jpg">
-    </marquee>
-    <center><button onclick="startFun();" id="startButton">Start</button><button onclick="stopFun();"
-            id="stopButton">Stop</button>
-
-        <h3>Well Did You?</h3>
-        They Took Out His Vocal Chordes So He Couldn't Croak
-    </center>
-    
-    <br>
-    <br>
-    <br>
-    <br>
-
-
+    <meta name="description" content="Nicholas M. James - Professional Software Development, AI/ML Solutions, and Technical Consulting Services">
+    <meta name="keywords" content="freelance, software development, AI, machine learning, consulting, full-stack developer, Lilly Pad LLC">
+    <meta name="author" content="Nicholas James - Lilly Pad LLC">
+    <title>Nicholas M. James - Professional</title>
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <style>
-        td,
-        th {
-            border: 1px solid;
-            text-align: center;
-            padding: 8px;
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --accent-color: #06b6d4;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #cbd5e1;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
         }
 
-        td {
-            text-align: left;
-            padding: 8px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-bg), #1e293b);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Services Section */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .service-card p {
+            color: #64748b;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            height: 400px;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .portfolio-item-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .portfolio-item:hover .portfolio-item-inner {
+            transform: rotateY(180deg);
+        }
+
+        .portfolio-item .image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .portfolio-item .content {
+            padding: 1.5rem;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-item h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .portfolio-item .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .portfolio-flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            gap: 1.5rem;
+        }
+
+        .portfolio-flip-back h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-flip-back p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .portfolio-flip-back .btn-flip {
+            background: white;
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .portfolio-flip-back .btn-flip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.01);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--dark-bg), #1e293b);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .modal-body iframe {
+                height: 400px;
+            }
         }
     </style>
-    <table style="width: 100%" id="tableSmashBros">
-        <!--These are my Table headers-->
-        <tr>
-            <th onclick="sortTable(0)">Rank</th>
-            <th onclick="sortTable(1)">Name</th>
-            <th onclick="sortTable(2)">Weight Class</th>
-            <th onclick="sortTable(3)">Plays</th>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo">Nicholas M. James</a>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>4</td>
-            <td>Lucas</td>
-            <td>Medium</td>
-            <td>5600</td>
-
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>3</td>
-            <td>Mewtwo</td>
-            <td>Medium</td>
-            <td>6500</td>
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>2</td>
-            <td>Dr. Mario</td>
-            <td>Heavy</td>
-            <td>7450</td>
-        </tr>
-        <!--Table Data-->
-        <tr>
-            <td>1</td>
-            <td>King DeDeDe</td>
-            <td>Heavy</td>
-            <td>9000</td>
-        </tr>
-    </table>
-    <br>
-    <br>
-
-    <!--for event driven programming, assignment 4.2-->
-
-
-    
-   
-        <p class="frogHappy">
-            <center>
-    <h3>Do You Know Why Frogs Are So Happy?</h3>
-    <img src="whyarefrogssohappy.jpg" id="frogHappy">
-            </center>
-            
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Professional, Owner and Founder</h1>
+        <p class="tagline">Full-Stack Development | AI/ML Solutions | Technical Consulting</p>
+        <p>
+            Transforming ideas into powerful, scalable solutions. Specializing in modern web applications, 
+            artificial intelligence, and enterprise software development under Lilly Pad LLC (EIN Registered).
         </p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#portfolio" class="btn btn-secondary">View Portfolio</a>
+        </div>
+    </section>
 
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title">Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">[WEB]</div>
+                <h3>Full-Stack Development</h3>
+                <p>
+                    End-to-end web application development using modern frameworks and technologies. 
+                    From responsive front-ends to robust back-end APIs.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="icon">[AI]</div>
+                <h3>AI/ML Solutions</h3>
+                <p>
+                    Custom machine learning models, natural language processing, and AI-powered 
+                    applications tailored to your business needs.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="icon">[CLOUD]</div>
+                <h3>Cloud Architecture</h3>
+                <p>
+                    Azure and AWS cloud solutions including deployment automation, scalability 
+                    optimization, and infrastructure as code.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="icon">[DATA]</div>
+                <h3>Data Analytics</h3>
+                <p>
+                    Business intelligence, data visualization, and analytics platforms to transform 
+                    your data into actionable insights.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="icon">[TECH]</div>
+                <h3>Technical Consulting</h3>
+                <p>
+                    Architecture reviews, technology selection, performance optimization, and 
+                    best practices guidance for your projects.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="icon">[OPS]</div>
+                <h3>DevOps & CI/CD</h3>
+                <p>
+                    Automated deployment pipelines, containerization, monitoring, and continuous 
+                    integration/delivery solutions.
+                </p>
+            </div>
+        </div>
+    </section>
 
-    <br>
-    <center>
-        
-        <footer>
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>C++ / C#</li>
+                    <li>JavaScript / TypeScript</li>
+                    <li>SQL / NoSQL</li>
+                    <li>HTML5 / CSS3</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Frameworks</h3>
+                <ul class="skill-list">
+                    <li>React / Vue.js</li>
+                    <li>Node.js / Express</li>
+                    <li>.NET / ASP.NET Core</li>
+                    <li>Django / Flask</li>
+                    <li>TensorFlow / PyTorch</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Cloud & DevOps</h3>
+                <ul class="skill-list">
+                    <li>Azure / AWS</li>
+                    <li>Docker / Kubernetes</li>
+                    <li>GitHub Actions / Azure DevOps</li>
+                    <li>Terraform / ARM Templates</li>
+                    <li>Linux / Windows Server</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <ul class="skill-list">
+                    <li>SQL Server / PostgreSQL</li>
+                    <li>MongoDB / CosmosDB</li>
+                    <li>Redis / Memcached</li>
+                    <li>Elasticsearch</li>
+                    <li>Database Design & Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-            University of Advancing Technology<br>
-            2625 W Baseline Road<br>
-            Tempe, AZ 85283-1056<br>
-            602-383-8228
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-item-inner">
+                    <div style="backface-visibility: hidden;">
+                        <div class="image">[ACADEMIC]</div>
+                        <div class="content">
+                            <div>
+                                <h3>Academic Portfolio System</h3>
+                                <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 0.5rem;">Interactive C++ application for academic coursework.</p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">C++</span>
+                                <span class="tech-badge">Console UI</span>
+                                <span class="tech-badge">Education</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-flip-back">
+                        <h4>Academic Portfolio</h4>
+                        <p>Interactive C++ console application with assignment selector, banking simulation, and educational examples.</p>
+                        <button class="btn-flip" onclick="launchExecutable('Academic Portfolio', 'AcademicPortfolio.exe', '../../assets/portfolio/assignment-selector/')">Open App</button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-item-inner">
+                    <div style="backface-visibility: hidden;">
+                        <div class="image">[BUSINESS]</div>
+                        <div class="content">
+                            <div>
+                                <h3>Lilly Pad LLC Landing Page</h3>
+                                <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 0.5rem;">Professional business landing with Azure deployment.</p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">HTML/CSS</span>
+                                <span class="tech-badge">Azure</span>
+                                <span class="tech-badge">CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-flip-back">
+                        <h4>Lilly Pad LLC</h4>
+                        <p>Professional business landing page with seasonal theming, Azure Static Web Apps deployment, and multi-environment CI/CD.</p>
+                        <button class="btn-flip" onclick="openModal('Lilly Pad LLC', '../../assets/portfolio/LillyPadLLC/landing_page.html')">Open App</button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-item-inner">
+                    <div style="backface-visibility: hidden;">
+                        <div class="image">[PLATFORM]</div>
+                        <div class="content">
+                            <div>
+                                <h3>MicroLink Platform</h3>
+                                <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 0.5rem;">URL shortening with analytics and custom domains.</p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-flip-back">
+                        <h4>MicroLink</h4>
+                        <p>URL shortening and link management system with analytics, custom domains, and enterprise features.</p>
+                        <button class="btn-flip" onclick="openModal('MicroLink Platform', '../../assets/portfolio/MicroLink/index.html')">Open App</button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-item-inner">
+                    <div style="backface-visibility: hidden;">
+                        <div class="image">[ANALYTICS]</div>
+                        <div class="content">
+                            <div>
+                                <h3>CFPB Analytics Dashboard</h3>
+                                <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 0.5rem;">Data analysis platform with real-time visualization.</p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Data Science</span>
+                                <span class="tech-badge">Visualization</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-flip-back">
+                        <h4>CFPB Analytics</h4>
+                        <p>Consumer Financial Protection Bureau complaint data analysis with real-time visualization and predictive analytics.</p>
+                        <a href="javascript:void(0)" class="btn-flip" style="opacity: 0.7; cursor: not-allowed;" title="Project in development">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-item-inner">
+                    <div style="backface-visibility: hidden;">
+                        <div class="image">[AI SYSTEM]</div>
+                        <div class="content">
+                            <div>
+                                <h3>Elizabeth AI Assistant</h3>
+                                <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 0.5rem;">Intelligent assistant with NLP and automation.</p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">AI/ML</span>
+                                <span class="tech-badge">NLP</span>
+                                <span class="tech-badge">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-flip-back">
+                        <h4>Elizabeth AI</h4>
+                        <p>Intelligent personal assistant with natural language processing, task automation, and multi-platform integration.</p>
+                        <a href="javascript:void(0)" class="btn-flip" style="opacity: 0.7; cursor: not-allowed;" title="Project in development">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-item-inner">
+                    <div style="backface-visibility: hidden;">
+                        <div class="image">[ANALYZER]</div>
+                        <div class="content">
+                            <div>
+                                <h3>Feedback Analyzer</h3>
+                                <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 0.5rem;">Sentiment analysis for customer feedback.</p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Machine Learning</span>
+                                <span class="tech-badge">NLP</span>
+                                <span class="tech-badge">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-flip-back">
+                        <h4>Feedback Analyzer</h4>
+                        <p>Sentiment analysis and categorization system for customer reviews and user-generated content.</p>
+                        <a href="javascript:void(0)" class="btn-flip" style="opacity: 0.7; cursor: not-allowed;" title="Project in development">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        </footer>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title" style="color: white;">Get In Touch</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+            Ready to bring your project to life? Let's discuss how I can help you achieve your goals.
+        </p>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="icon">[EMAIL]</div>
+                <h3>Email</h3>
+                <p><a href="mailto:nicholasj@lillypadllc.onmicrosoft.com">nicholasj@lillypadllc.onmicrosoft.com</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="icon">[LINKEDIN]</div>
+                <h3>LinkedIn</h3>
+                <p><a href="https://linkedin.com" target="_blank">Connect on LinkedIn</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="icon">[GITHUB]</div>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/njames86877" target="_blank">@njames86877</a></p>
+            </div>
+        </div>
+    </section>
 
-    </center>
+    <!-- Portfolio Modal -->
+    <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Project</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalIframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Lilly Pad LLC. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7;">Nicholas M. James | Professional Development Services | AI/ML Solutions | Technical Consulting</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Modal Functions
+        function openModal(title, src) {
+            const modal = document.getElementById('portfolioModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalIframe = document.getElementById('modalIframe');
+            
+            modalTitle.textContent = title;
+            modalIframe.src = src;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('portfolioModal');
+            const modalIframe = document.getElementById('modalIframe');
+            modal.classList.remove('active');
+            modalIframe.src = '';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('portfolioModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Launch Executable
+        function launchExecutable(title, exeName, exePath) {
+            try {
+                // For Windows - uses ActiveXObject to launch .exe
+                if (typeof ActiveXObject !== 'undefined') {
+                    const shell = new ActiveXObject('WScript.Shell');
+                    shell.Run(exePath + exeName, 1, false);
+                } else {
+                    alert('Executable launch requires Windows and ActiveX support.\n\nApplication: ' + title + '\n\nTo run manually, navigate to:\n' + exePath);
+                }
+            } catch (error) {
+                alert('Unable to launch ' + title + '.\n\nPlease ensure the application file exists at:\n' + exePath + exeName + '\n\nError: ' + error.message);
+                console.error('Launch error:', error);
+            }
+        }
+    </script>
 </body>
-
 </html>
