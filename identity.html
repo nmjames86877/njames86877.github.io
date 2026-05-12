@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=0.75">
  <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net;">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://raw.githubusercontent.com; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- SiriWave: Open-source waveform visualization library (MIT License) -->
+    <!-- Copyright (c) SiriWave Contributors - https://github.com/kopiro/siriwave -->
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Chart.js: Open-source charting library (MIT License) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
+    
     
     <title>Identity</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400,700&display=swap');
 
         body {
             font-family: 'Orbitron', sans-serif;
